@@ -118,7 +118,7 @@ public class Login_Frm extends javax.swing.JFrame {
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(57, 65, 77));
-        jLabel16.setText("Login");
+        jLabel16.setText("Sign In");
         jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N

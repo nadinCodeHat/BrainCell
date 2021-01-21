@@ -151,9 +151,9 @@ public class Register_Frm extends javax.swing.JFrame {
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel16.setText("Go to Log In");
+        jLabel16.setText("Sign In");
         jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, -1, -1));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
