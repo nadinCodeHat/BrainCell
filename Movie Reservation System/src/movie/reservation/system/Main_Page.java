@@ -62,7 +62,7 @@ public class Main_Page extends javax.swing.JFrame {
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
 
         jButton1.setText("Go to Log In");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 140, 50));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 140, 50));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/reservation/system/assets/icons/small logo.png"))); // NOI18N
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
