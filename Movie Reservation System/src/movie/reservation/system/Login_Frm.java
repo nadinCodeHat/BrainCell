@@ -26,163 +26,87 @@ public class Login_Frm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        white_backPanel = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
+        login_panel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        username_login_txt = new javax.swing.JTextField();
-        password_txt = new javax.swing.JPasswordField();
-        login_btn = new javax.swing.JButton();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(800, 500));
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        white_backPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        login_panel.setBackground(new java.awt.Color(21, 20, 31));
+        login_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel4.setBackground(new java.awt.Color(4, 95, 202));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Email");
+        login_panel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, 20));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/reservation/system/assets/icons/logo.png"))); // NOI18N
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, -1, -1));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(235, 16, 42));
+        jLabel2.setText("Login");
+        login_panel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(3, 29, 124));
-        jLabel8.setText("BrainCell Cinema");
-        jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, -1, -1));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Welcome back! Lets get started");
+        login_panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, 20));
 
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("Cinema is the most beautiful");
-        jPanel4.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, -1, -1));
+        jTextField1.setBackground(new java.awt.Color(21, 20, 31));
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTextField1.setToolTipText("");
+        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 16, 42)));
+        login_panel.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 220, 30));
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("fraud in the world.");
-        jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 290, -1, -1));
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(235, 16, 42));
+        jLabel4.setText("Forgot Password?");
+        login_panel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, -1, 20));
 
-        white_backPanel.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 500));
+        jTextField2.setBackground(new java.awt.Color(21, 20, 31));
+        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextField2.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTextField2.setToolTipText("");
+        jTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 16, 42)));
+        login_panel.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 220, 30));
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Password");
+        login_panel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, -1, 20));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jPanel2.setOpaque(false);
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jButton1.setBackground(new java.awt.Color(235, 16, 42));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Login");
+        login_panel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 220, 35));
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(57, 65, 77));
-        jLabel11.setText("Username");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("New User?");
+        login_panel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, -1, 20));
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(57, 65, 77));
-        jLabel12.setText("Password");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(235, 16, 42));
+        jLabel7.setText("Create Account");
+        login_panel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 390, -1, 20));
 
-        username_login_txt.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        username_login_txt.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jPanel2.add(username_login_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 220, -1));
-
-        password_txt.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        password_txt.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jPanel2.add(password_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 220, -1));
-
-        login_btn.setText("Log In");
-        login_btn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        login_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                login_btnActionPerformed(evt);
-            }
-        });
-        jPanel2.add(login_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 220, 40));
-
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel13.setText("Sign In to buy tickets at lowest prices");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
-
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(57, 65, 77));
-        jLabel16.setText("Log In");
-        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel17.setText("Welcome to BrainCell Cinema ");
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
-
-        jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(4, 114, 225));
-        jLabel22.setText("Forgot Password?");
-        jLabel22.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 190, -1, -1));
-
-        jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(4, 114, 225));
-        jLabel21.setText("Register Here");
-        jLabel21.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, -1, -1));
-
-        jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(57, 65, 77));
-        jLabel23.setText("Not a member yet?");
-        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, -1));
-
-        jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 260, 340));
-
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel15.setText("Copyright© 2019");
-        jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 460, -1, -1));
-
-        white_backPanel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 400, 500));
-
-        getContentPane().add(white_backPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
+        getContentPane().add(login_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 310, 500));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    //login btnAction
-    private void login_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_btnActionPerformed
-        String username_login = username_login_txt.getText();
-        String pass = String.valueOf(password_txt.getPassword());
-        
-        String query = "SELECT * FROM `customer_login_info` WHERE `username` = ? AND `password` = ?";
-        
-        try{
-            pst = DBConnectClass.getConnection().prepareStatement(query);
-            pst.setString(1,username_login);
-            pst.setString(2,pass);
-            rs = pst.executeQuery();
-             
-            if(rs.next()){
-                JOptionPane.showMessageDialog(null, "Login Successful");
-               // register_frm Accform = new register_frm(jTextField1.getText());
-              //  Accform.setVisible(true);
-              //  Accform.pack();
-               // this.dispose();
-            }else{
-                 JOptionPane.showMessageDialog(null, "Invalid Username/Password","Login Error",2);
-             }
-        } catch (SQLException ex) {
-            Logger.getLogger(Login_Frm.class.getName()).log(Level.SEVERE, null, ex);
-        }        
-    }//GEN-LAST:event_login_btnActionPerformed
 
  
     public static void main(String args[]) {
@@ -220,25 +144,16 @@ public class Login_Frm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JButton login_btn;
-    private javax.swing.JPasswordField password_txt;
-    private javax.swing.JTextField username_login_txt;
-    private javax.swing.JPanel white_backPanel;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JPanel login_panel;
     // End of variables declaration//GEN-END:variables
 }
