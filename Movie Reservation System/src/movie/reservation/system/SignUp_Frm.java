@@ -162,14 +162,52 @@ public class SignUp_Frm extends javax.swing.JFrame {
 
     private void signup_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signup_BtnActionPerformed
         if(validate_info() && checkEmail(email_TextField.getText())){
+            
+            String fullName = fullname_TextField.getText();
+            String userEmail = email_TextField.getText();
             try{
                 String query = "INSERT INTO `login_info` (fullname,email,password) VALUES(?,?,?)";
                 pst = DBConnectClass.getConnection().prepareStatement(query);
-                pst.setString(1, fullname_TextField.getText());
-                pst.setString(2, email_TextField.getText());
+                pst.setString(1, fullName);
+                pst.setString(2, userEmail);
                 pst.setString(3, String.valueOf(confirmPassword_TextField.getPassword()));
                 pst.execute();
                 
+                String FromEmail = "nadinpethiyagoda4@gmail.com";
+                String FromEmailPassword= "ENTER YOUR PASSWORD";
+
+                Properties props = new Properties();
+
+                props.put("mail.smtp.user","username"); 
+                props.put("mail.debug", "true"); 
+                props.put("mail.smtp.auth", "true"); 
+                props.put("mail.smtp.starttls.enable","true");
+                props.put("mail.smtp.host", "smtp.gmail.com"); 
+                props.put("mail.smtp.port", "587");
+                props.put("mail.smtp.EnableSSL.enable","true");
+                props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");   
+                props.setProperty("mail.smtp.socketFactory.fallback", "false");   
+                props.setProperty("mail.smtp.port", "465");   
+                props.setProperty("mail.smtp.socketFactory.port", "465"); 
+
+                Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
+                @Override
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(FromEmail, FromEmailPassword);
+                    }
+                });
+
+                try{
+                    MimeMessage message = new MimeMessage(session);
+                    message.setFrom(new InternetAddress(FromEmail));
+                    message.addRecipient(Message.RecipientType.TO, new InternetAddress(userEmail));
+                    message.setSubject("BrainCell User Account SignUp");
+                    message.setText("Hello "+fullName+" thankyou for joining with BrainCell Cinema!");
+                    Transport.send(message);
+                } catch (MessagingException e){
+                    JOptionPane.showMessageDialog(null,"Something happened!");
+                    throw new RuntimeException(e);
+                }
             }catch(SQLException ex){
                 Logger.getLogger(SignUp_Frm.class.getName()).log(Level.SEVERE, null, ex);
             }
