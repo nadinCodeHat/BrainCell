@@ -39,9 +39,9 @@ public class SignUp_Frm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        signup_Btn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        login_link = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         email_TextField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -53,6 +53,7 @@ public class SignUp_Frm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(800, 550));
         setMinimumSize(new java.awt.Dimension(800, 550));
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(800, 550));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -80,21 +81,21 @@ public class SignUp_Frm extends javax.swing.JFrame {
         jLabel5.setText("Confirm Password");
         login_panel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, 20));
 
-        jButton1.setBackground(new java.awt.Color(235, 16, 42));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Sign Up");
-        login_panel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, 220, 35));
+        signup_Btn.setBackground(new java.awt.Color(235, 16, 42));
+        signup_Btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        signup_Btn.setForeground(new java.awt.Color(255, 255, 255));
+        signup_Btn.setText("Sign Up");
+        login_panel.add(signup_Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, 220, 35));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Have an account?");
         login_panel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, -1, 20));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(235, 16, 42));
-        jLabel7.setText("Go to Login");
-        login_panel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 510, -1, 20));
+        login_link.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        login_link.setForeground(new java.awt.Color(235, 16, 42));
+        login_link.setText("Go to Login");
+        login_panel.add(login_link, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 510, -1, 20));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -108,6 +109,8 @@ public class SignUp_Frm extends javax.swing.JFrame {
         email_TextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         email_TextField.setToolTipText("");
         email_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 16, 42)));
+        email_TextField.setCaretColor(new java.awt.Color(255, 255, 255));
+        email_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         login_panel.add(email_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 220, 30));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -126,18 +129,24 @@ public class SignUp_Frm extends javax.swing.JFrame {
         fullname_TextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         fullname_TextField.setToolTipText("");
         fullname_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 16, 42)));
+        fullname_TextField.setCaretColor(new java.awt.Color(255, 255, 255));
+        fullname_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         login_panel.add(fullname_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 220, 30));
 
         confirmPassword_TextField.setBackground(new java.awt.Color(21, 20, 31));
         confirmPassword_TextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         confirmPassword_TextField.setForeground(new java.awt.Color(255, 255, 255));
         confirmPassword_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 16, 42)));
+        confirmPassword_TextField.setCaretColor(new java.awt.Color(255, 255, 255));
+        confirmPassword_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         login_panel.add(confirmPassword_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 220, 30));
 
         createPassword_TextField.setBackground(new java.awt.Color(21, 20, 31));
         createPassword_TextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         createPassword_TextField.setForeground(new java.awt.Color(255, 255, 255));
         createPassword_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 16, 42)));
+        createPassword_TextField.setCaretColor(new java.awt.Color(255, 255, 255));
+        createPassword_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         login_panel.add(createPassword_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 220, 30));
 
         getContentPane().add(login_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 310, 600));
@@ -229,16 +238,16 @@ public class SignUp_Frm extends javax.swing.JFrame {
     private javax.swing.JPasswordField createPassword_TextField;
     private javax.swing.JTextField email_TextField;
     private javax.swing.JTextField fullname_TextField;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel login_link;
     private javax.swing.JPanel login_panel;
+    private javax.swing.JButton signup_Btn;
     // End of variables declaration//GEN-END:variables
 }
