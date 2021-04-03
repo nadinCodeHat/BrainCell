@@ -85,6 +85,11 @@ public class SignUp_Frm extends javax.swing.JFrame {
         signup_Btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         signup_Btn.setForeground(new java.awt.Color(255, 255, 255));
         signup_Btn.setText("Sign Up");
+        signup_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signup_BtnActionPerformed(evt);
+            }
+        });
         login_panel.add(signup_Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, 220, 35));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -155,7 +160,26 @@ public class SignUp_Frm extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    //validation function
+    private void signup_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signup_BtnActionPerformed
+        if(validate_info() && checkEmail(email_TextField.getText())){
+            try{
+                String query = "INSERT INTO `login_info` (fullname,email,password) VALUES(?,?,?)";
+                pst = DBConnectClass.getConnection().prepareStatement(query);
+                pst.setString(1, fullname_TextField.getText());
+                pst.setString(2, email_TextField.getText());
+                pst.setString(3, String.valueOf(confirmPassword_TextField.getPassword()));
+                pst.execute();
+                
+            }catch(SQLException ex){
+                Logger.getLogger(SignUp_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            finally{
+                JOptionPane.showMessageDialog(null, "Account created successfully!","Successful",2);
+            }
+        }
+    }//GEN-LAST:event_signup_BtnActionPerformed
+
+    //validate fields
     public boolean validate_info(){
         String fullname = fullname_TextField.getText();
         String email = email_TextField.getText();
@@ -164,37 +188,33 @@ public class SignUp_Frm extends javax.swing.JFrame {
         
         //check empty fields
         if (fullname.trim().equals("") || email.trim().equals("")){
-            JOptionPane.showMessageDialog(null, "Please fill the empty field(s).","Empty Field",2);
+            JOptionPane.showMessageDialog(null, "Please fill the empty field(s)","Empty Field",2);
             return false;
         }
         if (createpass.trim().equals("") || (!createpass.equals(confirmpass))){
-            JOptionPane.showMessageDialog(null, "Passwords Do Not Match","Confirm Password",2);
+            JOptionPane.showMessageDialog(null, "Passwords do not match","Confirm Password",2);
             return false;
         }
-        else{
-            return true;  
-        }
+            return true;
     }
     
-    //check for duplicate emails
+    //Check for duplicate emails
     public boolean checkEmail(String email){
-        boolean username_exist = false;
-        
-        String query = "SELECT * FROM `customer_login_info` WHERE `email` = ?";
-
+        boolean email_notexists = true;
+        String query = "SELECT COUNT(*) FROM `login_info` WHERE `email` = ?";
         try {
             pst = DBConnectClass.getConnection().prepareStatement(query);
             pst.setString(1,email);
             rs = pst.executeQuery();
-            
-            if(rs.next()){
-                username_exist = true;
-                JOptionPane.showMessageDialog(null, "The entered username is already taken, Please choose entered a different one", "Username Duplicate",2);
-            }   
+            rs.next();
+            if(rs.getInt(1)!=0){
+                email_notexists = false;
+                JOptionPane.showMessageDialog(null, "An account exists by this email, please enter different email.", "Email Duplicate",2);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Login_Frm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return username_exist;
+        return email_notexists;
     }
     
    
