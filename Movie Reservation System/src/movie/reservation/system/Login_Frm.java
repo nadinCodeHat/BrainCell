@@ -37,9 +37,10 @@ public class Login_Frm extends javax.swing.JFrame {
         login_Btn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         createAccount_link = new javax.swing.JLabel();
+        img_panel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(36, 34, 54));
         setMaximumSize(new java.awt.Dimension(800, 500));
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -108,6 +109,9 @@ public class Login_Frm extends javax.swing.JFrame {
 
         getContentPane().add(login_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 310, 500));
 
+        img_panel.setBackground(new java.awt.Color(36, 34, 54));
+        getContentPane().add(img_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 500));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -150,6 +154,7 @@ public class Login_Frm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel createAccount_link;
     private javax.swing.JLabel forgotPassword_link;
+    private javax.swing.JPanel img_panel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
