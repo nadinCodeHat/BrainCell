@@ -15,6 +15,7 @@ public class Login_Frm extends javax.swing.JFrame {
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs;
+    int posX=0,posY=0;
     
     public Login_Frm() {
         initComponents();
@@ -37,7 +38,7 @@ public class Login_Frm extends javax.swing.JFrame {
         });
         //Draggable frame end
     }
-int posX=0,posY=0;
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

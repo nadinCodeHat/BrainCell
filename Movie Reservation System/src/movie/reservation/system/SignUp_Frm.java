@@ -1,5 +1,7 @@
 package movie.reservation.system;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,9 +27,28 @@ public class SignUp_Frm extends javax.swing.JFrame {
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs;
-
+    int posX=0,posY=0;
+    
     public SignUp_Frm() {
         initComponents();
+        //Draggable frame
+        this.addMouseListener(new MouseAdapter()
+        {
+           public void mousePressed(MouseEvent e)
+           {
+              posX=e.getX();
+              posY=e.getY();
+           }
+        });
+        this.addMouseMotionListener(new MouseAdapter()
+        {
+            public void mouseDragged(MouseEvent evt)
+            {
+               //sets frame position when mouse dragged			
+               setLocation (evt.getXOnScreen()-posX,evt.getYOnScreen()-posY);
+            }
+        });
+        //Draggable frame end
     }
 
     @SuppressWarnings("unchecked")
@@ -49,13 +70,12 @@ public class SignUp_Frm extends javax.swing.JFrame {
         fullname_TextField = new javax.swing.JTextField();
         confirmPassword_TextField = new javax.swing.JPasswordField();
         createPassword_TextField = new javax.swing.JPasswordField();
-        img_panel = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(800, 550));
-        setMinimumSize(new java.awt.Dimension(800, 550));
+        setMaximumSize(new java.awt.Dimension(800, 600));
+        setMinimumSize(new java.awt.Dimension(800, 600));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(800, 550));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         login_panel.setBackground(new java.awt.Color(21, 20, 31));
@@ -157,8 +177,8 @@ public class SignUp_Frm extends javax.swing.JFrame {
 
         getContentPane().add(login_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 310, 600));
 
-        img_panel.setBackground(new java.awt.Color(36, 34, 54));
-        getContentPane().add(img_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 600));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/reservation/system/assets/other/signup_back.png"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 600));
 
         pack();
         setLocationRelativeTo(null);
@@ -300,11 +320,11 @@ public class SignUp_Frm extends javax.swing.JFrame {
     private javax.swing.JPasswordField createPassword_TextField;
     private javax.swing.JTextField email_TextField;
     private javax.swing.JTextField fullname_TextField;
-    private javax.swing.JPanel img_panel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
