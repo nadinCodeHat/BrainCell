@@ -1,12 +1,10 @@
 package movie.reservation.system;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,8 +18,26 @@ public class Login_Frm extends javax.swing.JFrame {
     
     public Login_Frm() {
         initComponents();
+        //Draggable frame
+        this.addMouseListener(new MouseAdapter()
+        {
+           public void mousePressed(MouseEvent e)
+           {
+              posX=e.getX();
+              posY=e.getY();
+           }
+        });
+        this.addMouseMotionListener(new MouseAdapter()
+        {
+            public void mouseDragged(MouseEvent evt)
+            {
+               //sets frame position when mouse dragged			
+               setLocation (evt.getXOnScreen()-posX,evt.getYOnScreen()-posY);
+            }
+        });
+        //Draggable frame end
     }
-
+int posX=0,posY=0;
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -144,10 +160,8 @@ public class Login_Frm extends javax.swing.JFrame {
 
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login_Frm().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Login_Frm().setVisible(true);
         });
     }
 

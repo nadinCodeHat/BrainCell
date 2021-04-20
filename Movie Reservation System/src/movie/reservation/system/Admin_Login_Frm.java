@@ -146,10 +146,8 @@ public class Admin_Login_Frm extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Admin_Login_Frm().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Admin_Login_Frm().setVisible(true);
         });
     }
 
