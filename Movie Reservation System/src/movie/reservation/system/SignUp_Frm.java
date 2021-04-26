@@ -1,7 +1,10 @@
 package movie.reservation.system;
 
+import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,6 +12,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -16,6 +20,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -73,7 +78,6 @@ public class SignUp_Frm extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -84,50 +88,69 @@ public class SignUp_Frm extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Create Password");
-        login_panel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, -1, 20));
+        login_panel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 300, -1, 20));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(235, 16, 42));
         jLabel2.setText("Sign Up");
-        login_panel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
+        login_panel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 50, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("account to join with us.");
-        login_panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, 20));
+        login_panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 110, -1, 20));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Confirm Password");
-        login_panel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, 20));
+        login_panel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 370, -1, 20));
 
-        signup_Btn.setBackground(new java.awt.Color(235, 16, 42));
+        signup_Btn.setBackground(new java.awt.Color(255, 255, 255));
         signup_Btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         signup_Btn.setForeground(new java.awt.Color(255, 255, 255));
-        signup_Btn.setText("Sign Up");
+        signup_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/reservation/system/assets/components/signupBtn.png"))); // NOI18N
+        signup_Btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                signup_BtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                signup_BtnMouseExited(evt);
+            }
+        });
         signup_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signup_BtnActionPerformed(evt);
             }
         });
-        login_panel.add(signup_Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, 220, 35));
+        login_panel.add(signup_Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 470, 220, 35));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Have an account?");
-        login_panel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 520, -1, 20));
+        login_panel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 520, -1, 20));
 
         login_link.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         login_link.setForeground(new java.awt.Color(235, 16, 42));
         login_link.setText("Go to Login");
-        login_panel.add(login_link, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 520, -1, 20));
+        login_link.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                login_linkMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                login_linkMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                login_linkMouseExited(evt);
+            }
+        });
+        login_panel.add(login_link, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 520, -1, 20));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setText("Welcome to BrainCell, Create an");
-        login_panel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, 20));
+        login_panel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 90, -1, 20));
 
         email_TextField.setBackground(new java.awt.Color(21, 20, 31));
         email_TextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -137,17 +160,17 @@ public class SignUp_Frm extends javax.swing.JFrame {
         email_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 16, 42)));
         email_TextField.setCaretColor(new java.awt.Color(255, 255, 255));
         email_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        login_panel.add(email_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 220, 30));
+        login_panel.add(email_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 260, 220, 30));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Email");
-        login_panel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, 20));
+        login_panel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 230, -1, 20));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Full Name");
-        login_panel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, 20));
+        login_panel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 160, -1, 20));
 
         fullname_TextField.setBackground(new java.awt.Color(21, 20, 31));
         fullname_TextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -157,7 +180,7 @@ public class SignUp_Frm extends javax.swing.JFrame {
         fullname_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 16, 42)));
         fullname_TextField.setCaretColor(new java.awt.Color(255, 255, 255));
         fullname_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        login_panel.add(fullname_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 220, 30));
+        login_panel.add(fullname_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 190, 220, 30));
 
         confirmPassword_TextField.setBackground(new java.awt.Color(21, 20, 31));
         confirmPassword_TextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -165,7 +188,7 @@ public class SignUp_Frm extends javax.swing.JFrame {
         confirmPassword_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 16, 42)));
         confirmPassword_TextField.setCaretColor(new java.awt.Color(255, 255, 255));
         confirmPassword_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        login_panel.add(confirmPassword_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 220, 30));
+        login_panel.add(confirmPassword_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 400, 220, 30));
 
         createPassword_TextField.setBackground(new java.awt.Color(21, 20, 31));
         createPassword_TextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -173,7 +196,7 @@ public class SignUp_Frm extends javax.swing.JFrame {
         createPassword_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 16, 42)));
         createPassword_TextField.setCaretColor(new java.awt.Color(255, 255, 255));
         createPassword_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        login_panel.add(createPassword_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 220, 30));
+        login_panel.add(createPassword_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 330, 220, 30));
 
         getContentPane().add(login_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 310, 600));
 
@@ -240,6 +263,36 @@ public class SignUp_Frm extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_signup_BtnActionPerformed
+
+    private void signup_BtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signup_BtnMouseEntered
+        try {
+            Image signupBtnHoverImg = ImageIO.read(getClass().getResource("/movie/reservation/system/assets/components/signupBtnHover.png"));
+            signup_Btn.setIcon(new ImageIcon(signupBtnHoverImg));
+        } catch (IOException ex) {
+            Logger.getLogger(SignUp_Frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_signup_BtnMouseEntered
+
+    private void signup_BtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signup_BtnMouseExited
+        try {
+            Image signupBtnImg = ImageIO.read(getClass().getResource("/movie/reservation/system/assets/components/signupBtn.png"));
+            signup_Btn.setIcon(new ImageIcon(signupBtnImg));
+        } catch (IOException ex) {
+            Logger.getLogger(SignUp_Frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_signup_BtnMouseExited
+
+    private void login_linkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_login_linkMouseEntered
+        login_link.setForeground(new Color(209, 15, 38));
+    }//GEN-LAST:event_login_linkMouseEntered
+
+    private void login_linkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_login_linkMouseExited
+        login_link.setForeground(new Color(235, 16, 42));
+    }//GEN-LAST:event_login_linkMouseExited
+
+    private void login_linkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_login_linkMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_login_linkMouseClicked
 
     //validate fields
     public boolean validate_info(){
