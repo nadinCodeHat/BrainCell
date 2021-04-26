@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,8 +12,8 @@ import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 /**
  *
@@ -62,9 +63,11 @@ public class Login_Frm extends javax.swing.JFrame {
         login_Btn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         createAccount_link = new javax.swing.JLabel();
+        exitBtn = new javax.swing.JButton();
+        miniBtn = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(36, 34, 54));
         setMaximumSize(new java.awt.Dimension(800, 500));
         setUndecorated(true);
@@ -165,6 +168,40 @@ public class Login_Frm extends javax.swing.JFrame {
         });
         login_panel.add(createAccount_link, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 390, -1, 20));
 
+        exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/reservation/system/assets/components/exitBtn.png"))); // NOI18N
+        exitBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exitBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                exitBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                exitBtnMouseExited(evt);
+            }
+        });
+        exitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitBtnActionPerformed(evt);
+            }
+        });
+        login_panel.add(exitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 16, 16));
+
+        miniBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/reservation/system/assets/components/miniBtn.png"))); // NOI18N
+        miniBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        miniBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                miniBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                miniBtnMouseExited(evt);
+            }
+        });
+        miniBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miniBtnActionPerformed(evt);
+            }
+        });
+        login_panel.add(miniBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 16, 16));
+
         getContentPane().add(login_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 310, 500));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/reservation/system/assets/other/login_back.png"))); // NOI18N
@@ -201,7 +238,9 @@ public class Login_Frm extends javax.swing.JFrame {
     }//GEN-LAST:event_createAccount_linkMouseExited
 
     private void createAccount_linkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccount_linkMouseClicked
-        // TODO add your handling code here:
+        SignUp_Frm sngFrm = new SignUp_Frm();
+        sngFrm.setVisible(true);
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_createAccount_linkMouseClicked
 
     private void forgotPassword_linkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forgotPassword_linkMouseEntered
@@ -215,6 +254,50 @@ public class Login_Frm extends javax.swing.JFrame {
     private void forgotPassword_linkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forgotPassword_linkMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_forgotPassword_linkMouseClicked
+
+    private void exitBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitBtnMouseEntered
+        try {
+            Image exitBtnHoverImg = ImageIO.read(getClass().getResource("/movie/reservation/system/assets/components/exitBtnHover.png"));
+            exitBtn.setIcon(new ImageIcon(exitBtnHoverImg));
+        } catch (IOException ex) {
+            Logger.getLogger(Login_Frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_exitBtnMouseEntered
+
+    private void exitBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitBtnMouseExited
+        try {
+            Image exitBtnImg = ImageIO.read(getClass().getResource("/movie/reservation/system/assets/components/exitBtn.png"));
+            exitBtn.setIcon(new ImageIcon(exitBtnImg));
+        } catch (IOException ex) {
+            Logger.getLogger(Login_Frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_exitBtnMouseExited
+
+    private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_exitBtnActionPerformed
+
+    private void miniBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_miniBtnMouseEntered
+        try {
+            Image miniBtnHoverImg = ImageIO.read(getClass().getResource("/movie/reservation/system/assets/components/miniBtnHover.png"));
+            miniBtn.setIcon(new ImageIcon(miniBtnHoverImg));
+        } catch (IOException ex) {
+            Logger.getLogger(Login_Frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_miniBtnMouseEntered
+
+    private void miniBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_miniBtnMouseExited
+        try {
+            Image miniBtnImg = ImageIO.read(getClass().getResource("/movie/reservation/system/assets/components/miniBtn.png"));
+            miniBtn.setIcon(new ImageIcon(miniBtnImg));
+        } catch (IOException ex) {
+            Logger.getLogger(Login_Frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_miniBtnMouseExited
+
+    private void miniBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miniBtnActionPerformed
+        this.setState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_miniBtnActionPerformed
 
  
     public static void main(String args[]) {
@@ -251,6 +334,7 @@ public class Login_Frm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel createAccount_link;
+    private javax.swing.JButton exitBtn;
     private javax.swing.JLabel forgotPassword_link;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -262,5 +346,6 @@ public class Login_Frm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JButton login_Btn;
     private javax.swing.JPanel login_panel;
+    private javax.swing.JButton miniBtn;
     // End of variables declaration//GEN-END:variables
 }
