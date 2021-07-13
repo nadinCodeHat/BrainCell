@@ -9,11 +9,13 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -56,15 +58,15 @@ public class Login_Frm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        email_TextField = new javax.swing.JTextField();
         forgotPassword_link = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         login_Btn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         createAccount_link = new javax.swing.JLabel();
         exitBtn = new javax.swing.JButton();
         miniBtn = new javax.swing.JButton();
+        password_TextField = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -91,14 +93,14 @@ public class Login_Frm extends javax.swing.JFrame {
         jLabel3.setText("Welcome back! Lets get started");
         login_panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 110, -1, 20));
 
-        jTextField1.setBackground(new java.awt.Color(21, 20, 31));
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField1.setToolTipText("");
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 16, 42)));
-        jTextField1.setCaretColor(new java.awt.Color(255, 255, 255));
-        login_panel.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 200, 220, 30));
+        email_TextField.setBackground(new java.awt.Color(21, 20, 31));
+        email_TextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        email_TextField.setForeground(new java.awt.Color(255, 255, 255));
+        email_TextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        email_TextField.setToolTipText("");
+        email_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 16, 42)));
+        email_TextField.setCaretColor(new java.awt.Color(255, 255, 255));
+        login_panel.add(email_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 200, 220, 30));
 
         forgotPassword_link.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         forgotPassword_link.setForeground(new java.awt.Color(235, 16, 42));
@@ -117,15 +119,6 @@ public class Login_Frm extends javax.swing.JFrame {
         });
         login_panel.add(forgotPassword_link, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 240, -1, 20));
 
-        jTextField2.setBackground(new java.awt.Color(21, 20, 31));
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField2.setToolTipText("");
-        jTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 16, 42)));
-        jTextField2.setCaretColor(new java.awt.Color(255, 255, 255));
-        login_panel.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 270, 220, 30));
-
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Password");
@@ -142,6 +135,11 @@ public class Login_Frm extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 login_BtnMouseExited(evt);
+            }
+        });
+        login_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                login_BtnActionPerformed(evt);
             }
         });
         login_panel.add(login_Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 340, 220, 35));
@@ -201,6 +199,14 @@ public class Login_Frm extends javax.swing.JFrame {
             }
         });
         login_panel.add(miniBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 16, 16));
+
+        password_TextField.setBackground(new java.awt.Color(21, 20, 31));
+        password_TextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        password_TextField.setForeground(new java.awt.Color(255, 255, 255));
+        password_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 16, 42)));
+        password_TextField.setCaretColor(new java.awt.Color(255, 255, 255));
+        password_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        login_panel.add(password_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 270, 220, 30));
 
         getContentPane().add(login_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 310, 500));
 
@@ -299,6 +305,44 @@ public class Login_Frm extends javax.swing.JFrame {
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_miniBtnActionPerformed
 
+    private void login_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_BtnActionPerformed
+        if(validate_info()){
+            String email = email_TextField.getText();
+            String password = String.valueOf(password_TextField.getPassword());
+            
+            String query = "SELECT * FROM `users` WHERE `email` = '"+email+"' AND `password_hash` = '"+password+"'";
+            try {
+                pst = DBConnectClass.getConnection().prepareStatement(query);
+                rs = pst.executeQuery();
+                if(rs.next()){
+                    JOptionPane.showMessageDialog(null, "Login Successful!", "Login",2);
+                    
+                    Main_Frm mainFrm = new Main_Frm();
+                    mainFrm.setVisible(true);
+                    this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+                }else{
+                    JOptionPane.showMessageDialog(null, "Invalid Login, Please try again.", "Login", 2);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Login_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_login_BtnActionPerformed
+    
+    //validate fields
+    public boolean validate_info(){
+        String email = email_TextField.getText();
+        String password = String.valueOf(password_TextField.getPassword());
+        
+        //check empty fields
+        if (email.trim().equals("") || password.trim().equals("")){
+            JOptionPane.showMessageDialog(null, "Please fill the empty field(s)","Empty Field",2);
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
  
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -334,6 +378,7 @@ public class Login_Frm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel createAccount_link;
+    private javax.swing.JTextField email_TextField;
     private javax.swing.JButton exitBtn;
     private javax.swing.JLabel forgotPassword_link;
     private javax.swing.JLabel jLabel1;
@@ -342,10 +387,9 @@ public class Login_Frm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JButton login_Btn;
     private javax.swing.JPanel login_panel;
     private javax.swing.JButton miniBtn;
+    private javax.swing.JPasswordField password_TextField;
     // End of variables declaration//GEN-END:variables
 }
