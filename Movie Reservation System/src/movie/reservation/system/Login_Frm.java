@@ -316,10 +316,15 @@ public class Login_Frm extends javax.swing.JFrame {
                 rs = pst.executeQuery();
                 if(rs.next()){
                     JOptionPane.showMessageDialog(null, "Login Successful!", "Login",2);
-                    
-                    Main_Frm mainFrm = new Main_Frm();
-                    mainFrm.setVisible(true);
-                    this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+                    if(rs.getInt("role_id") == 1){
+                        Admin_Main_Frm adminMFrm = new Admin_Main_Frm();
+                        adminMFrm.setVisible(true);
+                        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+                    }else{
+                        Main_Frm mainFrm = new Main_Frm();
+                        mainFrm.setVisible(true);
+                        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+                    }
                 }else{
                     JOptionPane.showMessageDialog(null, "Invalid Login, Please try again.", "Login", 2);
                 }
