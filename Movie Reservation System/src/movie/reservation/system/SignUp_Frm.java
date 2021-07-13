@@ -251,25 +251,16 @@ public class SignUp_Frm extends javax.swing.JFrame {
     private void signup_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signup_BtnActionPerformed
         if(validate_info() && checkEmail(email_TextField.getText())){
             
-            String fullName = fullname_TextField.getText();
+            String name = fullname_TextField.getText();
             String userEmail = email_TextField.getText();
             try{
-                String getLastID = ""
-                String insertUserDataQuery = "INSERT INTO `user_data` (user_id, name) VALUES(?,?)";
-                String insertUsersQuery = "INSERT INTO `users` (email,password_hash,role_id) VALUES(?,?,?)";
-                pst = DBConnectClass.getConnection().prepareStatement(getLastID);
-                pst = DBConnectClass.getConnection().prepareStatement(insertUserDataQuery);
+                String insertUsersQuery = "INSERT INTO `users` (email, password_hash, name, role_id) VALUES(?,?,?,?)";
                 pst = DBConnectClass.getConnection().prepareStatement(insertUsersQuery);
                 
-                pst.setString(1, user)
                 pst.setString(1, userEmail);
                 pst.setString(2, String.valueOf(confirmPassword_TextField.getPassword()));
-                pst.setString(3, role_id);
-                pst.execute();
-                
-                String insertUserQuery = "INSERT INTO `user_info` (fullname, email_id) VALUES(?, SELECT LAST_INSERT_ID() FROM login_info)";
-                pst = DBConnectClass.getConnection().prepareStatement(insertUserQuery);
-                pst.setString(1, fullName);
+                pst.setString(3, name);
+                pst.setString(4, "2");
                 pst.execute();
                 
 //                String FromEmail = "nadinpethiyagoda4@gmail.com";
@@ -402,6 +393,10 @@ public class SignUp_Frm extends javax.swing.JFrame {
         //check empty fields
         if (fullname.trim().equals("") || email.trim().equals("")){
             JOptionPane.showMessageDialog(null, "Please fill the empty field(s)","Empty Field",2);
+            return false;
+        }
+        if (createpass.trim().equals("") || confirmpass.trim().equals("")){
+            JOptionPane.showMessageDialog(null, "Please create a password","Empty Password",2);
             return false;
         }
         if (createpass.trim().equals("") || (!createpass.equals(confirmpass))){
