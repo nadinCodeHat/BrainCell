@@ -247,19 +247,27 @@ public class SignUp_Frm extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //Use password hash
     private void signup_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signup_BtnActionPerformed
         if(validate_info() && checkEmail(email_TextField.getText())){
             
             String fullName = fullname_TextField.getText();
             String userEmail = email_TextField.getText();
             try{
-                String insertLoginQuery = "INSERT INTO `login_info` (email,password) VALUES(?,?)";
-                pst = DBConnectClass.getConnection().prepareStatement(insertLoginQuery);
+                String getLastID = ""
+                String insertUserDataQuery = "INSERT INTO `user_data` (user_id, name) VALUES(?,?)";
+                String insertUsersQuery = "INSERT INTO `users` (email,password_hash,role_id) VALUES(?,?,?)";
+                pst = DBConnectClass.getConnection().prepareStatement(getLastID);
+                pst = DBConnectClass.getConnection().prepareStatement(insertUserDataQuery);
+                pst = DBConnectClass.getConnection().prepareStatement(insertUsersQuery);
+                
+                pst.setString(1, user)
                 pst.setString(1, userEmail);
                 pst.setString(2, String.valueOf(confirmPassword_TextField.getPassword()));
+                pst.setString(3, role_id);
                 pst.execute();
                 
-                String insertUserQuery = "INSERT INTO 'user_info (fullname, email_id) VALUES(?, SELECT LAST_INSERT_ID() FROM login_info)";
+                String insertUserQuery = "INSERT INTO `user_info` (fullname, email_id) VALUES(?, SELECT LAST_INSERT_ID() FROM login_info)";
                 pst = DBConnectClass.getConnection().prepareStatement(insertUserQuery);
                 pst.setString(1, fullName);
                 pst.execute();
@@ -400,13 +408,15 @@ public class SignUp_Frm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Passwords do not match","Confirm Password",2);
             return false;
         }
+        else {
             return true;
+        }
     }
     
     //Check for duplicate emails
     public boolean checkEmail(String email){
         boolean email_notexists = true;
-        String query = "SELECT COUNT(*) FROM `login_info` WHERE `email` = ?";
+        String query = "SELECT COUNT(*) FROM `users` WHERE `email` = ?";
         try {
             pst = DBConnectClass.getConnection().prepareStatement(query);
             pst.setString(1,email);
