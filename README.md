@@ -1,4 +1,4 @@
-# Braincell Movie Reservation System
+# Braincell Movie Ticket Booking System
 
 ## Description
 
