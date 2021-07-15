@@ -96,7 +96,7 @@ public class SignUp_Frm extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(235, 16, 42));
-        jLabel2.setText("Sign Up");
+        jLabel2.setText("Register");
         login_panel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 50, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -113,7 +113,7 @@ public class SignUp_Frm extends javax.swing.JFrame {
         signup_Btn.setBackground(new java.awt.Color(255, 255, 255));
         signup_Btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         signup_Btn.setForeground(new java.awt.Color(255, 255, 255));
-        signup_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/reservation/system/assets/components/signupBtn.png"))); // NOI18N
+        signup_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/reservation/system/assets/components/registerBtn.png"))); // NOI18N
         signup_Btn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         signup_Btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -309,7 +309,7 @@ public class SignUp_Frm extends javax.swing.JFrame {
 
     private void signup_BtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signup_BtnMouseEntered
         try {
-            Image signupBtnHoverImg = ImageIO.read(getClass().getResource("/movie/reservation/system/assets/components/signupBtnHover.png"));
+            Image signupBtnHoverImg = ImageIO.read(getClass().getResource("/movie/reservation/system/assets/components/registerBtnHover.png"));
             signup_Btn.setIcon(new ImageIcon(signupBtnHoverImg));
         } catch (IOException ex) {
             Logger.getLogger(SignUp_Frm.class.getName()).log(Level.SEVERE, null, ex);
@@ -318,7 +318,7 @@ public class SignUp_Frm extends javax.swing.JFrame {
 
     private void signup_BtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signup_BtnMouseExited
         try {
-            Image signupBtnImg = ImageIO.read(getClass().getResource("/movie/reservation/system/assets/components/signupBtn.png"));
+            Image signupBtnImg = ImageIO.read(getClass().getResource("/movie/reservation/system/assets/components/registerBtn.png"));
             signup_Btn.setIcon(new ImageIcon(signupBtnImg));
         } catch (IOException ex) {
             Logger.getLogger(SignUp_Frm.class.getName()).log(Level.SEVERE, null, ex);

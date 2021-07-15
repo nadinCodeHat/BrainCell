@@ -27,10 +27,10 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
 
         sidePanel = new javax.swing.JPanel();
         login_link1 = new javax.swing.JLabel();
-        login_link3 = new javax.swing.JLabel();
-        login_link = new javax.swing.JLabel();
-        login_link4 = new javax.swing.JLabel();
-        login_link2 = new javax.swing.JLabel();
+        profileBtn = new javax.swing.JButton();
+        moviesBtn = new javax.swing.JButton();
+        moviesBtn1 = new javax.swing.JButton();
+        moviesBtn2 = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -75,25 +75,17 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         login_link1.setText("BrainCell");
         sidePanel.add(login_link1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
 
-        login_link3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link3.setForeground(new java.awt.Color(235, 16, 42));
-        login_link3.setText("View movies");
-        sidePanel.add(login_link3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
+        profileBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/reservation/system/assets/components/profileBtn.png"))); // NOI18N
+        sidePanel.add(profileBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 200, 35));
 
-        login_link.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link.setForeground(new java.awt.Color(255, 255, 255));
-        login_link.setText("Profile");
-        sidePanel.add(login_link, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, -1));
+        moviesBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/reservation/system/assets/components/viewBookingsBtn.png"))); // NOI18N
+        sidePanel.add(moviesBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 200, 35));
 
-        login_link4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link4.setForeground(new java.awt.Color(255, 255, 255));
-        login_link4.setText("Add a movie");
-        sidePanel.add(login_link4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
+        moviesBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/reservation/system/assets/components/viewMoviesBtnHover.png"))); // NOI18N
+        sidePanel.add(moviesBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 200, 35));
 
-        login_link2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link2.setForeground(new java.awt.Color(255, 255, 255));
-        login_link2.setText("Seat booking");
-        sidePanel.add(login_link2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
+        moviesBtn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/reservation/system/assets/components/addAMovieBtn.png"))); // NOI18N
+        sidePanel.add(moviesBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 200, 35));
 
         getContentPane().add(sidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 770));
 
@@ -111,7 +103,6 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\Nadin\\Downloads\\1123787.jpg")); // NOI18N
         jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 200));
 
@@ -152,7 +143,6 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel14.setIcon(new javax.swing.ImageIcon("C:\\Users\\Nadin\\Downloads\\1123787.jpg")); // NOI18N
         jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel6.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 200));
 
@@ -193,7 +183,6 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel16.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel16.setIcon(new javax.swing.ImageIcon("C:\\Users\\Nadin\\Downloads\\1123787.jpg")); // NOI18N
         jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel7.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 200));
 
@@ -288,26 +277,26 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JLabel login_link;
     private javax.swing.JLabel login_link1;
     private javax.swing.JLabel login_link15;
     private javax.swing.JLabel login_link16;
     private javax.swing.JLabel login_link17;
     private javax.swing.JLabel login_link18;
     private javax.swing.JLabel login_link19;
-    private javax.swing.JLabel login_link2;
     private javax.swing.JLabel login_link20;
     private javax.swing.JLabel login_link21;
     private javax.swing.JLabel login_link22;
     private javax.swing.JLabel login_link23;
     private javax.swing.JLabel login_link24;
-    private javax.swing.JLabel login_link3;
-    private javax.swing.JLabel login_link4;
     private javax.swing.JLabel login_link5;
     private javax.swing.JLabel login_link6;
     private javax.swing.JLabel login_link7;
     private javax.swing.JLabel login_link8;
     private javax.swing.JLabel login_link9;
+    private javax.swing.JButton moviesBtn;
+    private javax.swing.JButton moviesBtn1;
+    private javax.swing.JButton moviesBtn2;
+    private javax.swing.JButton profileBtn;
     private javax.swing.JPanel sidePanel;
     // End of variables declaration//GEN-END:variables
 }
