@@ -16,6 +16,7 @@ public class Main_Frm extends javax.swing.JFrame {
     public Main_Frm() {
         initComponents();
         this.setLocationRelativeTo(null);
+        myLabel.setText("<html>"+ "Fast & Furious Presents: Hobbs & Shaw" +"</html>");
     }
 
     @SuppressWarnings("unchecked")
@@ -32,7 +33,7 @@ public class Main_Frm extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        brainCellLogo = new javax.swing.JLabel();
+        myLabel = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
 
@@ -81,10 +82,9 @@ public class Main_Frm extends javax.swing.JFrame {
         jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 200));
 
-        brainCellLogo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        brainCellLogo.setForeground(new java.awt.Color(235, 16, 42));
-        brainCellLogo.setText("Fast & Furious Presents: Hobbs & Shaw");
-        jPanel3.add(brainCellLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 300, -1));
+        myLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        myLabel.setForeground(new java.awt.Color(235, 16, 42));
+        jPanel3.add(myLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 300, -1));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 320, 640));
 
@@ -137,7 +137,6 @@ public class Main_Frm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel brainCellLogo;
     private javax.swing.JLabel brainCellLogo1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -147,6 +146,7 @@ public class Main_Frm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JButton moviesBtn;
+    private javax.swing.JLabel myLabel;
     private javax.swing.JButton myTicketsBtn;
     private javax.swing.JButton profileBtn;
     private javax.swing.JPanel sidePanel;

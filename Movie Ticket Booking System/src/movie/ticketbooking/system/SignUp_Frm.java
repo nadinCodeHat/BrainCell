@@ -309,7 +309,7 @@ public class SignUp_Frm extends javax.swing.JFrame {
 
     private void signup_BtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signup_BtnMouseEntered
         try {
-            Image signupBtnHoverImg = ImageIO.read(getClass().getResource("/movie/reservation/system/assets/components/registerBtnHover.png"));
+            Image signupBtnHoverImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/registerBtnHover.png"));
             signup_Btn.setIcon(new ImageIcon(signupBtnHoverImg));
         } catch (IOException ex) {
             Logger.getLogger(SignUp_Frm.class.getName()).log(Level.SEVERE, null, ex);
@@ -318,7 +318,7 @@ public class SignUp_Frm extends javax.swing.JFrame {
 
     private void signup_BtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signup_BtnMouseExited
         try {
-            Image signupBtnImg = ImageIO.read(getClass().getResource("/movie/reservation/system/assets/components/registerBtn.png"));
+            Image signupBtnImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/registerBtn.png"));
             signup_Btn.setIcon(new ImageIcon(signupBtnImg));
         } catch (IOException ex) {
             Logger.getLogger(SignUp_Frm.class.getName()).log(Level.SEVERE, null, ex);
