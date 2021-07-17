@@ -13,7 +13,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -208,7 +208,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="movieTitleTxtField">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="36" green="22" red="24" type="rgb"/>
@@ -219,7 +219,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Fast &amp; Furious Presents: Hobbs &amp; Shaw"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder>
@@ -266,7 +265,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JSpinner" name="jSpinner1">
+        <Component class="javax.swing.JSpinner" name="hourSpinner">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
@@ -313,7 +312,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JSpinner" name="jSpinner2">
+        <Component class="javax.swing.JSpinner" name="minuteSpinner">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
@@ -328,7 +327,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="contRatingCombo">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="36" green="22" red="24" type="rgb"/>
@@ -387,7 +386,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTextArea" name="jTextArea1">
+                <Component class="javax.swing.JTextArea" name="descripTxtArea">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="36" green="22" red="24" type="rgb"/>
@@ -478,7 +477,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField3">
+        <Component class="javax.swing.JTextField" name="childTckPriceTxtField">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="36" green="22" red="24" type="rgb"/>
@@ -513,7 +512,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField4">
+        <Component class="javax.swing.JTextField" name="adultTckPriceTxtField">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="36" green="22" red="24" type="rgb"/>
@@ -532,13 +531,23 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton13">
+        <Component class="javax.swing.JButton" name="addMovieBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Add Movie"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/movie/ticketbooking/system/assets/components/addMovieBtn.png"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="addMovieBtnMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="addMovieBtnMouseExited"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addMovieBtnActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="850" y="640" width="-1" height="-1"/>
+              <AbsoluteConstraints x="850" y="640" width="100" height="35"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -574,7 +583,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox2">
+        <Component class="javax.swing.JComboBox" name="theaterCombo">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="36" green="22" red="24" type="rgb"/>
@@ -595,7 +604,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="480" y="470" width="-1" height="20"/>
+              <AbsoluteConstraints x="480" y="470" width="-1" height="25"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -663,7 +672,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="jToggleButton1">
+        <Component class="javax.swing.JToggleButton" name="horrorTogBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Horror"/>
           </Properties>
@@ -673,8 +682,11 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="jToggleButton2">
+        <Component class="javax.swing.JToggleButton" name="adventureTogBtn">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Adventure"/>
           </Properties>
           <Constraints>
@@ -683,7 +695,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="jToggleButton3">
+        <Component class="javax.swing.JToggleButton" name="actionTogBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Action"/>
           </Properties>
@@ -693,7 +705,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="jToggleButton4">
+        <Component class="javax.swing.JToggleButton" name="thrillerTogBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Thriller"/>
           </Properties>
@@ -703,7 +715,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="jToggleButton5">
+        <Component class="javax.swing.JToggleButton" name="fantasyTogBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Fantasy"/>
           </Properties>
@@ -713,7 +725,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="jToggleButton6">
+        <Component class="javax.swing.JToggleButton" name="dramaTogBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Drama"/>
           </Properties>
@@ -723,7 +735,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="jToggleButton7">
+        <Component class="javax.swing.JToggleButton" name="mysteryTogBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Mystery"/>
           </Properties>
@@ -733,7 +745,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="jToggleButton8">
+        <Component class="javax.swing.JToggleButton" name="historicalTogBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Historical"/>
           </Properties>
@@ -743,7 +755,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="jToggleButton9">
+        <Component class="javax.swing.JToggleButton" name="comedyTogBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Comedy"/>
           </Properties>
@@ -753,7 +765,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="jToggleButton10">
+        <Component class="javax.swing.JToggleButton" name="animationTogBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Animation"/>
           </Properties>
@@ -763,7 +775,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="jToggleButton11">
+        <Component class="javax.swing.JToggleButton" name="romanceTogBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Romance"/>
           </Properties>
@@ -773,7 +785,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="jToggleButton12">
+        <Component class="javax.swing.JToggleButton" name="crimeTogBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Crime"/>
           </Properties>
@@ -783,13 +795,23 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="uploadPosterBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Upload Poster"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/movie/ticketbooking/system/assets/components/uploadPosterBtn.png"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="uploadPosterBtnMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="uploadPosterBtnMouseExited"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="uploadPosterBtnActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="740" y="640" width="-1" height="-1"/>
+              <AbsoluteConstraints x="740" y="640" width="100" height="35"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -835,7 +857,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel13">
+    <Container class="javax.swing.JPanel" name="viewMoviesPanel">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="1f" green="14" red="15" type="rgb"/>

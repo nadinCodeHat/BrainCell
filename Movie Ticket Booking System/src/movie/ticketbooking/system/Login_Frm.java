@@ -33,6 +33,7 @@ public class Login_Frm extends javax.swing.JFrame {
         //Draggable frame
         this.addMouseListener(new MouseAdapter()
         {
+           @Override
            public void mousePressed(MouseEvent e)
            {
               posX=e.getX();
@@ -41,6 +42,7 @@ public class Login_Frm extends javax.swing.JFrame {
         });
         this.addMouseMotionListener(new MouseAdapter()
         {
+            @Override
             public void mouseDragged(MouseEvent evt)
             {
                //sets frame position when mouse dragged			
@@ -262,7 +264,7 @@ public class Login_Frm extends javax.swing.JFrame {
 
     private void exitBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitBtnMouseEntered
         try {
-            Image exitBtnHoverImg = ImageIO.read(getClass().getResource("/movie/reservation/system/assets/components/exitBtnHover.png"));
+            Image exitBtnHoverImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/exitBtnHover.png"));
             exitBtn.setIcon(new ImageIcon(exitBtnHoverImg));
         } catch (IOException ex) {
             Logger.getLogger(Login_Frm.class.getName()).log(Level.SEVERE, null, ex);
@@ -271,7 +273,7 @@ public class Login_Frm extends javax.swing.JFrame {
 
     private void exitBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitBtnMouseExited
         try {
-            Image exitBtnImg = ImageIO.read(getClass().getResource("/movie/reservation/system/assets/components/exitBtn.png"));
+            Image exitBtnImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/exitBtn.png"));
             exitBtn.setIcon(new ImageIcon(exitBtnImg));
         } catch (IOException ex) {
             Logger.getLogger(Login_Frm.class.getName()).log(Level.SEVERE, null, ex);
@@ -284,7 +286,7 @@ public class Login_Frm extends javax.swing.JFrame {
 
     private void miniBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_miniBtnMouseEntered
         try {
-            Image miniBtnHoverImg = ImageIO.read(getClass().getResource("/movie/reservation/system/assets/components/miniBtnHover.png"));
+            Image miniBtnHoverImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/miniBtnHover.png"));
             miniBtn.setIcon(new ImageIcon(miniBtnHoverImg));
         } catch (IOException ex) {
             Logger.getLogger(Login_Frm.class.getName()).log(Level.SEVERE, null, ex);
@@ -293,7 +295,7 @@ public class Login_Frm extends javax.swing.JFrame {
 
     private void miniBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_miniBtnMouseExited
         try {
-            Image miniBtnImg = ImageIO.read(getClass().getResource("/movie/reservation/system/assets/components/miniBtn.png"));
+            Image miniBtnImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/miniBtn.png"));
             miniBtn.setIcon(new ImageIcon(miniBtnImg));
         } catch (IOException ex) {
             Logger.getLogger(Login_Frm.class.getName()).log(Level.SEVERE, null, ex);
