@@ -3,12 +3,16 @@ package movie.ticketbooking.system;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -54,7 +58,7 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         login_link3 = new javax.swing.JLabel();
         addAMoviePanel = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
+        posterLabel = new javax.swing.JLabel();
         login_link2 = new javax.swing.JLabel();
         login_link4 = new javax.swing.JLabel();
         movieTitleTxtField = new javax.swing.JTextField();
@@ -99,6 +103,9 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         uploadPosterBtn = new javax.swing.JButton();
         exitBtn = new javax.swing.JButton();
         miniBtn = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jSpinner1 = new javax.swing.JSpinner();
         viewMoviesPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -163,10 +170,10 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(36, 34, 54));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel13.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 200));
+        posterLabel.setBackground(new java.awt.Color(255, 255, 255));
+        posterLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        posterLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel3.add(posterLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 200));
 
         addAMoviePanel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 320, 640));
 
@@ -196,7 +203,6 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         login_link12.setText("Content Rating");
         addAMoviePanel.add(login_link12, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 220, -1, -1));
 
-        hourSpinner.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         hourSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, 4, 1));
         addAMoviePanel.add(hourSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 250, -1, -1));
 
@@ -210,12 +216,10 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         login_link14.setText("Minutes:");
         addAMoviePanel.add(login_link14, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 250, -1, -1));
 
-        minuteSpinner.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         minuteSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
         addAMoviePanel.add(minuteSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 250, 50, -1));
 
         contRatingCombo.setBackground(new java.awt.Color(36, 34, 54));
-        contRatingCombo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         contRatingCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "G", "PG", "PG-13", "R", "NC-17" }));
         addAMoviePanel.add(contRatingCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 250, 90, 20));
 
@@ -257,9 +261,6 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         login_link29.setText("Children (ages 2 - 13)");
         addAMoviePanel.add(login_link29, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 550, -1, -1));
 
-        childTckPriceTxtField.setBackground(new java.awt.Color(36, 34, 54));
-        childTckPriceTxtField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        childTckPriceTxtField.setForeground(new java.awt.Color(255, 255, 255));
         childTckPriceTxtField.setText("300");
         addAMoviePanel.add(childTckPriceTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 550, 40, -1));
 
@@ -268,9 +269,6 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         login_link30.setText("Rs.");
         addAMoviePanel.add(login_link30, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 590, -1, -1));
 
-        adultTckPriceTxtField.setBackground(new java.awt.Color(36, 34, 54));
-        adultTckPriceTxtField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        adultTckPriceTxtField.setForeground(new java.awt.Color(255, 255, 255));
         adultTckPriceTxtField.setText("400");
         addAMoviePanel.add(adultTckPriceTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 590, 40, -1));
 
@@ -302,9 +300,8 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         addAMoviePanel.add(login_link32, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 440, -1, -1));
 
         theaterCombo.setBackground(new java.awt.Color(36, 34, 54));
-        theaterCombo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         theaterCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Theater 1", "Theater 2", "Theater 3" }));
-        addAMoviePanel.add(theaterCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 470, -1, 25));
+        addAMoviePanel.add(theaterCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 470, -1, 20));
 
         login_link33.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         login_link33.setForeground(new java.awt.Color(255, 255, 255));
@@ -413,6 +410,17 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
             }
         });
         addAMoviePanel.add(miniBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 10, 16, 16));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/icons8_star_25px.png"))); // NOI18N
+        addAMoviePanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 245, 25, 25));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("/10");
+        addAMoviePanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, -1, -1));
+
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1.0d, 1.0d, 10.0d, 1.0d));
+        addAMoviePanel.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, 40, -1));
 
         getContentPane().add(addAMoviePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 1060, 700));
 
@@ -611,16 +619,27 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
     }//GEN-LAST:event_uploadPosterBtnMouseEntered
 
     private void uploadPosterBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_uploadPosterBtnMouseExited
-        try {
-            Image uploadPstBtn = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/uploadPosterBtn.png"));
-            uploadPosterBtn.setIcon(new ImageIcon(uploadPstBtn));
-        } catch (IOException ex) {
-            Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        JFileChooser browseImageFile = new JFileChooser();
+        //Filter image extensions
+        FileNameExtensionFilter fnef = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
+        browseImageFile.addChoosableFileFilter(fnef);
+        int showOpenDialogue = browseImageFile.showOpenDialog(null);
+         
+        if (showOpenDialogue == JFileChooser.APPROVE_OPTION) {
+            File selectedImageFile = browseImageFile.getSelectedFile();
+            String selectedImagePath = selectedImageFile.getAbsolutePath();
+            ImageIcon ii = new ImageIcon(selectedImagePath);
+            posterLabel.setIcon(new ImageIcon(ii.getImage()));
+        }  
     }//GEN-LAST:event_uploadPosterBtnMouseExited
 
     private void uploadPosterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadPosterBtnActionPerformed
-        // TODO add your handling code here:
+        try {
+            Image addMovieBtnHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/addMovieBtnHover.png"));
+            addMovieBtn.setIcon(new ImageIcon(addMovieBtnHover));
+        } catch (IOException ex) {
+            Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_uploadPosterBtnActionPerformed
 
     private void addMovieBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMovieBtnMouseEntered
@@ -701,18 +720,20 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel login_link10;
     private javax.swing.JLabel login_link12;
     private javax.swing.JLabel login_link13;
@@ -754,6 +775,7 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
     private javax.swing.JButton moviesBtn1;
     private javax.swing.JButton moviesBtn2;
     private javax.swing.JToggleButton mysteryTogBtn;
+    private javax.swing.JLabel posterLabel;
     private javax.swing.JButton profileBtn;
     private javax.swing.JToggleButton romanceTogBtn;
     private javax.swing.JPanel sidePanel;
