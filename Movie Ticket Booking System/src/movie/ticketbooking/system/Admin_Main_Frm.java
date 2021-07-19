@@ -59,34 +59,39 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         addAMoviePanel = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         posterLabel = new javax.swing.JLabel();
-        login_link2 = new javax.swing.JLabel();
-        login_link4 = new javax.swing.JLabel();
+        movieTitleLabel = new javax.swing.JLabel();
+        lengthLabel = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        ratingLabel = new javax.swing.JLabel();
+        login_link31 = new javax.swing.JLabel();
+        contentRatingLabel = new javax.swing.JLabel();
+        login_link40 = new javax.swing.JLabel();
+        ticketPriceAdultLabel = new javax.swing.JLabel();
+        login_link33 = new javax.swing.JLabel();
+        login_link43 = new javax.swing.JLabel();
+        ticketPriceChidLabel = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        genreLabel = new javax.swing.JLabel();
         movieTitleTxtField = new javax.swing.JTextField();
-        login_link10 = new javax.swing.JLabel();
         login_link12 = new javax.swing.JLabel();
         hourSpinner = new javax.swing.JSpinner();
         login_link13 = new javax.swing.JLabel();
         login_link14 = new javax.swing.JLabel();
         minuteSpinner = new javax.swing.JSpinner();
         contRatingCombo = new javax.swing.JComboBox<>();
-        login_link25 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         descripTxtArea = new javax.swing.JTextArea();
         login_link26 = new javax.swing.JLabel();
-        login_link27 = new javax.swing.JLabel();
         login_link28 = new javax.swing.JLabel();
-        login_link29 = new javax.swing.JLabel();
         childTckPriceTxtField = new javax.swing.JTextField();
         login_link30 = new javax.swing.JLabel();
         adultTckPriceTxtField = new javax.swing.JTextField();
         addMovieBtn = new javax.swing.JButton();
-        login_link31 = new javax.swing.JLabel();
         login_link32 = new javax.swing.JLabel();
         theaterCombo = new javax.swing.JComboBox<>();
-        login_link33 = new javax.swing.JLabel();
-        login_link34 = new javax.swing.JLabel();
-        login_link35 = new javax.swing.JLabel();
         login_link36 = new javax.swing.JLabel();
         horrorTogBtn = new javax.swing.JToggleButton();
         adventureTogBtn = new javax.swing.JToggleButton();
@@ -103,9 +108,15 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         uploadPosterBtn = new javax.swing.JButton();
         exitBtn = new javax.swing.JButton();
         miniBtn = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        ratingSpinner = new javax.swing.JSpinner();
+        login_link11 = new javax.swing.JLabel();
+        login_link34 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        login_link25 = new javax.swing.JLabel();
+        login_link38 = new javax.swing.JLabel();
+        login_link41 = new javax.swing.JLabel();
+        login_link42 = new javax.swing.JLabel();
         viewMoviesPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -175,28 +186,88 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         posterLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel3.add(posterLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 200));
 
+        movieTitleLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        movieTitleLabel.setForeground(new java.awt.Color(235, 16, 42));
+        jPanel3.add(movieTitleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 300, -1));
+
+        lengthLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lengthLabel.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(lengthLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, -1, -1));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/icons8_star_25px.png"))); // NOI18N
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(235, 16, 42));
+        jLabel7.setText("Content Rating");
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(235, 16, 42));
+        jLabel8.setText("Genre");
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
+
+        ratingLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ratingLabel.setForeground(new java.awt.Color(255, 255, 255));
+        ratingLabel.setText("/10");
+        jPanel3.add(ratingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 312, -1, -1));
+
+        login_link31.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        login_link31.setForeground(new java.awt.Color(235, 16, 42));
+        login_link31.setText("Ticket Price");
+        jPanel3.add(login_link31, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, -1, -1));
+
+        contentRatingLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        contentRatingLabel.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(contentRatingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, -1, -1));
+
+        login_link40.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        login_link40.setForeground(new java.awt.Color(235, 16, 42));
+        login_link40.setText("Length");
+        jPanel3.add(login_link40, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, -1, -1));
+
+        ticketPriceAdultLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ticketPriceAdultLabel.setForeground(new java.awt.Color(255, 255, 255));
+        ticketPriceAdultLabel.setText("Rs.");
+        jPanel3.add(ticketPriceAdultLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 600, -1, -1));
+
+        login_link33.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        login_link33.setForeground(new java.awt.Color(255, 255, 255));
+        login_link33.setText("Adults (ages 14 & up)");
+        jPanel3.add(login_link33, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 600, -1, -1));
+
+        login_link43.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        login_link43.setForeground(new java.awt.Color(255, 255, 255));
+        login_link43.setText("Children (ages 2 - 13)");
+        jPanel3.add(login_link43, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, -1, -1));
+
+        ticketPriceChidLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ticketPriceChidLabel.setForeground(new java.awt.Color(255, 255, 255));
+        ticketPriceChidLabel.setText("Rs.");
+        jPanel3.add(ticketPriceChidLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 560, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(235, 16, 42));
+        jLabel9.setText("Rating");
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
+
+        genreLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        genreLabel.setForeground(new java.awt.Color(255, 255, 255));
+        genreLabel.setText("Adventure, Action, Comedy, Thriller");
+        jPanel3.add(genreLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, -1));
+
         addAMoviePanel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 320, 640));
-
-        login_link2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link2.setForeground(new java.awt.Color(255, 255, 255));
-        login_link2.setText("6:30pm");
-        addAMoviePanel.add(login_link2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 470, -1, -1));
-
-        login_link4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link4.setForeground(new java.awt.Color(235, 16, 42));
-        login_link4.setText("Movie Title");
-        addAMoviePanel.add(login_link4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, -1, -1));
 
         movieTitleTxtField.setBackground(new java.awt.Color(36, 34, 54));
         movieTitleTxtField.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         movieTitleTxtField.setForeground(new java.awt.Color(255, 255, 255));
         movieTitleTxtField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        movieTitleTxtField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                movieTitleTxtFieldFocusLost(evt);
+            }
+        });
         addAMoviePanel.add(movieTitleTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 450, 30));
-
-        login_link10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link10.setForeground(new java.awt.Color(235, 16, 42));
-        login_link10.setText("Genre");
-        addAMoviePanel.add(login_link10, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, -1, -1));
 
         login_link12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         login_link12.setForeground(new java.awt.Color(235, 16, 42));
@@ -204,6 +275,11 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         addAMoviePanel.add(login_link12, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 220, -1, -1));
 
         hourSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, 4, 1));
+        hourSpinner.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                hourSpinnerPropertyChange(evt);
+            }
+        });
         addAMoviePanel.add(hourSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 250, -1, -1));
 
         login_link13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -217,16 +293,21 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         addAMoviePanel.add(login_link14, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 250, -1, -1));
 
         minuteSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
+        minuteSpinner.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                minuteSpinnerPropertyChange(evt);
+            }
+        });
         addAMoviePanel.add(minuteSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 250, 50, -1));
 
         contRatingCombo.setBackground(new java.awt.Color(36, 34, 54));
         contRatingCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "G", "PG", "PG-13", "R", "NC-17" }));
+        contRatingCombo.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                contRatingComboPropertyChange(evt);
+            }
+        });
         addAMoviePanel.add(contRatingCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 250, 90, 20));
-
-        login_link25.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link25.setForeground(new java.awt.Color(235, 16, 42));
-        login_link25.setText("Default Screening Times (Mon - Fri)");
-        addAMoviePanel.add(login_link25, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 440, -1, -1));
 
         descripTxtArea.setBackground(new java.awt.Color(36, 34, 54));
         descripTxtArea.setColumns(20);
@@ -246,31 +327,31 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         login_link26.setText("Rating");
         addAMoviePanel.add(login_link26, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 220, -1, -1));
 
-        login_link27.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link27.setForeground(new java.awt.Color(255, 255, 255));
-        login_link27.setText("Hours:");
-        addAMoviePanel.add(login_link27, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 250, -1, -1));
-
         login_link28.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         login_link28.setForeground(new java.awt.Color(255, 255, 255));
         login_link28.setText("Rs.");
-        addAMoviePanel.add(login_link28, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 550, -1, -1));
-
-        login_link29.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link29.setForeground(new java.awt.Color(255, 255, 255));
-        login_link29.setText("Children (ages 2 - 13)");
-        addAMoviePanel.add(login_link29, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 550, -1, -1));
+        addAMoviePanel.add(login_link28, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 470, -1, -1));
 
         childTckPriceTxtField.setText("300");
-        addAMoviePanel.add(childTckPriceTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 550, 40, -1));
+        childTckPriceTxtField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                childTckPriceTxtFieldFocusLost(evt);
+            }
+        });
+        addAMoviePanel.add(childTckPriceTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 470, 40, -1));
 
         login_link30.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         login_link30.setForeground(new java.awt.Color(255, 255, 255));
         login_link30.setText("Rs.");
-        addAMoviePanel.add(login_link30, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 590, -1, -1));
+        addAMoviePanel.add(login_link30, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 500, -1, -1));
 
         adultTckPriceTxtField.setText("400");
-        addAMoviePanel.add(adultTckPriceTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 590, 40, -1));
+        adultTckPriceTxtField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                adultTckPriceTxtFieldFocusLost(evt);
+            }
+        });
+        addAMoviePanel.add(adultTckPriceTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 500, 40, -1));
 
         addMovieBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/addMovieBtn.png"))); // NOI18N
         addMovieBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -287,12 +368,7 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
                 addMovieBtnActionPerformed(evt);
             }
         });
-        addAMoviePanel.add(addMovieBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 640, 100, 35));
-
-        login_link31.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link31.setForeground(new java.awt.Color(235, 16, 42));
-        login_link31.setText("Length");
-        addAMoviePanel.add(login_link31, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 220, -1, -1));
+        addAMoviePanel.add(addMovieBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 640, 100, 35));
 
         login_link32.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         login_link32.setForeground(new java.awt.Color(235, 16, 42));
@@ -303,25 +379,10 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         theaterCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Theater 1", "Theater 2", "Theater 3" }));
         addAMoviePanel.add(theaterCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 470, -1, 20));
 
-        login_link33.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link33.setForeground(new java.awt.Color(255, 255, 255));
-        login_link33.setText("Adults (ages 14 & up)");
-        addAMoviePanel.add(login_link33, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 590, -1, -1));
-
-        login_link34.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link34.setForeground(new java.awt.Color(255, 255, 255));
-        login_link34.setText("10:30am");
-        addAMoviePanel.add(login_link34, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 470, -1, -1));
-
-        login_link35.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link35.setForeground(new java.awt.Color(255, 255, 255));
-        login_link35.setText("2:30pm");
-        addAMoviePanel.add(login_link35, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 470, -1, -1));
-
         login_link36.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         login_link36.setForeground(new java.awt.Color(235, 16, 42));
         login_link36.setText("Ticket Price");
-        addAMoviePanel.add(login_link36, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 520, -1, -1));
+        addAMoviePanel.add(login_link36, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 440, -1, -1));
 
         horrorTogBtn.setText("Horror");
         addAMoviePanel.add(horrorTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 170, -1, -1));
@@ -375,7 +436,7 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
                 uploadPosterBtnActionPerformed(evt);
             }
         });
-        addAMoviePanel.add(uploadPosterBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 640, 100, 35));
+        addAMoviePanel.add(uploadPosterBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 640, 100, 35));
 
         exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/exitBtn.png"))); // NOI18N
         exitBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -411,16 +472,51 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         });
         addAMoviePanel.add(miniBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 10, 16, 16));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/icons8_star_25px.png"))); // NOI18N
-        addAMoviePanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 245, 25, 25));
-
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("/10");
         addAMoviePanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, -1, -1));
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1.0d, 1.0d, 10.0d, 1.0d));
-        addAMoviePanel.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, 40, -1));
+        ratingSpinner.setModel(new javax.swing.SpinnerNumberModel(1.0d, 1.0d, 10.0d, 1.0d));
+        ratingSpinner.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                ratingSpinnerPropertyChange(evt);
+            }
+        });
+        addAMoviePanel.add(ratingSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, 40, -1));
+
+        login_link11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        login_link11.setForeground(new java.awt.Color(235, 16, 42));
+        login_link11.setText("Movie Title");
+        addAMoviePanel.add(login_link11, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, -1, -1));
+
+        login_link34.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        login_link34.setForeground(new java.awt.Color(255, 255, 255));
+        login_link34.setText("Hours:");
+        addAMoviePanel.add(login_link34, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 250, -1, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/icons8_star_25px.png"))); // NOI18N
+        addAMoviePanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 245, 25, 25));
+
+        login_link25.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        login_link25.setForeground(new java.awt.Color(235, 16, 42));
+        login_link25.setText("Genre");
+        addAMoviePanel.add(login_link25, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, -1, -1));
+
+        login_link38.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        login_link38.setForeground(new java.awt.Color(235, 16, 42));
+        login_link38.setText("Length");
+        addAMoviePanel.add(login_link38, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 220, -1, -1));
+
+        login_link41.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        login_link41.setForeground(new java.awt.Color(255, 255, 255));
+        login_link41.setText("Children (ages 2 - 13)");
+        addAMoviePanel.add(login_link41, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 470, -1, -1));
+
+        login_link42.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        login_link42.setForeground(new java.awt.Color(255, 255, 255));
+        login_link42.setText("Adults (ages 14 & up)");
+        addAMoviePanel.add(login_link42, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 500, -1, -1));
 
         getContentPane().add(addAMoviePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 1060, 700));
 
@@ -664,6 +760,40 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_addMovieBtnActionPerformed
 
+    private void movieTitleTxtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_movieTitleTxtFieldFocusLost
+        movieTitleLabel.setText("<html>"+ movieTitleTxtField.getText() +"</html>");
+    }//GEN-LAST:event_movieTitleTxtFieldFocusLost
+
+    private void ratingSpinnerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_ratingSpinnerPropertyChange
+        ratingLabel.setText(ratingSpinner.getValue() +"/10");
+    }//GEN-LAST:event_ratingSpinnerPropertyChange
+
+    private void hourSpinnerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_hourSpinnerPropertyChange
+        if("1".equals(hourSpinner.getValue().toString()))
+            lengthLabel.setText(hourSpinner.getValue() +" hour and "+minuteSpinner.getValue()+" minutes");
+        else
+            lengthLabel.setText(hourSpinner.getValue() +" hours and "+minuteSpinner.getValue()+" minutes");
+    }//GEN-LAST:event_hourSpinnerPropertyChange
+
+    private void minuteSpinnerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_minuteSpinnerPropertyChange
+        if("1".equals(hourSpinner.getValue().toString()))
+            lengthLabel.setText(hourSpinner.getValue() +" hour and "+minuteSpinner.getValue()+" minutes");
+        else
+            lengthLabel.setText(hourSpinner.getValue() +" hours and "+minuteSpinner.getValue()+" minutes");
+    }//GEN-LAST:event_minuteSpinnerPropertyChange
+
+    private void contRatingComboPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_contRatingComboPropertyChange
+        contentRatingLabel.setText(contRatingCombo.getSelectedItem().toString());
+    }//GEN-LAST:event_contRatingComboPropertyChange
+
+    private void childTckPriceTxtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_childTckPriceTxtFieldFocusLost
+        ticketPriceChidLabel.setText("Rs. "+childTckPriceTxtField.getText());
+    }//GEN-LAST:event_childTckPriceTxtFieldFocusLost
+
+    private void adultTckPriceTxtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_adultTckPriceTxtFieldFocusLost
+        ticketPriceAdultLabel.setText("Rs. "+adultTckPriceTxtField.getText());
+    }//GEN-LAST:event_adultTckPriceTxtFieldFocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -709,11 +839,13 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
     private javax.swing.JTextField childTckPriceTxtField;
     private javax.swing.JToggleButton comedyTogBtn;
     private javax.swing.JComboBox<String> contRatingCombo;
+    private javax.swing.JLabel contentRatingLabel;
     private javax.swing.JToggleButton crimeTogBtn;
     private javax.swing.JTextArea descripTxtArea;
     private javax.swing.JToggleButton dramaTogBtn;
     private javax.swing.JButton exitBtn;
     private javax.swing.JToggleButton fantasyTogBtn;
+    private javax.swing.JLabel genreLabel;
     private javax.swing.JToggleButton historicalTogBtn;
     private javax.swing.JToggleButton horrorTogBtn;
     private javax.swing.JSpinner hourSpinner;
@@ -725,16 +857,20 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JLabel login_link10;
+    private javax.swing.JLabel lengthLabel;
+    private javax.swing.JLabel login_link11;
     private javax.swing.JLabel login_link12;
     private javax.swing.JLabel login_link13;
     private javax.swing.JLabel login_link14;
@@ -743,7 +879,6 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
     private javax.swing.JLabel login_link17;
     private javax.swing.JLabel login_link18;
     private javax.swing.JLabel login_link19;
-    private javax.swing.JLabel login_link2;
     private javax.swing.JLabel login_link20;
     private javax.swing.JLabel login_link21;
     private javax.swing.JLabel login_link22;
@@ -751,18 +886,19 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
     private javax.swing.JLabel login_link24;
     private javax.swing.JLabel login_link25;
     private javax.swing.JLabel login_link26;
-    private javax.swing.JLabel login_link27;
     private javax.swing.JLabel login_link28;
-    private javax.swing.JLabel login_link29;
     private javax.swing.JLabel login_link3;
     private javax.swing.JLabel login_link30;
     private javax.swing.JLabel login_link31;
     private javax.swing.JLabel login_link32;
     private javax.swing.JLabel login_link33;
     private javax.swing.JLabel login_link34;
-    private javax.swing.JLabel login_link35;
     private javax.swing.JLabel login_link36;
-    private javax.swing.JLabel login_link4;
+    private javax.swing.JLabel login_link38;
+    private javax.swing.JLabel login_link40;
+    private javax.swing.JLabel login_link41;
+    private javax.swing.JLabel login_link42;
+    private javax.swing.JLabel login_link43;
     private javax.swing.JLabel login_link5;
     private javax.swing.JLabel login_link6;
     private javax.swing.JLabel login_link7;
@@ -770,6 +906,7 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
     private javax.swing.JLabel login_link9;
     private javax.swing.JButton miniBtn;
     private javax.swing.JSpinner minuteSpinner;
+    private javax.swing.JLabel movieTitleLabel;
     private javax.swing.JTextField movieTitleTxtField;
     private javax.swing.JButton moviesBtn;
     private javax.swing.JButton moviesBtn1;
@@ -777,10 +914,14 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
     private javax.swing.JToggleButton mysteryTogBtn;
     private javax.swing.JLabel posterLabel;
     private javax.swing.JButton profileBtn;
+    private javax.swing.JLabel ratingLabel;
+    private javax.swing.JSpinner ratingSpinner;
     private javax.swing.JToggleButton romanceTogBtn;
     private javax.swing.JPanel sidePanel;
     private javax.swing.JComboBox<String> theaterCombo;
     private javax.swing.JToggleButton thrillerTogBtn;
+    private javax.swing.JLabel ticketPriceAdultLabel;
+    private javax.swing.JLabel ticketPriceChidLabel;
     private javax.swing.JButton uploadPosterBtn;
     private javax.swing.JPanel viewMoviesPanel;
     // End of variables declaration//GEN-END:variables
