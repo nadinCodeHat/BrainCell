@@ -6,6 +6,9 @@ import javax.swing.JFileChooser;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -789,18 +792,41 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_uploadPosterBtnMouseExited
     ImageIcon ii;
+    byte[] poster=null;
     private void uploadPosterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadPosterBtnActionPerformed
         JFileChooser browseImageFile = new JFileChooser();
         //Filter image extensions
         FileNameExtensionFilter fnef = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
         browseImageFile.addChoosableFileFilter(fnef);
         int showOpenDialogue = browseImageFile.showOpenDialog(null);
-         
+
         if (showOpenDialogue == JFileChooser.APPROVE_OPTION) {
-            File selectedImageFile = browseImageFile.getSelectedFile();
-            String selectedImagePath = selectedImageFile.getAbsolutePath();
-            ii = new ImageIcon(selectedImagePath);
-            posterLabel.setIcon(new ImageIcon(ii.getImage()));
+            FileInputStream fis = null;
+            try {
+                File selectedImageFile = browseImageFile.getSelectedFile();
+                String selectedImagePath = selectedImageFile.getAbsolutePath();
+                ii = new ImageIcon(selectedImagePath);
+                //set to label
+                posterLabel.setIcon(new ImageIcon(ii.getImage()));
+                //set to poster for sql insert
+                fis = new FileInputStream(selectedImagePath);
+                ByteArrayOutputStream baos=new ByteArrayOutputStream();
+                byte[] buf=new byte[1024];
+                for(int readnum; (readnum=fis.read(buf)) !=-1;)                
+                {
+                    baos.write(buf,0,readnum);
+                }   poster=baos.toByteArray();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
+                    fis.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }//GEN-LAST:event_uploadPosterBtnActionPerformed
 
@@ -825,7 +851,7 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
     private void addMovieBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMovieBtnActionPerformed
         if(checkEmptyFields()){
             String movie_title = movieTitleTxtField.getText();
-            String genre = genreLabel.getText();
+            String genre = str;
             Double rating = (Double)ratingSpinner.getValue();
             Integer hour = (Integer)hourSpinner.getValue();
             Integer minute = (Integer)minuteSpinner.getValue();
@@ -849,7 +875,7 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
                 pst.setString(8, theater);
                 pst.setInt(9, ticketPriceChild);
                 pst.setInt(10, ticketPriceAdult);
-                //add poster
+                pst.setBytes(11, poster);
                 pst.execute();
             }catch(SQLException ex){
                 Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
