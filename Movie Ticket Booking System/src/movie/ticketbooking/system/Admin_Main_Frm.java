@@ -1,15 +1,20 @@
 package movie.ticketbooking.system;
 
+import java.io.File;
+import java.util.ArrayList;
+import javax.swing.JFileChooser;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -19,7 +24,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author nadinCodeHat
  */
 public class Admin_Main_Frm extends javax.swing.JFrame {
-
+    Connection con = null;
+    PreparedStatement pst = null;
+    ResultSet rs;
     int posX=0,posY=0;
     
     public Admin_Main_Frm() {
@@ -253,8 +260,7 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
 
         genreLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         genreLabel.setForeground(new java.awt.Color(255, 255, 255));
-        genreLabel.setText("Adventure, Action, Comedy, Thriller");
-        jPanel3.add(genreLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, -1));
+        jPanel3.add(genreLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 300, -1));
 
         addAMoviePanel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 320, 640));
 
@@ -332,7 +338,7 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         login_link28.setText("Rs.");
         addAMoviePanel.add(login_link28, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 470, -1, -1));
 
-        childTckPriceTxtField.setText("300");
+        childTckPriceTxtField.setText("400");
         childTckPriceTxtField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 childTckPriceTxtFieldFocusLost(evt);
@@ -345,7 +351,7 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         login_link30.setText("Rs.");
         addAMoviePanel.add(login_link30, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 500, -1, -1));
 
-        adultTckPriceTxtField.setText("400");
+        adultTckPriceTxtField.setText("700");
         adultTckPriceTxtField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 adultTckPriceTxtFieldFocusLost(evt);
@@ -385,40 +391,100 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         addAMoviePanel.add(login_link36, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 440, -1, -1));
 
         horrorTogBtn.setText("Horror");
+        horrorTogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                horrorTogBtnActionPerformed(evt);
+            }
+        });
         addAMoviePanel.add(horrorTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 170, -1, -1));
 
         adventureTogBtn.setBackground(new java.awt.Color(255, 51, 51));
         adventureTogBtn.setText("Adventure");
+        adventureTogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adventureTogBtnActionPerformed(evt);
+            }
+        });
         addAMoviePanel.add(adventureTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, -1, -1));
 
         actionTogBtn.setText("Action");
+        actionTogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionTogBtnActionPerformed(evt);
+            }
+        });
         addAMoviePanel.add(actionTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 140, -1, -1));
 
         thrillerTogBtn.setText("Thriller");
+        thrillerTogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                thrillerTogBtnActionPerformed(evt);
+            }
+        });
         addAMoviePanel.add(thrillerTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 140, -1, -1));
 
         fantasyTogBtn.setText("Fantasy");
+        fantasyTogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fantasyTogBtnActionPerformed(evt);
+            }
+        });
         addAMoviePanel.add(fantasyTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 140, -1, -1));
 
         dramaTogBtn.setText("Drama");
+        dramaTogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dramaTogBtnActionPerformed(evt);
+            }
+        });
         addAMoviePanel.add(dramaTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 140, -1, -1));
 
         mysteryTogBtn.setText("Mystery");
+        mysteryTogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mysteryTogBtnActionPerformed(evt);
+            }
+        });
         addAMoviePanel.add(mysteryTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 140, -1, -1));
 
         historicalTogBtn.setText("Historical");
+        historicalTogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                historicalTogBtnActionPerformed(evt);
+            }
+        });
         addAMoviePanel.add(historicalTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 170, -1, -1));
 
         comedyTogBtn.setText("Comedy");
+        comedyTogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comedyTogBtnActionPerformed(evt);
+            }
+        });
         addAMoviePanel.add(comedyTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 170, -1, -1));
 
         animationTogBtn.setText("Animation");
+        animationTogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                animationTogBtnActionPerformed(evt);
+            }
+        });
         addAMoviePanel.add(animationTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 170, -1, -1));
 
         romanceTogBtn.setText("Romance");
+        romanceTogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                romanceTogBtnActionPerformed(evt);
+            }
+        });
         addAMoviePanel.add(romanceTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 170, -1, -1));
 
         crimeTogBtn.setText("Crime");
+        crimeTogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crimeTogBtnActionPerformed(evt);
+            }
+        });
         addAMoviePanel.add(crimeTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 170, -1, -1));
 
         uploadPosterBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/uploadPosterBtn.png"))); // NOI18N
@@ -715,6 +781,15 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
     }//GEN-LAST:event_uploadPosterBtnMouseEntered
 
     private void uploadPosterBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_uploadPosterBtnMouseExited
+        try {
+            Image uploadPstBtn = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/uploadPosterBtn.png"));
+            uploadPosterBtn.setIcon(new ImageIcon(uploadPstBtn));
+        } catch (IOException ex) {
+            Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_uploadPosterBtnMouseExited
+    ImageIcon ii;
+    private void uploadPosterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadPosterBtnActionPerformed
         JFileChooser browseImageFile = new JFileChooser();
         //Filter image extensions
         FileNameExtensionFilter fnef = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
@@ -724,17 +799,8 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         if (showOpenDialogue == JFileChooser.APPROVE_OPTION) {
             File selectedImageFile = browseImageFile.getSelectedFile();
             String selectedImagePath = selectedImageFile.getAbsolutePath();
-            ImageIcon ii = new ImageIcon(selectedImagePath);
+            ii = new ImageIcon(selectedImagePath);
             posterLabel.setIcon(new ImageIcon(ii.getImage()));
-        }  
-    }//GEN-LAST:event_uploadPosterBtnMouseExited
-
-    private void uploadPosterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadPosterBtnActionPerformed
-        try {
-            Image addMovieBtnHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/addMovieBtnHover.png"));
-            addMovieBtn.setIcon(new ImageIcon(addMovieBtnHover));
-        } catch (IOException ex) {
-            Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_uploadPosterBtnActionPerformed
 
@@ -757,9 +823,75 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
     }//GEN-LAST:event_addMovieBtnMouseExited
 
     private void addMovieBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMovieBtnActionPerformed
-        // TODO add your handling code here:
+        if(checkEmptyFields()){
+            String movie_title = movieTitleTxtField.getText();
+            String genre = genreLabel.getText();
+            Double rating = (Double)ratingSpinner.getValue();
+            Integer hour = (Integer)hourSpinner.getValue();
+            Integer minute = (Integer)minuteSpinner.getValue();
+            String contentRating = contRatingCombo.getSelectedItem().toString();
+            String description = descripTxtArea.getText();
+            String theater = theaterCombo.getSelectedItem().toString();
+            Integer ticketPriceChild = Integer.parseInt(childTckPriceTxtField.getText());
+            Integer ticketPriceAdult = Integer.parseInt(adultTckPriceTxtField.getText());
+            
+            try{
+                String insertUsersQuery = "INSERT INTO `movies` (movie_title, genre, rating, hours, minutes, content_rating, description, theater, ticket_price_child, ticket_price_adult, poster) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+                pst = DBConnectClass.getConnection().prepareStatement(insertUsersQuery);
+                
+                pst.setString(1, movie_title);
+                pst.setString(2, genre);
+                pst.setDouble(3, rating);
+                pst.setInt(4, hour);
+                pst.setInt(5, minute);
+                pst.setString(6, contentRating);
+                pst.setString(7, description);
+                pst.setString(8, theater);
+                pst.setInt(9, ticketPriceChild);
+                pst.setInt(10, ticketPriceAdult);
+                //add poster
+                pst.execute();
+            }catch(SQLException ex){
+                Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            finally{
+                JOptionPane.showMessageDialog(null, "New movie added successfully!","Successful",2);
+            }
+        }
     }//GEN-LAST:event_addMovieBtnActionPerformed
 
+    private boolean checkEmptyFields(){
+        String movie_title = movieTitleTxtField.getText();
+        String description = descripTxtArea.getText();
+        String ticketPriceChild = childTckPriceTxtField.getText();
+        String ticketPriceAdult = adultTckPriceTxtField.getText();
+       
+        //check empty fields
+        if (movie_title.trim().equals("")){
+            JOptionPane.showMessageDialog(null, "Please enter a movie title.","Empty Field",2);
+            return false;
+        }
+        if (genreList.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please provide at least (one) genre.", "Empty genre",2);
+            return false;
+        }
+        if (description.trim().equals("")){
+            JOptionPane.showMessageDialog(null, "Please provide a movie description.", "Empty Field",2);
+            return false;
+        }
+        if(ticketPriceChild.trim().equals("")){
+            JOptionPane.showMessageDialog(null, "Please enter a price for child ticket.", "Empty Field",2);
+            return false;
+        }
+        if(ticketPriceAdult.trim().equals("")){
+            JOptionPane.showMessageDialog(null, "Please enter a price for adult ticket.", "Empty Field",2);
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    
     private void movieTitleTxtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_movieTitleTxtFieldFocusLost
         movieTitleLabel.setText("<html>"+ movieTitleTxtField.getText() +"</html>");
     }//GEN-LAST:event_movieTitleTxtFieldFocusLost
@@ -793,6 +925,164 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
     private void adultTckPriceTxtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_adultTckPriceTxtFieldFocusLost
         ticketPriceAdultLabel.setText("Rs. "+adultTckPriceTxtField.getText());
     }//GEN-LAST:event_adultTckPriceTxtFieldFocusLost
+
+    ArrayList<String> genreList = new ArrayList<String>();
+    String str;
+    private void adventureTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adventureTogBtnActionPerformed
+        if(adventureTogBtn.isSelected()){
+            genreList.add("Adventure");
+            str = String.join(", ",genreList);
+            genreLabel.setText("<html>"+ str +"</html>");
+        }  
+        else{
+            genreList.remove(adventureTogBtn.getText());
+            str = String.join(", ",genreList);
+            genreLabel.setText("<html>"+ str +"</html>");
+        }
+    }//GEN-LAST:event_adventureTogBtnActionPerformed
+
+    private void actionTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionTogBtnActionPerformed
+        if(actionTogBtn.isSelected()){
+            genreList.add("Action");
+            str = String.join(", ",genreList);
+            genreLabel.setText("<html>"+ str +"</html>");
+        }  
+        else{
+            genreList.remove(actionTogBtn.getText());
+            str = String.join(", ",genreList);
+            genreLabel.setText("<html>"+ str +"</html>");
+        }
+    }//GEN-LAST:event_actionTogBtnActionPerformed
+
+    private void thrillerTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thrillerTogBtnActionPerformed
+        if(thrillerTogBtn.isSelected()){
+            genreList.add("Thriller");
+            str = String.join(", ",genreList);
+            genreLabel.setText("<html>"+ str +"</html>");
+        }  
+        else{
+            genreList.remove(thrillerTogBtn.getText());
+            str = String.join(", ",genreList);
+            genreLabel.setText("<html>"+ str +"</html>");
+        }
+    }//GEN-LAST:event_thrillerTogBtnActionPerformed
+
+    private void fantasyTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fantasyTogBtnActionPerformed
+        if(fantasyTogBtn.isSelected()){
+            genreList.add("Fantasy");
+            str = String.join(", ",genreList);
+            genreLabel.setText("<html>"+ str +"</html>");
+        }  
+        else{
+            genreList.remove(fantasyTogBtn.getText());
+            str = String.join(", ",genreList);
+            genreLabel.setText("<html>"+ str +"</html>");
+        }
+    }//GEN-LAST:event_fantasyTogBtnActionPerformed
+
+    private void dramaTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dramaTogBtnActionPerformed
+        if(dramaTogBtn.isSelected()){
+            genreList.add("Drama");
+            str = String.join(", ",genreList);
+            genreLabel.setText("<html>"+ str +"</html>");
+        }  
+        else{
+            genreList.remove(dramaTogBtn.getText());
+            str = String.join(", ",genreList);
+            genreLabel.setText("<html>"+ str +"</html>");
+        }
+    }//GEN-LAST:event_dramaTogBtnActionPerformed
+
+    private void mysteryTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mysteryTogBtnActionPerformed
+        if(mysteryTogBtn.isSelected()){
+            genreList.add("Mystery");
+            str = String.join(", ",genreList);
+            genreLabel.setText("<html>"+ str +"</html>");
+        }  
+        else{
+            genreList.remove(mysteryTogBtn.getText());
+            str = String.join(", ",genreList);
+            genreLabel.setText("<html>"+ str +"</html>");
+        }
+    }//GEN-LAST:event_mysteryTogBtnActionPerformed
+
+    private void historicalTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historicalTogBtnActionPerformed
+        if(historicalTogBtn.isSelected()){
+            genreList.add("Historical");
+            str = String.join(", ",genreList);
+            genreLabel.setText("<html>"+ str +"</html>");
+        }  
+        else{
+            genreList.remove(historicalTogBtn.getText());
+            str = String.join(", ",genreList);
+            genreLabel.setText("<html>"+ str +"</html>");
+        }
+    }//GEN-LAST:event_historicalTogBtnActionPerformed
+
+    private void comedyTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comedyTogBtnActionPerformed
+        if(comedyTogBtn.isSelected()){
+            genreList.add("Comedy");
+            str = String.join(", ",genreList);
+            genreLabel.setText("<html>"+ str +"</html>");
+        }  
+        else{
+            genreList.remove(comedyTogBtn.getText());
+            str = String.join(", ",genreList);
+            genreLabel.setText("<html>"+ str +"</html>");
+        }
+    }//GEN-LAST:event_comedyTogBtnActionPerformed
+
+    private void animationTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animationTogBtnActionPerformed
+        if(animationTogBtn.isSelected()){
+            genreList.add("Animation");
+            str = String.join(", ",genreList);
+            genreLabel.setText("<html>"+ str +"</html>");
+        }  
+        else{
+            genreList.remove(animationTogBtn.getText());
+            str = String.join(", ",genreList);
+            genreLabel.setText("<html>"+ str +"</html>");
+        }
+    }//GEN-LAST:event_animationTogBtnActionPerformed
+
+    private void romanceTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_romanceTogBtnActionPerformed
+        if(romanceTogBtn.isSelected()){
+            genreList.add("Romance");
+            str = String.join(", ",genreList);
+            genreLabel.setText("<html>"+ str +"</html>");
+        }  
+        else{
+            genreList.remove(romanceTogBtn.getText());
+            str = String.join(", ",genreList);
+            genreLabel.setText("<html>"+ str +"</html>");
+        }
+    }//GEN-LAST:event_romanceTogBtnActionPerformed
+
+    private void crimeTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crimeTogBtnActionPerformed
+        if(crimeTogBtn.isSelected()){
+            genreList.add("Crime");
+            str = String.join(", ",genreList);
+            genreLabel.setText("<html>"+ str +"</html>");
+        }  
+        else{
+            genreList.remove(crimeTogBtn.getText());
+            str = String.join(", ",genreList);
+            genreLabel.setText("<html>"+ str +"</html>");
+        }
+    }//GEN-LAST:event_crimeTogBtnActionPerformed
+
+    private void horrorTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horrorTogBtnActionPerformed
+        if(horrorTogBtn.isSelected()){
+            genreList.add("Horror");
+            str = String.join(", ",genreList);
+            genreLabel.setText("<html>"+ str +"</html>");
+        }  
+        else{
+            genreList.remove(horrorTogBtn.getText());
+            str = String.join(", ",genreList);
+            genreLabel.setText("<html>"+ str +"</html>");
+        }
+    }//GEN-LAST:event_horrorTogBtnActionPerformed
 
     /**
      * @param args the command line arguments

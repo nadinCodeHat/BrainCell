@@ -30,7 +30,6 @@ import javax.swing.JOptionPane;
  * @author nadinCodeHat
  */
 public class SignUp_Frm extends javax.swing.JFrame {
-
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs;
