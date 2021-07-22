@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.ByteArrayOutputStream;
@@ -342,9 +343,15 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         addAMoviePanel.add(login_link28, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 470, -1, -1));
 
         childTckPriceTxtField.setText("400");
+        childTckPriceTxtField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         childTckPriceTxtField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 childTckPriceTxtFieldFocusLost(evt);
+            }
+        });
+        childTckPriceTxtField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                childTckPriceTxtFieldKeyPressed(evt);
             }
         });
         addAMoviePanel.add(childTckPriceTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 470, 40, -1));
@@ -355,9 +362,15 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         addAMoviePanel.add(login_link30, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 500, -1, -1));
 
         adultTckPriceTxtField.setText("700");
+        adultTckPriceTxtField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         adultTckPriceTxtField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 adultTckPriceTxtFieldFocusLost(evt);
+            }
+        });
+        adultTckPriceTxtField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                adultTckPriceTxtFieldKeyPressed(evt);
             }
         });
         addAMoviePanel.add(adultTckPriceTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 500, 40, -1));
@@ -952,7 +965,7 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         ticketPriceAdultLabel.setText("Rs. "+adultTckPriceTxtField.getText());
     }//GEN-LAST:event_adultTckPriceTxtFieldFocusLost
 
-    ArrayList<String> genreList = new ArrayList<String>();
+    ArrayList<String> genreList = new ArrayList<>();
     String str;
     private void adventureTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adventureTogBtnActionPerformed
         if(adventureTogBtn.isSelected()){
@@ -1110,6 +1123,22 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_horrorTogBtnActionPerformed
 
+    private void childTckPriceTxtFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_childTckPriceTxtFieldKeyPressed
+        if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9' && childTckPriceTxtField.getText().length()<4 || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+           childTckPriceTxtField.setEditable(true);
+        } else {
+           childTckPriceTxtField.setEditable(false);
+        }
+    }//GEN-LAST:event_childTckPriceTxtFieldKeyPressed
+
+    private void adultTckPriceTxtFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_adultTckPriceTxtFieldKeyPressed
+        if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9' && adultTckPriceTxtField.getText().length()<4 || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+           adultTckPriceTxtField.setEditable(true);
+        } else {
+           adultTckPriceTxtField.setEditable(false);
+        }
+    }//GEN-LAST:event_adultTckPriceTxtFieldKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -1138,10 +1167,8 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Admin_Main_Frm().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Admin_Main_Frm().setVisible(true);
         });
     }
 
