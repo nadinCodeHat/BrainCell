@@ -79,31 +79,31 @@ public class Login_Frm extends javax.swing.JFrame {
         login_panel.setBackground(new java.awt.Color(21, 20, 31));
         login_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Email");
-        login_panel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 170, -1, 20));
+        login_panel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 190, -1, 20));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(235, 16, 42));
         jLabel2.setText("Login");
-        login_panel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 70, -1, -1));
+        login_panel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 90, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Welcome back! Lets get started");
-        login_panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 110, -1, 20));
+        login_panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 130, -1, 20));
 
         email_TextField.setBackground(new java.awt.Color(21, 20, 31));
-        email_TextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        email_TextField.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         email_TextField.setForeground(new java.awt.Color(255, 255, 255));
         email_TextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         email_TextField.setToolTipText("");
         email_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 16, 42)));
         email_TextField.setCaretColor(new java.awt.Color(255, 255, 255));
-        login_panel.add(email_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 200, 220, 30));
+        login_panel.add(email_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 220, 220, 30));
 
-        forgotPassword_link.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        forgotPassword_link.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         forgotPassword_link.setForeground(new java.awt.Color(235, 16, 42));
         forgotPassword_link.setText("Forgot Password?");
         forgotPassword_link.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -118,12 +118,12 @@ public class Login_Frm extends javax.swing.JFrame {
                 forgotPassword_linkMouseExited(evt);
             }
         });
-        login_panel.add(forgotPassword_link, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 240, -1, 20));
+        login_panel.add(forgotPassword_link, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, 20));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Password");
-        login_panel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 240, -1, 20));
+        login_panel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 260, -1, 20));
 
         login_Btn.setBackground(new java.awt.Color(255, 255, 255));
         login_Btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -145,12 +145,12 @@ public class Login_Frm extends javax.swing.JFrame {
         });
         login_panel.add(login_Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 340, 220, 35));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("New User?");
-        login_panel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 390, -1, 20));
+        jLabel6.setText("New user?");
+        login_panel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 390, -1, 20));
 
-        createAccount_link.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        createAccount_link.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         createAccount_link.setForeground(new java.awt.Color(235, 16, 42));
         createAccount_link.setText("Create Account");
         createAccount_link.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -199,15 +199,15 @@ public class Login_Frm extends javax.swing.JFrame {
                 miniBtnActionPerformed(evt);
             }
         });
-        login_panel.add(miniBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 16, 16));
+        login_panel.add(miniBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 16, 16, 4));
 
         password_TextField.setBackground(new java.awt.Color(21, 20, 31));
-        password_TextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        password_TextField.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         password_TextField.setForeground(new java.awt.Color(255, 255, 255));
         password_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 16, 42)));
         password_TextField.setCaretColor(new java.awt.Color(255, 255, 255));
         password_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        login_panel.add(password_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 270, 220, 30));
+        login_panel.add(password_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 290, 220, 30));
 
         getContentPane().add(login_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 310, 500));
 
