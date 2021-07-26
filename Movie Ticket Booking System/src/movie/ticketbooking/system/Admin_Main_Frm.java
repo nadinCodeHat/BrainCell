@@ -65,69 +65,13 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         profileBtn = new javax.swing.JButton();
         moviesBtn = new javax.swing.JButton();
         moviesBtn1 = new javax.swing.JButton();
-        moviesBtn2 = new javax.swing.JButton();
         login_link3 = new javax.swing.JLabel();
+        profileBtn1 = new javax.swing.JButton();
         addAMoviePanel = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        posterLabel = new javax.swing.JLabel();
-        movieTitleLabel = new javax.swing.JLabel();
-        lengthLabel = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        ratingLabel = new javax.swing.JLabel();
-        login_link31 = new javax.swing.JLabel();
-        contentRatingLabel = new javax.swing.JLabel();
-        login_link40 = new javax.swing.JLabel();
-        ticketPriceAdultLabel = new javax.swing.JLabel();
-        login_link33 = new javax.swing.JLabel();
-        login_link43 = new javax.swing.JLabel();
-        ticketPriceChidLabel = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        genreLabel = new javax.swing.JLabel();
-        movieTitleTxtField = new javax.swing.JTextField();
-        login_link12 = new javax.swing.JLabel();
-        hourSpinner = new javax.swing.JSpinner();
-        login_link13 = new javax.swing.JLabel();
-        login_link14 = new javax.swing.JLabel();
-        minuteSpinner = new javax.swing.JSpinner();
-        contRatingCombo = new javax.swing.JComboBox<>();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        descripTxtArea = new javax.swing.JTextArea();
-        login_link26 = new javax.swing.JLabel();
-        login_link28 = new javax.swing.JLabel();
-        childTckPriceTxtField = new javax.swing.JTextField();
-        login_link30 = new javax.swing.JLabel();
-        adultTckPriceTxtField = new javax.swing.JTextField();
-        addMovieBtn = new javax.swing.JButton();
-        login_link32 = new javax.swing.JLabel();
-        theaterCombo = new javax.swing.JComboBox<>();
-        login_link36 = new javax.swing.JLabel();
-        horrorTogBtn = new javax.swing.JToggleButton();
-        adventureTogBtn = new javax.swing.JToggleButton();
-        actionTogBtn = new javax.swing.JToggleButton();
-        thrillerTogBtn = new javax.swing.JToggleButton();
-        fantasyTogBtn = new javax.swing.JToggleButton();
-        dramaTogBtn = new javax.swing.JToggleButton();
-        mysteryTogBtn = new javax.swing.JToggleButton();
-        historicalTogBtn = new javax.swing.JToggleButton();
-        comedyTogBtn = new javax.swing.JToggleButton();
-        animationTogBtn = new javax.swing.JToggleButton();
-        romanceTogBtn = new javax.swing.JToggleButton();
-        crimeTogBtn = new javax.swing.JToggleButton();
-        uploadPosterBtn = new javax.swing.JButton();
         exitBtn = new javax.swing.JButton();
         miniBtn = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        ratingSpinner = new javax.swing.JSpinner();
-        login_link11 = new javax.swing.JLabel();
-        login_link34 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        login_link25 = new javax.swing.JLabel();
-        login_link38 = new javax.swing.JLabel();
-        login_link41 = new javax.swing.JLabel();
-        login_link42 = new javax.swing.JLabel();
+        posterLabel = new javax.swing.JLabel();
+        addMovieBtn = new javax.swing.JButton();
         viewMoviesPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -162,363 +106,32 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1260, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        sidePanel.setBackground(new java.awt.Color(36, 34, 54));
+        sidePanel.setBackground(new java.awt.Color(21, 20, 31));
         sidePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        profileBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/profileBtn.png"))); // NOI18N
-        sidePanel.add(profileBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 200, 35));
+        profileBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/logoutBtn.png"))); // NOI18N
+        sidePanel.add(profileBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 208, 200, 35));
 
         moviesBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/viewBookingsBtn.png"))); // NOI18N
-        sidePanel.add(moviesBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 200, 35));
+        sidePanel.add(moviesBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 136, 200, 35));
 
-        moviesBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/viewMoviesBtnHover.png"))); // NOI18N
+        moviesBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/managemoviesBtnHover.png"))); // NOI18N
         sidePanel.add(moviesBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 200, 35));
-
-        moviesBtn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/addAMovieBtn.png"))); // NOI18N
-        sidePanel.add(moviesBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 200, 35));
 
         login_link3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         login_link3.setForeground(new java.awt.Color(235, 16, 42));
         login_link3.setText("BrainCell");
         sidePanel.add(login_link3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
 
+        profileBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/profileBtn.png"))); // NOI18N
+        sidePanel.add(profileBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 172, 200, 35));
+
         getContentPane().add(sidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 700));
 
-        addAMoviePanel.setBackground(new java.awt.Color(21, 20, 31));
+        addAMoviePanel.setBackground(new java.awt.Color(36, 34, 54));
         addAMoviePanel.setMinimumSize(new java.awt.Dimension(1060, 700));
         addAMoviePanel.setPreferredSize(new java.awt.Dimension(1060, 700));
         addAMoviePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel3.setBackground(new java.awt.Color(36, 34, 54));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        posterLabel.setBackground(new java.awt.Color(255, 255, 255));
-        posterLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        posterLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel3.add(posterLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 200));
-
-        movieTitleLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        movieTitleLabel.setForeground(new java.awt.Color(235, 16, 42));
-        jPanel3.add(movieTitleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 300, -1));
-
-        lengthLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lengthLabel.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(lengthLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, -1, -1));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/icons8_star_25px.png"))); // NOI18N
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, -1));
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(235, 16, 42));
-        jLabel7.setText("Content Rating");
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, -1, -1));
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(235, 16, 42));
-        jLabel8.setText("Genre");
-        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
-
-        ratingLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ratingLabel.setForeground(new java.awt.Color(255, 255, 255));
-        ratingLabel.setText("/10");
-        jPanel3.add(ratingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 312, -1, -1));
-
-        login_link31.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link31.setForeground(new java.awt.Color(235, 16, 42));
-        login_link31.setText("Ticket Price");
-        jPanel3.add(login_link31, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, -1, -1));
-
-        contentRatingLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        contentRatingLabel.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(contentRatingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, -1, -1));
-
-        login_link40.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link40.setForeground(new java.awt.Color(235, 16, 42));
-        login_link40.setText("Length");
-        jPanel3.add(login_link40, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, -1, -1));
-
-        ticketPriceAdultLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ticketPriceAdultLabel.setForeground(new java.awt.Color(255, 255, 255));
-        ticketPriceAdultLabel.setText("Rs.");
-        jPanel3.add(ticketPriceAdultLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 600, -1, -1));
-
-        login_link33.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link33.setForeground(new java.awt.Color(255, 255, 255));
-        login_link33.setText("Adults (ages 14 & up)");
-        jPanel3.add(login_link33, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 600, -1, -1));
-
-        login_link43.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link43.setForeground(new java.awt.Color(255, 255, 255));
-        login_link43.setText("Children (ages 2 - 13)");
-        jPanel3.add(login_link43, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, -1, -1));
-
-        ticketPriceChidLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ticketPriceChidLabel.setForeground(new java.awt.Color(255, 255, 255));
-        ticketPriceChidLabel.setText("Rs.");
-        jPanel3.add(ticketPriceChidLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 560, -1, -1));
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(235, 16, 42));
-        jLabel9.setText("Rating");
-        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
-
-        genreLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        genreLabel.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(genreLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 300, -1));
-
-        addAMoviePanel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 320, 640));
-
-        movieTitleTxtField.setBackground(new java.awt.Color(36, 34, 54));
-        movieTitleTxtField.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        movieTitleTxtField.setForeground(new java.awt.Color(255, 255, 255));
-        movieTitleTxtField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        movieTitleTxtField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                movieTitleTxtFieldFocusLost(evt);
-            }
-        });
-        addAMoviePanel.add(movieTitleTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 450, 30));
-
-        login_link12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link12.setForeground(new java.awt.Color(235, 16, 42));
-        login_link12.setText("Content Rating");
-        addAMoviePanel.add(login_link12, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 220, -1, -1));
-
-        hourSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, 4, 1));
-        hourSpinner.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                hourSpinnerPropertyChange(evt);
-            }
-        });
-        addAMoviePanel.add(hourSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 250, -1, -1));
-
-        login_link13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link13.setForeground(new java.awt.Color(235, 16, 42));
-        login_link13.setText("Description");
-        addAMoviePanel.add(login_link13, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 290, -1, -1));
-
-        login_link14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link14.setForeground(new java.awt.Color(255, 255, 255));
-        login_link14.setText("Minutes:");
-        addAMoviePanel.add(login_link14, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 250, -1, -1));
-
-        minuteSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
-        minuteSpinner.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                minuteSpinnerPropertyChange(evt);
-            }
-        });
-        addAMoviePanel.add(minuteSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 250, 50, -1));
-
-        contRatingCombo.setBackground(new java.awt.Color(36, 34, 54));
-        contRatingCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "G", "PG", "PG-13", "R", "NC-17" }));
-        contRatingCombo.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                contRatingComboPropertyChange(evt);
-            }
-        });
-        addAMoviePanel.add(contRatingCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 250, 90, 20));
-
-        descripTxtArea.setBackground(new java.awt.Color(36, 34, 54));
-        descripTxtArea.setColumns(20);
-        descripTxtArea.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        descripTxtArea.setForeground(new java.awt.Color(255, 255, 255));
-        descripTxtArea.setLineWrap(true);
-        descripTxtArea.setRows(5);
-        descripTxtArea.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(36, 34, 54)));
-        jScrollPane1.setViewportView(descripTxtArea);
-
-        jScrollPane2.setViewportView(jScrollPane1);
-
-        addAMoviePanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, 450, 100));
-
-        login_link26.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link26.setForeground(new java.awt.Color(235, 16, 42));
-        login_link26.setText("Rating");
-        addAMoviePanel.add(login_link26, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 220, -1, -1));
-
-        login_link28.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link28.setForeground(new java.awt.Color(255, 255, 255));
-        login_link28.setText("Rs.");
-        addAMoviePanel.add(login_link28, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 470, -1, -1));
-
-        childTckPriceTxtField.setText("400");
-        childTckPriceTxtField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        childTckPriceTxtField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                childTckPriceTxtFieldFocusLost(evt);
-            }
-        });
-        childTckPriceTxtField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                childTckPriceTxtFieldKeyPressed(evt);
-            }
-        });
-        addAMoviePanel.add(childTckPriceTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 470, 40, -1));
-
-        login_link30.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link30.setForeground(new java.awt.Color(255, 255, 255));
-        login_link30.setText("Rs.");
-        addAMoviePanel.add(login_link30, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 500, -1, -1));
-
-        adultTckPriceTxtField.setText("700");
-        adultTckPriceTxtField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        adultTckPriceTxtField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                adultTckPriceTxtFieldFocusLost(evt);
-            }
-        });
-        adultTckPriceTxtField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                adultTckPriceTxtFieldKeyPressed(evt);
-            }
-        });
-        addAMoviePanel.add(adultTckPriceTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 500, 40, -1));
-
-        addMovieBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/addMovieBtn.png"))); // NOI18N
-        addMovieBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        addMovieBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                addMovieBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                addMovieBtnMouseExited(evt);
-            }
-        });
-        addMovieBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addMovieBtnActionPerformed(evt);
-            }
-        });
-        addAMoviePanel.add(addMovieBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 640, 100, 35));
-
-        login_link32.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link32.setForeground(new java.awt.Color(235, 16, 42));
-        login_link32.setText("Theater");
-        addAMoviePanel.add(login_link32, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 440, -1, -1));
-
-        theaterCombo.setBackground(new java.awt.Color(36, 34, 54));
-        theaterCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Theater 1", "Theater 2", "Theater 3" }));
-        addAMoviePanel.add(theaterCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 470, -1, 20));
-
-        login_link36.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link36.setForeground(new java.awt.Color(235, 16, 42));
-        login_link36.setText("Ticket Price");
-        addAMoviePanel.add(login_link36, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 440, -1, -1));
-
-        horrorTogBtn.setText("Horror");
-        horrorTogBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                horrorTogBtnActionPerformed(evt);
-            }
-        });
-        addAMoviePanel.add(horrorTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 170, -1, -1));
-
-        adventureTogBtn.setBackground(new java.awt.Color(255, 51, 51));
-        adventureTogBtn.setText("Adventure");
-        adventureTogBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adventureTogBtnActionPerformed(evt);
-            }
-        });
-        addAMoviePanel.add(adventureTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, -1, -1));
-
-        actionTogBtn.setText("Action");
-        actionTogBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                actionTogBtnActionPerformed(evt);
-            }
-        });
-        addAMoviePanel.add(actionTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 140, -1, -1));
-
-        thrillerTogBtn.setText("Thriller");
-        thrillerTogBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                thrillerTogBtnActionPerformed(evt);
-            }
-        });
-        addAMoviePanel.add(thrillerTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 140, -1, -1));
-
-        fantasyTogBtn.setText("Fantasy");
-        fantasyTogBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fantasyTogBtnActionPerformed(evt);
-            }
-        });
-        addAMoviePanel.add(fantasyTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 140, -1, -1));
-
-        dramaTogBtn.setText("Drama");
-        dramaTogBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dramaTogBtnActionPerformed(evt);
-            }
-        });
-        addAMoviePanel.add(dramaTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 140, -1, -1));
-
-        mysteryTogBtn.setText("Mystery");
-        mysteryTogBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mysteryTogBtnActionPerformed(evt);
-            }
-        });
-        addAMoviePanel.add(mysteryTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 140, -1, -1));
-
-        historicalTogBtn.setText("Historical");
-        historicalTogBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                historicalTogBtnActionPerformed(evt);
-            }
-        });
-        addAMoviePanel.add(historicalTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 170, -1, -1));
-
-        comedyTogBtn.setText("Comedy");
-        comedyTogBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comedyTogBtnActionPerformed(evt);
-            }
-        });
-        addAMoviePanel.add(comedyTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 170, -1, -1));
-
-        animationTogBtn.setText("Animation");
-        animationTogBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                animationTogBtnActionPerformed(evt);
-            }
-        });
-        addAMoviePanel.add(animationTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 170, -1, -1));
-
-        romanceTogBtn.setText("Romance");
-        romanceTogBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                romanceTogBtnActionPerformed(evt);
-            }
-        });
-        addAMoviePanel.add(romanceTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 170, -1, -1));
-
-        crimeTogBtn.setText("Crime");
-        crimeTogBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                crimeTogBtnActionPerformed(evt);
-            }
-        });
-        addAMoviePanel.add(crimeTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 170, -1, -1));
-
-        uploadPosterBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/uploadPosterBtn.png"))); // NOI18N
-        uploadPosterBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        uploadPosterBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                uploadPosterBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                uploadPosterBtnMouseExited(evt);
-            }
-        });
-        uploadPosterBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                uploadPosterBtnActionPerformed(evt);
-            }
-        });
-        addAMoviePanel.add(uploadPosterBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 640, 100, 35));
 
         exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/exitBtn.png"))); // NOI18N
         exitBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -554,51 +167,22 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         });
         addAMoviePanel.add(miniBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 16, 16, 4));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("/10");
-        addAMoviePanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, -1, -1));
+        posterLabel.setBackground(new java.awt.Color(255, 255, 255));
+        posterLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        posterLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addAMoviePanel.add(posterLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 320, 200));
 
-        ratingSpinner.setModel(new javax.swing.SpinnerNumberModel(1.0d, 1.0d, 10.0d, 1.0d));
-        ratingSpinner.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                ratingSpinnerPropertyChange(evt);
+        addMovieBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/addMovieBtn.png"))); // NOI18N
+        addMovieBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addMovieBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addMovieBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addMovieBtnMouseExited(evt);
             }
         });
-        addAMoviePanel.add(ratingSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, 40, -1));
-
-        login_link11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link11.setForeground(new java.awt.Color(235, 16, 42));
-        login_link11.setText("Movie Title");
-        addAMoviePanel.add(login_link11, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, -1, -1));
-
-        login_link34.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link34.setForeground(new java.awt.Color(255, 255, 255));
-        login_link34.setText("Hours:");
-        addAMoviePanel.add(login_link34, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 250, -1, -1));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/icons8_star_25px.png"))); // NOI18N
-        addAMoviePanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 245, 25, 25));
-
-        login_link25.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link25.setForeground(new java.awt.Color(235, 16, 42));
-        login_link25.setText("Genre");
-        addAMoviePanel.add(login_link25, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, -1, -1));
-
-        login_link38.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link38.setForeground(new java.awt.Color(235, 16, 42));
-        login_link38.setText("Length");
-        addAMoviePanel.add(login_link38, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 220, -1, -1));
-
-        login_link41.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link41.setForeground(new java.awt.Color(255, 255, 255));
-        login_link41.setText("Children (ages 2 - 13)");
-        addAMoviePanel.add(login_link41, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 470, -1, -1));
-
-        login_link42.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        login_link42.setForeground(new java.awt.Color(255, 255, 255));
-        login_link42.setText("Adults (ages 14 & up)");
-        addAMoviePanel.add(login_link42, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 500, -1, -1));
+        addAMoviePanel.add(addMovieBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 50, 100, 30));
 
         getContentPane().add(addAMoviePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 1060, 700));
 
@@ -787,68 +371,12 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_miniBtnActionPerformed
 
-    private void uploadPosterBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_uploadPosterBtnMouseEntered
-        try {
-            Image uploadPstBtnHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/uploadPosterBtnHover.png"));
-            uploadPosterBtn.setIcon(new ImageIcon(uploadPstBtnHover));
-        } catch (IOException ex) {
-            Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_uploadPosterBtnMouseEntered
-
-    private void uploadPosterBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_uploadPosterBtnMouseExited
-        try {
-            Image uploadPstBtn = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/uploadPosterBtn.png"));
-            uploadPosterBtn.setIcon(new ImageIcon(uploadPstBtn));
-        } catch (IOException ex) {
-            Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_uploadPosterBtnMouseExited
-    ImageIcon ii;
-    byte[] poster=null;
-    private void uploadPosterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadPosterBtnActionPerformed
-        JFileChooser browseImageFile = new JFileChooser();
-        //Filter image extensions
-        FileNameExtensionFilter fnef = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
-        browseImageFile.addChoosableFileFilter(fnef);
-        int showOpenDialogue = browseImageFile.showOpenDialog(null);
-
-        if (showOpenDialogue == JFileChooser.APPROVE_OPTION) {
-            FileInputStream fis = null;
-            try {
-                File selectedImageFile = browseImageFile.getSelectedFile();
-                String selectedImagePath = selectedImageFile.getAbsolutePath();
-                ii = new ImageIcon(selectedImagePath);
-                //set to label
-                posterLabel.setIcon(new ImageIcon(ii.getImage()));
-                //set to poster for sql insert
-                fis = new FileInputStream(selectedImagePath);
-                ByteArrayOutputStream baos=new ByteArrayOutputStream();
-                byte[] buf=new byte[1024];
-                for(int readnum; (readnum=fis.read(buf)) !=-1;)                
-                {
-                    baos.write(buf,0,readnum);
-                }   poster=baos.toByteArray();
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                try {
-                    fis.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-    }//GEN-LAST:event_uploadPosterBtnActionPerformed
-
     private void addMovieBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMovieBtnMouseEntered
         try {
             Image addMovieBtnHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/addMovieBtnHover.png"));
             addMovieBtn.setIcon(new ImageIcon(addMovieBtnHover));
         } catch (IOException ex) {
-            Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Add_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_addMovieBtnMouseEntered
 
@@ -857,288 +385,12 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
             Image addMovieBtnIM = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/addMovieBtn.png"));
             addMovieBtn.setIcon(new ImageIcon(addMovieBtnIM));
         } catch (IOException ex) {
-            Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Add_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_addMovieBtnMouseExited
 
-    private void addMovieBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMovieBtnActionPerformed
-        if(checkEmptyFields()){
-            String movie_title = movieTitleTxtField.getText();
-            String genre = str;
-            Double rating = (Double)ratingSpinner.getValue();
-            Integer hour = (Integer)hourSpinner.getValue();
-            Integer minute = (Integer)minuteSpinner.getValue();
-            String contentRating = contRatingCombo.getSelectedItem().toString();
-            String description = descripTxtArea.getText();
-            String theater = theaterCombo.getSelectedItem().toString();
-            Integer ticketPriceChild = Integer.parseInt(childTckPriceTxtField.getText());
-            Integer ticketPriceAdult = Integer.parseInt(adultTckPriceTxtField.getText());
-            
-            try{
-                String insertUsersQuery = "INSERT INTO `movies` (movie_title, genre, rating, hours, minutes, content_rating, description, theater, ticket_price_child, ticket_price_adult, poster) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-                pst = DBConnectClass.getConnection().prepareStatement(insertUsersQuery);
-                
-                pst.setString(1, movie_title);
-                pst.setString(2, genre);
-                pst.setDouble(3, rating);
-                pst.setInt(4, hour);
-                pst.setInt(5, minute);
-                pst.setString(6, contentRating);
-                pst.setString(7, description);
-                pst.setString(8, theater);
-                pst.setInt(9, ticketPriceChild);
-                pst.setInt(10, ticketPriceAdult);
-                pst.setBytes(11, poster);
-                pst.execute();
-            }catch(SQLException ex){
-                Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            finally{
-                JOptionPane.showMessageDialog(null, "New movie added successfully!","Successful",2);
-            }
-        }
-    }//GEN-LAST:event_addMovieBtnActionPerformed
-
-    private boolean checkEmptyFields(){
-        String movie_title = movieTitleTxtField.getText();
-        String description = descripTxtArea.getText();
-        String ticketPriceChild = childTckPriceTxtField.getText();
-        String ticketPriceAdult = adultTckPriceTxtField.getText();
-       
-        //check empty fields
-        if (movie_title.trim().equals("")){
-            JOptionPane.showMessageDialog(null, "Please enter a movie title.","Empty Field",2);
-            return false;
-        }
-        if (genreList.isEmpty()){
-            JOptionPane.showMessageDialog(null, "Please provide at least (one) genre.", "Empty genre",2);
-            return false;
-        }
-        if (description.trim().equals("")){
-            JOptionPane.showMessageDialog(null, "Please provide a movie description.", "Empty Field",2);
-            return false;
-        }
-        if(ticketPriceChild.trim().equals("")){
-            JOptionPane.showMessageDialog(null, "Please enter a price for child ticket.", "Empty Field",2);
-            return false;
-        }
-        if(ticketPriceAdult.trim().equals("")){
-            JOptionPane.showMessageDialog(null, "Please enter a price for adult ticket.", "Empty Field",2);
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-    
-    private void movieTitleTxtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_movieTitleTxtFieldFocusLost
-        movieTitleLabel.setText("<html>"+ movieTitleTxtField.getText() +"</html>");
-    }//GEN-LAST:event_movieTitleTxtFieldFocusLost
-
-    private void ratingSpinnerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_ratingSpinnerPropertyChange
-        ratingLabel.setText(ratingSpinner.getValue() +"/10");
-    }//GEN-LAST:event_ratingSpinnerPropertyChange
-
-    private void hourSpinnerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_hourSpinnerPropertyChange
-        if("1".equals(hourSpinner.getValue().toString()))
-            lengthLabel.setText(hourSpinner.getValue() +" hour and "+minuteSpinner.getValue()+" minutes");
-        else
-            lengthLabel.setText(hourSpinner.getValue() +" hours and "+minuteSpinner.getValue()+" minutes");
-    }//GEN-LAST:event_hourSpinnerPropertyChange
-
-    private void minuteSpinnerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_minuteSpinnerPropertyChange
-        if("1".equals(hourSpinner.getValue().toString()))
-            lengthLabel.setText(hourSpinner.getValue() +" hour and "+minuteSpinner.getValue()+" minutes");
-        else
-            lengthLabel.setText(hourSpinner.getValue() +" hours and "+minuteSpinner.getValue()+" minutes");
-    }//GEN-LAST:event_minuteSpinnerPropertyChange
-
-    private void contRatingComboPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_contRatingComboPropertyChange
-        contentRatingLabel.setText(contRatingCombo.getSelectedItem().toString());
-    }//GEN-LAST:event_contRatingComboPropertyChange
-
-    private void childTckPriceTxtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_childTckPriceTxtFieldFocusLost
-        ticketPriceChidLabel.setText("Rs. "+childTckPriceTxtField.getText());
-    }//GEN-LAST:event_childTckPriceTxtFieldFocusLost
-
-    private void adultTckPriceTxtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_adultTckPriceTxtFieldFocusLost
-        ticketPriceAdultLabel.setText("Rs. "+adultTckPriceTxtField.getText());
-    }//GEN-LAST:event_adultTckPriceTxtFieldFocusLost
-
     ArrayList<String> genreList = new ArrayList<>();
     String str;
-    private void adventureTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adventureTogBtnActionPerformed
-        if(adventureTogBtn.isSelected()){
-            genreList.add("Adventure");
-            str = String.join(", ",genreList);
-            genreLabel.setText("<html>"+ str +"</html>");
-        }  
-        else{
-            genreList.remove(adventureTogBtn.getText());
-            str = String.join(", ",genreList);
-            genreLabel.setText("<html>"+ str +"</html>");
-        }
-    }//GEN-LAST:event_adventureTogBtnActionPerformed
-
-    private void actionTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionTogBtnActionPerformed
-        if(actionTogBtn.isSelected()){
-            genreList.add("Action");
-            str = String.join(", ",genreList);
-            genreLabel.setText("<html>"+ str +"</html>");
-        }  
-        else{
-            genreList.remove(actionTogBtn.getText());
-            str = String.join(", ",genreList);
-            genreLabel.setText("<html>"+ str +"</html>");
-        }
-    }//GEN-LAST:event_actionTogBtnActionPerformed
-
-    private void thrillerTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thrillerTogBtnActionPerformed
-        if(thrillerTogBtn.isSelected()){
-            genreList.add("Thriller");
-            str = String.join(", ",genreList);
-            genreLabel.setText("<html>"+ str +"</html>");
-        }  
-        else{
-            genreList.remove(thrillerTogBtn.getText());
-            str = String.join(", ",genreList);
-            genreLabel.setText("<html>"+ str +"</html>");
-        }
-    }//GEN-LAST:event_thrillerTogBtnActionPerformed
-
-    private void fantasyTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fantasyTogBtnActionPerformed
-        if(fantasyTogBtn.isSelected()){
-            genreList.add("Fantasy");
-            str = String.join(", ",genreList);
-            genreLabel.setText("<html>"+ str +"</html>");
-        }  
-        else{
-            genreList.remove(fantasyTogBtn.getText());
-            str = String.join(", ",genreList);
-            genreLabel.setText("<html>"+ str +"</html>");
-        }
-    }//GEN-LAST:event_fantasyTogBtnActionPerformed
-
-    private void dramaTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dramaTogBtnActionPerformed
-        if(dramaTogBtn.isSelected()){
-            genreList.add("Drama");
-            str = String.join(", ",genreList);
-            genreLabel.setText("<html>"+ str +"</html>");
-        }  
-        else{
-            genreList.remove(dramaTogBtn.getText());
-            str = String.join(", ",genreList);
-            genreLabel.setText("<html>"+ str +"</html>");
-        }
-    }//GEN-LAST:event_dramaTogBtnActionPerformed
-
-    private void mysteryTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mysteryTogBtnActionPerformed
-        if(mysteryTogBtn.isSelected()){
-            genreList.add("Mystery");
-            str = String.join(", ",genreList);
-            genreLabel.setText("<html>"+ str +"</html>");
-        }  
-        else{
-            genreList.remove(mysteryTogBtn.getText());
-            str = String.join(", ",genreList);
-            genreLabel.setText("<html>"+ str +"</html>");
-        }
-    }//GEN-LAST:event_mysteryTogBtnActionPerformed
-
-    private void historicalTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historicalTogBtnActionPerformed
-        if(historicalTogBtn.isSelected()){
-            genreList.add("Historical");
-            str = String.join(", ",genreList);
-            genreLabel.setText("<html>"+ str +"</html>");
-        }  
-        else{
-            genreList.remove(historicalTogBtn.getText());
-            str = String.join(", ",genreList);
-            genreLabel.setText("<html>"+ str +"</html>");
-        }
-    }//GEN-LAST:event_historicalTogBtnActionPerformed
-
-    private void comedyTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comedyTogBtnActionPerformed
-        if(comedyTogBtn.isSelected()){
-            genreList.add("Comedy");
-            str = String.join(", ",genreList);
-            genreLabel.setText("<html>"+ str +"</html>");
-        }  
-        else{
-            genreList.remove(comedyTogBtn.getText());
-            str = String.join(", ",genreList);
-            genreLabel.setText("<html>"+ str +"</html>");
-        }
-    }//GEN-LAST:event_comedyTogBtnActionPerformed
-
-    private void animationTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animationTogBtnActionPerformed
-        if(animationTogBtn.isSelected()){
-            genreList.add("Animation");
-            str = String.join(", ",genreList);
-            genreLabel.setText("<html>"+ str +"</html>");
-        }  
-        else{
-            genreList.remove(animationTogBtn.getText());
-            str = String.join(", ",genreList);
-            genreLabel.setText("<html>"+ str +"</html>");
-        }
-    }//GEN-LAST:event_animationTogBtnActionPerformed
-
-    private void romanceTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_romanceTogBtnActionPerformed
-        if(romanceTogBtn.isSelected()){
-            genreList.add("Romance");
-            str = String.join(", ",genreList);
-            genreLabel.setText("<html>"+ str +"</html>");
-        }  
-        else{
-            genreList.remove(romanceTogBtn.getText());
-            str = String.join(", ",genreList);
-            genreLabel.setText("<html>"+ str +"</html>");
-        }
-    }//GEN-LAST:event_romanceTogBtnActionPerformed
-
-    private void crimeTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crimeTogBtnActionPerformed
-        if(crimeTogBtn.isSelected()){
-            genreList.add("Crime");
-            str = String.join(", ",genreList);
-            genreLabel.setText("<html>"+ str +"</html>");
-        }  
-        else{
-            genreList.remove(crimeTogBtn.getText());
-            str = String.join(", ",genreList);
-            genreLabel.setText("<html>"+ str +"</html>");
-        }
-    }//GEN-LAST:event_crimeTogBtnActionPerformed
-
-    private void horrorTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horrorTogBtnActionPerformed
-        if(horrorTogBtn.isSelected()){
-            genreList.add("Horror");
-            str = String.join(", ",genreList);
-            genreLabel.setText("<html>"+ str +"</html>");
-        }  
-        else{
-            genreList.remove(horrorTogBtn.getText());
-            str = String.join(", ",genreList);
-            genreLabel.setText("<html>"+ str +"</html>");
-        }
-    }//GEN-LAST:event_horrorTogBtnActionPerformed
-
-    private void childTckPriceTxtFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_childTckPriceTxtFieldKeyPressed
-        if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9' && childTckPriceTxtField.getText().length()<4 || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-           childTckPriceTxtField.setEditable(true);
-        } else {
-           childTckPriceTxtField.setEditable(false);
-        }
-    }//GEN-LAST:event_childTckPriceTxtFieldKeyPressed
-
-    private void adultTckPriceTxtFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_adultTckPriceTxtFieldKeyPressed
-        if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9' && adultTckPriceTxtField.getText().length()<4 || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-           adultTckPriceTxtField.setEditable(true);
-        } else {
-           adultTckPriceTxtField.setEditable(false);
-        }
-    }//GEN-LAST:event_adultTckPriceTxtFieldKeyPressed
-
     /**
      * @param args the command line arguments
      */
@@ -1173,25 +425,9 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton actionTogBtn;
     private javax.swing.JPanel addAMoviePanel;
     private javax.swing.JButton addMovieBtn;
-    private javax.swing.JTextField adultTckPriceTxtField;
-    private javax.swing.JToggleButton adventureTogBtn;
-    private javax.swing.JToggleButton animationTogBtn;
-    private javax.swing.JTextField childTckPriceTxtField;
-    private javax.swing.JToggleButton comedyTogBtn;
-    private javax.swing.JComboBox<String> contRatingCombo;
-    private javax.swing.JLabel contentRatingLabel;
-    private javax.swing.JToggleButton crimeTogBtn;
-    private javax.swing.JTextArea descripTxtArea;
-    private javax.swing.JToggleButton dramaTogBtn;
     private javax.swing.JButton exitBtn;
-    private javax.swing.JToggleButton fantasyTogBtn;
-    private javax.swing.JLabel genreLabel;
-    private javax.swing.JToggleButton historicalTogBtn;
-    private javax.swing.JToggleButton horrorTogBtn;
-    private javax.swing.JSpinner hourSpinner;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1200,23 +436,9 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lengthLabel;
-    private javax.swing.JLabel login_link11;
-    private javax.swing.JLabel login_link12;
-    private javax.swing.JLabel login_link13;
-    private javax.swing.JLabel login_link14;
     private javax.swing.JLabel login_link15;
     private javax.swing.JLabel login_link16;
     private javax.swing.JLabel login_link17;
@@ -1227,45 +449,19 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
     private javax.swing.JLabel login_link22;
     private javax.swing.JLabel login_link23;
     private javax.swing.JLabel login_link24;
-    private javax.swing.JLabel login_link25;
-    private javax.swing.JLabel login_link26;
-    private javax.swing.JLabel login_link28;
     private javax.swing.JLabel login_link3;
-    private javax.swing.JLabel login_link30;
-    private javax.swing.JLabel login_link31;
-    private javax.swing.JLabel login_link32;
-    private javax.swing.JLabel login_link33;
-    private javax.swing.JLabel login_link34;
-    private javax.swing.JLabel login_link36;
-    private javax.swing.JLabel login_link38;
-    private javax.swing.JLabel login_link40;
-    private javax.swing.JLabel login_link41;
-    private javax.swing.JLabel login_link42;
-    private javax.swing.JLabel login_link43;
     private javax.swing.JLabel login_link5;
     private javax.swing.JLabel login_link6;
     private javax.swing.JLabel login_link7;
     private javax.swing.JLabel login_link8;
     private javax.swing.JLabel login_link9;
     private javax.swing.JButton miniBtn;
-    private javax.swing.JSpinner minuteSpinner;
-    private javax.swing.JLabel movieTitleLabel;
-    private javax.swing.JTextField movieTitleTxtField;
     private javax.swing.JButton moviesBtn;
     private javax.swing.JButton moviesBtn1;
-    private javax.swing.JButton moviesBtn2;
-    private javax.swing.JToggleButton mysteryTogBtn;
     private javax.swing.JLabel posterLabel;
     private javax.swing.JButton profileBtn;
-    private javax.swing.JLabel ratingLabel;
-    private javax.swing.JSpinner ratingSpinner;
-    private javax.swing.JToggleButton romanceTogBtn;
+    private javax.swing.JButton profileBtn1;
     private javax.swing.JPanel sidePanel;
-    private javax.swing.JComboBox<String> theaterCombo;
-    private javax.swing.JToggleButton thrillerTogBtn;
-    private javax.swing.JLabel ticketPriceAdultLabel;
-    private javax.swing.JLabel ticketPriceChidLabel;
-    private javax.swing.JButton uploadPosterBtn;
     private javax.swing.JPanel viewMoviesPanel;
     // End of variables declaration//GEN-END:variables
 }
