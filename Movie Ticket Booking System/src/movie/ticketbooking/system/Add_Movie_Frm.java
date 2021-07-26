@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -138,11 +136,6 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
         movieTitleTxtField.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         movieTitleTxtField.setForeground(new java.awt.Color(255, 255, 255));
         movieTitleTxtField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 16, 42)));
-        movieTitleTxtField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                movieTitleTxtFieldFocusLost(evt);
-            }
-        });
         jPanel1.add(movieTitleTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 380, 30));
 
         movieTitleLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -159,11 +152,6 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(118, 335, -1, -1));
 
         ratingSpinner.setModel(new javax.swing.SpinnerNumberModel(1.0d, 1.0d, 10.0d, 1.0d));
-        ratingSpinner.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                ratingSpinnerPropertyChange(evt);
-            }
-        });
         jPanel1.add(ratingSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 335, 40, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -172,11 +160,6 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 335, -1, -1));
 
         hourSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, 4, 1));
-        hourSpinner.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                hourSpinnerPropertyChange(evt);
-            }
-        });
         jPanel1.add(hourSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 335, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -185,11 +168,6 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 335, -1, -1));
 
         minuteSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
-        minuteSpinner.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                minuteSpinnerPropertyChange(evt);
-            }
-        });
         jPanel1.add(minuteSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 335, 50, -1));
 
         ratingLabel2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -453,28 +431,6 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
     private void miniBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miniBtnActionPerformed
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_miniBtnActionPerformed
-
-    private void movieTitleTxtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_movieTitleTxtFieldFocusLost
-        lengthLabel.setText("<html>"+ movieTitleTxtField.getText() +"</html>");
-    }//GEN-LAST:event_movieTitleTxtFieldFocusLost
-
-    private void ratingSpinnerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_ratingSpinnerPropertyChange
-        lengthLabel.setText(ratingSpinner.getValue() +"/10");
-    }//GEN-LAST:event_ratingSpinnerPropertyChange
-
-    private void hourSpinnerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_hourSpinnerPropertyChange
-        if("1".equals(hourSpinner.getValue().toString()))
-        lengthLabel.setText(hourSpinner.getValue() +" hour and "+minuteSpinner.getValue()+" minutes");
-        else
-        lengthLabel.setText(hourSpinner.getValue() +" hours and "+minuteSpinner.getValue()+" minutes");
-    }//GEN-LAST:event_hourSpinnerPropertyChange
-
-    private void minuteSpinnerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_minuteSpinnerPropertyChange
-        if("1".equals(hourSpinner.getValue().toString()))
-        lengthLabel.setText(hourSpinner.getValue() +" hour and "+minuteSpinner.getValue()+" minutes");
-        else
-        lengthLabel.setText(hourSpinner.getValue() +" hours and "+minuteSpinner.getValue()+" minutes");
-    }//GEN-LAST:event_minuteSpinnerPropertyChange
 
     ArrayList<String> genreList = new ArrayList<>();
     String str;
