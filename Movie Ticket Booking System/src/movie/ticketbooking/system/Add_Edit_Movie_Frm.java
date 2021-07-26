@@ -19,19 +19,26 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  *
- * @author Nadin
+ * @author nadinCodeHat
  */
-public class Add_Movie_Frm extends javax.swing.JFrame {
+public class Add_Edit_Movie_Frm extends javax.swing.JFrame {
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs;
     int posX=0,posY=0;
+
+    public Add_Edit_Movie_Frm(){
+        
+    }
     
-    public Add_Movie_Frm() {
+    JFrame obj;
+    public Add_Edit_Movie_Frm(Admin_Main_Frm add_main_frm){
         initComponents();
+        this.obj = add_main_frm;
     }
 
     @SuppressWarnings("unchecked")
@@ -125,55 +132,55 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
         posterLabel.setBackground(new java.awt.Color(255, 255, 255));
         posterLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         posterLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.add(posterLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 320, 200));
+        jPanel1.add(posterLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 250, 155));
 
         lengthLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         lengthLabel.setForeground(new java.awt.Color(255, 255, 255));
         lengthLabel.setText("Length");
-        jPanel1.add(lengthLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, -1, -1));
+        jPanel1.add(lengthLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, -1, -1));
 
         movieTitleTxtField.setBackground(new java.awt.Color(21, 20, 31));
         movieTitleTxtField.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         movieTitleTxtField.setForeground(new java.awt.Color(255, 255, 255));
         movieTitleTxtField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 16, 42)));
-        jPanel1.add(movieTitleTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 380, 30));
+        jPanel1.add(movieTitleTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 380, 30));
 
         movieTitleLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         movieTitleLabel1.setForeground(new java.awt.Color(255, 255, 255));
         movieTitleLabel1.setText("Movie Title");
-        jPanel1.add(movieTitleLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, -1, -1));
+        jPanel1.add(movieTitleLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/icons8_star_20px.png"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 335, 20, 20));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 20, 20));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("/10");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(118, 335, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, -1, -1));
 
         ratingSpinner.setModel(new javax.swing.SpinnerNumberModel(1.0d, 1.0d, 10.0d, 1.0d));
-        jPanel1.add(ratingSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 335, 40, -1));
+        jPanel1.add(ratingSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 40, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Hours");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 335, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, -1, -1));
 
         hourSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, 4, 1));
-        jPanel1.add(hourSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 335, -1, -1));
+        jPanel1.add(hourSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Minutes");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 335, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, -1, -1));
 
         minuteSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
-        jPanel1.add(minuteSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 335, 50, -1));
+        jPanel1.add(minuteSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, 50, -1));
 
         ratingLabel2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         ratingLabel2.setForeground(new java.awt.Color(255, 255, 255));
         ratingLabel2.setText("Rating");
-        jPanel1.add(ratingLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, -1));
+        jPanel1.add(ratingLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, -1));
 
         adventureTogBtn.setBackground(new java.awt.Color(255, 255, 255));
         adventureTogBtn.setText("Adventure");
@@ -182,7 +189,7 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
                 adventureTogBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(adventureTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, -1, -1));
+        jPanel1.add(adventureTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, -1));
 
         actionTogBtn.setBackground(new java.awt.Color(255, 255, 255));
         actionTogBtn.setText("Action");
@@ -191,7 +198,7 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
                 actionTogBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(actionTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, -1, -1));
+        jPanel1.add(actionTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, -1, -1));
 
         thrillerTogBtn.setBackground(new java.awt.Color(255, 255, 255));
         thrillerTogBtn.setText("Thriller");
@@ -200,7 +207,7 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
                 thrillerTogBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(thrillerTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 420, -1, -1));
+        jPanel1.add(thrillerTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, -1, -1));
 
         fantasyTogBtn.setBackground(new java.awt.Color(255, 255, 255));
         fantasyTogBtn.setText("Fantasy");
@@ -209,7 +216,7 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
                 fantasyTogBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(fantasyTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 420, -1, -1));
+        jPanel1.add(fantasyTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, -1, -1));
 
         crimeTogBtn.setBackground(new java.awt.Color(255, 255, 255));
         crimeTogBtn.setText("Crime");
@@ -218,7 +225,7 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
                 crimeTogBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(crimeTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 390, -1, -1));
+        jPanel1.add(crimeTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 350, -1, -1));
 
         mysteryTogBtn.setBackground(new java.awt.Color(255, 255, 255));
         mysteryTogBtn.setText("Mystery");
@@ -227,7 +234,7 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
                 mysteryTogBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(mysteryTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 390, -1, -1));
+        jPanel1.add(mysteryTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, -1, -1));
 
         horrorTogBtn.setBackground(new java.awt.Color(255, 255, 255));
         horrorTogBtn.setText("Horror");
@@ -236,7 +243,7 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
                 horrorTogBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(horrorTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, -1, -1));
+        jPanel1.add(horrorTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, -1, -1));
 
         animationTogBtn.setBackground(new java.awt.Color(255, 255, 255));
         animationTogBtn.setText("Animation");
@@ -245,7 +252,7 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
                 animationTogBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(animationTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 390, -1, -1));
+        jPanel1.add(animationTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, -1, -1));
 
         comedyTogBtn.setBackground(new java.awt.Color(255, 255, 255));
         comedyTogBtn.setText("Comedy");
@@ -254,21 +261,21 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
                 comedyTogBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(comedyTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, -1, -1));
+        jPanel1.add(comedyTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, -1, -1));
 
         contRatingCombo.setBackground(new java.awt.Color(36, 34, 54));
         contRatingCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "G", "PG", "PG-13", "R", "NC-17" }));
-        jPanel1.add(contRatingCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 335, 80, 20));
+        jPanel1.add(contRatingCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 80, 20));
 
         genreLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         genreLabel.setForeground(new java.awt.Color(255, 255, 255));
         genreLabel.setText("Genre");
-        jPanel1.add(genreLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, -1));
+        jPanel1.add(genreLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, -1, -1));
 
         contentRatingLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         contentRatingLabel1.setForeground(new java.awt.Color(255, 255, 255));
         contentRatingLabel1.setText("Content rating");
-        jPanel1.add(contentRatingLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, -1, -1));
+        jPanel1.add(contentRatingLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, -1, -1));
 
         descripTxtArea.setBackground(new java.awt.Color(21, 20, 31));
         descripTxtArea.setColumns(20);
@@ -279,25 +286,25 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
         descripTxtArea.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 16, 42)));
         jScrollPane1.setViewportView(descripTxtArea);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 480, 380, 80));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 380, 80));
 
         dramaTogBtn.setBackground(new java.awt.Color(255, 255, 255));
         dramaTogBtn.setText("Drama");
-        jPanel1.add(dramaTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 420, -1, -1));
+        jPanel1.add(dramaTogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 380, -1, -1));
 
         descriptionLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         descriptionLabel1.setForeground(new java.awt.Color(255, 255, 255));
         descriptionLabel1.setText("Description");
-        jPanel1.add(descriptionLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, -1, -1));
+        jPanel1.add(descriptionLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, -1, -1));
 
         theaterLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         theaterLabel1.setForeground(new java.awt.Color(255, 255, 255));
         theaterLabel1.setText("Theater");
-        jPanel1.add(theaterLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 570, -1, -1));
+        jPanel1.add(theaterLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 530, -1, -1));
 
         theaterCombo.setBackground(new java.awt.Color(36, 34, 54));
         theaterCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Theater 1", "Theater 2", "Theater 3" }));
-        jPanel1.add(theaterCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 90, 20));
+        jPanel1.add(theaterCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 550, 90, 20));
 
         adultTckPriceTxtField.setBackground(new java.awt.Color(21, 20, 31));
         adultTckPriceTxtField.setForeground(new java.awt.Color(255, 255, 255));
@@ -309,32 +316,32 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
                 adultTckPriceTxtFieldKeyPressed(evt);
             }
         });
-        jPanel1.add(adultTckPriceTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 610, 40, -1));
+        jPanel1.add(adultTckPriceTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 570, 40, -1));
 
         login_link42.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         login_link42.setForeground(new java.awt.Color(255, 255, 255));
         login_link42.setText("Adults (ages 14 & up)");
-        jPanel1.add(login_link42, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 610, -1, -1));
+        jPanel1.add(login_link42, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 570, -1, -1));
 
         login_link41.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         login_link41.setForeground(new java.awt.Color(255, 255, 255));
         login_link41.setText("Children (ages 2 - 13)");
-        jPanel1.add(login_link41, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 590, -1, -1));
+        jPanel1.add(login_link41, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 550, -1, -1));
 
         login_link36.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         login_link36.setForeground(new java.awt.Color(255, 255, 255));
         login_link36.setText("Ticket Price");
-        jPanel1.add(login_link36, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 570, -1, -1));
+        jPanel1.add(login_link36, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 530, -1, -1));
 
         login_link28.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         login_link28.setForeground(new java.awt.Color(255, 255, 255));
         login_link28.setText("Rs.");
-        jPanel1.add(login_link28, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 590, -1, -1));
+        jPanel1.add(login_link28, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 550, -1, -1));
 
         login_link30.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         login_link30.setForeground(new java.awt.Color(255, 255, 255));
         login_link30.setText("Rs.");
-        jPanel1.add(login_link30, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 610, -1, -1));
+        jPanel1.add(login_link30, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 570, -1, -1));
 
         childTckPriceTxtField.setBackground(new java.awt.Color(21, 20, 31));
         childTckPriceTxtField.setForeground(new java.awt.Color(255, 255, 255));
@@ -346,7 +353,7 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
                 childTckPriceTxtFieldKeyPressed(evt);
             }
         });
-        jPanel1.add(childTckPriceTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 590, 40, -1));
+        jPanel1.add(childTckPriceTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 550, 40, -1));
 
         addMovieBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/addMovieBtn.png"))); // NOI18N
         addMovieBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -363,7 +370,7 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
                 addMovieBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(addMovieBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 650, 100, 30));
+        jPanel1.add(addMovieBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 620, 100, 30));
 
         uploadPosterBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/uploadPosterBtn.png"))); // NOI18N
         uploadPosterBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -380,7 +387,7 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
                 uploadPosterBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(uploadPosterBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 650, 100, 30));
+        jPanel1.add(uploadPosterBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 620, 100, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 710));
 
@@ -393,7 +400,7 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
             Image exitBtnHoverImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/exitBtnHover.png"));
             exitBtn.setIcon(new ImageIcon(exitBtnHoverImg));
         } catch (IOException ex) {
-            Logger.getLogger(Add_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_exitBtnMouseEntered
 
@@ -402,12 +409,13 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
             Image exitBtnImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/exitBtn.png"));
             exitBtn.setIcon(new ImageIcon(exitBtnImg));
         } catch (IOException ex) {
-            Logger.getLogger(Add_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_exitBtnMouseExited
 
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
-        System.exit(0);
+        SwingUtilities.updateComponentTreeUI(obj);
+        this.dispose();
     }//GEN-LAST:event_exitBtnActionPerformed
 
     private void miniBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_miniBtnMouseEntered
@@ -415,7 +423,7 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
             Image miniBtnHoverImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/miniBtnHover.png"));
             miniBtn.setIcon(new ImageIcon(miniBtnHoverImg));
         } catch (IOException ex) {
-            Logger.getLogger(Add_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_miniBtnMouseEntered
 
@@ -424,7 +432,7 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
             Image miniBtnImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/miniBtn.png"));
             miniBtn.setIcon(new ImageIcon(miniBtnImg));
         } catch (IOException ex) {
-            Logger.getLogger(Add_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_miniBtnMouseExited
 
@@ -555,7 +563,7 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
             Image addMovieBtnHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/addMovieBtnHover.png"));
             addMovieBtn.setIcon(new ImageIcon(addMovieBtnHover));
         } catch (IOException ex) {
-            Logger.getLogger(Add_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_addMovieBtnMouseEntered
 
@@ -564,7 +572,7 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
             Image addMovieBtnIM = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/addMovieBtn.png"));
             addMovieBtn.setIcon(new ImageIcon(addMovieBtnIM));
         } catch (IOException ex) {
-            Logger.getLogger(Add_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_addMovieBtnMouseExited
 
@@ -598,10 +606,12 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
                 pst.setBytes(11, poster);
                 pst.execute();
             }catch(SQLException ex){
-                Logger.getLogger(Add_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
             }
             finally{
                 JOptionPane.showMessageDialog(null, "New movie added successfully!","Successful",2);
+                SwingUtilities.updateComponentTreeUI(obj);
+                this.dispose();
             }
         }
     }//GEN-LAST:event_addMovieBtnActionPerformed
@@ -611,7 +621,7 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
             Image uploadPstBtnHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/uploadPosterBtnHover.png"));
             uploadPosterBtn.setIcon(new ImageIcon(uploadPstBtnHover));
         } catch (IOException ex) {
-            Logger.getLogger(Add_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_uploadPosterBtnMouseEntered
 
@@ -620,7 +630,7 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
             Image uploadPstBtn = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/uploadPosterBtn.png"));
             uploadPosterBtn.setIcon(new ImageIcon(uploadPstBtn));
         } catch (IOException ex) {
-            Logger.getLogger(Add_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_uploadPosterBtnMouseExited
 
@@ -708,15 +718,16 @@ public class Add_Movie_Frm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Add_Movie_Frm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
         
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Add_Movie_Frm().setVisible(true);
+            new Add_Edit_Movie_Frm().setVisible(true);
         });
     }
 
