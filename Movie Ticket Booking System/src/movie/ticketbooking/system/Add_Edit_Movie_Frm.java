@@ -588,22 +588,28 @@ public class Add_Edit_Movie_Frm extends javax.swing.JFrame {
             String theater = theaterCombo.getSelectedItem().toString();
             Integer ticketPriceChild = Integer.parseInt(childTckPriceTxtField.getText());
             Integer ticketPriceAdult = Integer.parseInt(adultTckPriceTxtField.getText());
-
+            String runtime = null;
+            if(hour>1 ){
+                runtime = hour+" hours and "+ minute +" minutes";
+                if(minute>0 && minute<2){
+                    runtime = hour+" hour and "+ minute +" minute";
+                }
+            }
+            
             try{
-                String insertUsersQuery = "INSERT INTO `movies` (movie_title, genre, rating, hours, minutes, content_rating, description, theater, ticket_price_child, ticket_price_adult, poster) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+                String insertUsersQuery = "INSERT INTO `movies` (movie_title, genre, rating, runtime, content_rating, description, theater, ticket_price_child, ticket_price_adult, poster) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
                 pst = DBConnectClass.getConnection().prepareStatement(insertUsersQuery);
 
                 pst.setString(1, movie_title);
                 pst.setString(2, genre);
                 pst.setDouble(3, rating);
-                pst.setInt(4, hour);
-                pst.setInt(5, minute);
-                pst.setString(6, contentRating);
-                pst.setString(7, description);
-                pst.setString(8, theater);
-                pst.setInt(9, ticketPriceChild);
-                pst.setInt(10, ticketPriceAdult);
-                pst.setBytes(11, poster);
+                pst.setString(4, runtime);
+                pst.setString(5, contentRating);
+                pst.setString(6, description);
+                pst.setString(7, theater);
+                pst.setInt(8, ticketPriceChild);
+                pst.setInt(9, ticketPriceAdult);
+                pst.setBytes(10, poster);
                 pst.execute();
             }catch(SQLException ex){
                 Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
