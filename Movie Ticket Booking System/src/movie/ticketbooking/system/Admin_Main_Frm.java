@@ -84,6 +84,8 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         ratingLabel1 = new javax.swing.JLabel();
         genreLabel1 = new javax.swing.JLabel();
         contentRatingLabel1 = new javax.swing.JLabel();
+        deleteBtn1 = new javax.swing.JButton();
+        editBtn1 = new javax.swing.JButton();
         moviePanel2 = new javax.swing.JPanel();
         posterLabel2 = new javax.swing.JLabel();
         runtimeLabel2 = new javax.swing.JLabel();
@@ -92,6 +94,8 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         starLabel2 = new javax.swing.JLabel();
         genreLabel2 = new javax.swing.JLabel();
         movieTitle2 = new javax.swing.JLabel();
+        editBtn2 = new javax.swing.JButton();
+        deleteBtn2 = new javax.swing.JButton();
         moviePanel3 = new javax.swing.JPanel();
         posterLabel3 = new javax.swing.JLabel();
         runtimeLabel3 = new javax.swing.JLabel();
@@ -100,6 +104,8 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         starLabel3 = new javax.swing.JLabel();
         genreLabel3 = new javax.swing.JLabel();
         movieTitle3 = new javax.swing.JLabel();
+        editBtn3 = new javax.swing.JButton();
+        deleteBtn3 = new javax.swing.JButton();
         viewBookingsPanel = new javax.swing.JPanel();
         exitBtn1 = new javax.swing.JButton();
         miniBtn1 = new javax.swing.JButton();
@@ -206,7 +212,6 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
 
         movieTitle1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         movieTitle1.setForeground(new java.awt.Color(235, 16, 42));
-        movieTitle1.setText("Fast & Furious Presents: Hobbs and Shaw");
         moviePanel1.add(movieTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
 
         starLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/icons8_star_20px.png"))); // NOI18N
@@ -214,23 +219,53 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
 
         runtimeLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         runtimeLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        runtimeLabel1.setText("2 hours and 16 minutes");
         moviePanel1.add(runtimeLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, -1, -1));
 
         ratingLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         ratingLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        ratingLabel1.setText("6.4/10");
         moviePanel1.add(ratingLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, -1, -1));
 
         genreLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         genreLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        genreLabel1.setText("Action, Adventure");
         moviePanel1.add(genreLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, -1, -1));
 
         contentRatingLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         contentRatingLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        contentRatingLabel1.setText("PG-13");
         moviePanel1.add(contentRatingLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, -1));
+
+        deleteBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/deleteBtn.png"))); // NOI18N
+        deleteBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        deleteBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                deleteBtn1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                deleteBtn1MouseExited(evt);
+            }
+        });
+        deleteBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtn1ActionPerformed(evt);
+            }
+        });
+        moviePanel1.add(deleteBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 100, 80, 30));
+
+        editBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/editBtn.png"))); // NOI18N
+        editBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        editBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                editBtn1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                editBtn1MouseExited(evt);
+            }
+        });
+        editBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtn1ActionPerformed(evt);
+            }
+        });
+        moviePanel1.add(editBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 100, 80, 30));
 
         manageMoviesPanel.add(moviePanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 950, -1));
 
@@ -244,17 +279,14 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
 
         runtimeLabel2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         runtimeLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        runtimeLabel2.setText("2 hours and 16 minutes");
         moviePanel2.add(runtimeLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, -1, -1));
 
         contentRatingLabel2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         contentRatingLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        contentRatingLabel2.setText("PG-13");
         moviePanel2.add(contentRatingLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, -1));
 
         ratingLabel2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         ratingLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        ratingLabel2.setText("6.4/10");
         moviePanel2.add(ratingLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, -1, -1));
 
         starLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/icons8_star_20px.png"))); // NOI18N
@@ -262,13 +294,45 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
 
         genreLabel2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         genreLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        genreLabel2.setText("Action, Adventure");
         moviePanel2.add(genreLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, -1, -1));
 
         movieTitle2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         movieTitle2.setForeground(new java.awt.Color(235, 16, 42));
-        movieTitle2.setText("Fast & Furious Presents: Hobbs and Shaw");
         moviePanel2.add(movieTitle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
+
+        editBtn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/editBtn.png"))); // NOI18N
+        editBtn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        editBtn2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                editBtn2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                editBtn2MouseExited(evt);
+            }
+        });
+        editBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtn2ActionPerformed(evt);
+            }
+        });
+        moviePanel2.add(editBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 100, 80, 30));
+
+        deleteBtn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/deleteBtn.png"))); // NOI18N
+        deleteBtn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        deleteBtn2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                deleteBtn2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                deleteBtn2MouseExited(evt);
+            }
+        });
+        deleteBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtn2ActionPerformed(evt);
+            }
+        });
+        moviePanel2.add(deleteBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 100, 80, 30));
 
         manageMoviesPanel.add(moviePanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 950, -1));
 
@@ -282,17 +346,14 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
 
         runtimeLabel3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         runtimeLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        runtimeLabel3.setText("2 hours and 16 minutes");
         moviePanel3.add(runtimeLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, -1, -1));
 
         contentRatingLabel3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         contentRatingLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        contentRatingLabel3.setText("PG-13");
         moviePanel3.add(contentRatingLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, -1));
 
         ratingLabel3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         ratingLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        ratingLabel3.setText("6.4/10");
         moviePanel3.add(ratingLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, -1, -1));
 
         starLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/icons8_star_20px.png"))); // NOI18N
@@ -300,13 +361,45 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
 
         genreLabel3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         genreLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        genreLabel3.setText("Action, Adventure");
         moviePanel3.add(genreLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, -1, -1));
 
         movieTitle3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         movieTitle3.setForeground(new java.awt.Color(235, 16, 42));
-        movieTitle3.setText("Fast & Furious Presents: Hobbs and Shaw");
         moviePanel3.add(movieTitle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
+
+        editBtn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/editBtn.png"))); // NOI18N
+        editBtn3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        editBtn3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                editBtn3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                editBtn3MouseExited(evt);
+            }
+        });
+        editBtn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtn3ActionPerformed(evt);
+            }
+        });
+        moviePanel3.add(editBtn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 100, 80, 30));
+
+        deleteBtn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/deleteBtn.png"))); // NOI18N
+        deleteBtn3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        deleteBtn3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                deleteBtn3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                deleteBtn3MouseExited(evt);
+            }
+        });
+        deleteBtn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtn3ActionPerformed(evt);
+            }
+        });
+        moviePanel3.add(deleteBtn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 100, 80, 30));
 
         manageMoviesPanel.add(moviePanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 950, -1));
 
@@ -447,7 +540,7 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
             Image addMovieBtnHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/addMovieBtnHover.png"));
             addMovieBtn.setIcon(new ImageIcon(addMovieBtnHover));
         } catch (IOException ex) {
-            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_addMovieBtnMouseEntered
 
@@ -456,7 +549,7 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
             Image addMovieBtnIM = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/addMovieBtn.png"));
             addMovieBtn.setIcon(new ImageIcon(addMovieBtnIM));
         } catch (IOException ex) {
-            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_addMovieBtnMouseExited
         Add_Edit_Movie_Frm add_edit_movie_frm;
@@ -501,21 +594,21 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         //Set values
         movieTitle1.setText(model.getValueAt(0, 0).toString());
         genreLabel1.setText(model.getValueAt(0, 1).toString());
-        ratingLabel1.setText(model.getValueAt(0, 2).toString());
+        ratingLabel1.setText(model.getValueAt(0, 2).toString()+"/10");
         runtimeLabel1.setText(model.getValueAt(0, 3).toString());
         contentRatingLabel1.setText(model.getValueAt(0, 4).toString());
         posterLabel1.setIcon((ImageIcon) model.getValueAt(0, 5));
         
         movieTitle2.setText(model.getValueAt(1, 0).toString());
         genreLabel2.setText(model.getValueAt(1, 1).toString());
-        ratingLabel2.setText(model.getValueAt(1, 2).toString());
+        ratingLabel2.setText(model.getValueAt(1, 2).toString()+"/10");
         runtimeLabel2.setText(model.getValueAt(1, 3).toString());
         contentRatingLabel2.setText(model.getValueAt(1, 4).toString());
         posterLabel2.setIcon((ImageIcon) model.getValueAt(1, 5));
         
         movieTitle3.setText(model.getValueAt(2, 0).toString());
         genreLabel3.setText(model.getValueAt(2, 1).toString());
-        ratingLabel3.setText(model.getValueAt(2, 2).toString());
+        ratingLabel3.setText(model.getValueAt(2, 2).toString()+"/10");
         runtimeLabel3.setText(model.getValueAt(2, 3).toString());
         contentRatingLabel3.setText(model.getValueAt(2, 4).toString());
         posterLabel3.setIcon((ImageIcon) model.getValueAt(2, 5));
@@ -578,6 +671,153 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_miniBtn2ActionPerformed
 
+    private void editBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editBtn1ActionPerformed
+
+    private void editBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtn2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editBtn2ActionPerformed
+
+    private void deleteBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtn2ActionPerformed
+        movieTitle2.setText("");
+        ratingLabel2.setText("");
+        genreLabel2.setText("");
+        contentRatingLabel2.setText("");
+        runtimeLabel2.setText("");
+        posterLabel2.setIcon(null);
+    }//GEN-LAST:event_deleteBtn2ActionPerformed
+
+    private void editBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtn3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editBtn3ActionPerformed
+
+    private void deleteBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtn3ActionPerformed
+        movieTitle3.setText("");
+        ratingLabel3.setText("");
+        genreLabel3.setText("");
+        contentRatingLabel3.setText("");
+        runtimeLabel3.setText("");
+        posterLabel3.setIcon(null);
+    }//GEN-LAST:event_deleteBtn3ActionPerformed
+
+    private void deleteBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtn1ActionPerformed
+        movieTitle1.setText("");
+        ratingLabel1.setText("");
+        genreLabel1.setText("");
+        contentRatingLabel1.setText("");
+        runtimeLabel1.setText("");
+        posterLabel1.setIcon(null);
+    }//GEN-LAST:event_deleteBtn1ActionPerformed
+
+    private void editBtn1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editBtn1MouseEntered
+        try {
+            Image editBtnHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/editBtnHover.png"));
+            editBtn1.setIcon(new ImageIcon(editBtnHover));
+        } catch (IOException ex) {
+            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_editBtn1MouseEntered
+
+    private void editBtn1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editBtn1MouseExited
+        try {
+            Image editBtn = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/editBtn.png"));
+            editBtn1.setIcon(new ImageIcon(editBtn));
+        } catch (IOException ex) {
+            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_editBtn1MouseExited
+
+    private void editBtn2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editBtn2MouseEntered
+        try {
+            Image editBtnHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/editBtnHover.png"));
+            editBtn2.setIcon(new ImageIcon(editBtnHover));
+        } catch (IOException ex) {
+            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_editBtn2MouseEntered
+
+    private void editBtn2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editBtn2MouseExited
+        try {
+            Image editBtn = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/editBtn.png"));
+            editBtn2.setIcon(new ImageIcon(editBtn));
+        } catch (IOException ex) {
+            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_editBtn2MouseExited
+
+    private void deleteBtn1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteBtn1MouseEntered
+        try {
+            Image deleteBtnHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/deleteBtnHover.png"));
+            deleteBtn1.setIcon(new ImageIcon(deleteBtnHover));
+        } catch (IOException ex) {
+            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_deleteBtn1MouseEntered
+
+    private void deleteBtn1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteBtn1MouseExited
+        try {
+            Image deleteBtn = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/deleteBtn.png"));
+            deleteBtn1.setIcon(new ImageIcon(deleteBtn));
+        } catch (IOException ex) {
+            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_deleteBtn1MouseExited
+
+    private void deleteBtn2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteBtn2MouseEntered
+        try {
+            Image deleteBtnHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/deleteBtnHover.png"));
+            deleteBtn2.setIcon(new ImageIcon(deleteBtnHover));
+        } catch (IOException ex) {
+            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_deleteBtn2MouseEntered
+
+    private void deleteBtn2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteBtn2MouseExited
+        try {
+            Image deleteBtn = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/deleteBtn.png"));
+            deleteBtn2.setIcon(new ImageIcon(deleteBtn));
+        } catch (IOException ex) {
+            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_deleteBtn2MouseExited
+
+    private void editBtn3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editBtn3MouseEntered
+        try {
+            Image editBtnHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/editBtnHover.png"));
+            editBtn3.setIcon(new ImageIcon(editBtnHover));
+        } catch (IOException ex) {
+            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_editBtn3MouseEntered
+
+    private void editBtn3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editBtn3MouseExited
+        try {
+            Image editBtn = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/editBtn.png"));
+            editBtn3.setIcon(new ImageIcon(editBtn));
+        } catch (IOException ex) {
+            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_editBtn3MouseExited
+
+    private void deleteBtn3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteBtn3MouseEntered
+        try {
+            Image deleteBtnHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/deleteBtnHover.png"));
+            deleteBtn3.setIcon(new ImageIcon(deleteBtnHover));
+        } catch (IOException ex) {
+            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_deleteBtn3MouseEntered
+
+    private void deleteBtn3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteBtn3MouseExited
+        try {
+            Image deleteBtn = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/deleteBtn.png"));
+            deleteBtn3.setIcon(new ImageIcon(deleteBtn));
+        } catch (IOException ex) {
+            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_deleteBtn3MouseExited
+
     ArrayList<String> genreList = new ArrayList<>();
     String str;
     /**
@@ -618,6 +858,12 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
     private javax.swing.JLabel contentRatingLabel1;
     private javax.swing.JLabel contentRatingLabel2;
     private javax.swing.JLabel contentRatingLabel3;
+    private javax.swing.JButton deleteBtn1;
+    private javax.swing.JButton deleteBtn2;
+    private javax.swing.JButton deleteBtn3;
+    private javax.swing.JButton editBtn1;
+    private javax.swing.JButton editBtn2;
+    private javax.swing.JButton editBtn3;
     private javax.swing.JButton exitBtn;
     private javax.swing.JButton exitBtn1;
     private javax.swing.JButton exitBtn2;
