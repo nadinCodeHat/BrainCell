@@ -554,9 +554,13 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
     }//GEN-LAST:event_addMovieBtnMouseExited
         Add_Edit_Movie_Frm add_edit_movie_frm;
     private void addMovieBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMovieBtnActionPerformed
-        add_edit_movie_frm = new Add_Edit_Movie_Frm(this);
-        add_edit_movie_frm.pack();
-        add_edit_movie_frm.setVisible(true);
+        try {
+            add_edit_movie_frm = new Add_Edit_Movie_Frm(this, null);
+            add_edit_movie_frm.pack();
+            add_edit_movie_frm.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_addMovieBtnActionPerformed
 
     private void manageMoviesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageMoviesBtnActionPerformed
@@ -582,7 +586,7 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
                String movieTitle = rs.getString("movie_title");
                String genre = rs.getString("genre");
                String rating = String.valueOf(rs.getDouble("rating"));
-               String runtime = String.valueOf(rs.getString("runtime"));
+               String runtime = rs.getString("runtime");
                String contentRating = rs.getString("content_rating");
                ImageIcon posterIcon = parsePoster((Blob) rs.getBlob("poster"));
                model.addRow(new Object[]{movieTitle, genre, rating, runtime, contentRating, posterIcon});
@@ -672,11 +676,23 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
     }//GEN-LAST:event_miniBtn2ActionPerformed
 
     private void editBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtn1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            add_edit_movie_frm = new Add_Edit_Movie_Frm(this, movieTitle1.getText());
+            add_edit_movie_frm.pack();
+            add_edit_movie_frm.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_editBtn1ActionPerformed
 
     private void editBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtn2ActionPerformed
-        // TODO add your handling code here:
+        try {
+            add_edit_movie_frm = new Add_Edit_Movie_Frm(this, movieTitle2.getText());
+            add_edit_movie_frm.pack();
+            add_edit_movie_frm.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_editBtn2ActionPerformed
 
     private void deleteBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtn2ActionPerformed
@@ -689,7 +705,13 @@ public class Admin_Main_Frm extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteBtn2ActionPerformed
 
     private void editBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtn3ActionPerformed
-        // TODO add your handling code here:
+        try {
+            add_edit_movie_frm = new Add_Edit_Movie_Frm(this, movieTitle3.getText());
+            add_edit_movie_frm.pack();
+            add_edit_movie_frm.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_editBtn3ActionPerformed
 
     private void deleteBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtn3ActionPerformed

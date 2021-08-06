@@ -1,10 +1,14 @@
 package movie.ticketbooking.system;
 
+import com.mysql.jdbc.Blob;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import java.awt.Image;
+import java.util.List;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -13,6 +17,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -36,11 +41,101 @@ public class Add_Edit_Movie_Frm extends javax.swing.JFrame {
     }
     
     JFrame obj;
-    public Add_Edit_Movie_Frm(Admin_Main_Frm add_main_frm){
+    String moviename;
+    public Add_Edit_Movie_Frm(Admin_Main_Frm add_main_frm, String moviename) throws IOException{
         initComponents();
         this.obj = add_main_frm;
+        this.moviename = moviename;
+        loadEditData();
     }
 
+    public void loadEditData()throws IOException{
+        if(!moviename.equals(null)){
+            //Retrieve data
+            String query = "SELECT genre, rating, runtime, content_rating, description, theater, ticket_price_child, ticket_price_adult, poster FROM `movies` WHERE movie_title= '" + moviename + "'" ;
+            String genre = null;
+            Double rating = 0.0;
+            String runtime = null;
+            String contentRating = null;
+            String description = null;
+            String theater = null;
+            String ticketPriceChild = null;
+            String ticketPriceAdult = null;
+            ImageIcon posterIcon = null;
+            try {
+                pst = DBConnectClass.getConnection().prepareStatement(query);
+                rs = pst.executeQuery();
+                while(rs.next()){
+                    genre = rs.getString("genre");
+                    rating = rs.getDouble("rating");
+                    runtime = rs.getString("runtime");
+                    contentRating = rs.getString("content_rating");
+                    description = rs.getString("description");
+                    theater = rs.getString("theater");
+                    ticketPriceChild = String.valueOf(rs.getInt("ticket_price_child"));
+                    ticketPriceAdult = String.valueOf(rs.getInt("ticket_price_adult"));
+                    posterIcon = parsePoster((Blob) rs.getBlob("poster"));
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Login_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            posterLabel.setIcon(posterIcon);
+            movieTitleTxtField.setText(moviename);
+            ratingSpinner.setValue(rating);
+            //hourSpinner.
+            //minuteSpinner.
+            contRatingCombo.setSelectedItem(contentRating);
+            List<String> listGenre = Arrays.asList(genre.split(","));
+            
+            for (String gen : listGenre) {
+                if(gen.equals("Adventure")){
+                    adventureTogBtn.setSelected(true);
+                }
+                if(gen.equals("Action")){
+                    actionTogBtn.setSelected(true);
+                }
+                if(gen.equals("Mystery")){
+                    mysteryTogBtn.setSelected(true);
+                }
+                if(gen.equals("Animation")){
+                    animationTogBtn.setSelected(true);
+                }
+                if(gen.equals("Crime")){
+                    crimeTogBtn.setSelected(true);
+                }
+                if(gen.equals("Comedy")){
+                    comedyTogBtn.setSelected(true);
+                }
+                if(gen.equals("Horror")){
+                    horrorTogBtn.setSelected(true);
+                }
+                if(gen.equals("Thriller")){
+                    thrillerTogBtn.setSelected(true);
+                }
+                if(gen.equals("Fantasy")){
+                    fantasyTogBtn.setSelected(true);
+                }
+                if(gen.equals("Drama")){
+                    dramaTogBtn.setSelected(true);
+                }
+            }
+            descripTxtArea.setText(description);
+            theaterCombo.setSelectedItem(theater);
+            childTckPriceTxtField.setText(ticketPriceChild);
+            adultTckPriceTxtField.setText(ticketPriceAdult);
+        }
+    }
+    
+    private ImageIcon parsePoster(Blob posterBlob) throws SQLException, IOException{
+        int blobLength = (int) posterBlob.length();  
+        byte[] bytes = posterBlob.getBytes(1, blobLength);
+        posterBlob.free();
+        BufferedImage img = ImageIO.read(new ByteArrayInputStream(bytes));
+        ImageIcon icon = new ImageIcon(img);
+        return icon;
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -412,7 +507,7 @@ public class Add_Edit_Movie_Frm extends javax.swing.JFrame {
             Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_exitBtnMouseExited
-
+    
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
         SwingUtilities.updateComponentTreeUI(obj);
         this.dispose();
