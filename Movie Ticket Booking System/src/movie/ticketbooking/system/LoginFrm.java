@@ -21,14 +21,14 @@ import javax.swing.JOptionPane;
  *
  * @author nadinCodeHat
  */
-public class Login_Frm extends javax.swing.JFrame {
+public class LoginFrm extends javax.swing.JFrame {
 
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs;
     int posX=0,posY=0;
     
-    public Login_Frm() {
+    public LoginFrm() {
         initComponents();
         //Draggable frame
         this.addMouseListener(new MouseAdapter()
@@ -223,7 +223,7 @@ public class Login_Frm extends javax.swing.JFrame {
             Image loginBtnHoverImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/loginBtnHover.png"));
             login_Btn.setIcon(new ImageIcon(loginBtnHoverImg));
         } catch (IOException ex) {
-            Logger.getLogger(Login_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_login_BtnMouseEntered
 
@@ -232,7 +232,7 @@ public class Login_Frm extends javax.swing.JFrame {
             Image loginBtnImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/loginBtn.png"));
             login_Btn.setIcon(new ImageIcon(loginBtnImg));
         } catch (IOException ex) {
-             Logger.getLogger(Login_Frm.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_login_BtnMouseExited
 
@@ -245,7 +245,7 @@ public class Login_Frm extends javax.swing.JFrame {
     }//GEN-LAST:event_createAccount_linkMouseExited
 
     private void createAccount_linkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccount_linkMouseClicked
-        SignUp_Frm sngFrm = new SignUp_Frm();
+        SignupFrm sngFrm = new SignupFrm();
         sngFrm.setVisible(true);
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_createAccount_linkMouseClicked
@@ -267,7 +267,7 @@ public class Login_Frm extends javax.swing.JFrame {
             Image exitBtnHoverImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/exitBtnHover.png"));
             exitBtn.setIcon(new ImageIcon(exitBtnHoverImg));
         } catch (IOException ex) {
-            Logger.getLogger(Login_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_exitBtnMouseEntered
 
@@ -276,7 +276,7 @@ public class Login_Frm extends javax.swing.JFrame {
             Image exitBtnImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/exitBtn.png"));
             exitBtn.setIcon(new ImageIcon(exitBtnImg));
         } catch (IOException ex) {
-            Logger.getLogger(Login_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_exitBtnMouseExited
 
@@ -289,7 +289,7 @@ public class Login_Frm extends javax.swing.JFrame {
             Image miniBtnHoverImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/miniBtnHover.png"));
             miniBtn.setIcon(new ImageIcon(miniBtnHoverImg));
         } catch (IOException ex) {
-            Logger.getLogger(Login_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_miniBtnMouseEntered
 
@@ -298,7 +298,7 @@ public class Login_Frm extends javax.swing.JFrame {
             Image miniBtnImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/miniBtn.png"));
             miniBtn.setIcon(new ImageIcon(miniBtnImg));
         } catch (IOException ex) {
-            Logger.getLogger(Login_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_miniBtnMouseExited
 
@@ -318,11 +318,11 @@ public class Login_Frm extends javax.swing.JFrame {
                 if(rs.next()){
                     JOptionPane.showMessageDialog(null, "Login Successful!", "Login",2);
                     if(rs.getInt("role_id") == 1){
-                        Admin_Main_Frm adminMFrm = new Admin_Main_Frm();
+                        AdminMainFrm adminMFrm = new AdminMainFrm();
                         adminMFrm.setVisible(true);
                         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
                     }else{
-                        Main_Frm mainFrm = new Main_Frm();
+                        MainFrm mainFrm = new MainFrm();
                         mainFrm.setVisible(true);
                         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
                     }
@@ -330,7 +330,7 @@ public class Login_Frm extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Invalid Login, Please try again.", "Login", 2);
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(Login_Frm.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_login_BtnActionPerformed
@@ -364,21 +364,23 @@ public class Login_Frm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login_Frm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login_Frm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login_Frm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login_Frm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Login_Frm().setVisible(true);
+            new LoginFrm().setVisible(true);
         });
     }
 

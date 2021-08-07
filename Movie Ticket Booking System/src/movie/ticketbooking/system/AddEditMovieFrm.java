@@ -30,32 +30,35 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author nadinCodeHat
  */
-public class Add_Edit_Movie_Frm extends javax.swing.JFrame {
+public class AddEditMovieFrm extends javax.swing.JFrame {
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs;
     int posX=0,posY=0;
 
-    public Add_Edit_Movie_Frm(){
+    public AddEditMovieFrm(){
         
     }
     
     JFrame obj;
     String moviename;
-    public Add_Edit_Movie_Frm(Admin_Main_Frm add_main_frm, String moviename) throws IOException{
+    Boolean countiszero;
+    public AddEditMovieFrm(AdminMainFrm add_main_frm, String moviename, Boolean countiszero) throws IOException{
         initComponents();
         this.obj = add_main_frm;
         this.moviename = moviename;
+        this.countiszero = countiszero;
         loadEditData();
     }
 
     public void loadEditData()throws IOException{
         if(!moviename.equals(null)){
             //Retrieve data
-            String query = "SELECT genre, rating, runtime, content_rating, description, theater, ticket_price_child, ticket_price_adult, poster FROM `movies` WHERE movie_title= '" + moviename + "'" ;
+            String query = "SELECT genre, rating, hour, minute, content_rating, description, theater, ticket_price_child, ticket_price_adult, poster FROM `movies` WHERE movie_title= '" + moviename + "'" ;
             String genre = null;
             Double rating = 0.0;
-            String runtime = null;
+            int hour = 0;
+            int minute = 0;
             String contentRating = null;
             String description = null;
             String theater = null;
@@ -68,7 +71,8 @@ public class Add_Edit_Movie_Frm extends javax.swing.JFrame {
                 while(rs.next()){
                     genre = rs.getString("genre");
                     rating = rs.getDouble("rating");
-                    runtime = rs.getString("runtime");
+                    hour = rs.getInt("hour");
+                    minute = rs.getInt("minute");
                     contentRating = rs.getString("content_rating");
                     description = rs.getString("description");
                     theater = rs.getString("theater");
@@ -77,49 +81,33 @@ public class Add_Edit_Movie_Frm extends javax.swing.JFrame {
                     posterIcon = parsePoster((Blob) rs.getBlob("poster"));
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(Login_Frm.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             posterLabel.setIcon(posterIcon);
             movieTitleTxtField.setText(moviename);
             ratingSpinner.setValue(rating);
-            //hourSpinner.
-            //minuteSpinner.
+            hourSpinner.setValue(hour);
+            minuteSpinner.setValue(minute);
             contRatingCombo.setSelectedItem(contentRating);
             List<String> listGenre = Arrays.asList(genre.split(","));
             
-            for (String gen : listGenre) {
-                if(gen.equals("Adventure")){
-                    adventureTogBtn.setSelected(true);
+            listGenre.forEach(gen -> {
+                switch (gen) {
+                    case "Adventure" -> adventureTogBtn.setSelected(true);
+                    case "Action" -> actionTogBtn.setSelected(true);
+                    case "Mystery" -> mysteryTogBtn.setSelected(true);
+                    case "Animation" -> animationTogBtn.setSelected(true);
+                    case "Crime" -> crimeTogBtn.setSelected(true);
+                    case "Comedy" -> comedyTogBtn.setSelected(true);
+                    case "Horror" -> horrorTogBtn.setSelected(true);
+                    case "Thriller" -> thrillerTogBtn.setSelected(true);
+                    case "Fantasy" -> fantasyTogBtn.setSelected(true);
+                    case "Drama" -> dramaTogBtn.setSelected(true);
+                    default -> {
+                    }
                 }
-                if(gen.equals("Action")){
-                    actionTogBtn.setSelected(true);
-                }
-                if(gen.equals("Mystery")){
-                    mysteryTogBtn.setSelected(true);
-                }
-                if(gen.equals("Animation")){
-                    animationTogBtn.setSelected(true);
-                }
-                if(gen.equals("Crime")){
-                    crimeTogBtn.setSelected(true);
-                }
-                if(gen.equals("Comedy")){
-                    comedyTogBtn.setSelected(true);
-                }
-                if(gen.equals("Horror")){
-                    horrorTogBtn.setSelected(true);
-                }
-                if(gen.equals("Thriller")){
-                    thrillerTogBtn.setSelected(true);
-                }
-                if(gen.equals("Fantasy")){
-                    fantasyTogBtn.setSelected(true);
-                }
-                if(gen.equals("Drama")){
-                    dramaTogBtn.setSelected(true);
-                }
-            }
+            });
             descripTxtArea.setText(description);
             theaterCombo.setSelectedItem(theater);
             childTckPriceTxtField.setText(ticketPriceChild);
@@ -495,7 +483,7 @@ public class Add_Edit_Movie_Frm extends javax.swing.JFrame {
             Image exitBtnHoverImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/exitBtnHover.png"));
             exitBtn.setIcon(new ImageIcon(exitBtnHoverImg));
         } catch (IOException ex) {
-            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddEditMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_exitBtnMouseEntered
 
@@ -504,7 +492,7 @@ public class Add_Edit_Movie_Frm extends javax.swing.JFrame {
             Image exitBtnImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/exitBtn.png"));
             exitBtn.setIcon(new ImageIcon(exitBtnImg));
         } catch (IOException ex) {
-            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddEditMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_exitBtnMouseExited
     
@@ -518,7 +506,7 @@ public class Add_Edit_Movie_Frm extends javax.swing.JFrame {
             Image miniBtnHoverImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/miniBtnHover.png"));
             miniBtn.setIcon(new ImageIcon(miniBtnHoverImg));
         } catch (IOException ex) {
-            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddEditMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_miniBtnMouseEntered
 
@@ -527,7 +515,7 @@ public class Add_Edit_Movie_Frm extends javax.swing.JFrame {
             Image miniBtnImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/miniBtn.png"));
             miniBtn.setIcon(new ImageIcon(miniBtnImg));
         } catch (IOException ex) {
-            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddEditMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_miniBtnMouseExited
 
@@ -540,99 +528,99 @@ public class Add_Edit_Movie_Frm extends javax.swing.JFrame {
     private void adventureTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adventureTogBtnActionPerformed
         if(adventureTogBtn.isSelected()){
             genreList.add("Adventure");
-            str = String.join(", ",genreList);
+            str = String.join(",",genreList);
         }
         else{
             genreList.remove(adventureTogBtn.getText());
-            str = String.join(", ",genreList);
+            str = String.join(",",genreList);
         }
     }//GEN-LAST:event_adventureTogBtnActionPerformed
 
     private void actionTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionTogBtnActionPerformed
         if(actionTogBtn.isSelected()){
             genreList.add("Action");
-            str = String.join(", ",genreList);
+            str = String.join(",",genreList);
         }
         else{
             genreList.remove(actionTogBtn.getText());
-            str = String.join(", ",genreList);
+            str = String.join(",",genreList);
         }
     }//GEN-LAST:event_actionTogBtnActionPerformed
 
     private void thrillerTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thrillerTogBtnActionPerformed
         if(thrillerTogBtn.isSelected()){
             genreList.add("Thriller");
-            str = String.join(", ",genreList);
+            str = String.join(",",genreList);
         }
         else{
             genreList.remove(thrillerTogBtn.getText());
-            str = String.join(", ",genreList);
+            str = String.join(",",genreList);
         }
     }//GEN-LAST:event_thrillerTogBtnActionPerformed
 
     private void fantasyTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fantasyTogBtnActionPerformed
         if(fantasyTogBtn.isSelected()){
             genreList.add("Fantasy");
-            str = String.join(", ",genreList);
+            str = String.join(",",genreList);
         }
         else{
             genreList.remove(fantasyTogBtn.getText());
-            str = String.join(", ",genreList);
+            str = String.join(",",genreList);
         }
     }//GEN-LAST:event_fantasyTogBtnActionPerformed
 
     private void crimeTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crimeTogBtnActionPerformed
         if(crimeTogBtn.isSelected()){
             genreList.add("Crime");
-            str = String.join(", ",genreList);
+            str = String.join(",",genreList);
         }
         else{
             genreList.remove(crimeTogBtn.getText());
-            str = String.join(", ",genreList);
+            str = String.join(",",genreList);
         }
     }//GEN-LAST:event_crimeTogBtnActionPerformed
 
     private void mysteryTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mysteryTogBtnActionPerformed
         if(mysteryTogBtn.isSelected()){
             genreList.add("Mystery");
-            str = String.join(", ",genreList);
+            str = String.join(",",genreList);
         }
         else{
             genreList.remove(mysteryTogBtn.getText());
-            str = String.join(", ",genreList);
+            str = String.join(",",genreList);
         }
     }//GEN-LAST:event_mysteryTogBtnActionPerformed
 
     private void horrorTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horrorTogBtnActionPerformed
         if(horrorTogBtn.isSelected()){
             genreList.add("Horror");
-            str = String.join(", ",genreList);
+            str = String.join(",",genreList);
         }
         else{
             genreList.remove(horrorTogBtn.getText());
-            str = String.join(", ",genreList);
+            str = String.join(",",genreList);
         }
     }//GEN-LAST:event_horrorTogBtnActionPerformed
 
     private void animationTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animationTogBtnActionPerformed
         if(animationTogBtn.isSelected()){
             genreList.add("Animation");
-            str = String.join(", ",genreList);
+            str = String.join(",",genreList);
         }
         else{
             genreList.remove(animationTogBtn.getText());
-            str = String.join(", ",genreList);
+            str = String.join(",",genreList);
         }
     }//GEN-LAST:event_animationTogBtnActionPerformed
 
     private void comedyTogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comedyTogBtnActionPerformed
         if(comedyTogBtn.isSelected()){
             genreList.add("Comedy");
-            str = String.join(", ",genreList);
+            str = String.join(",",genreList);
         }
         else{
             genreList.remove(comedyTogBtn.getText());
-            str = String.join(", ",genreList);
+            str = String.join(",",genreList);
         }
     }//GEN-LAST:event_comedyTogBtnActionPerformed
 
@@ -658,7 +646,7 @@ public class Add_Edit_Movie_Frm extends javax.swing.JFrame {
             Image addMovieBtnHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/addMovieBtnHover.png"));
             addMovieBtn.setIcon(new ImageIcon(addMovieBtnHover));
         } catch (IOException ex) {
-            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddEditMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_addMovieBtnMouseEntered
 
@@ -667,53 +655,51 @@ public class Add_Edit_Movie_Frm extends javax.swing.JFrame {
             Image addMovieBtnIM = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/addMovieBtn.png"));
             addMovieBtn.setIcon(new ImageIcon(addMovieBtnIM));
         } catch (IOException ex) {
-            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddEditMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_addMovieBtnMouseExited
 
     private void addMovieBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMovieBtnActionPerformed
-        if(checkEmptyFields()){
-            String movie_title = movieTitleTxtField.getText();
-            String genre = str;
-            Double rating = (Double)ratingSpinner.getValue();
-            Integer hour = (Integer)hourSpinner.getValue();
-            Integer minute = (Integer)minuteSpinner.getValue();
-            String contentRating = contRatingCombo.getSelectedItem().toString();
-            String description = descripTxtArea.getText();
-            String theater = theaterCombo.getSelectedItem().toString();
-            Integer ticketPriceChild = Integer.parseInt(childTckPriceTxtField.getText());
-            Integer ticketPriceAdult = Integer.parseInt(adultTckPriceTxtField.getText());
-            String runtime = null;
-            if(hour>1 ){
-                runtime = hour+" hours and "+ minute +" minutes";
-                if(minute>0 && minute<2){
-                    runtime = hour+" hour and "+ minute +" minute";
+        if(countiszero == true){
+            if(checkEmptyFields()){
+                String movie_title = movieTitleTxtField.getText();
+                String genre = str;
+                Double rating = (Double)ratingSpinner.getValue();
+                Integer hour = (Integer)hourSpinner.getValue();
+                Integer minute = (Integer)minuteSpinner.getValue();
+                String contentRating = contRatingCombo.getSelectedItem().toString();
+                String description = descripTxtArea.getText();
+                String theater = theaterCombo.getSelectedItem().toString();
+                Integer ticketPriceChild = Integer.parseInt(childTckPriceTxtField.getText());
+                Integer ticketPriceAdult = Integer.parseInt(adultTckPriceTxtField.getText());
+
+                try{
+                    String insertUsersQuery = "INSERT INTO `movies` (movie_title, genre, rating, hour, minute, content_rating, description, theater, ticket_price_child, ticket_price_adult, poster) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+                    pst = DBConnectClass.getConnection().prepareStatement(insertUsersQuery);
+
+                    pst.setString(1, movie_title);
+                    pst.setString(2, genre);
+                    pst.setDouble(3, rating);
+                    pst.setInt(4, hour);
+                    pst.setInt(5, minute);
+                    pst.setString(6, contentRating);
+                    pst.setString(7, description);
+                    pst.setString(8, theater);
+                    pst.setInt(9, ticketPriceChild);
+                    pst.setInt(10, ticketPriceAdult);
+                    pst.setBytes(11, poster);
+                    pst.execute();
+                }catch(SQLException ex){
+                    Logger.getLogger(AddEditMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                finally{
+                    JOptionPane.showMessageDialog(null, "New movie added successfully!","Successful",2);
+                    SwingUtilities.updateComponentTreeUI(obj);
+                    this.dispose();
                 }
             }
-            
-            try{
-                String insertUsersQuery = "INSERT INTO `movies` (movie_title, genre, rating, runtime, content_rating, description, theater, ticket_price_child, ticket_price_adult, poster) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-                pst = DBConnectClass.getConnection().prepareStatement(insertUsersQuery);
-
-                pst.setString(1, movie_title);
-                pst.setString(2, genre);
-                pst.setDouble(3, rating);
-                pst.setString(4, runtime);
-                pst.setString(5, contentRating);
-                pst.setString(6, description);
-                pst.setString(7, theater);
-                pst.setInt(8, ticketPriceChild);
-                pst.setInt(9, ticketPriceAdult);
-                pst.setBytes(10, poster);
-                pst.execute();
-            }catch(SQLException ex){
-                Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            finally{
-                JOptionPane.showMessageDialog(null, "New movie added successfully!","Successful",2);
-                SwingUtilities.updateComponentTreeUI(obj);
-                this.dispose();
-            }
+        }else{
+            //update movie
         }
     }//GEN-LAST:event_addMovieBtnActionPerformed
 
@@ -722,7 +708,7 @@ public class Add_Edit_Movie_Frm extends javax.swing.JFrame {
             Image uploadPstBtnHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/uploadPosterBtnHover.png"));
             uploadPosterBtn.setIcon(new ImageIcon(uploadPstBtnHover));
         } catch (IOException ex) {
-            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddEditMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_uploadPosterBtnMouseEntered
 
@@ -731,7 +717,7 @@ public class Add_Edit_Movie_Frm extends javax.swing.JFrame {
             Image uploadPstBtn = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/uploadPosterBtn.png"));
             uploadPosterBtn.setIcon(new ImageIcon(uploadPstBtn));
         } catch (IOException ex) {
-            Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddEditMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_uploadPosterBtnMouseExited
 
@@ -759,14 +745,14 @@ public class Add_Edit_Movie_Frm extends javax.swing.JFrame {
                     baos.write(buf,0,readnum);
                 }   poster=baos.toByteArray();
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AdminMainFrm.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
-                Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AdminMainFrm.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
                 try {
                     fis.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(Admin_Main_Frm.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AdminMainFrm.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -819,8 +805,10 @@ public class Add_Edit_Movie_Frm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Add_Edit_Movie_Frm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddEditMovieFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         
@@ -828,7 +816,7 @@ public class Add_Edit_Movie_Frm extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Add_Edit_Movie_Frm().setVisible(true);
+            new AddEditMovieFrm().setVisible(true);
         });
     }
 
