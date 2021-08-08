@@ -16,13 +16,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author nadinCodeHat
- */
+ **/
 public class AdminMainFrm extends javax.swing.JFrame {
     Connection con = null;
     PreparedStatement pst = null;
@@ -73,8 +74,6 @@ public class AdminMainFrm extends javax.swing.JFrame {
         login_link3 = new javax.swing.JLabel();
         profileBtn1 = new javax.swing.JButton();
         manageMoviesPanel = new javax.swing.JPanel();
-        exitBtn = new javax.swing.JButton();
-        miniBtn = new javax.swing.JButton();
         moviePanel1 = new javax.swing.JPanel();
         posterLabel1 = new javax.swing.JLabel();
         movieTitle1 = new javax.swing.JLabel();
@@ -103,11 +102,10 @@ public class AdminMainFrm extends javax.swing.JFrame {
         movieTitle3 = new javax.swing.JLabel();
         btn3 = new javax.swing.JButton();
         viewBookingsPanel = new javax.swing.JPanel();
-        exitBtn1 = new javax.swing.JButton();
-        miniBtn1 = new javax.swing.JButton();
         profilePanel = new javax.swing.JPanel();
-        exitBtn2 = new javax.swing.JButton();
-        miniBtn2 = new javax.swing.JButton();
+        miniBtn = new javax.swing.JButton();
+        exitBtn = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1260, 700));
@@ -147,40 +145,6 @@ public class AdminMainFrm extends javax.swing.JFrame {
         manageMoviesPanel.setPreferredSize(new java.awt.Dimension(1060, 700));
         manageMoviesPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/exitBtn.png"))); // NOI18N
-        exitBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        exitBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                exitBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                exitBtnMouseExited(evt);
-            }
-        });
-        exitBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitBtnActionPerformed(evt);
-            }
-        });
-        manageMoviesPanel.add(exitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 10, 16, 16));
-
-        miniBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/miniBtn.png"))); // NOI18N
-        miniBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        miniBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                miniBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                miniBtnMouseExited(evt);
-            }
-        });
-        miniBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miniBtnActionPerformed(evt);
-            }
-        });
-        manageMoviesPanel.add(miniBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 16, 16, 4));
-
         moviePanel1.setBackground(new java.awt.Color(21, 20, 31));
         moviePanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -212,7 +176,6 @@ public class AdminMainFrm extends javax.swing.JFrame {
         contentRatingLabel1.setForeground(new java.awt.Color(255, 255, 255));
         moviePanel1.add(contentRatingLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, -1));
 
-        btn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/editBtn.png"))); // NOI18N
         btn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -229,7 +192,7 @@ public class AdminMainFrm extends javax.swing.JFrame {
         });
         moviePanel1.add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 100, 80, 30));
 
-        manageMoviesPanel.add(moviePanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 950, -1));
+        manageMoviesPanel.add(moviePanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 950, -1));
 
         moviePanel2.setBackground(new java.awt.Color(21, 20, 31));
         moviePanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -262,7 +225,6 @@ public class AdminMainFrm extends javax.swing.JFrame {
         movieTitle2.setForeground(new java.awt.Color(235, 16, 42));
         moviePanel2.add(movieTitle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
 
-        btn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/editBtn.png"))); // NOI18N
         btn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -279,7 +241,7 @@ public class AdminMainFrm extends javax.swing.JFrame {
         });
         moviePanel2.add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 100, 80, 30));
 
-        manageMoviesPanel.add(moviePanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 950, -1));
+        manageMoviesPanel.add(moviePanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 950, -1));
 
         moviePanel3.setBackground(new java.awt.Color(21, 20, 31));
         moviePanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -312,7 +274,6 @@ public class AdminMainFrm extends javax.swing.JFrame {
         movieTitle3.setForeground(new java.awt.Color(235, 16, 42));
         moviePanel3.add(movieTitle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
 
-        btn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/editBtn.png"))); // NOI18N
         btn3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -329,91 +290,59 @@ public class AdminMainFrm extends javax.swing.JFrame {
         });
         moviePanel3.add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 100, 80, 30));
 
-        manageMoviesPanel.add(moviePanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 950, -1));
+        manageMoviesPanel.add(moviePanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 950, -1));
 
-        getContentPane().add(manageMoviesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 1060, 710));
+        getContentPane().add(manageMoviesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 1060, 670));
 
         viewBookingsPanel.setBackground(new java.awt.Color(36, 34, 54));
         viewBookingsPanel.setMinimumSize(new java.awt.Dimension(1060, 700));
         viewBookingsPanel.setPreferredSize(new java.awt.Dimension(1060, 700));
         viewBookingsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        exitBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/exitBtn.png"))); // NOI18N
-        exitBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        exitBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                exitBtn1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                exitBtn1MouseExited(evt);
-            }
-        });
-        exitBtn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitBtn1ActionPerformed(evt);
-            }
-        });
-        viewBookingsPanel.add(exitBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 10, 16, 16));
-
-        miniBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/miniBtn.png"))); // NOI18N
-        miniBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        miniBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                miniBtn1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                miniBtn1MouseExited(evt);
-            }
-        });
-        miniBtn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miniBtn1ActionPerformed(evt);
-            }
-        });
-        viewBookingsPanel.add(miniBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 16, 16, 4));
-
-        getContentPane().add(viewBookingsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 1060, 710));
+        getContentPane().add(viewBookingsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 1060, 670));
 
         profilePanel.setBackground(new java.awt.Color(36, 34, 54));
         profilePanel.setMinimumSize(new java.awt.Dimension(1060, 700));
         profilePanel.setPreferredSize(new java.awt.Dimension(1060, 700));
         profilePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(profilePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 1060, 670));
 
-        exitBtn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/exitBtn.png"))); // NOI18N
-        exitBtn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        exitBtn2.addMouseListener(new java.awt.event.MouseAdapter() {
+        miniBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/miniBtn.png"))); // NOI18N
+        miniBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        miniBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                exitBtn2MouseEntered(evt);
+                miniBtnMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                exitBtn2MouseExited(evt);
+                miniBtnMouseExited(evt);
             }
         });
-        exitBtn2.addActionListener(new java.awt.event.ActionListener() {
+        miniBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitBtn2ActionPerformed(evt);
+                miniBtnActionPerformed(evt);
             }
         });
-        profilePanel.add(exitBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 10, 16, 16));
+        getContentPane().add(miniBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 16, 16, 4));
 
-        miniBtn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/miniBtn.png"))); // NOI18N
-        miniBtn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        miniBtn2.addMouseListener(new java.awt.event.MouseAdapter() {
+        exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/exitBtn.png"))); // NOI18N
+        exitBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exitBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                miniBtn2MouseEntered(evt);
+                exitBtnMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                miniBtn2MouseExited(evt);
+                exitBtnMouseExited(evt);
             }
         });
-        miniBtn2.addActionListener(new java.awt.event.ActionListener() {
+        exitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miniBtn2ActionPerformed(evt);
+                exitBtnActionPerformed(evt);
             }
         });
-        profilePanel.add(miniBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 16, 16, 4));
+        getContentPane().add(exitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 10, 16, 16));
 
-        getContentPane().add(profilePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 1060, 710));
+        jPanel1.setBackground(new java.awt.Color(21, 20, 31));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 1060, 40));
 
         pack();
         setLocationRelativeTo(null);
@@ -462,6 +391,7 @@ public class AdminMainFrm extends javax.swing.JFrame {
     private void miniBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miniBtnActionPerformed
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_miniBtnActionPerformed
+    
     AddEditMovieFrm add_edit_movie_frm;
     private void manageMoviesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageMoviesBtnActionPerformed
         manageMoviesPanel.setVisible(true);
@@ -475,67 +405,144 @@ public class AdminMainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_manageMoviesBtnActionPerformed
 
     private DefaultTableModel model = new DefaultTableModel(new String[]{"Movie Title", "Genre", "rating", "Hour", "Minute", "Content Rating", "Poster"}, 0);
-    Boolean countiszero = false;
+    int count=0;
+    
+    private void getrow1(){
+        movieTitle1.setText(model.getValueAt(0, 0).toString());
+        genreLabel1.setText(model.getValueAt(0, 1).toString());
+        ratingLabel1.setText(model.getValueAt(0, 2).toString()+"/10");
+        String runtime1 = model.getValueAt(0,3).toString()+"h "+model.getValueAt(0,4).toString()+"m";
+        runtimeLabel1.setText(runtime1);
+        contentRatingLabel1.setText(model.getValueAt(0, 5).toString());
+        posterLabel1.setIcon((ImageIcon) model.getValueAt(0, 6));
+    }
+    
+    private void getrow2(){
+        movieTitle2.setText(model.getValueAt(1, 0).toString());
+        genreLabel2.setText(model.getValueAt(1, 1).toString());
+        ratingLabel2.setText(model.getValueAt(1, 2).toString()+"/10");
+        String runtime2 = model.getValueAt(1,3).toString()+"h "+model.getValueAt(1,4).toString()+"m";
+        runtimeLabel2.setText(runtime2);
+        contentRatingLabel2.setText(model.getValueAt(1, 5).toString());
+        posterLabel2.setIcon((ImageIcon) model.getValueAt(1, 6));
+    }
+    private void getrow3(){
+        movieTitle3.setText(model.getValueAt(2, 0).toString());
+        genreLabel3.setText(model.getValueAt(2, 1).toString());
+        ratingLabel3.setText(model.getValueAt(2, 2).toString()+"/10");
+        String runtime3 = model.getValueAt(2,3).toString()+"h "+model.getValueAt(2,4).toString()+"m";
+        runtimeLabel3.setText(runtime3);
+        contentRatingLabel3.setText(model.getValueAt(2, 5).toString());
+        posterLabel3.setIcon((ImageIcon) model.getValueAt(2, 6));
+    }
+    private void getEditBtn(JButton btn){
+        try {
+            Image editBtn = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/editBtn.png"));
+            btn.setIcon(new ImageIcon(editBtn));
+        } catch (IOException ex) {
+            Logger.getLogger(AdminMainFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void getAddBtn(JButton btn){
+        try {
+            Image addBtn = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/addBtn.png"));
+            btn.setIcon(new ImageIcon(addBtn));
+        } catch (IOException ex) {
+            Logger.getLogger(AdminMainFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+     private void getEditBtnHover(JButton btn){
+        try {
+            Image editBtnHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/editBtnHover.png"));
+            btn.setIcon(new ImageIcon(editBtnHover));
+        } catch (IOException ex) {
+            Logger.getLogger(AdminMainFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void getAddBtnHover(JButton btn){
+        try {
+            Image addBtnHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/addBtnHover.png"));
+            btn.setIcon(new ImageIcon(addBtnHover));
+        } catch (IOException ex) {
+            Logger.getLogger(AdminMainFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    String movieTitle = null;
+    String genre = null;
+    String rating = null;
+    int hour = 0;
+    int minute = 0;
+    String contentRating = null;
+    ImageIcon posterIcon = null;
     private void getManageMovies() throws IOException{
         //Retrieve data
         String countquery = "SELECT COUNT(*) FROM movies";
         try{
             pst = DBConnectClass.getConnection().prepareStatement(countquery);
             rs = pst.executeQuery();
-            int count=0;
+            
             while( rs.next() ) 
             {
-                if(count != 0)
-                    countiszero = true;
+                count = rs.getInt(1);
             }
         }catch(SQLException ex){
             Logger.getLogger(AdminMainFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(countiszero == false){
-            String query = "SELECT movie_title, genre, rating, hour, minute, content_rating, poster FROM `movies`";
-            try {
-                pst = DBConnectClass.getConnection().prepareStatement(query);
-                rs = pst.executeQuery();
-                while(rs.next()){
-                   String movieTitle = rs.getString("movie_title");
-                   String genre = rs.getString("genre");
-                   String rating = String.valueOf(rs.getDouble("rating"));
-                   int hour = rs.getInt("hour");
-                   int minute = rs.getInt("minute");
-                   String contentRating = rs.getString("content_rating");
-                   ImageIcon posterIcon = parsePoster((Blob) rs.getBlob("poster"));
-                   model.addRow(new Object[]{movieTitle, genre, rating, hour, minute, contentRating, posterIcon});
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(AdminMainFrm.class.getName()).log(Level.SEVERE, null, ex);
+
+        String query = "SELECT movie_title, genre, rating, hour, minute, content_rating, poster FROM `movies`";
+        try {
+            pst = DBConnectClass.getConnection().prepareStatement(query);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                movieTitle = rs.getString("movie_title");
+                genre = rs.getString("genre");
+                rating = String.valueOf(rs.getDouble("rating"));
+                hour = rs.getInt("hour");
+                minute = rs.getInt("minute");
+                contentRating = rs.getString("content_rating");
+                posterIcon = parsePoster((Blob) rs.getBlob("poster"));
+                model.addRow(new Object[]{movieTitle, genre, rating, hour, minute, contentRating, posterIcon});
             }
-
-            //Set values
-            movieTitle1.setText(model.getValueAt(0, 0).toString());
-            genreLabel1.setText(model.getValueAt(0, 1).toString());
-            ratingLabel1.setText(model.getValueAt(0, 2).toString()+"/10");
-            String runtime1 = model.getValueAt(0,3).toString()+"h "+model.getValueAt(0,4).toString()+"m";
-            runtimeLabel1.setText(runtime1);
-            contentRatingLabel1.setText(model.getValueAt(0, 5).toString());
-            posterLabel1.setIcon((ImageIcon) model.getValueAt(0, 6));
-
-            movieTitle2.setText(model.getValueAt(1, 0).toString());
-            genreLabel2.setText(model.getValueAt(1, 1).toString());
-            ratingLabel2.setText(model.getValueAt(1, 2).toString()+"/10");
-            String runtime2 = model.getValueAt(1,3).toString()+"h "+model.getValueAt(1,4).toString()+"m";
-            runtimeLabel2.setText(runtime2);
-            contentRatingLabel2.setText(model.getValueAt(1, 5).toString());
-            posterLabel2.setIcon((ImageIcon) model.getValueAt(1, 6));
-
-            movieTitle3.setText(model.getValueAt(2, 0).toString());
-            genreLabel3.setText(model.getValueAt(2, 1).toString());
-            ratingLabel3.setText(model.getValueAt(2, 2).toString()+"/10");
-            String runtime3 = model.getValueAt(2,3).toString()+"h "+model.getValueAt(2,4).toString()+"m";
-            runtimeLabel3.setText(runtime3);
-            contentRatingLabel3.setText(model.getValueAt(2, 5).toString());
-            posterLabel3.setIcon((ImageIcon) model.getValueAt(2, 6));
-        }else{
-            //set btn to add btn image
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminMainFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        switch (count) {
+            case 0 -> {
+                getAddBtn(btn1);
+                getAddBtn(btn2);
+                getAddBtn(btn3);
+                starLabel1.setVisible(false);
+                starLabel2.setVisible(false);
+                starLabel3.setVisible(false);
+            }
+            case 1 -> {
+                getrow1();
+                getEditBtn(btn1);
+                getAddBtn(btn2);
+                getAddBtn(btn3);
+                starLabel2.setVisible(false);
+                starLabel3.setVisible(false);
+            }
+            case 2 -> {
+                getrow1();
+                getrow2();
+                getEditBtn(btn1);
+                getEditBtn(btn2);
+                getAddBtn(btn3);
+                starLabel3.setVisible(false);
+            }
+            default -> {
+                getrow1();
+                getrow2();
+                getrow3();
+                getEditBtn(btn1);
+                getEditBtn(btn2);
+                getEditBtn(btn3);
+            }
         }
     }
     
@@ -548,57 +555,9 @@ public class AdminMainFrm extends javax.swing.JFrame {
         return icon;
     }
     
-    private void exitBtn1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitBtn1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_exitBtn1MouseEntered
-
-    private void exitBtn1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitBtn1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_exitBtn1MouseExited
-
-    private void exitBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtn1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_exitBtn1ActionPerformed
-
-    private void miniBtn1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_miniBtn1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_miniBtn1MouseEntered
-
-    private void miniBtn1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_miniBtn1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_miniBtn1MouseExited
-
-    private void miniBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miniBtn1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_miniBtn1ActionPerformed
-
-    private void exitBtn2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitBtn2MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_exitBtn2MouseEntered
-
-    private void exitBtn2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitBtn2MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_exitBtn2MouseExited
-
-    private void exitBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtn2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_exitBtn2ActionPerformed
-
-    private void miniBtn2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_miniBtn2MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_miniBtn2MouseEntered
-
-    private void miniBtn2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_miniBtn2MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_miniBtn2MouseExited
-
-    private void miniBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miniBtn2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_miniBtn2ActionPerformed
-
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         try {
-            add_edit_movie_frm = new AddEditMovieFrm(this, movieTitle1.getText(), countiszero);
+            add_edit_movie_frm = new AddEditMovieFrm(this, movieTitle1.getText(), count);
             add_edit_movie_frm.pack();
             add_edit_movie_frm.setVisible(true);
         } catch (IOException ex) {
@@ -608,7 +567,7 @@ public class AdminMainFrm extends javax.swing.JFrame {
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         try {
-            add_edit_movie_frm = new AddEditMovieFrm(this, movieTitle2.getText(), countiszero);
+            add_edit_movie_frm = new AddEditMovieFrm(this, movieTitle2.getText(), count);
             add_edit_movie_frm.pack();
             add_edit_movie_frm.setVisible(true);
         } catch (IOException ex) {
@@ -618,7 +577,7 @@ public class AdminMainFrm extends javax.swing.JFrame {
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
         try {
-            add_edit_movie_frm = new AddEditMovieFrm(this, movieTitle3.getText(), countiszero);
+            add_edit_movie_frm = new AddEditMovieFrm(this, movieTitle3.getText(), count);
             add_edit_movie_frm.pack();
             add_edit_movie_frm.setVisible(true);
         } catch (IOException ex) {
@@ -627,68 +586,47 @@ public class AdminMainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn1MouseEntered
-        if(countiszero == false){
-            try {
-                Image editBtnHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/editBtnHover.png"));
-                btn1.setIcon(new ImageIcon(editBtnHover));
-            } catch (IOException ex) {
-                Logger.getLogger(AddEditMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if(count == 0){
+            getAddBtnHover(btn1);
         }else{
-            //add btn hover
-            try {
-                Image addBtnHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/addBtnHover.png"));
-                btn1.setIcon(new ImageIcon(addBtnHover));
-            } catch (IOException ex) {
-                Logger.getLogger(AddEditMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
-            } 
+            getEditBtnHover(btn1);
         }
-        
     }//GEN-LAST:event_btn1MouseEntered
 
     private void btn1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn1MouseExited
-        try {
-            Image editBtn = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/editBtn.png"));
-            btn1.setIcon(new ImageIcon(editBtn));
-        } catch (IOException ex) {
-            Logger.getLogger(AddEditMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
+        if(count == 0){
+            getAddBtn(btn1);
+        }else{
+            getEditBtn(btn1);
         }
     }//GEN-LAST:event_btn1MouseExited
 
     private void btn2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn2MouseEntered
-        try {
-            Image editBtnHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/editBtnHover.png"));
-            btn2.setIcon(new ImageIcon(editBtnHover));
-        } catch (IOException ex) {
-            Logger.getLogger(AddEditMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        if(count == 2 || count == 3)
+            getEditBtnHover(btn2);
+        else
+            getAddBtnHover(btn2);
     }//GEN-LAST:event_btn2MouseEntered
 
     private void btn2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn2MouseExited
-        try {
-            Image editBtn = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/editBtn.png"));
-            btn2.setIcon(new ImageIcon(editBtn));
-        } catch (IOException ex) {
-            Logger.getLogger(AddEditMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        if(count == 2 || count == 3)
+            getEditBtn(btn2);
+        else
+            getAddBtn(btn2);
     }//GEN-LAST:event_btn2MouseExited
 
     private void btn3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn3MouseEntered
-        try {
-            Image editBtnHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/editBtnHover.png"));
-            btn3.setIcon(new ImageIcon(editBtnHover));
-        } catch (IOException ex) {
-            Logger.getLogger(AddEditMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        if(count == 3)
+            getEditBtnHover(btn3);
+        else
+            getAddBtnHover(btn3);
     }//GEN-LAST:event_btn3MouseEntered
 
     private void btn3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn3MouseExited
-        try {
-            Image editBtn = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/editBtn.png"));
-            btn3.setIcon(new ImageIcon(editBtn));
-        } catch (IOException ex) {
-            Logger.getLogger(AddEditMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        if(count == 3)
+            getEditBtn(btn3);
+        else
+            getAddBtn(btn3);
     }//GEN-LAST:event_btn3MouseExited
 
     ArrayList<String> genreList = new ArrayList<>();
@@ -735,17 +673,14 @@ public class AdminMainFrm extends javax.swing.JFrame {
     private javax.swing.JLabel contentRatingLabel2;
     private javax.swing.JLabel contentRatingLabel3;
     private javax.swing.JButton exitBtn;
-    private javax.swing.JButton exitBtn1;
-    private javax.swing.JButton exitBtn2;
     private javax.swing.JLabel genreLabel1;
     private javax.swing.JLabel genreLabel2;
     private javax.swing.JLabel genreLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel login_link3;
     private javax.swing.JButton manageMoviesBtn;
     private javax.swing.JPanel manageMoviesPanel;
     private javax.swing.JButton miniBtn;
-    private javax.swing.JButton miniBtn1;
-    private javax.swing.JButton miniBtn2;
     private javax.swing.JPanel moviePanel1;
     private javax.swing.JPanel moviePanel2;
     private javax.swing.JPanel moviePanel3;

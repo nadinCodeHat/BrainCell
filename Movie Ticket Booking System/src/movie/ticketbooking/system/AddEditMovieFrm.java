@@ -42,12 +42,12 @@ public class AddEditMovieFrm extends javax.swing.JFrame {
     
     JFrame obj;
     String moviename;
-    Boolean countiszero;
-    public AddEditMovieFrm(AdminMainFrm add_main_frm, String moviename, Boolean countiszero) throws IOException{
+    int count;
+    public AddEditMovieFrm(AdminMainFrm add_main_frm, String moviename, int count) throws IOException{
         initComponents();
         this.obj = add_main_frm;
         this.moviename = moviename;
-        this.countiszero = countiszero;
+        this.count = count;
         loadEditData();
     }
 
@@ -210,7 +210,7 @@ public class AddEditMovieFrm extends javax.swing.JFrame {
                 miniBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(miniBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 16, 4));
+        jPanel1.add(miniBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 16, 16, 4));
 
         posterLabel.setBackground(new java.awt.Color(255, 255, 255));
         posterLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -660,22 +660,22 @@ public class AddEditMovieFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_addMovieBtnMouseExited
 
     private void addMovieBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMovieBtnActionPerformed
-        if(countiszero == true){
+        String movie_title = movieTitleTxtField.getText();
+        String genre = str;
+        Double rating = (Double)ratingSpinner.getValue();
+        Integer hour = (Integer)hourSpinner.getValue();
+        Integer minute = (Integer)minuteSpinner.getValue();
+        String contentRating = contRatingCombo.getSelectedItem().toString();
+        String description = descripTxtArea.getText();
+        String theater = theaterCombo.getSelectedItem().toString();
+        Integer ticketPriceChild = Integer.parseInt(childTckPriceTxtField.getText());
+        Integer ticketPriceAdult = Integer.parseInt(adultTckPriceTxtField.getText());
+        
+        if(count == 0){
             if(checkEmptyFields()){
-                String movie_title = movieTitleTxtField.getText();
-                String genre = str;
-                Double rating = (Double)ratingSpinner.getValue();
-                Integer hour = (Integer)hourSpinner.getValue();
-                Integer minute = (Integer)minuteSpinner.getValue();
-                String contentRating = contRatingCombo.getSelectedItem().toString();
-                String description = descripTxtArea.getText();
-                String theater = theaterCombo.getSelectedItem().toString();
-                Integer ticketPriceChild = Integer.parseInt(childTckPriceTxtField.getText());
-                Integer ticketPriceAdult = Integer.parseInt(adultTckPriceTxtField.getText());
-
                 try{
-                    String insertUsersQuery = "INSERT INTO `movies` (movie_title, genre, rating, hour, minute, content_rating, description, theater, ticket_price_child, ticket_price_adult, poster) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-                    pst = DBConnectClass.getConnection().prepareStatement(insertUsersQuery);
+                    String insertMovieQuery = "INSERT INTO `movies` (movie_title, genre, rating, hour, minute, content_rating, description, theater, ticket_price_child, ticket_price_adult, poster) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+                    pst = DBConnectClass.getConnection().prepareStatement(insertMovieQuery);
 
                     pst.setString(1, movie_title);
                     pst.setString(2, genre);
@@ -693,13 +693,36 @@ public class AddEditMovieFrm extends javax.swing.JFrame {
                     Logger.getLogger(AddEditMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 finally{
-                    JOptionPane.showMessageDialog(null, "New movie added successfully!","Successful",2);
+                    JOptionPane.showMessageDialog(null, "New movie added successfully!","Insert Successful",2);
                     SwingUtilities.updateComponentTreeUI(obj);
                     this.dispose();
                 }
             }
         }else{
-            //update movie
+            try{
+                String updateMoveQuery = "UPDATE `movies` SET `movie_title` = ?, `genre` = ?, `rating` = ?, `hour` = ?, `minute` = ?, `content_rating` = ?, `description` = ?, `theater` = ?, `ticket_price_child` = ?, `ticket_price_adult` = ?, `poster` = ?";
+                pst = DBConnectClass.getConnection().prepareStatement(updateMoveQuery);
+
+                pst.setString(1, movie_title);
+                pst.setString(2, genre);
+                pst.setDouble(3, rating);
+                pst.setInt(4, hour);
+                pst.setInt(5, minute);
+                pst.setString(6, contentRating);
+                pst.setString(7, description);
+                pst.setString(8, theater);
+                pst.setInt(9, ticketPriceChild);
+                pst.setInt(10, ticketPriceAdult);
+                pst.setBytes(11, poster);
+                pst.executeUpdate();
+            }catch(SQLException ex){
+                Logger.getLogger(AddEditMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            finally{
+                JOptionPane.showMessageDialog(null, "Movie updated successfully!","Update Successful",2);
+                SwingUtilities.updateComponentTreeUI(obj);
+                this.dispose();
+            }
         }
     }//GEN-LAST:event_addMovieBtnActionPerformed
 
