@@ -101,6 +101,7 @@ public class AdminMainFrm extends javax.swing.JFrame {
         genreLabel3 = new javax.swing.JLabel();
         movieTitle3 = new javax.swing.JLabel();
         btn3 = new javax.swing.JButton();
+        refreshBtn = new javax.swing.JButton();
         viewBookingsPanel = new javax.swing.JPanel();
         profilePanel = new javax.swing.JPanel();
         miniBtn = new javax.swing.JButton();
@@ -292,6 +293,24 @@ public class AdminMainFrm extends javax.swing.JFrame {
 
         manageMoviesPanel.add(moviePanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 950, -1));
 
+        refreshBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/refreshBtn.png"))); // NOI18N
+        refreshBtn.setToolTipText("");
+        refreshBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        refreshBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                refreshBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                refreshBtnMouseExited(evt);
+            }
+        });
+        refreshBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshBtnActionPerformed(evt);
+            }
+        });
+        manageMoviesPanel.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 30, 40, 35));
+
         getContentPane().add(manageMoviesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 1060, 670));
 
         viewBookingsPanel.setBackground(new java.awt.Color(36, 34, 54));
@@ -392,7 +411,7 @@ public class AdminMainFrm extends javax.swing.JFrame {
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_miniBtnActionPerformed
     
-    AddEditMovieFrm add_edit_movie_frm;
+    AddUpdateMovieFrm add_edit_movie_frm;
     private void manageMoviesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageMoviesBtnActionPerformed
         manageMoviesPanel.setVisible(true);
         viewBookingsPanel.setVisible(false);
@@ -557,7 +576,7 @@ public class AdminMainFrm extends javax.swing.JFrame {
     
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         try {
-            add_edit_movie_frm = new AddEditMovieFrm(this, movieTitle1.getText(), count);
+            add_edit_movie_frm = new AddUpdateMovieFrm(this, movieTitle1.getText(), count);
             add_edit_movie_frm.pack();
             add_edit_movie_frm.setVisible(true);
         } catch (IOException ex) {
@@ -567,7 +586,7 @@ public class AdminMainFrm extends javax.swing.JFrame {
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         try {
-            add_edit_movie_frm = new AddEditMovieFrm(this, movieTitle2.getText(), count);
+            add_edit_movie_frm = new AddUpdateMovieFrm(this, movieTitle2.getText(), count);
             add_edit_movie_frm.pack();
             add_edit_movie_frm.setVisible(true);
         } catch (IOException ex) {
@@ -577,7 +596,7 @@ public class AdminMainFrm extends javax.swing.JFrame {
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
         try {
-            add_edit_movie_frm = new AddEditMovieFrm(this, movieTitle3.getText(), count);
+            add_edit_movie_frm = new AddUpdateMovieFrm(this, movieTitle3.getText(), count);
             add_edit_movie_frm.pack();
             add_edit_movie_frm.setVisible(true);
         } catch (IOException ex) {
@@ -628,6 +647,33 @@ public class AdminMainFrm extends javax.swing.JFrame {
         else
             getAddBtn(btn3);
     }//GEN-LAST:event_btn3MouseExited
+
+    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
+        try {
+            getManageMovies();
+        } catch (IOException ex) {
+            Logger.getLogger(AdminMainFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_refreshBtnActionPerformed
+
+    private void refreshBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshBtnMouseEntered
+        refreshBtn.setToolTipText("Refresh");
+        try {
+            Image refreshBtnHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/refreshBtnHover.png"));
+            refreshBtn.setIcon(new ImageIcon(refreshBtnHover));
+        } catch (IOException ex) {
+            Logger.getLogger(AdminMainFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_refreshBtnMouseEntered
+
+    private void refreshBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshBtnMouseExited
+        try {
+            Image refrshBtn = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/refreshBtn.png"));
+            refreshBtn.setIcon(new ImageIcon(refrshBtn));
+        } catch (IOException ex) {
+            Logger.getLogger(AdminMainFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_refreshBtnMouseExited
 
     ArrayList<String> genreList = new ArrayList<>();
     String str;
@@ -697,6 +743,7 @@ public class AdminMainFrm extends javax.swing.JFrame {
     private javax.swing.JLabel ratingLabel1;
     private javax.swing.JLabel ratingLabel2;
     private javax.swing.JLabel ratingLabel3;
+    private javax.swing.JButton refreshBtn;
     private javax.swing.JLabel runtimeLabel1;
     private javax.swing.JLabel runtimeLabel2;
     private javax.swing.JLabel runtimeLabel3;
