@@ -2,8 +2,6 @@ package movie.ticketbooking.system;
 
 import java.awt.Color;
 import java.awt.Image;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.sql.Connection;
@@ -14,303 +12,171 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author nadinCodeHat
+ * @author Nadin
  */
 public class LoginFrm extends javax.swing.JFrame {
 
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs;
-    int posX=0,posY=0;
     
     public LoginFrm() {
         initComponents();
-        //Draggable frame
-        this.addMouseListener(new MouseAdapter()
-        {
-           @Override
-           public void mousePressed(MouseEvent e)
-           {
-              posX=e.getX();
-              posY=e.getY();
-           }
-        });
-        this.addMouseMotionListener(new MouseAdapter()
-        {
-            @Override
-            public void mouseDragged(MouseEvent evt)
-            {
-               //sets frame position when mouse dragged			
-               setLocation (evt.getXOnScreen()-posX,evt.getYOnScreen()-posY);
-            }
-        });
-        //Draggable frame end
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         login_panel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        email_TextField = new javax.swing.JTextField();
-        forgotPassword_link = new javax.swing.JLabel();
+        loginLabel = new javax.swing.JLabel();
+        msgLabel = new javax.swing.JLabel();
+        emailLabel = new javax.swing.JLabel();
+        emailTextField = new javax.swing.JTextField();
+        forgotPasswordLink = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        login_Btn = new javax.swing.JButton();
+        loginBtn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        createAccount_link = new javax.swing.JLabel();
-        exitBtn = new javax.swing.JButton();
-        miniBtn = new javax.swing.JButton();
-        password_TextField = new javax.swing.JPasswordField();
-        jLabel4 = new javax.swing.JLabel();
+        createAccountLink = new javax.swing.JLabel();
+        passwordTextField = new javax.swing.JPasswordField();
+        loginBack = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setBackground(new java.awt.Color(36, 34, 54));
-        setUndecorated(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        login_panel.setBackground(new java.awt.Color(21, 20, 31));
+        login_panel.setBackground(new java.awt.Color(255, 255, 255));
         login_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Email");
-        login_panel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 190, -1, 20));
+        loginLabel.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        loginLabel.setForeground(new java.awt.Color(235, 16, 42));
+        loginLabel.setText("Login");
+        login_panel.add(loginLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 40, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(235, 16, 42));
-        jLabel2.setText("Login");
-        login_panel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 90, -1, -1));
+        msgLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        msgLabel.setText("Welcome back! Lets get started");
+        login_panel.add(msgLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 70, -1, 20));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Welcome back! Lets get started");
-        login_panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 130, -1, 20));
+        emailLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        emailLabel.setText("Email");
+        login_panel.add(emailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 110, -1, 20));
 
-        email_TextField.setBackground(new java.awt.Color(21, 20, 31));
-        email_TextField.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        email_TextField.setForeground(new java.awt.Color(255, 255, 255));
-        email_TextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        email_TextField.setToolTipText("");
-        email_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 16, 42)));
-        email_TextField.setCaretColor(new java.awt.Color(255, 255, 255));
-        login_panel.add(email_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 220, 220, 30));
+        emailTextField.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        emailTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        login_panel.add(emailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 140, 220, 30));
 
-        forgotPassword_link.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        forgotPassword_link.setForeground(new java.awt.Color(235, 16, 42));
-        forgotPassword_link.setText("Forgot Password?");
-        forgotPassword_link.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        forgotPassword_link.addMouseListener(new java.awt.event.MouseAdapter() {
+        forgotPasswordLink.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        forgotPasswordLink.setForeground(new java.awt.Color(235, 16, 42));
+        forgotPasswordLink.setText("Forgot Password?");
+        forgotPasswordLink.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        forgotPasswordLink.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                forgotPassword_linkMouseClicked(evt);
+                forgotPasswordLinkMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                forgotPassword_linkMouseEntered(evt);
+                forgotPasswordLinkMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                forgotPassword_linkMouseExited(evt);
+                forgotPasswordLinkMouseExited(evt);
             }
         });
-        login_panel.add(forgotPassword_link, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, 20));
+        login_panel.add(forgotPasswordLink, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 180, -1, 20));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Password");
-        login_panel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 260, -1, 20));
+        login_panel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 180, -1, 20));
 
-        login_Btn.setBackground(new java.awt.Color(255, 255, 255));
-        login_Btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        login_Btn.setForeground(new java.awt.Color(255, 255, 255));
-        login_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/loginBtn.png"))); // NOI18N
-        login_Btn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        login_Btn.addMouseListener(new java.awt.event.MouseAdapter() {
+        loginBtn.setBackground(new java.awt.Color(255, 255, 255));
+        loginBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        loginBtn.setForeground(new java.awt.Color(255, 255, 255));
+        loginBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/loginBtn.png"))); // NOI18N
+        loginBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                login_BtnMouseEntered(evt);
+                loginBtnMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                login_BtnMouseExited(evt);
+                loginBtnMouseExited(evt);
             }
         });
-        login_Btn.addActionListener(new java.awt.event.ActionListener() {
+        loginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                login_BtnActionPerformed(evt);
+                loginBtnActionPerformed(evt);
             }
         });
-        login_panel.add(login_Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 340, 220, 35));
+        login_panel.add(loginBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 250, 220, 35));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("New user?");
-        login_panel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 390, -1, 20));
+        login_panel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 300, -1, 20));
 
-        createAccount_link.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        createAccount_link.setForeground(new java.awt.Color(235, 16, 42));
-        createAccount_link.setText("Create Account");
-        createAccount_link.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        createAccount_link.addMouseListener(new java.awt.event.MouseAdapter() {
+        createAccountLink.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        createAccountLink.setForeground(new java.awt.Color(235, 16, 42));
+        createAccountLink.setText("Create Account");
+        createAccountLink.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        createAccountLink.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                createAccount_linkMouseClicked(evt);
+                createAccountLinkMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                createAccount_linkMouseEntered(evt);
+                createAccountLinkMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                createAccount_linkMouseExited(evt);
+                createAccountLinkMouseExited(evt);
             }
         });
-        login_panel.add(createAccount_link, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 390, -1, 20));
+        login_panel.add(createAccountLink, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 300, -1, 20));
 
-        exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/exitBtn.png"))); // NOI18N
-        exitBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        exitBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                exitBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                exitBtnMouseExited(evt);
-            }
-        });
-        exitBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitBtnActionPerformed(evt);
-            }
-        });
-        login_panel.add(exitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 16, 16));
+        passwordTextField.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        login_panel.add(passwordTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 210, 220, 30));
 
-        miniBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/miniBtn.png"))); // NOI18N
-        miniBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        miniBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                miniBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                miniBtnMouseExited(evt);
-            }
-        });
-        miniBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miniBtnActionPerformed(evt);
-            }
-        });
-        login_panel.add(miniBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 16, 16, 4));
+        getContentPane().add(login_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 310, 380));
 
-        password_TextField.setBackground(new java.awt.Color(21, 20, 31));
-        password_TextField.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        password_TextField.setForeground(new java.awt.Color(255, 255, 255));
-        password_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 16, 42)));
-        password_TextField.setCaretColor(new java.awt.Color(255, 255, 255));
-        password_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        login_panel.add(password_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 290, 220, 30));
-
-        getContentPane().add(login_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 310, 500));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/other/login_back.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 500));
+        loginBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/other/loginBack.png"))); // NOI18N
+        getContentPane().add(loginBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 380));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void login_BtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_login_BtnMouseEntered
+    private void forgotPasswordLinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forgotPasswordLinkMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_forgotPasswordLinkMouseClicked
+
+    private void forgotPasswordLinkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forgotPasswordLinkMouseEntered
+        forgotPasswordLink.setForeground(new Color(209, 15, 38));
+    }//GEN-LAST:event_forgotPasswordLinkMouseEntered
+
+    private void forgotPasswordLinkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forgotPasswordLinkMouseExited
+        forgotPasswordLink.setForeground(new Color(235, 16, 42));
+    }//GEN-LAST:event_forgotPasswordLinkMouseExited
+
+    private void loginBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseEntered
         try {
             Image loginBtnHoverImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/loginBtnHover.png"));
-            login_Btn.setIcon(new ImageIcon(loginBtnHoverImg));
+            loginBtn.setIcon(new ImageIcon(loginBtnHoverImg));
         } catch (IOException ex) {
             Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_login_BtnMouseEntered
+    }//GEN-LAST:event_loginBtnMouseEntered
 
-    private void login_BtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_login_BtnMouseExited
+    private void loginBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseExited
         try {
             Image loginBtnImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/loginBtn.png"));
-            login_Btn.setIcon(new ImageIcon(loginBtnImg));
-        } catch (IOException ex) {
-             Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_login_BtnMouseExited
-
-    private void createAccount_linkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccount_linkMouseEntered
-        createAccount_link.setForeground(new Color(209, 15, 38));
-    }//GEN-LAST:event_createAccount_linkMouseEntered
-
-    private void createAccount_linkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccount_linkMouseExited
-        createAccount_link.setForeground(new Color(235, 16, 42));
-    }//GEN-LAST:event_createAccount_linkMouseExited
-
-    private void createAccount_linkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccount_linkMouseClicked
-        SignupFrm sngFrm = new SignupFrm();
-        sngFrm.setVisible(true);
-        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-    }//GEN-LAST:event_createAccount_linkMouseClicked
-
-    private void forgotPassword_linkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forgotPassword_linkMouseEntered
-        forgotPassword_link.setForeground(new Color(209, 15, 38));
-    }//GEN-LAST:event_forgotPassword_linkMouseEntered
-
-    private void forgotPassword_linkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forgotPassword_linkMouseExited
-        forgotPassword_link.setForeground(new Color(235, 16, 42));
-    }//GEN-LAST:event_forgotPassword_linkMouseExited
-
-    private void forgotPassword_linkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forgotPassword_linkMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_forgotPassword_linkMouseClicked
-
-    private void exitBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitBtnMouseEntered
-        try {
-            Image exitBtnHoverImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/exitBtnHover.png"));
-            exitBtn.setIcon(new ImageIcon(exitBtnHoverImg));
+            loginBtn.setIcon(new ImageIcon(loginBtnImg));
         } catch (IOException ex) {
             Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_exitBtnMouseEntered
+    }//GEN-LAST:event_loginBtnMouseExited
 
-    private void exitBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitBtnMouseExited
-        try {
-            Image exitBtnImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/exitBtn.png"));
-            exitBtn.setIcon(new ImageIcon(exitBtnImg));
-        } catch (IOException ex) {
-            Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_exitBtnMouseExited
-
-    private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_exitBtnActionPerformed
-
-    private void miniBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_miniBtnMouseEntered
-        try {
-            Image miniBtnHoverImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/miniBtnHover.png"));
-            miniBtn.setIcon(new ImageIcon(miniBtnHoverImg));
-        } catch (IOException ex) {
-            Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_miniBtnMouseEntered
-
-    private void miniBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_miniBtnMouseExited
-        try {
-            Image miniBtnImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/miniBtn.png"));
-            miniBtn.setIcon(new ImageIcon(miniBtnImg));
-        } catch (IOException ex) {
-            Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_miniBtnMouseExited
-
-    private void miniBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miniBtnActionPerformed
-        this.setState(JFrame.ICONIFIED);
-    }//GEN-LAST:event_miniBtnActionPerformed
-
-    private void login_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_BtnActionPerformed
+    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         if(validate_info()){
-            String email = email_TextField.getText();
-            String password = String.valueOf(password_TextField.getPassword());
-            
+            String email = emailTextField.getText();
+            String password = String.valueOf(passwordTextField.getPassword());
+
             String query = "SELECT * FROM `users` WHERE `email` = '"+email+"' AND `password_hash` = '"+password+"'";
             try {
                 pst = DBConnectClass.getConnection().prepareStatement(query);
@@ -333,12 +199,12 @@ public class LoginFrm extends javax.swing.JFrame {
                 Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_login_BtnActionPerformed
-    
+    }//GEN-LAST:event_loginBtnActionPerformed
+
     //validate fields
     public boolean validate_info(){
-        String email = email_TextField.getText();
-        String password = String.valueOf(password_TextField.getPassword());
+        String email = emailTextField.getText();
+        String password = String.valueOf(passwordTextField.getPassword());
         
         //check empty fields
         if (email.trim().equals("") || password.trim().equals("")){
@@ -349,7 +215,24 @@ public class LoginFrm extends javax.swing.JFrame {
             return true;
         }
     }
- 
+    
+    private void createAccountLinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountLinkMouseClicked
+        SignupFrm sngFrm = new SignupFrm();
+        sngFrm.setVisible(true);
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+    }//GEN-LAST:event_createAccountLinkMouseClicked
+
+    private void createAccountLinkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountLinkMouseEntered
+        createAccountLink.setForeground(new Color(209, 15, 38));
+    }//GEN-LAST:event_createAccountLinkMouseEntered
+
+    private void createAccountLinkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountLinkMouseExited
+        createAccountLink.setForeground(new Color(235, 16, 42));
+    }//GEN-LAST:event_createAccountLinkMouseExited
+
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -374,30 +257,27 @@ public class LoginFrm extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new LoginFrm().setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new LoginFrm().setVisible(true);
+            }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel createAccount_link;
-    private javax.swing.JTextField email_TextField;
-    private javax.swing.JButton exitBtn;
-    private javax.swing.JLabel forgotPassword_link;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel createAccountLink;
+    private javax.swing.JLabel emailLabel;
+    private javax.swing.JTextField emailTextField;
+    private javax.swing.JLabel forgotPasswordLink;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JButton login_Btn;
+    private javax.swing.JLabel loginBack;
+    private javax.swing.JButton loginBtn;
+    private javax.swing.JLabel loginLabel;
     private javax.swing.JPanel login_panel;
-    private javax.swing.JButton miniBtn;
-    private javax.swing.JPasswordField password_TextField;
+    private javax.swing.JLabel msgLabel;
+    private javax.swing.JPasswordField passwordTextField;
     // End of variables declaration//GEN-END:variables
 }

@@ -73,6 +73,7 @@ public class AdminMainFrm extends javax.swing.JFrame {
         manageMoviesBtn = new javax.swing.JButton();
         login_link3 = new javax.swing.JLabel();
         profileBtn1 = new javax.swing.JButton();
+        viewBookingsPanel = new javax.swing.JPanel();
         manageMoviesPanel = new javax.swing.JPanel();
         moviePanel1 = new javax.swing.JPanel();
         posterLabel1 = new javax.swing.JLabel();
@@ -102,26 +103,23 @@ public class AdminMainFrm extends javax.swing.JFrame {
         movieTitle3 = new javax.swing.JLabel();
         btn3 = new javax.swing.JButton();
         refreshBtn = new javax.swing.JButton();
-        viewBookingsPanel = new javax.swing.JPanel();
         profilePanel = new javax.swing.JPanel();
         miniBtn = new javax.swing.JButton();
         exitBtn = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1260, 700));
-        setUndecorated(true);
         setSize(new java.awt.Dimension(1260, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        sidePanel.setBackground(new java.awt.Color(21, 20, 31));
+        sidePanel.setBackground(new java.awt.Color(255, 255, 255));
         sidePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         profileBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/logoutBtn.png"))); // NOI18N
-        sidePanel.add(profileBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 208, 200, 35));
+        sidePanel.add(profileBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 208, 180, 35));
 
         moviesBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/viewBookingsBtn.png"))); // NOI18N
-        sidePanel.add(moviesBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 136, 200, 35));
+        sidePanel.add(moviesBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 136, 180, 35));
 
         manageMoviesBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/managemoviesBtnHover.png"))); // NOI18N
         manageMoviesBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -129,7 +127,7 @@ public class AdminMainFrm extends javax.swing.JFrame {
                 manageMoviesBtnActionPerformed(evt);
             }
         });
-        sidePanel.add(manageMoviesBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 200, 35));
+        sidePanel.add(manageMoviesBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 180, 35));
 
         login_link3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         login_link3.setForeground(new java.awt.Color(235, 16, 42));
@@ -137,9 +135,14 @@ public class AdminMainFrm extends javax.swing.JFrame {
         sidePanel.add(login_link3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
 
         profileBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/profileBtn.png"))); // NOI18N
-        sidePanel.add(profileBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 172, 200, 35));
+        sidePanel.add(profileBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 172, 180, 35));
 
-        getContentPane().add(sidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 710));
+        getContentPane().add(sidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 710));
+
+        viewBookingsPanel.setBackground(new java.awt.Color(36, 34, 54));
+        viewBookingsPanel.setMinimumSize(new java.awt.Dimension(1060, 700));
+        viewBookingsPanel.setPreferredSize(new java.awt.Dimension(1060, 700));
+        viewBookingsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         manageMoviesPanel.setBackground(new java.awt.Color(36, 34, 54));
         manageMoviesPanel.setMinimumSize(new java.awt.Dimension(1060, 700));
@@ -309,14 +312,10 @@ public class AdminMainFrm extends javax.swing.JFrame {
                 refreshBtnActionPerformed(evt);
             }
         });
-        manageMoviesPanel.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 30, 40, 35));
+        manageMoviesPanel.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 40, 40, 35));
 
-        getContentPane().add(manageMoviesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 1060, 670));
+        viewBookingsPanel.add(manageMoviesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -30, -1, 670));
 
-        viewBookingsPanel.setBackground(new java.awt.Color(36, 34, 54));
-        viewBookingsPanel.setMinimumSize(new java.awt.Dimension(1060, 700));
-        viewBookingsPanel.setPreferredSize(new java.awt.Dimension(1060, 700));
-        viewBookingsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(viewBookingsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 1060, 670));
 
         profilePanel.setBackground(new java.awt.Color(36, 34, 54));
@@ -358,10 +357,6 @@ public class AdminMainFrm extends javax.swing.JFrame {
             }
         });
         getContentPane().add(exitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 10, 16, 16));
-
-        jPanel1.setBackground(new java.awt.Color(21, 20, 31));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 1060, 40));
 
         pack();
         setLocationRelativeTo(null);
@@ -722,7 +717,6 @@ public class AdminMainFrm extends javax.swing.JFrame {
     private javax.swing.JLabel genreLabel1;
     private javax.swing.JLabel genreLabel2;
     private javax.swing.JLabel genreLabel3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel login_link3;
     private javax.swing.JButton manageMoviesBtn;
     private javax.swing.JPanel manageMoviesPanel;
