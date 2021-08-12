@@ -1,12 +1,6 @@
 package movie.ticketbooking.system;
 
-import com.mysql.jdbc.Blob;
-import java.util.ArrayList;
 import java.awt.Image;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,13 +10,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Nadin
+ * @author nadinCodeHat
  */
 public class AdminMainFrmNew extends javax.swing.JFrame {
 
@@ -31,6 +24,11 @@ public class AdminMainFrmNew extends javax.swing.JFrame {
     ResultSet rs;
     public AdminMainFrmNew() {
         initComponents();
+        try {
+            getManageMovies();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminMainFrmNew.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -45,7 +43,7 @@ public class AdminMainFrmNew extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         manageMoviesPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        moviesTable = new javax.swing.JTable();
         refreshBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
         viewBookingsPanel = new javax.swing.JPanel();
@@ -124,27 +122,27 @@ public class AdminMainFrmNew extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/other/logo.png"))); // NOI18N
         navPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 50, 50));
 
-        getContentPane().add(navPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 490));
+        getContentPane().add(navPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 500));
 
         manageMoviesPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        moviesTable.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        moviesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Movie Tit.", "Genre", "Rating", "Runtime", "Cont. Rat.", "Description", "Theater", "TP - Child", "TP - Adult", "Poster"
+                "id", "Movie Tit.", "Genre", "Rating", "Runtime", "Cont. Rat.", "Theater", "TP - Child", "TP - Adult"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Byte.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -155,10 +153,10 @@ public class AdminMainFrmNew extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
+        moviesTable.setShowGrid(true);
+        jScrollPane1.setViewportView(moviesTable);
 
-        manageMoviesPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 600, 230));
+        manageMoviesPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 640, 230));
 
         refreshBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/refreshBtn.png"))); // NOI18N
         refreshBtn.setToolTipText("");
@@ -176,9 +174,10 @@ public class AdminMainFrmNew extends javax.swing.JFrame {
                 refreshBtnActionPerformed(evt);
             }
         });
-        manageMoviesPanel.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, 40, 30));
+        manageMoviesPanel.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, 40, 30));
 
         editBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/editBtn.png"))); // NOI18N
+        editBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         editBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 editBtnMouseEntered(evt);
@@ -187,9 +186,14 @@ public class AdminMainFrmNew extends javax.swing.JFrame {
                 editBtnMouseExited(evt);
             }
         });
-        manageMoviesPanel.add(editBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 80, 30));
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
+        manageMoviesPanel.add(editBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 80, 30));
 
-        getContentPane().add(manageMoviesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 680, 490));
+        getContentPane().add(manageMoviesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 720, 500));
 
         javax.swing.GroupLayout viewBookingsPanelLayout = new javax.swing.GroupLayout(viewBookingsPanel);
         viewBookingsPanel.setLayout(viewBookingsPanelLayout);
@@ -221,17 +225,46 @@ public class AdminMainFrmNew extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void panelVisible(Boolean mm, Boolean vb, Boolean p){
+        manageMoviesPanel.setVisible(mm);
+        viewBookingsPanel.setVisible(vb);
+        profilePanel.setVisible(p);
+    }
+    
     private void manageMoviesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageMoviesBtnActionPerformed
-        manageMoviesPanel.setVisible(true);
-        viewBookingsPanel.setVisible(false);
-        profilePanel.setVisible(false);
-//        try {
-//           // getManageMovies();
-//        } catch (IOException ex) {
-//            Logger.getLogger(AdminMainFrm.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        panelVisible(true, false, false);
+        try {
+            getManageMovies();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminMainFrmNew.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_manageMoviesBtnActionPerformed
 
+    private void getManageMovies() throws SQLException{
+        DefaultTableModel model = new DefaultTableModel(new String[]{"Id", "Movie Tit.", "Genre", "Rating", "Runtime", "Cont. Rat.", "Theater", "TP - Child", "TP - Adult"}, 0);
+        String getMoviesQuery="SELECT id, movie_title, genre, rating, hour, minute, content_rating, theater, ticket_price_child, ticket_price_adult FROM movies";
+        pst = DBConnectClass.getConnection().prepareStatement(getMoviesQuery);
+        rs = pst.executeQuery();
+        while(rs.next())
+        {
+            int id = rs.getInt("id");
+            String movieTitle = rs.getString("movie_title");
+            String genre = rs.getString("genre");
+            Double rating = rs.getDouble("rating");
+            int hour = rs.getInt("hour");
+            int minute = rs.getInt("minute");
+            String contentRating = rs.getString("content_rating");
+            String theater = rs.getString("theater");
+            int ticketPriceChild = rs.getInt("ticket_price_child");
+            int ticketPriceAdult = rs.getInt("ticket_price_adult");
+            
+            String runtime = hour+" h and "+minute+" m";
+            model.addRow(new Object[]{id, movieTitle, genre, rating, runtime, contentRating, theater, ticketPriceChild, ticketPriceAdult});
+        }
+        moviesTable.setModel(model); 
+    }
+    
+    
     private void refreshBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshBtnMouseEntered
         refreshBtn.setToolTipText("Refresh");
         try {
@@ -252,7 +285,11 @@ public class AdminMainFrmNew extends javax.swing.JFrame {
     }//GEN-LAST:event_refreshBtnMouseExited
 
     private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
-
+        try {
+            getManageMovies();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminMainFrmNew.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_refreshBtnActionPerformed
 
     private void viewBookingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBookingsBtnActionPerformed
@@ -300,12 +337,37 @@ public class AdminMainFrmNew extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutBtnMouseExited
 
     private void editBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editBtnMouseEntered
-        // TODO add your handling code here:
+        try {
+            Image editBtnImgHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/editBtnHover.png"));
+            editBtn.setIcon(new ImageIcon(editBtnImgHover));
+        } catch (IOException ex) {
+            Logger.getLogger(AdminMainFrmNew.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_editBtnMouseEntered
 
     private void editBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editBtnMouseExited
-        // TODO add your handling code here:
+        try {
+            Image editBtnImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/editBtn.png"));
+            editBtn.setIcon(new ImageIcon(editBtnImg));
+        } catch (IOException ex) {
+            Logger.getLogger(AdminMainFrmNew.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_editBtnMouseExited
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        if(moviesTable.getSelectionModel().isSelectionEmpty()){
+            JOptionPane.showMessageDialog(null, "Please select a record to edit", "Row not selected", 2);
+        }
+        else{
+            int column = 0;
+            int row = moviesTable.getSelectedRow();
+            int idvalue = (int) moviesTable.getModel().getValueAt(row, column);
+            
+//            AddUpdateMovieFrm addUpdateMovieFrm = new AddUpdateMovieFrm(idvalue);
+//            addUpdateMovieFrm.pack();
+//            addUpdateMovieFrm.setVisible(true);
+        }   
+    }//GEN-LAST:event_editBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -346,10 +408,10 @@ public class AdminMainFrmNew extends javax.swing.JFrame {
     private javax.swing.JButton editBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JButton manageMoviesBtn;
     private javax.swing.JPanel manageMoviesPanel;
+    private javax.swing.JTable moviesTable;
     private javax.swing.JPanel navPanel;
     private javax.swing.JButton profileBtn;
     private javax.swing.JPanel profilePanel;
