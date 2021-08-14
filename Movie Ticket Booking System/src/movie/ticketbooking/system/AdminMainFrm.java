@@ -2,7 +2,6 @@ package movie.ticketbooking.system;
 
 import java.awt.Image;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,10 +17,7 @@ import javax.swing.table.DefaultTableModel;
  * @author nadinCodeHat
  */
 public class AdminMainFrm extends javax.swing.JFrame {
-
-    Connection con = null;
-    PreparedStatement pst = null;
-    ResultSet rs;
+    
     public AdminMainFrm() {
         initComponents();
         try {
@@ -241,27 +237,36 @@ public class AdminMainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_manageMoviesBtnActionPerformed
 
     private void getManageMovies() throws SQLException{
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         DefaultTableModel model = new DefaultTableModel(new String[]{"Id", "Movie Tit.", "Genre", "Rating", "Runtime", "Cont. Rat.", "Theater", "TP - Child", "TP - Adult"}, 0);
         String getMoviesQuery="SELECT id, movie_title, genre, rating, hour, minute, content_rating, theater, ticket_price_child, ticket_price_adult FROM movies";
-        pst = DBConnectClass.getConnection().prepareStatement(getMoviesQuery);
-        rs = pst.executeQuery();
-        while(rs.next())
-        {
-            int id = rs.getInt("id");
-            String movieTitle = rs.getString("movie_title");
-            String genre = rs.getString("genre");
-            Double rating = rs.getDouble("rating");
-            int hour = rs.getInt("hour");
-            int minute = rs.getInt("minute");
-            String contentRating = rs.getString("content_rating");
-            String theater = rs.getString("theater");
-            int ticketPriceChild = rs.getInt("ticket_price_child");
-            int ticketPriceAdult = rs.getInt("ticket_price_adult");
-            
-            String runtime = hour+" h and "+minute+" m";
-            model.addRow(new Object[]{id, movieTitle, genre, rating, runtime, contentRating, theater, ticketPriceChild, ticketPriceAdult});
+        try{
+            pst = DBConnectClass.getConnection().prepareStatement(getMoviesQuery);
+            rs = pst.executeQuery();
+            while(rs.next())
+            {
+                int id = rs.getInt("id");
+                String movieTitle = rs.getString("movie_title");
+                String genre = rs.getString("genre");
+                Double rating = rs.getDouble("rating");
+                int hour = rs.getInt("hour");
+                int minute = rs.getInt("minute");
+                String contentRating = rs.getString("content_rating");
+                String theater = rs.getString("theater");
+                int ticketPriceChild = rs.getInt("ticket_price_child");
+                int ticketPriceAdult = rs.getInt("ticket_price_adult");
+
+                String runtime = hour+" h and "+minute+" m";
+                model.addRow(new Object[]{id, movieTitle, genre, rating, runtime, contentRating, theater, ticketPriceChild, ticketPriceAdult});
+            }
+            moviesTable.setModel(model);
+            pst.close();
+            rs.close();
+            DBConnectClass.getConnection().close();
+        }catch(SQLException ex){
+            Logger.getLogger(AdminMainFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        moviesTable.setModel(model); 
     }
     
     
@@ -384,23 +389,18 @@ public class AdminMainFrm extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminMainFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminMainFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminMainFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(AdminMainFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
+        
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AdminMainFrm().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new AdminMainFrm().setVisible(true);
         });
     }
 

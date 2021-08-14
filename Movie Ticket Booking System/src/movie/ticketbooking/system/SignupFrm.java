@@ -27,10 +27,6 @@ import javax.swing.JOptionPane;
  * @author Nadin
  */
 public class SignupFrm extends javax.swing.JFrame {
-
-    Connection con = null;
-    PreparedStatement pst = null;
-    ResultSet rs;
     
     public SignupFrm() {
         initComponents();
@@ -178,6 +174,8 @@ public class SignupFrm extends javax.swing.JFrame {
 
             String name = fullnameTextField.getText();
             String userEmail = emailTextField.getText();
+            PreparedStatement pst = null;
+            ResultSet rs = null;
             try{
                 String insertUsersQuery = "INSERT INTO `users` (email, password_hash, name, role_id) VALUES(?,?,?,?)";
                 pst = DBConnectClass.getConnection().prepareStatement(insertUsersQuery);
@@ -223,12 +221,15 @@ public class SignupFrm extends javax.swing.JFrame {
                 //                    JOptionPane.showMessageDialog(null,"Something happened!");
                 //                    throw new RuntimeException(e);
                 //                }
-        }catch(SQLException ex){
-            Logger.getLogger(SignupFrm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            JOptionPane.showMessageDialog(null, "Account created successfully!","Successful",2);
-        }
+            pst.close();
+            rs.close();
+            DBConnectClass.getConnection().close();
+            }catch(SQLException ex){
+                Logger.getLogger(SignupFrm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            finally{
+                JOptionPane.showMessageDialog(null, "Account created successfully!","Successful",2);
+            }
         }
     }//GEN-LAST:event_signupBtnActionPerformed
 
@@ -275,6 +276,8 @@ public class SignupFrm extends javax.swing.JFrame {
     public boolean checkEmail(String email){
         boolean email_notexists = true;
         String query = "SELECT COUNT(*) FROM `users` WHERE `email` = ?";
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
             pst = DBConnectClass.getConnection().prepareStatement(query);
             pst.setString(1,email);
@@ -284,6 +287,9 @@ public class SignupFrm extends javax.swing.JFrame {
                 email_notexists = false;
                 JOptionPane.showMessageDialog(null, "An account exists by this email, please enter different email.", "Email Duplicate",2);
             }
+            pst.close();
+            rs.close();
+            DBConnectClass.getConnection().close();
         } catch (SQLException ex) {
             Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -307,23 +313,18 @@ public class SignupFrm extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SignupFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SignupFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SignupFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(SignupFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
+        
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SignupFrm().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new SignupFrm().setVisible(true);
         });
     }
 

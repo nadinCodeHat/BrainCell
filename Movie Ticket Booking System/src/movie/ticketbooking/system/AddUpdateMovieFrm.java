@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,10 +26,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author nadinCodeHat
  */
 public class AddUpdateMovieFrm extends javax.swing.JFrame {
-
-    Connection con = null;
-    PreparedStatement pst = null;
-    ResultSet rs;
     
     public AddUpdateMovieFrm() {
     }
@@ -499,7 +494,8 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
         String theater = null;
         String ticketPriceChild = null;
         String ticketPriceAdult = null;
-        
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
             pst = DBConnectClass.getConnection().prepareStatement(query);
             rs = pst.executeQuery();
@@ -516,6 +512,9 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
                 ticketPriceAdult = String.valueOf(rs.getInt("ticket_price_adult"));
                 posterBytes = rs.getBytes("poster");
             }
+            pst.close();
+            rs.close();
+            DBConnectClass.getConnection().close();
         } catch (SQLException ex) {
             Logger.getLogger(AddUpdateMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -687,7 +686,8 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
         String theater = theaterCombo.getSelectedItem().toString();
         Integer ticketPriceChild = Integer.parseInt(tckPrcChildTextField.getText());
         Integer ticketPriceAdult = Integer.parseInt(tckPrcChildTextField.getText());
-          
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         if(checkEmptyFields()){
             String updateMoveQuery = null;
             if(posterBytes !=null && poster == null){
@@ -712,6 +712,9 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
                     pst.setBytes(11, poster);
                 }
                 pst.executeUpdate();
+                pst.close();
+                rs.close();
+                DBConnectClass.getConnection().close();
             }catch(SQLException ex){
                 Logger.getLogger(AddUpdateMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -879,23 +882,18 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddUpdateMovieFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddUpdateMovieFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddUpdateMovieFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(AddUpdateMovieFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
+        
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddUpdateMovieFrm().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new AddUpdateMovieFrm().setVisible(true);
         });
     }
 

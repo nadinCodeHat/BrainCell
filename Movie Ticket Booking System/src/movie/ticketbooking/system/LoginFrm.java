@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,10 +18,6 @@ import javax.swing.JOptionPane;
  * @author Nadin
  */
 public class LoginFrm extends javax.swing.JFrame {
-
-    Connection con = null;
-    PreparedStatement pst = null;
-    ResultSet rs;
     
     public LoginFrm() {
         initComponents();
@@ -178,6 +173,8 @@ public class LoginFrm extends javax.swing.JFrame {
             String password = String.valueOf(passwordTextField.getPassword());
 
             String query = "SELECT * FROM `users` WHERE `email` = '"+email+"' AND `password_hash` = '"+password+"'";
+            PreparedStatement pst = null;
+            ResultSet rs = null;
             try {
                 pst = DBConnectClass.getConnection().prepareStatement(query);
                 rs = pst.executeQuery();
@@ -195,6 +192,9 @@ public class LoginFrm extends javax.swing.JFrame {
                 }else{
                     JOptionPane.showMessageDialog(null, "Invalid Login, Please try again.", "Login", 2);
                 }
+                pst.close();
+                rs.close();
+                DBConnectClass.getConnection().close();
             } catch (SQLException ex) {
                 Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -246,23 +246,18 @@ public class LoginFrm extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(LoginFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
+        
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginFrm().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new LoginFrm().setVisible(true);
         });
     }
 
