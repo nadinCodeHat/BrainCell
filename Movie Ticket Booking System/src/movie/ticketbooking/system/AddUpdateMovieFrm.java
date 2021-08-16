@@ -82,6 +82,8 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
         posterImgPath = new javax.swing.JTextField();
         browsePosterBtn = new javax.swing.JButton();
         updateBtn = new javax.swing.JButton();
+        uriTextField = new javax.swing.JTextField();
+        uriLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setType(java.awt.Window.Type.UTILITY);
@@ -472,9 +474,16 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
                 updateBtnActionPerformed(evt);
             }
         });
-        mainPanel.add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 590, 80, 30));
+        mainPanel.add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 610, 80, 30));
 
-        getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 650));
+        uriTextField.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        mainPanel.add(uriTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 570, 270, -1));
+
+        uriLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        uriLabel.setText("Youtube URI:");
+        mainPanel.add(uriLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 573, -1, -1));
+
+        getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 660));
 
         pack();
         setLocationRelativeTo(null);
@@ -483,7 +492,7 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
     byte[] posterBytes = null;
     public void loadEditData(){
         //Retrieve data
-        String query = "SELECT movie_title, genre, rating, hour, minute, content_rating, description, theater, ticket_price_child, ticket_price_adult, poster FROM `movies` WHERE id = '" + id + "'" ;
+        String query = "SELECT movie_title, genre, rating, hour, minute, content_rating, description, theater, ticket_price_child, ticket_price_adult, uri, poster FROM `movies` WHERE id = '" + id + "'" ;
         String movietitle = null;
         String genre = null;
         Double rating = 0.0;
@@ -494,6 +503,7 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
         String theater = null;
         String ticketPriceChild = null;
         String ticketPriceAdult = null;
+        String uri = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
@@ -510,6 +520,7 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
                 theater = rs.getString("theater");
                 ticketPriceChild = String.valueOf(rs.getInt("ticket_price_child"));
                 ticketPriceAdult = String.valueOf(rs.getInt("ticket_price_adult"));
+                uri = rs.getString("uri");
                 posterBytes = rs.getBytes("poster");
             }
             pst.close();
@@ -546,7 +557,7 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
         theaterCombo.setSelectedItem(theater);
         tckPrcChildTextField.setText(ticketPriceChild);
         tckPrcAdultTextField.setText(ticketPriceAdult);
-        
+        uriTextField.setText(uri);
         if(posterBytes != null){
             posterImgPath.setText("Poster already saved.");
         }
@@ -686,15 +697,15 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
         String theater = theaterCombo.getSelectedItem().toString();
         Integer ticketPriceChild = Integer.parseInt(tckPrcChildTextField.getText());
         Integer ticketPriceAdult = Integer.parseInt(tckPrcChildTextField.getText());
+        String uri = uriTextField.getText();
         PreparedStatement pst = null;
-        ResultSet rs = null;
         if(checkEmptyFields()){
             String updateMoveQuery = null;
             if(posterBytes !=null && poster == null){
-                updateMoveQuery = "UPDATE `movies` SET `movie_title` = ?, `genre` = ?, `rating` = ?, `hour` = ?, `minute` = ?, `content_rating` = ?, `description` = ?, `theater` = ?, `ticket_price_child` = ?, `ticket_price_adult` = ? WHERE id= '"+id+"'";
+                updateMoveQuery = "UPDATE `movies` SET `movie_title` = ?, `genre` = ?, `rating` = ?, `hour` = ?, `minute` = ?, `content_rating` = ?, `description` = ?, `theater` = ?, `ticket_price_child` = ?, `ticket_price_adult` = ?, `uir` = ? WHERE id= '"+id+"'";
             }
             else{
-                updateMoveQuery = "UPDATE `movies` SET `movie_title` = ?, `genre` = ?, `rating` = ?, `hour` = ?, `minute` = ?, `content_rating` = ?, `description` = ?, `theater` = ?, `ticket_price_child` = ?, `ticket_price_adult` = ?, `poster` = ? WHERE id= '"+id+"'";
+                updateMoveQuery = "UPDATE `movies` SET `movie_title` = ?, `genre` = ?, `rating` = ?, `hour` = ?, `minute` = ?, `content_rating` = ?, `description` = ?, `theater` = ?, `ticket_price_child` = ?, `ticket_price_adult` = ?, `uir` = ?, `poster` = ? WHERE id= '"+id+"'";
             }
             try{
                 pst = DBConnectClass.getConnection().prepareStatement(updateMoveQuery);
@@ -708,12 +719,12 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
                 pst.setString(8, theater);
                 pst.setInt(9, ticketPriceChild);
                 pst.setInt(10, ticketPriceAdult);
+                pst.setString(11, uri);
                 if(posterBytes !=null && poster != null){
-                    pst.setBytes(11, poster);
+                    pst.setBytes(12, poster);
                 }
                 pst.executeUpdate();
                 pst.close();
-                rs.close();
                 DBConnectClass.getConnection().close();
             }catch(SQLException ex){
                 Logger.getLogger(AddUpdateMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
@@ -729,6 +740,7 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
         String description = descriptionTextArea.getText();
         String ticketPriceChild = tckPrcChildTextField.getText();
         String ticketPriceAdult = tckPrcAdultTextField.getText();
+        String uri = uriTextField.getText();
 
         //check empty fields
         if (movie_title.trim().equals("")){
@@ -749,6 +761,10 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
         }
         if(ticketPriceAdult.trim().equals("")){
             JOptionPane.showMessageDialog(null, "Please enter a price for adult ticket.", "Empty Field",2);
+            return false;
+        }
+        if(uri.trim().equals("")){
+            JOptionPane.showMessageDialog(null, "Please enter the youtube uri.", "Empty Field",2);
             return false;
         }
         else {
@@ -939,5 +955,7 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
     private javax.swing.JCheckBox thrillerCheckBox;
     private javax.swing.JPanel ticketPricesPanel;
     private javax.swing.JButton updateBtn;
+    private javax.swing.JLabel uriLabel;
+    private javax.swing.JTextField uriTextField;
     // End of variables declaration//GEN-END:variables
 }

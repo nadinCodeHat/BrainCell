@@ -36,7 +36,7 @@ public class AdminMainFrm extends javax.swing.JFrame {
         profileBtn = new javax.swing.JButton();
         viewBookingsBtn = new javax.swing.JButton();
         manageMoviesBtn = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        logoLabel = new javax.swing.JLabel();
         manageMoviesPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         moviesTable = new javax.swing.JTable();
@@ -115,8 +115,8 @@ public class AdminMainFrm extends javax.swing.JFrame {
         });
         navPanel.add(manageMoviesBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 180, 35));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/other/logo.png"))); // NOI18N
-        navPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 50, 50));
+        logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/other/logo.png"))); // NOI18N
+        navPanel.add(logoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 50, 50));
 
         getContentPane().add(navPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 500));
 
@@ -406,8 +406,8 @@ public class AdminMainFrm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton editBtn;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel logoLabel;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JButton manageMoviesBtn;
     private javax.swing.JPanel manageMoviesPanel;

@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class DBConnectClass {
     private static final String servername = "localhost";
     private static final String username = "root";
-    private static final String dbname = "movie_reservation_db";
+    private static final String dbname = "braincelldb";
     private static final Integer portnumber = 3306;
     private static final String password = "";
     
