@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -320,6 +321,12 @@ public class MainFrm extends javax.swing.JFrame {
         moviePanel2.add(watchTrailerBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 110, 30));
         moviePanel2.add(tckPriceAdult2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 442, -1, -1));
         moviePanel2.add(tckPriceChild2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, -1, -1));
+
+        bookNowBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookNowBtn2ActionPerformed(evt);
+            }
+        });
         moviePanel2.add(bookNowBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 490, 110, 30));
 
         moviesPanel.add(moviePanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 250, 540));
@@ -392,6 +399,12 @@ public class MainFrm extends javax.swing.JFrame {
         moviePanel3.add(watchTrailerBtn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 110, 30));
         moviePanel3.add(tckPriceAdult3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 442, -1, -1));
         moviePanel3.add(tckPriceChild3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, -1, -1));
+
+        bookNowBtn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookNowBtn3ActionPerformed(evt);
+            }
+        });
         moviePanel3.add(bookNowBtn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 490, 110, 30));
 
         moviesPanel.add(moviePanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, 250, 540));
@@ -407,12 +420,14 @@ public class MainFrm extends javax.swing.JFrame {
        // myBookingsPanel.setVisible(mb);
         //profilePanel.setVisible(p);
     }
-    DefaultTableModel model = new DefaultTableModel(new String[]{"Movie Title", "Genre", "Rating", "Hour", "Minute", "Content Rating", "Ticket Price Child", "Ticket Price Adult", "uri", "Poster"}, 0);
+    DefaultTableModel model = new DefaultTableModel(new String[]{"id, Movie Title", "Genre", "Rating", "Hour", "Minute", "Content Rating", "Ticket Price Child", "Ticket Price Adult", "uri", "Poster"}, 0);
     
     private String uri1,uri2,uri3 = null;
+    private int id1,id2,id3 = 0;
     private void getMovies(){
         //Retrieve data
-        String query = "SELECT movie_title, genre, rating, hour, minute, content_rating, ticket_price_child, ticket_price_adult, uri, poster FROM `movies`" ;
+        String query = "SELECT id, movie_title, genre, rating, hour, minute, content_rating, ticket_price_child, ticket_price_adult, uri, poster FROM `movies`" ;
+        int id = 0;
         String movietitle = null;
         String genre = null;
         Double rating = 0.0;
@@ -429,6 +444,7 @@ public class MainFrm extends javax.swing.JFrame {
             pst = DBConnectClass.getConnection().prepareStatement(query);
             rs = pst.executeQuery();
             while(rs.next()){
+                id = rs.getInt("id");
                 movietitle = rs.getString("movie_title");
                 genre = rs.getString("genre");
                 rating = rs.getDouble("rating");
@@ -439,7 +455,7 @@ public class MainFrm extends javax.swing.JFrame {
                 ticketPriceAdult = String.valueOf(rs.getInt("ticket_price_adult"));
                 uri = rs.getString("uri");
                 posterBytes = rs.getBytes("poster");
-                model.addRow(new Object[]{movietitle, genre, rating, hour, minute, contentRating, ticketPriceChild, ticketPriceAdult, uri, posterBytes});
+                model.addRow(new Object[]{id, movietitle, genre, rating, hour, minute, contentRating, ticketPriceChild, ticketPriceAdult, uri, posterBytes});
             }
             pst.close();
             rs.close();
@@ -449,35 +465,38 @@ public class MainFrm extends javax.swing.JFrame {
         }
         
         //set data from model to fields
-        movieTitle1.setText("<html>"+ model.getValueAt(0, 0).toString()+"</html>");
-        genre1.setText(model.getValueAt(0,1).toString());
-        rating1.setText(model.getValueAt(0,2).toString()+"/10");
-        runtime1.setText(model.getValueAt(0,3).toString()+ "h and " + model.getValueAt(0,4).toString()+"m");
-        contentRating1.setText(model.getValueAt(0,5).toString());
-        tckPriceChild1.setText("Rs. "+ model.getValueAt(0,6).toString());
-        tckPriceAdult1.setText("Rs. "+ model.getValueAt(0,7).toString());
-        uri1 = model.getValueAt(0,8).toString();
-        movieLabel1.setIcon(parsePoster((byte[]) model.getValueAt(0,9)));
+        id1 = (int) model.getValueAt(0,0);
+        movieTitle1.setText("<html>"+ model.getValueAt(0, 1).toString()+"</html>");
+        genre1.setText(model.getValueAt(0,2).toString());
+        rating1.setText(model.getValueAt(0,3).toString()+"/10");
+        runtime1.setText(model.getValueAt(0,4).toString()+ "h and " + model.getValueAt(0,5).toString()+"m");
+        contentRating1.setText(model.getValueAt(0,6).toString());
+        tckPriceChild1.setText("Rs. "+ model.getValueAt(0,7).toString());
+        tckPriceAdult1.setText("Rs. "+ model.getValueAt(0,8).toString());
+        uri1 = model.getValueAt(0,9).toString();
+        movieLabel1.setIcon(parsePoster((byte[]) model.getValueAt(0,10)));
         
-        movieTitle2.setText("<html>"+ model.getValueAt(1, 0).toString()+"</html>");
-        genre2.setText(model.getValueAt(1,1).toString());
-        rating2.setText(model.getValueAt(1,2).toString()+"/10");
-        runtime2.setText(model.getValueAt(1,3).toString()+ "h and " + model.getValueAt(1,4).toString()+"m");
-        contentRating2.setText(model.getValueAt(1,5).toString());
-        tckPriceChild2.setText("Rs. "+ model.getValueAt(1,6).toString());
-        tckPriceAdult2.setText("Rs. "+ model.getValueAt(1,7).toString());
-        uri2 = model.getValueAt(1,8).toString();
-        movieLabel2.setIcon(parsePoster((byte[]) model.getValueAt(1,9)));
+        id2 = (int) model.getValueAt(1,0);
+        movieTitle2.setText("<html>"+ model.getValueAt(1, 1).toString()+"</html>");
+        genre2.setText(model.getValueAt(1,2).toString());
+        rating2.setText(model.getValueAt(1,3).toString()+"/10");
+        runtime2.setText(model.getValueAt(1,4).toString()+ "h and " + model.getValueAt(1,5).toString()+"m");
+        contentRating2.setText(model.getValueAt(1,6).toString());
+        tckPriceChild2.setText("Rs. "+ model.getValueAt(1,7).toString());
+        tckPriceAdult2.setText("Rs. "+ model.getValueAt(1,8).toString());
+        uri2 = model.getValueAt(1,9).toString();
+        movieLabel2.setIcon(parsePoster((byte[]) model.getValueAt(1,10)));
         
-//        movieTitle3.setText("<html>"+ model.getValueAt(2, 0).toString()+"</html>");
-//        genre3.setText(model.getValueAt(2,1).toString());
-//        rating3.setText(model.getValueAt(2,2).toString()+"/10");
-//        runtime3.setText(model.getValueAt(2,3).toString()+ "h and " + model.getValueAt(2,4).toString()+"m");
-//        contentRating3.setText(model.getValueAt(2,5).toString());
-//        tckPriceChild3.setText("Rs. "+ model.getValueAt(2,6).toString());
-//        tckPriceAdult3.setText("Rs. "+ model.getValueAt(2,7).toString());
-//        uri3 = model.getValueAt(2,8).toString();
-//        movieLabel3.setIcon(parsePoster((byte[]) model.getValueAt(2,9)));
+//        id3 = (int) model.getValueAt(2,0);
+//        movieTitle3.setText("<html>"+ model.getValueAt(2, 1).toString()+"</html>");
+//        genre3.setText(model.getValueAt(2,2).toString());
+//        rating3.setText(model.getValueAt(2,3).toString()+"/10");
+//        runtime3.setText(model.getValueAt(2,4).toString()+ "h and " + model.getValueAt(2,5).toString()+"m");
+//        contentRating3.setText(model.getValueAt(2,6).toString());
+//        tckPriceChild3.setText("Rs. "+ model.getValueAt(2,7).toString());
+//        tckPriceAdult3.setText("Rs. "+ model.getValueAt(2,8).toString());
+//        uri3 = model.getValueAt(2,9).toString();
+//        movieLabel3.setIcon(parsePoster((byte[]) model.getValueAt(2,10)));
     }
     
     private ImageIcon parsePoster(byte[] dTM){
@@ -491,8 +510,7 @@ public class MainFrm extends javax.swing.JFrame {
             try {
                 desktop.browse(new URI(uri));
                 return true;
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (IOException | URISyntaxException e) {
             }
         }
         return false;
@@ -562,7 +580,9 @@ public class MainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_moviesBtnActionPerformed
 
     private void bookNowBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookNowBtn1ActionPerformed
-        // TODO add your handling code here:
+        BookTicketsFrm bookTicket = new BookTicketsFrm(id1);
+        bookTicket.pack();
+        bookTicket.setVisible(true);
     }//GEN-LAST:event_bookNowBtn1ActionPerformed
 
     private void watchTrailerBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_watchTrailerBtn1ActionPerformed
@@ -576,6 +596,18 @@ public class MainFrm extends javax.swing.JFrame {
     private void watchTrailerBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_watchTrailerBtn3ActionPerformed
         openWebpage(uri3);
     }//GEN-LAST:event_watchTrailerBtn3ActionPerformed
+
+    private void bookNowBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookNowBtn2ActionPerformed
+        BookTicketsFrm bookTicket = new BookTicketsFrm(id2);
+        bookTicket.pack();
+        bookTicket.setVisible(true);
+    }//GEN-LAST:event_bookNowBtn2ActionPerformed
+
+    private void bookNowBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookNowBtn3ActionPerformed
+        BookTicketsFrm bookTicket = new BookTicketsFrm(id3);
+        bookTicket.pack();
+        bookTicket.setVisible(true);
+    }//GEN-LAST:event_bookNowBtn3ActionPerformed
 
     /**
      * @param args the command line arguments

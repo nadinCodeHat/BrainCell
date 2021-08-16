@@ -78,7 +78,7 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
         tckPrcChildTextField = new javax.swing.JTextField();
         tckPrcAdultTextField = new javax.swing.JTextField();
         theaterLabel = new javax.swing.JLabel();
-        theaterCombo = new javax.swing.JComboBox<>();
+        screenCombo = new javax.swing.JComboBox<>();
         posterImgPath = new javax.swing.JTextField();
         browsePosterBtn = new javax.swing.JButton();
         updateBtn = new javax.swing.JButton();
@@ -439,12 +439,12 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
         mainPanel.add(ticketPricesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 210, 90));
 
         theaterLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        theaterLabel.setText("Theater");
+        theaterLabel.setText("Screens");
         mainPanel.add(theaterLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 440, -1, -1));
 
-        theaterCombo.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        theaterCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Theater 1", "Theater 2", "Theater 3" }));
-        mainPanel.add(theaterCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 460, 110, -1));
+        screenCombo.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        screenCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Screen 1", "Screen 2", "Screen 3" }));
+        mainPanel.add(screenCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 460, 110, -1));
 
         posterImgPath.setEditable(false);
         posterImgPath.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -475,8 +475,6 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
             }
         });
         mainPanel.add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 610, 80, 30));
-
-        uriTextField.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         mainPanel.add(uriTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 570, 270, -1));
 
         uriLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -492,7 +490,7 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
     byte[] posterBytes = null;
     public void loadEditData(){
         //Retrieve data
-        String query = "SELECT movie_title, genre, rating, hour, minute, content_rating, description, theater, ticket_price_child, ticket_price_adult, uri, poster FROM `movies` WHERE id = '" + id + "'" ;
+        String query = "SELECT movie_title, genre, rating, hour, minute, content_rating, description, screen, ticket_price_child, ticket_price_adult, uri, poster FROM `movies` WHERE id = '" + id + "'" ;
         String movietitle = null;
         String genre = null;
         Double rating = 0.0;
@@ -500,7 +498,7 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
         int minute = 0;
         String contentRating = null;
         String description = null;
-        String theater = null;
+        String screen = null;
         String ticketPriceChild = null;
         String ticketPriceAdult = null;
         String uri = null;
@@ -517,7 +515,7 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
                 minute = rs.getInt("minute");
                 contentRating = rs.getString("content_rating");
                 description = rs.getString("description");
-                theater = rs.getString("theater");
+                screen = rs.getString("screen");
                 ticketPriceChild = String.valueOf(rs.getInt("ticket_price_child"));
                 ticketPriceAdult = String.valueOf(rs.getInt("ticket_price_adult"));
                 uri = rs.getString("uri");
@@ -554,7 +552,7 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
             }
         });
         descriptionTextArea.setText(description);
-        theaterCombo.setSelectedItem(theater);
+        screenCombo.setSelectedItem(screen);
         tckPrcChildTextField.setText(ticketPriceChild);
         tckPrcAdultTextField.setText(ticketPriceAdult);
         uriTextField.setText(uri);
@@ -694,7 +692,7 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
         Integer minute = (Integer)minuteSpinner.getValue();
         String contentRating = contRatingCombo.getSelectedItem().toString();
         String description = descriptionTextArea.getText();
-        String theater = theaterCombo.getSelectedItem().toString();
+        String screen = screenCombo.getSelectedItem().toString();
         Integer ticketPriceChild = Integer.parseInt(tckPrcChildTextField.getText());
         Integer ticketPriceAdult = Integer.parseInt(tckPrcChildTextField.getText());
         String uri = uriTextField.getText();
@@ -702,10 +700,10 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
         if(checkEmptyFields()){
             String updateMoveQuery = null;
             if(posterBytes !=null && poster == null){
-                updateMoveQuery = "UPDATE `movies` SET `movie_title` = ?, `genre` = ?, `rating` = ?, `hour` = ?, `minute` = ?, `content_rating` = ?, `description` = ?, `theater` = ?, `ticket_price_child` = ?, `ticket_price_adult` = ?, `uir` = ? WHERE id= '"+id+"'";
+                updateMoveQuery = "UPDATE `movies` SET `movie_title` = ?, `genre` = ?, `rating` = ?, `hour` = ?, `minute` = ?, `content_rating` = ?, `description` = ?, `screen` = ?, `ticket_price_child` = ?, `ticket_price_adult` = ?, `uir` = ? WHERE id= '"+id+"'";
             }
             else{
-                updateMoveQuery = "UPDATE `movies` SET `movie_title` = ?, `genre` = ?, `rating` = ?, `hour` = ?, `minute` = ?, `content_rating` = ?, `description` = ?, `theater` = ?, `ticket_price_child` = ?, `ticket_price_adult` = ?, `uir` = ?, `poster` = ? WHERE id= '"+id+"'";
+                updateMoveQuery = "UPDATE `movies` SET `movie_title` = ?, `genre` = ?, `rating` = ?, `hour` = ?, `minute` = ?, `content_rating` = ?, `description` = ?, `screen` = ?, `ticket_price_child` = ?, `ticket_price_adult` = ?, `uir` = ?, `poster` = ? WHERE id= '"+id+"'";
             }
             try{
                 pst = DBConnectClass.getConnection().prepareStatement(updateMoveQuery);
@@ -716,7 +714,7 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
                 pst.setInt(5, minute);
                 pst.setString(6, contentRating);
                 pst.setString(7, description);
-                pst.setString(8, theater);
+                pst.setString(8, screen);
                 pst.setInt(9, ticketPriceChild);
                 pst.setInt(10, ticketPriceAdult);
                 pst.setString(11, uri);
@@ -946,11 +944,11 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
     private javax.swing.JSpinner ratingSpinner;
     private javax.swing.JPanel ratingsPanel;
     private javax.swing.JPanel runtimePanel;
+    private javax.swing.JComboBox<String> screenCombo;
     private javax.swing.JLabel tckPrcAdultLabel;
     private javax.swing.JTextField tckPrcAdultTextField;
     private javax.swing.JLabel tckPrcChildLabel;
     private javax.swing.JTextField tckPrcChildTextField;
-    private javax.swing.JComboBox<String> theaterCombo;
     private javax.swing.JLabel theaterLabel;
     private javax.swing.JCheckBox thrillerCheckBox;
     private javax.swing.JPanel ticketPricesPanel;

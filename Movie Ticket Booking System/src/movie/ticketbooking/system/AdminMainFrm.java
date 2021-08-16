@@ -239,8 +239,8 @@ public class AdminMainFrm extends javax.swing.JFrame {
     private void getManageMovies() throws SQLException{
         PreparedStatement pst = null;
         ResultSet rs = null;
-        DefaultTableModel model = new DefaultTableModel(new String[]{"Id", "Movie Tit.", "Genre", "Rating", "Runtime", "Cont. Rat.", "Theater", "TP - Child", "TP - Adult"}, 0);
-        String getMoviesQuery="SELECT id, movie_title, genre, rating, hour, minute, content_rating, theater, ticket_price_child, ticket_price_adult FROM movies";
+        DefaultTableModel model = new DefaultTableModel(new String[]{"Id", "Movie Tit.", "Genre", "Rating", "Runtime", "Cont. Rat.", "Screen", "TP - Child", "TP - Adult"}, 0);
+        String getMoviesQuery="SELECT id, movie_title, genre, rating, hour, minute, content_rating, screen, ticket_price_child, ticket_price_adult FROM movies";
         try{
             pst = DBConnectClass.getConnection().prepareStatement(getMoviesQuery);
             rs = pst.executeQuery();
@@ -253,12 +253,12 @@ public class AdminMainFrm extends javax.swing.JFrame {
                 int hour = rs.getInt("hour");
                 int minute = rs.getInt("minute");
                 String contentRating = rs.getString("content_rating");
-                String theater = rs.getString("theater");
+                String screen = rs.getString("screen");
                 int ticketPriceChild = rs.getInt("ticket_price_child");
                 int ticketPriceAdult = rs.getInt("ticket_price_adult");
 
                 String runtime = hour+" h and "+minute+" m";
-                model.addRow(new Object[]{id, movieTitle, genre, rating, runtime, contentRating, theater, ticketPriceChild, ticketPriceAdult});
+                model.addRow(new Object[]{id, movieTitle, genre, rating, runtime, contentRating, screen, ticketPriceChild, ticketPriceAdult});
             }
             moviesTable.setModel(model);
             pst.close();
