@@ -15,8 +15,9 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Nadin
+ * @author nadinCodeHat
  */
+
 public class LoginFrm extends javax.swing.JFrame {
     
     public LoginFrm() {
@@ -173,26 +174,25 @@ public class LoginFrm extends javax.swing.JFrame {
             String password = String.valueOf(passwordTextField.getPassword());
 
             String query = "SELECT * FROM `users` WHERE `email` = '"+email+"' AND `password_hash` = '"+password+"'";
-            PreparedStatement pst = null;
-            ResultSet rs = null;
             try {
-                pst = DBConnectClass.getConnection().prepareStatement(query);
-                rs = pst.executeQuery();
-                if(rs.next()){
-                    JOptionPane.showMessageDialog(null, "Login Successful!", "Login",2);
-                    if(rs.getInt("role_id") == 1){
-                        AdminMainFrm adminMFrm = new AdminMainFrm();
-                        adminMFrm.setVisible(true);
-                        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+                ResultSet rs;
+                try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query)) {
+                    rs = pst.executeQuery();
+                    if(rs.next()){
+                        JOptionPane.showMessageDialog(null, "Login Successful!", "Login",2);
+                        if(rs.getInt("role_id") == 1){
+                            AdminMainFrm adminMFrm = new AdminMainFrm();
+                            adminMFrm.setVisible(true);
+                            this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+                        }else{
+                            MainFrm mainFrm = new MainFrm();
+                            mainFrm.setVisible(true);
+                            this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+                        }
                     }else{
-                        MainFrm mainFrm = new MainFrm();
-                        mainFrm.setVisible(true);
-                        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+                        JOptionPane.showMessageDialog(null, "Invalid Login, Please try again.", "Login", 2);
                     }
-                }else{
-                    JOptionPane.showMessageDialog(null, "Invalid Login, Please try again.", "Login", 2);
                 }
-                pst.close();
                 rs.close();
                 DBConnectClass.getConnection().close();
             } catch (SQLException ex) {

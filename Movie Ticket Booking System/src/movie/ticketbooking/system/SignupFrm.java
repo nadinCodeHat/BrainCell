@@ -4,11 +4,9 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -24,7 +22,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Nadin
+ * @author nadinCodeHat
  */
 public class SignupFrm extends javax.swing.JFrame {
     
@@ -170,15 +168,13 @@ public class SignupFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_signupBtnMouseExited
 
     private void signupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupBtnActionPerformed
-        if(validate_info() && checkEmail(emailTextField.getText())){
+        if(checkEmail(emailTextField.getText()) && validate_info()){
 
             String name = fullnameTextField.getText();
             String userEmail = emailTextField.getText();
-            PreparedStatement pst = null;
-            ResultSet rs = null;
             try{
                 String insertUsersQuery = "INSERT INTO `users` (email, password_hash, name, role_id) VALUES(?,?,?,?)";
-                pst = DBConnectClass.getConnection().prepareStatement(insertUsersQuery);
+                PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(insertUsersQuery);
 
                 pst.setString(1, userEmail);
                 pst.setString(2, String.valueOf(confirmPasswordTextField.getPassword()));
@@ -222,7 +218,6 @@ public class SignupFrm extends javax.swing.JFrame {
                 //                    throw new RuntimeException(e);
                 //                }
             pst.close();
-            rs.close();
             DBConnectClass.getConnection().close();
             }catch(SQLException ex){
                 Logger.getLogger(SignupFrm.class.getName()).log(Level.SEVERE, null, ex);
@@ -276,12 +271,10 @@ public class SignupFrm extends javax.swing.JFrame {
     public boolean checkEmail(String email){
         boolean email_notexists = true;
         String query = "SELECT COUNT(*) FROM `users` WHERE `email` = ?";
-        PreparedStatement pst = null;
-        ResultSet rs = null;
         try {
-            pst = DBConnectClass.getConnection().prepareStatement(query);
+            PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query);
             pst.setString(1,email);
-            rs = pst.executeQuery();
+            ResultSet rs = pst.executeQuery();
             rs.next();
             if(rs.getInt(1)!=0){
                 email_notexists = false;

@@ -25,13 +25,13 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author nadinCodeHat
  */
-public class AddUpdateMovieFrm extends javax.swing.JFrame {
+public class UpdateMovieFrm extends javax.swing.JFrame {
     
-    public AddUpdateMovieFrm() {
+    public UpdateMovieFrm() {
     }
     
     int id;
-    public AddUpdateMovieFrm(int id){
+    public UpdateMovieFrm(int id){
         initComponents();
         this.id = id;
         loadEditData();
@@ -525,7 +525,7 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
             rs.close();
             DBConnectClass.getConnection().close();
         } catch (SQLException ex) {
-            Logger.getLogger(AddUpdateMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UpdateMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         movieTitleTextField.setText(movietitle);
@@ -725,7 +725,7 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
                 pst.close();
                 DBConnectClass.getConnection().close();
             }catch(SQLException ex){
-                Logger.getLogger(AddUpdateMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UpdateMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
             }
             finally{
                 JOptionPane.showMessageDialog(null, "Movie updated successfully!","Update Successful",2);
@@ -775,7 +775,7 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
             Image updateBtnImgHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/updateBtnHover.png"));
             updateBtn.setIcon(new ImageIcon(updateBtnImgHover));
         } catch (IOException ex) {
-            Logger.getLogger(AddUpdateMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UpdateMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_updateBtnMouseEntered
 
@@ -784,7 +784,7 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
             Image updateBtnImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/updateBtn.png"));
             updateBtn.setIcon(new ImageIcon(updateBtnImg));
         } catch (IOException ex) {
-            Logger.getLogger(AddUpdateMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UpdateMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_updateBtnMouseExited
 
@@ -897,8 +897,10 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddUpdateMovieFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateMovieFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         
@@ -907,7 +909,7 @@ public class AddUpdateMovieFrm extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new AddUpdateMovieFrm().setVisible(true);
+            new UpdateMovieFrm().setVisible(true);
         });
     }
 

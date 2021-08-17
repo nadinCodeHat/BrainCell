@@ -2,20 +2,16 @@ package movie.ticketbooking.system;
 
 import java.awt.Desktop;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -420,83 +416,74 @@ public class MainFrm extends javax.swing.JFrame {
        // myBookingsPanel.setVisible(mb);
         //profilePanel.setVisible(p);
     }
-    DefaultTableModel model = new DefaultTableModel(new String[]{"id, Movie Title", "Genre", "Rating", "Hour", "Minute", "Content Rating", "Ticket Price Child", "Ticket Price Adult", "uri", "Poster"}, 0);
     
+    DefaultTableModel model = new DefaultTableModel(new String[]{"Movie Title", "Genre", "Rating", "Hour", "Minute", "Content Rating", "Ticket Price Child", "Ticket Price Adult", "uri", "Poster"}, 0);
+    DefaultTableModel idmodel = new DefaultTableModel(new String[]{"ID"},0);
     private String uri1,uri2,uri3 = null;
-    private int id1,id2,id3 = 0;
+    private int id1, id2, id3 = 0;
     private void getMovies(){
         //Retrieve data
         String query = "SELECT id, movie_title, genre, rating, hour, minute, content_rating, ticket_price_child, ticket_price_adult, uri, poster FROM `movies`" ;
-        int id = 0;
-        String movietitle = null;
-        String genre = null;
-        Double rating = 0.0;
-        int hour = 0;
-        int minute = 0;
-        String contentRating = null;
-        String ticketPriceChild = null;
-        String ticketPriceAdult = null;
-        String uri = null;
-        byte[] posterBytes = null;
-        PreparedStatement pst = null;
-        ResultSet rs = null;
+
         try {
-            pst = DBConnectClass.getConnection().prepareStatement(query);
-            rs = pst.executeQuery();
-            while(rs.next()){
-                id = rs.getInt("id");
-                movietitle = rs.getString("movie_title");
-                genre = rs.getString("genre");
-                rating = rs.getDouble("rating");
-                hour = rs.getInt("hour");
-                minute = rs.getInt("minute");
-                contentRating = rs.getString("content_rating");
-                ticketPriceChild = String.valueOf(rs.getInt("ticket_price_child"));
-                ticketPriceAdult = String.valueOf(rs.getInt("ticket_price_adult"));
-                uri = rs.getString("uri");
-                posterBytes = rs.getBytes("poster");
-                model.addRow(new Object[]{id, movietitle, genre, rating, hour, minute, contentRating, ticketPriceChild, ticketPriceAdult, uri, posterBytes});
+            ResultSet rs;
+            try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query)) {
+                rs = pst.executeQuery();
+                while(rs.next()){
+                    int id = rs.getInt("id");
+                    String movietitle = rs.getString("movie_title");
+                    String genre = rs.getString("genre");
+                    Double rating = rs.getDouble("rating");
+                    int hour = rs.getInt("hour");
+                    int minute = rs.getInt("minute");
+                    String contentRating = rs.getString("content_rating");
+                    String ticketPriceChild = String.valueOf(rs.getInt("ticket_price_child"));
+                    String ticketPriceAdult = String.valueOf(rs.getInt("ticket_price_adult"));
+                    String uri = rs.getString("uri");
+                    byte[] posterBytes = rs.getBytes("poster");
+                    model.addRow(new Object[]{movietitle, genre, rating, hour, minute, contentRating, ticketPriceChild, ticketPriceAdult, uri, posterBytes});
+                    idmodel.addRow(new Object[]{id});
+                }
             }
-            pst.close();
             rs.close();
             DBConnectClass.getConnection().close();
         } catch (SQLException ex) {
             Logger.getLogger(MainFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        
         //set data from model to fields
-        id1 = (int) model.getValueAt(0,0);
-        movieTitle1.setText("<html>"+ model.getValueAt(0, 1).toString()+"</html>");
-        genre1.setText(model.getValueAt(0,2).toString());
-        rating1.setText(model.getValueAt(0,3).toString()+"/10");
-        runtime1.setText(model.getValueAt(0,4).toString()+ "h and " + model.getValueAt(0,5).toString()+"m");
-        contentRating1.setText(model.getValueAt(0,6).toString());
-        tckPriceChild1.setText("Rs. "+ model.getValueAt(0,7).toString());
-        tckPriceAdult1.setText("Rs. "+ model.getValueAt(0,8).toString());
-        uri1 = model.getValueAt(0,9).toString();
-        movieLabel1.setIcon(parsePoster((byte[]) model.getValueAt(0,10)));
+        id1 = (int) idmodel.getValueAt(0,0);
+        movieTitle1.setText("<html>"+ model.getValueAt(0, 0).toString()+"</html>");
+        genre1.setText(model.getValueAt(0,1).toString());
+        rating1.setText(model.getValueAt(0,2).toString()+"/10");
+        runtime1.setText(model.getValueAt(0,3).toString()+ "h and " + model.getValueAt(0,4).toString()+"m");
+        contentRating1.setText(model.getValueAt(0,5).toString());
+        tckPriceChild1.setText("Rs. "+ model.getValueAt(0,6).toString());
+        tckPriceAdult1.setText("Rs. "+ model.getValueAt(0,7).toString());
+        uri1 = model.getValueAt(0,8).toString();
+        movieLabel1.setIcon(parsePoster((byte[]) model.getValueAt(0,9)));
+
+        id2 = (int) idmodel.getValueAt(1,0);
+        movieTitle2.setText("<html>"+ model.getValueAt(1, 0).toString()+"</html>");
+        genre2.setText(model.getValueAt(1,1).toString());
+        rating2.setText(model.getValueAt(1,2).toString()+"/10");
+        runtime2.setText(model.getValueAt(1,3).toString()+ "h and " + model.getValueAt(1,4).toString()+"m");
+        contentRating2.setText(model.getValueAt(1,5).toString());
+        tckPriceChild2.setText("Rs. "+ model.getValueAt(1,6).toString());
+        tckPriceAdult2.setText("Rs. "+ model.getValueAt(1,7).toString());
+        uri2 = model.getValueAt(1,8).toString();
+        movieLabel2.setIcon(parsePoster((byte[]) model.getValueAt(1,9)));
         
-        id2 = (int) model.getValueAt(1,0);
-        movieTitle2.setText("<html>"+ model.getValueAt(1, 1).toString()+"</html>");
-        genre2.setText(model.getValueAt(1,2).toString());
-        rating2.setText(model.getValueAt(1,3).toString()+"/10");
-        runtime2.setText(model.getValueAt(1,4).toString()+ "h and " + model.getValueAt(1,5).toString()+"m");
-        contentRating2.setText(model.getValueAt(1,6).toString());
-        tckPriceChild2.setText("Rs. "+ model.getValueAt(1,7).toString());
-        tckPriceAdult2.setText("Rs. "+ model.getValueAt(1,8).toString());
-        uri2 = model.getValueAt(1,9).toString();
-        movieLabel2.setIcon(parsePoster((byte[]) model.getValueAt(1,10)));
-        
-//        id3 = (int) model.getValueAt(2,0);
-//        movieTitle3.setText("<html>"+ model.getValueAt(2, 1).toString()+"</html>");
-//        genre3.setText(model.getValueAt(2,2).toString());
-//        rating3.setText(model.getValueAt(2,3).toString()+"/10");
-//        runtime3.setText(model.getValueAt(2,4).toString()+ "h and " + model.getValueAt(2,5).toString()+"m");
-//        contentRating3.setText(model.getValueAt(2,6).toString());
-//        tckPriceChild3.setText("Rs. "+ model.getValueAt(2,7).toString());
-//        tckPriceAdult3.setText("Rs. "+ model.getValueAt(2,8).toString());
-//        uri3 = model.getValueAt(2,9).toString();
-//        movieLabel3.setIcon(parsePoster((byte[]) model.getValueAt(2,10)));
+//        movieTitle3.setText("<html>"+ model.getValueAt(2, 0).toString()+"</html>");
+//        genre3.setText(model.getValueAt(2,1).toString());
+//        rating3.setText(model.getValueAt(2,2).toString()+"/10");
+//        runtime3.setText(model.getValueAt(2,3).toString()+ "h and " + model.getValueAt(2,4).toString()+"m");
+//        contentRating3.setText(model.getValueAt(2,5).toString());
+//        tckPriceChild3.setText("Rs. "+ model.getValueAt(2,6).toString());
+//        tckPriceAdult3.setText("Rs. "+ model.getValueAt(2,7).toString());
+//        uri3 = model.getValueAt(2,8).toString();
+//        movieLabel3.setIcon(parsePoster((byte[]) model.getValueAt(2,9)));
     }
     
     private ImageIcon parsePoster(byte[] dTM){
@@ -638,10 +625,8 @@ public class MainFrm extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainFrm().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new MainFrm().setVisible(true);
         });
     }
 

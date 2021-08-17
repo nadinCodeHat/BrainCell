@@ -237,31 +237,29 @@ public class AdminMainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_manageMoviesBtnActionPerformed
 
     private void getManageMovies() throws SQLException{
-        PreparedStatement pst = null;
-        ResultSet rs = null;
         DefaultTableModel model = new DefaultTableModel(new String[]{"Id", "Movie Tit.", "Genre", "Rating", "Runtime", "Cont. Rat.", "Screen", "TP - Child", "TP - Adult"}, 0);
         String getMoviesQuery="SELECT id, movie_title, genre, rating, hour, minute, content_rating, screen, ticket_price_child, ticket_price_adult FROM movies";
         try{
-            pst = DBConnectClass.getConnection().prepareStatement(getMoviesQuery);
-            rs = pst.executeQuery();
-            while(rs.next())
-            {
-                int id = rs.getInt("id");
-                String movieTitle = rs.getString("movie_title");
-                String genre = rs.getString("genre");
-                Double rating = rs.getDouble("rating");
-                int hour = rs.getInt("hour");
-                int minute = rs.getInt("minute");
-                String contentRating = rs.getString("content_rating");
-                String screen = rs.getString("screen");
-                int ticketPriceChild = rs.getInt("ticket_price_child");
-                int ticketPriceAdult = rs.getInt("ticket_price_adult");
-
-                String runtime = hour+" h and "+minute+" m";
-                model.addRow(new Object[]{id, movieTitle, genre, rating, runtime, contentRating, screen, ticketPriceChild, ticketPriceAdult});
+            ResultSet rs;
+            try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(getMoviesQuery)) {
+                rs = pst.executeQuery();
+                while(rs.next())
+                {
+                    int id = rs.getInt("id");
+                    String movieTitle = rs.getString("movie_title");
+                    String genre = rs.getString("genre");
+                    Double rating = rs.getDouble("rating");
+                    int hour = rs.getInt("hour");
+                    int minute = rs.getInt("minute");
+                    String contentRating = rs.getString("content_rating");
+                    String screen = rs.getString("screen");
+                    int ticketPriceChild = rs.getInt("ticket_price_child");
+                    int ticketPriceAdult = rs.getInt("ticket_price_adult");
+                    
+                    String runtime = hour+" h and "+minute+" m";
+                    model.addRow(new Object[]{id, movieTitle, genre, rating, runtime, contentRating, screen, ticketPriceChild, ticketPriceAdult});
+                }   moviesTable.setModel(model);
             }
-            moviesTable.setModel(model);
-            pst.close();
             rs.close();
             DBConnectClass.getConnection().close();
         }catch(SQLException ex){
@@ -367,7 +365,7 @@ public class AdminMainFrm extends javax.swing.JFrame {
             int column = 0;
             int row = moviesTable.getSelectedRow();
             int idvalue = (int) moviesTable.getModel().getValueAt(row, column);
-            AddUpdateMovieFrm addUpdateMovieFrm = new AddUpdateMovieFrm(idvalue);
+            UpdateMovieFrm addUpdateMovieFrm = new UpdateMovieFrm(idvalue);
             addUpdateMovieFrm.pack();
             addUpdateMovieFrm.setVisible(true);
         }   
