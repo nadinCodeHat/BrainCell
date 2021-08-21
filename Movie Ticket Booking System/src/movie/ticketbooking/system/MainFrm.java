@@ -21,10 +21,16 @@ import javax.swing.table.DefaultTableModel;
 public class MainFrm extends javax.swing.JFrame {
 
     public MainFrm() {
-        initComponents();
-        getMovies();
+
     }
 
+    private int userid = 0;
+    public MainFrm(int userid){
+        initComponents();
+        this.userid = userid;
+        getMovies();
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -49,11 +55,8 @@ public class MainFrm extends javax.swing.JFrame {
         contentRatingLabel1 = new javax.swing.JLabel();
         contentRating1 = new javax.swing.JLabel();
         ticketPriceLabel1 = new javax.swing.JLabel();
-        adultLabel1 = new javax.swing.JLabel();
-        childLabel1 = new javax.swing.JLabel();
+        tckPrice1 = new javax.swing.JLabel();
         watchTrailerBtn1 = new javax.swing.JButton();
-        tckPriceAdult1 = new javax.swing.JLabel();
-        tckPriceChild1 = new javax.swing.JLabel();
         bookNowBtn1 = new javax.swing.JButton();
         moviePanel2 = new javax.swing.JPanel();
         movieLabel2 = new javax.swing.JLabel();
@@ -68,11 +71,8 @@ public class MainFrm extends javax.swing.JFrame {
         contentRatingLabel2 = new javax.swing.JLabel();
         contentRating2 = new javax.swing.JLabel();
         ticketPriceLabel2 = new javax.swing.JLabel();
-        adultLabel2 = new javax.swing.JLabel();
-        childLabel2 = new javax.swing.JLabel();
+        tckPrice2 = new javax.swing.JLabel();
         watchTrailerBtn2 = new javax.swing.JButton();
-        tckPriceAdult2 = new javax.swing.JLabel();
-        tckPriceChild2 = new javax.swing.JLabel();
         bookNowBtn2 = new javax.swing.JButton();
         moviePanel3 = new javax.swing.JPanel();
         movieLabel3 = new javax.swing.JLabel();
@@ -87,11 +87,8 @@ public class MainFrm extends javax.swing.JFrame {
         contentRatingLabel3 = new javax.swing.JLabel();
         contentRating3 = new javax.swing.JLabel();
         ticketPriceLabel3 = new javax.swing.JLabel();
-        adultLabel3 = new javax.swing.JLabel();
-        childLabel3 = new javax.swing.JLabel();
+        tckPrice3 = new javax.swing.JLabel();
         watchTrailerBtn3 = new javax.swing.JButton();
-        tckPriceAdult3 = new javax.swing.JLabel();
-        tckPriceChild3 = new javax.swing.JLabel();
         bookNowBtn3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -223,13 +220,8 @@ public class MainFrm extends javax.swing.JFrame {
         ticketPriceLabel1.setText("Ticket Price");
         moviePanel1.add(ticketPriceLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, -1, -1));
 
-        adultLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        adultLabel1.setText("Adults (ages 14 & up)");
-        moviePanel1.add(adultLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, -1, -1));
-
-        childLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        childLabel1.setText("Children (ages 2 - 13)");
-        moviePanel1.add(childLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, -1, -1));
+        tckPrice1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        moviePanel1.add(tckPrice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, -1, -1));
 
         watchTrailerBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,8 +229,6 @@ public class MainFrm extends javax.swing.JFrame {
             }
         });
         moviePanel1.add(watchTrailerBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 110, 30));
-        moviePanel1.add(tckPriceAdult1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 442, -1, -1));
-        moviePanel1.add(tckPriceChild1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, -1, -1));
 
         bookNowBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -301,13 +291,8 @@ public class MainFrm extends javax.swing.JFrame {
         ticketPriceLabel2.setText("Ticket Price");
         moviePanel2.add(ticketPriceLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, -1, -1));
 
-        adultLabel2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        adultLabel2.setText("Adults (ages 14 & up)");
-        moviePanel2.add(adultLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, -1, -1));
-
-        childLabel2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        childLabel2.setText("Children (ages 2 - 13)");
-        moviePanel2.add(childLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, -1, -1));
+        tckPrice2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        moviePanel2.add(tckPrice2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, -1, -1));
 
         watchTrailerBtn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -315,8 +300,6 @@ public class MainFrm extends javax.swing.JFrame {
             }
         });
         moviePanel2.add(watchTrailerBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 110, 30));
-        moviePanel2.add(tckPriceAdult2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 442, -1, -1));
-        moviePanel2.add(tckPriceChild2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, -1, -1));
 
         bookNowBtn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -379,13 +362,8 @@ public class MainFrm extends javax.swing.JFrame {
         ticketPriceLabel3.setText("Ticket Price");
         moviePanel3.add(ticketPriceLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, -1, -1));
 
-        adultLabel3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        adultLabel3.setText("Adults (ages 14 & up)");
-        moviePanel3.add(adultLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, -1, -1));
-
-        childLabel3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        childLabel3.setText("Children (ages 2 - 13)");
-        moviePanel3.add(childLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, -1, -1));
+        tckPrice3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        moviePanel3.add(tckPrice3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, -1, -1));
 
         watchTrailerBtn3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -393,8 +371,6 @@ public class MainFrm extends javax.swing.JFrame {
             }
         });
         moviePanel3.add(watchTrailerBtn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 110, 30));
-        moviePanel3.add(tckPriceAdult3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 442, -1, -1));
-        moviePanel3.add(tckPriceChild3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, -1, -1));
 
         bookNowBtn3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -417,13 +393,12 @@ public class MainFrm extends javax.swing.JFrame {
         //profilePanel.setVisible(p);
     }
     
-    DefaultTableModel model = new DefaultTableModel(new String[]{"Movie Title", "Genre", "Rating", "Hour", "Minute", "Content Rating", "Ticket Price Child", "Ticket Price Adult", "uri", "Poster"}, 0);
-    DefaultTableModel idmodel = new DefaultTableModel(new String[]{"ID"},0);
+    DefaultTableModel model = new DefaultTableModel(new String[]{"ID, Movie Title", "Genre", "Rating", "Hour", "Minute", "Content Rating", "Ticket Price", "uri", "Poster"}, 0);
     private String uri1,uri2,uri3 = null;
     private int id1, id2, id3 = 0;
     private void getMovies(){
         //Retrieve data
-        String query = "SELECT id, movie_title, genre, rating, hour, minute, content_rating, ticket_price_child, ticket_price_adult, uri, poster FROM `movies`" ;
+        String query = "SELECT id, movie_title, genre, rating, hour, minute, content_rating, ticket_price, uri, poster FROM `movies`" ;
 
         try {
             ResultSet rs;
@@ -437,12 +412,10 @@ public class MainFrm extends javax.swing.JFrame {
                     int hour = rs.getInt("hour");
                     int minute = rs.getInt("minute");
                     String contentRating = rs.getString("content_rating");
-                    String ticketPriceChild = String.valueOf(rs.getInt("ticket_price_child"));
-                    String ticketPriceAdult = String.valueOf(rs.getInt("ticket_price_adult"));
+                    String ticketPrice = String.valueOf(rs.getInt("ticket_price"));
                     String uri = rs.getString("uri");
                     byte[] posterBytes = rs.getBytes("poster");
-                    model.addRow(new Object[]{movietitle, genre, rating, hour, minute, contentRating, ticketPriceChild, ticketPriceAdult, uri, posterBytes});
-                    idmodel.addRow(new Object[]{id});
+                    model.addRow(new Object[]{id, movietitle, genre, rating, hour, minute, contentRating, ticketPrice, uri, posterBytes});
                 }
             }
             rs.close();
@@ -453,35 +426,33 @@ public class MainFrm extends javax.swing.JFrame {
         
         
         //set data from model to fields
-        id1 = (int) idmodel.getValueAt(0,0);
-        movieTitle1.setText("<html>"+ model.getValueAt(0, 0).toString()+"</html>");
-        genre1.setText(model.getValueAt(0,1).toString());
-        rating1.setText(model.getValueAt(0,2).toString()+"/10");
-        runtime1.setText(model.getValueAt(0,3).toString()+ "h and " + model.getValueAt(0,4).toString()+"m");
-        contentRating1.setText(model.getValueAt(0,5).toString());
-        tckPriceChild1.setText("Rs. "+ model.getValueAt(0,6).toString());
-        tckPriceAdult1.setText("Rs. "+ model.getValueAt(0,7).toString());
+        id1 = (int) model.getValueAt(0,0);
+        movieTitle1.setText("<html>"+ model.getValueAt(0, 1).toString()+"</html>");
+        genre1.setText(model.getValueAt(0,2).toString());
+        rating1.setText(model.getValueAt(0,3).toString()+"/10");
+        runtime1.setText(model.getValueAt(0,4).toString()+ "h and " + model.getValueAt(0,5).toString()+"m");
+        contentRating1.setText(model.getValueAt(0,6).toString());
+        tckPrice1.setText("Rs. "+ model.getValueAt(0,7).toString());
         uri1 = model.getValueAt(0,8).toString();
         movieLabel1.setIcon(parsePoster((byte[]) model.getValueAt(0,9)));
 
-        id2 = (int) idmodel.getValueAt(1,0);
-        movieTitle2.setText("<html>"+ model.getValueAt(1, 0).toString()+"</html>");
-        genre2.setText(model.getValueAt(1,1).toString());
-        rating2.setText(model.getValueAt(1,2).toString()+"/10");
-        runtime2.setText(model.getValueAt(1,3).toString()+ "h and " + model.getValueAt(1,4).toString()+"m");
-        contentRating2.setText(model.getValueAt(1,5).toString());
-        tckPriceChild2.setText("Rs. "+ model.getValueAt(1,6).toString());
-        tckPriceAdult2.setText("Rs. "+ model.getValueAt(1,7).toString());
+        id2 = (int) model.getValueAt(1,0);
+        movieTitle2.setText("<html>"+ model.getValueAt(1, 1).toString()+"</html>");
+        genre2.setText(model.getValueAt(1,2).toString());
+        rating2.setText(model.getValueAt(1,3).toString()+"/10");
+        runtime2.setText(model.getValueAt(1,4).toString()+ "h and " + model.getValueAt(1,5).toString()+"m");
+        contentRating2.setText(model.getValueAt(1,6).toString());
+        tckPrice2.setText("Rs. "+ model.getValueAt(1,7).toString());
         uri2 = model.getValueAt(1,8).toString();
         movieLabel2.setIcon(parsePoster((byte[]) model.getValueAt(1,9)));
         
-//        movieTitle3.setText("<html>"+ model.getValueAt(2, 0).toString()+"</html>");
-//        genre3.setText(model.getValueAt(2,1).toString());
-//        rating3.setText(model.getValueAt(2,2).toString()+"/10");
-//        runtime3.setText(model.getValueAt(2,3).toString()+ "h and " + model.getValueAt(2,4).toString()+"m");
-//        contentRating3.setText(model.getValueAt(2,5).toString());
-//        tckPriceChild3.setText("Rs. "+ model.getValueAt(2,6).toString());
-//        tckPriceAdult3.setText("Rs. "+ model.getValueAt(2,7).toString());
+//        id3 = (int) model.getValueAt(2, 0)
+//        movieTitle3.setText("<html>"+ model.getValueAt(2, 1).toString()+"</html>");
+//        genre3.setText(model.getValueAt(2,2).toString());
+//        rating3.setText(model.getValueAt(2,3).toString()+"/10");
+//        runtime3.setText(model.getValueAt(2,4).toString()+ "h and " + model.getValueAt(2,5).toString()+"m");
+//        contentRating3.setText(model.getValueAt(2,6).toString());
+//        tckPrice3.setText("Rs. "+ model.getValueAt(2,7).toString());
 //        uri3 = model.getValueAt(2,8).toString();
 //        movieLabel3.setIcon(parsePoster((byte[]) model.getValueAt(2,9)));
     }
@@ -567,7 +538,7 @@ public class MainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_moviesBtnActionPerformed
 
     private void bookNowBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookNowBtn1ActionPerformed
-        BookTicketsFrm bookTicket = new BookTicketsFrm(id1);
+        BookTicketsFrm bookTicket = new BookTicketsFrm(id1,userid);
         bookTicket.pack();
         bookTicket.setVisible(true);
     }//GEN-LAST:event_bookNowBtn1ActionPerformed
@@ -585,13 +556,13 @@ public class MainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_watchTrailerBtn3ActionPerformed
 
     private void bookNowBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookNowBtn2ActionPerformed
-        BookTicketsFrm bookTicket = new BookTicketsFrm(id2);
+        BookTicketsFrm bookTicket = new BookTicketsFrm(id2, userid);
         bookTicket.pack();
         bookTicket.setVisible(true);
     }//GEN-LAST:event_bookNowBtn2ActionPerformed
 
     private void bookNowBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookNowBtn3ActionPerformed
-        BookTicketsFrm bookTicket = new BookTicketsFrm(id3);
+        BookTicketsFrm bookTicket = new BookTicketsFrm(id3, userid);
         bookTicket.pack();
         bookTicket.setVisible(true);
     }//GEN-LAST:event_bookNowBtn3ActionPerformed
@@ -631,15 +602,9 @@ public class MainFrm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel adultLabel1;
-    private javax.swing.JLabel adultLabel2;
-    private javax.swing.JLabel adultLabel3;
     private javax.swing.JButton bookNowBtn1;
     private javax.swing.JButton bookNowBtn2;
     private javax.swing.JButton bookNowBtn3;
-    private javax.swing.JLabel childLabel1;
-    private javax.swing.JLabel childLabel2;
-    private javax.swing.JLabel childLabel3;
     private javax.swing.JLabel contentRating1;
     private javax.swing.JLabel contentRating2;
     private javax.swing.JLabel contentRating3;
@@ -683,12 +648,9 @@ public class MainFrm extends javax.swing.JFrame {
     private javax.swing.JLabel starLabel1;
     private javax.swing.JLabel starLabel2;
     private javax.swing.JLabel starLabel3;
-    private javax.swing.JLabel tckPriceAdult1;
-    private javax.swing.JLabel tckPriceAdult2;
-    private javax.swing.JLabel tckPriceAdult3;
-    private javax.swing.JLabel tckPriceChild1;
-    private javax.swing.JLabel tckPriceChild2;
-    private javax.swing.JLabel tckPriceChild3;
+    private javax.swing.JLabel tckPrice1;
+    private javax.swing.JLabel tckPrice2;
+    private javax.swing.JLabel tckPrice3;
     private javax.swing.JLabel ticketPriceLabel1;
     private javax.swing.JLabel ticketPriceLabel2;
     private javax.swing.JLabel ticketPriceLabel3;

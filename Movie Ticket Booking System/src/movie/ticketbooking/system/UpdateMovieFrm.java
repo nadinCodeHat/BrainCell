@@ -72,12 +72,9 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         descriptionTextArea = new javax.swing.JTextArea();
         ticketPricesPanel = new javax.swing.JPanel();
-        tckPrcChildLabel = new javax.swing.JLabel();
-        tckPrcAdultLabel = new javax.swing.JLabel();
+        tckPrcLabel = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        tckPrcChildTextField = new javax.swing.JTextField();
-        tckPrcAdultTextField = new javax.swing.JTextField();
+        tckPrcTextField = new javax.swing.JTextField();
         theaterLabel = new javax.swing.JLabel();
         screenCombo = new javax.swing.JComboBox<>();
         posterImgPath = new javax.swing.JTextField();
@@ -374,29 +371,17 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
         mainPanel.add(descriptionPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 350, -1));
 
         ticketPricesPanel.setBackground(new java.awt.Color(255, 255, 255));
-        ticketPricesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ticket Prices", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 0, 12))); // NOI18N
+        ticketPricesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ticket Price", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 0, 12))); // NOI18N
 
-        tckPrcChildLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        tckPrcChildLabel.setText("Children (ages 2 - 13)");
-
-        tckPrcAdultLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        tckPrcAdultLabel.setText("Adults (ages 14 & up)");
+        tckPrcLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        tckPrcLabel.setText("Set price :");
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel10.setText("Rs.");
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel11.setText("Rs.");
-
-        tckPrcChildTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+        tckPrcTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                tckPrcChildTextFieldKeyPressed(evt);
-            }
-        });
-
-        tckPrcAdultTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tckPrcAdultTextFieldKeyPressed(evt);
+                tckPrcTextFieldKeyPressed(evt);
             }
         });
 
@@ -406,51 +391,38 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
             ticketPricesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ticketPricesPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(ticketPricesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ticketPricesPanelLayout.createSequentialGroup()
-                        .addComponent(tckPrcChildLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tckPrcChildTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ticketPricesPanelLayout.createSequentialGroup()
-                        .addComponent(tckPrcAdultLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                        .addComponent(tckPrcAdultTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addComponent(tckPrcLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tckPrcTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         ticketPricesPanelLayout.setVerticalGroup(
             ticketPricesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ticketPricesPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ticketPricesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tckPrcChildLabel)
+                    .addComponent(tckPrcLabel)
                     .addComponent(jLabel10)
-                    .addComponent(tckPrcChildTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(ticketPricesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tckPrcAdultLabel)
-                    .addComponent(jLabel11)
-                    .addComponent(tckPrcAdultTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(tckPrcTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        mainPanel.add(ticketPricesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 210, 90));
+        mainPanel.add(ticketPricesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 160, 70));
 
         theaterLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         theaterLabel.setText("Screens");
-        mainPanel.add(theaterLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 440, -1, -1));
+        mainPanel.add(theaterLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 440, -1, -1));
 
         screenCombo.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         screenCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Screen 1", "Screen 2", "Screen 3" }));
-        mainPanel.add(screenCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 460, 110, -1));
+        mainPanel.add(screenCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 460, 110, -1));
 
         posterImgPath.setEditable(false);
         posterImgPath.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         posterImgPath.setForeground(new java.awt.Color(0, 51, 204));
-        mainPanel.add(posterImgPath, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 540, 240, -1));
+        mainPanel.add(posterImgPath, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, 240, -1));
 
         browsePosterBtn.setText("Browse poster");
         browsePosterBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -458,7 +430,7 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
                 browsePosterBtnActionPerformed(evt);
             }
         });
-        mainPanel.add(browsePosterBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(276, 538, -1, -1));
+        mainPanel.add(browsePosterBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 520, -1, -1));
 
         updateBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/updateBtn.png"))); // NOI18N
         updateBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -476,11 +448,11 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
             }
         });
         mainPanel.add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 610, 80, 30));
-        mainPanel.add(uriTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 570, 270, -1));
+        mainPanel.add(uriTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 560, 270, -1));
 
         uriLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         uriLabel.setText("Youtube URI:");
-        mainPanel.add(uriLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 573, -1, -1));
+        mainPanel.add(uriLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, -1, -1));
 
         getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 660));
 
@@ -491,7 +463,7 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
     byte[] posterBytes = null;
     public void loadEditData(){
         //Retrieve data
-        String query = "SELECT movie_title, genre, rating, hour, minute, content_rating, description, screen, ticket_price_child, ticket_price_adult, uri, poster FROM `movies` WHERE id = '" + id + "'" ;
+        String query = "SELECT movie_title, genre, rating, hour, minute, content_rating, description, screen, ticket_price, uri, poster FROM `movies` WHERE id = '" + id + "'" ;
         String movietitle = null;
         String genre = null;
         Double rating = 0.0;
@@ -500,8 +472,7 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
         String contentRating = null;
         String description = null;
         String screen = null;
-        String ticketPriceChild = null;
-        String ticketPriceAdult = null;
+        String ticketPrice = null;
         String uri = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -517,8 +488,7 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
                 contentRating = rs.getString("content_rating");
                 description = rs.getString("description");
                 screen = rs.getString("screen");
-                ticketPriceChild = String.valueOf(rs.getInt("ticket_price_child"));
-                ticketPriceAdult = String.valueOf(rs.getInt("ticket_price_adult"));
+                ticketPrice = String.valueOf(rs.getInt("ticket_price"));
                 uri = rs.getString("uri");
                 posterBytes = rs.getBytes("poster");
             }
@@ -564,8 +534,7 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
         });
         descriptionTextArea.setText(description);
         screenCombo.setSelectedItem(screen);
-        tckPrcChildTextField.setText(ticketPriceChild);
-        tckPrcAdultTextField.setText(ticketPriceAdult);
+        tckPrcTextField.setText(ticketPrice);
         uriTextField.setText(uri);
         if(posterBytes != null){
             posterImgPath.setText("Poster already saved.");
@@ -704,17 +673,16 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
         String contentRating = contRatingCombo.getSelectedItem().toString();
         String description = descriptionTextArea.getText();
         String screen = screenCombo.getSelectedItem().toString();
-        Integer ticketPriceChild = Integer.parseInt(tckPrcChildTextField.getText());
-        Integer ticketPriceAdult = Integer.parseInt(tckPrcChildTextField.getText());
+        Integer ticketPrice = Integer.parseInt(tckPrcTextField.getText());
         String uri = uriTextField.getText();
         PreparedStatement pst = null;
         if(checkEmptyFields()){
             String updateMoveQuery = null;
             if(posterBytes !=null && poster == null){
-                updateMoveQuery = "UPDATE `movies` SET `movie_title` = ?, `genre` = ?, `rating` = ?, `hour` = ?, `minute` = ?, `content_rating` = ?, `description` = ?, `screen` = ?, `ticket_price_child` = ?, `ticket_price_adult` = ?, `uir` = ? WHERE id= '"+id+"'";
+                updateMoveQuery = "UPDATE `movies` SET `movie_title` = ?, `genre` = ?, `rating` = ?, `hour` = ?, `minute` = ?, `content_rating` = ?, `description` = ?, `screen` = ?, `ticket_price` = ?, `uir` = ? WHERE id= '"+id+"'";
             }
             else{
-                updateMoveQuery = "UPDATE `movies` SET `movie_title` = ?, `genre` = ?, `rating` = ?, `hour` = ?, `minute` = ?, `content_rating` = ?, `description` = ?, `screen` = ?, `ticket_price_child` = ?, `ticket_price_adult` = ?, `uir` = ?, `poster` = ? WHERE id= '"+id+"'";
+                updateMoveQuery = "UPDATE `movies` SET `movie_title` = ?, `genre` = ?, `rating` = ?, `hour` = ?, `minute` = ?, `content_rating` = ?, `description` = ?, `screen` = ?, `ticket_price` = ?, `uir` = ?, `poster` = ? WHERE id= '"+id+"'";
             }
             try{
                 pst = DBConnectClass.getConnection().prepareStatement(updateMoveQuery);
@@ -726,11 +694,10 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
                 pst.setString(6, contentRating);
                 pst.setString(7, description);
                 pst.setString(8, screen);
-                pst.setInt(9, ticketPriceChild);
-                pst.setInt(10, ticketPriceAdult);
-                pst.setString(11, uri);
+                pst.setInt(9, ticketPrice);
+                pst.setString(10, uri);
                 if(posterBytes !=null && poster != null){
-                    pst.setBytes(12, poster);
+                    pst.setBytes(11, poster);
                 }
                 pst.executeUpdate();
                 pst.close();
@@ -747,8 +714,7 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
     private boolean checkEmptyFields(){
         String movie_title = movieTitleTextField.getText();
         String description = descriptionTextArea.getText();
-        String ticketPriceChild = tckPrcChildTextField.getText();
-        String ticketPriceAdult = tckPrcAdultTextField.getText();
+        String ticketPrice = tckPrcTextField.getText();
         String uri = uriTextField.getText();
 
         //check empty fields
@@ -764,12 +730,8 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please provide a movie description.", "Empty Field",2);
             return false;
         }
-        if(ticketPriceChild.trim().equals("")){
-            JOptionPane.showMessageDialog(null, "Please enter a price for child ticket.", "Empty Field",2);
-            return false;
-        }
-        if(ticketPriceAdult.trim().equals("")){
-            JOptionPane.showMessageDialog(null, "Please enter a price for adult ticket.", "Empty Field",2);
+        if(ticketPrice.trim().equals("")){
+            JOptionPane.showMessageDialog(null, "Please enter a price for ticket.", "Empty Field",2);
             return false;
         }
         if(uri.trim().equals("")){
@@ -875,21 +837,13 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
         checkDramaCheckBox();
     }//GEN-LAST:event_dramaCheckBoxActionPerformed
 
-    private void tckPrcChildTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tckPrcChildTextFieldKeyPressed
-        if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9' && tckPrcChildTextField.getText().length()<4 || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-            tckPrcChildTextField.setEditable(true);
+    private void tckPrcTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tckPrcTextFieldKeyPressed
+        if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9' && tckPrcTextField.getText().length()<4 || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+            tckPrcTextField.setEditable(true);
         } else {
-            tckPrcChildTextField.setEditable(false);
+            tckPrcTextField.setEditable(false);
         }
-    }//GEN-LAST:event_tckPrcChildTextFieldKeyPressed
-
-    private void tckPrcAdultTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tckPrcAdultTextFieldKeyPressed
-        if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9' && tckPrcAdultTextField.getText().length()<4 || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-            tckPrcAdultTextField.setEditable(true);
-        } else {
-            tckPrcAdultTextField.setEditable(false);
-        }
-    }//GEN-LAST:event_tckPrcAdultTextFieldKeyPressed
+    }//GEN-LAST:event_tckPrcTextFieldKeyPressed
 
     /**
      * @param args the command line arguments
@@ -944,7 +898,6 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
     private javax.swing.JSpinner hourSpinner;
     private javax.swing.JLabel hoursLabel;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JSpinner minuteSpinner;
@@ -958,10 +911,8 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
     private javax.swing.JPanel ratingsPanel;
     private javax.swing.JPanel runtimePanel;
     private javax.swing.JComboBox<String> screenCombo;
-    private javax.swing.JLabel tckPrcAdultLabel;
-    private javax.swing.JTextField tckPrcAdultTextField;
-    private javax.swing.JLabel tckPrcChildLabel;
-    private javax.swing.JTextField tckPrcChildTextField;
+    private javax.swing.JLabel tckPrcLabel;
+    private javax.swing.JTextField tckPrcTextField;
     private javax.swing.JLabel theaterLabel;
     private javax.swing.JCheckBox thrillerCheckBox;
     private javax.swing.JPanel ticketPricesPanel;

@@ -185,7 +185,8 @@ public class LoginFrm extends javax.swing.JFrame {
                             adminMFrm.setVisible(true);
                             this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
                         }else{
-                            MainFrm mainFrm = new MainFrm();
+                            
+                            MainFrm mainFrm = new MainFrm(rs.getInt("id"));
                             mainFrm.setVisible(true);
                             this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
                         }

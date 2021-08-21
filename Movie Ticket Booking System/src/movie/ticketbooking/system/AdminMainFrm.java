@@ -125,20 +125,20 @@ public class AdminMainFrm extends javax.swing.JFrame {
         moviesTable.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         moviesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "Movie Tit.", "Genre", "Rating", "Runtime", "Cont. Rat.", "Theater", "TP - Child", "TP - Adult"
+                "id", "Movie Tit.", "Genre", "Rating", "Runtime", "Cont. Rat.", "Theater", "Tic. Price."
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -237,8 +237,8 @@ public class AdminMainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_manageMoviesBtnActionPerformed
 
     private void getManageMovies() throws SQLException{
-        DefaultTableModel model = new DefaultTableModel(new String[]{"Id", "Movie Tit.", "Genre", "Rating", "Runtime", "Cont. Rat.", "Screen", "TP - Child", "TP - Adult"}, 0);
-        String getMoviesQuery="SELECT id, movie_title, genre, rating, hour, minute, content_rating, screen, ticket_price_child, ticket_price_adult FROM movies";
+        DefaultTableModel model = new DefaultTableModel(new String[]{"Id", "Movie Tit.", "Genre", "Rating", "Runtime", "Cont. Rat.", "Screen", "Ticket Price"}, 0);
+        String getMoviesQuery="SELECT id, movie_title, genre, rating, hour, minute, content_rating, screen, ticket_price FROM movies";
         try{
             ResultSet rs;
             try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(getMoviesQuery)) {
@@ -253,11 +253,10 @@ public class AdminMainFrm extends javax.swing.JFrame {
                     int minute = rs.getInt("minute");
                     String contentRating = rs.getString("content_rating");
                     String screen = rs.getString("screen");
-                    int ticketPriceChild = rs.getInt("ticket_price_child");
-                    int ticketPriceAdult = rs.getInt("ticket_price_adult");
+                    int ticketPrice = rs.getInt("ticket_price");
                     
                     String runtime = hour+" h and "+minute+" m";
-                    model.addRow(new Object[]{id, movieTitle, genre, rating, runtime, contentRating, screen, ticketPriceChild, ticketPriceAdult});
+                    model.addRow(new Object[]{id, movieTitle, genre, rating, runtime, contentRating, screen, ticketPrice});
                 }   moviesTable.setModel(model);
             }
             rs.close();

@@ -24,17 +24,22 @@ public class BookTicketsFrm extends javax.swing.JFrame {
 
     public BookTicketsFrm(){}
     
-    private int idval = 0;
-    public BookTicketsFrm(int id) {
+    private int idval,userid = 0;
+    public BookTicketsFrm(int id, int userid) {
         initComponents();
         this.idval = id;
+        this.userid = userid;
         loadMovieData();
         pickDate.setMinSelectableDate(new Date());
+        getAlreadyReservedSeats(new Date(), showtimeCombo.getSelectedItem().toString());
+        if(noOfReservedSeats == 40){
+            confirmBtn.setEnabled(false);
+        }
     }
 
     private void loadMovieData(){
         //Retrieve data
-        String query = "SELECT movie_title, genre, rating, hour, minute, content_rating, description, screen, ticket_price_child, ticket_price_adult, poster FROM `movies` WHERE id = '"+idval+"'";
+        String query = "SELECT movie_title, genre, rating, hour, minute, content_rating, description, screen, ticket_price, poster FROM `movies` WHERE id = '"+idval+"'";
         try {
             ResultSet rs;
             try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query)) {
@@ -47,8 +52,8 @@ public class BookTicketsFrm extends javax.swing.JFrame {
                     contentRatingLabel.setText(rs.getString("content_rating"));
                     descriptionTextArea.setText(rs.getString("description"));
                     screenLabel.setText(rs.getString("screen"));
-                    tckPriceChildLabel.setText("Rs. "+String.valueOf(rs.getInt("ticket_price_child")));
-                    tckPriceAdultLabel.setText("Rs. "+String.valueOf(rs.getInt("ticket_price_adult")));
+                    tckPriceLabel.setText("Rs. "+String.valueOf(rs.getInt("ticket_price")));
+                    ticketPrice = rs.getInt("ticket_price");
                     movieLabel.setIcon(parsePoster(rs.getBytes("poster")));
                 }
             }
@@ -77,29 +82,22 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         runtimeLabel = new javax.swing.JLabel();
         genreLabel = new javax.swing.JLabel();
         contentRatingLabel = new javax.swing.JLabel();
-        adultLabel1 = new javax.swing.JLabel();
-        childLabel1 = new javax.swing.JLabel();
-        tckPriceAdultLabel = new javax.swing.JLabel();
-        tckPriceChildLabel = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
+        ticketLabel = new javax.swing.JLabel();
+        tckPriceLabel = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         descriptionTextArea = new javax.swing.JTextArea();
         showtimeCombo = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        childTicketsSpinner = new javax.swing.JSpinner();
-        adultTicketsSpinner = new javax.swing.JSpinner();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        noOfTcksLabel = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
+        totalAmountLabel = new javax.swing.JLabel();
         confirmBtn = new javax.swing.JButton();
         jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
+        seatsLabel = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         screenLabel = new javax.swing.JLabel();
         a1TogBtn = new javax.swing.JToggleButton();
@@ -163,6 +161,7 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         b7TogBtn = new javax.swing.JToggleButton();
         c7TogBtn = new javax.swing.JToggleButton();
         d7TogBtn = new javax.swing.JToggleButton();
+        jLabel25 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -196,18 +195,10 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         contentRatingLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         moviePanel1.add(contentRatingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 173, -1, -1));
 
-        adultLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        adultLabel1.setText("Adults (ages 14 & up)");
-        moviePanel1.add(adultLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, -1, -1));
-
-        childLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        childLabel1.setText("Children (ages 2 - 13)");
-        moviePanel1.add(childLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, -1, -1));
-        moviePanel1.add(tckPriceAdultLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 492, -1, -1));
-        moviePanel1.add(tckPriceChildLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 462, -1, -1));
-
-        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/icons8_movie_ticket_20px.png"))); // NOI18N
-        moviePanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, -1, -1));
+        ticketLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        ticketLabel.setText("Ticket Price :");
+        moviePanel1.add(ticketLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, -1, -1));
+        moviePanel1.add(tckPriceLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 460, -1, -1));
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/icons8_clock_20px.png"))); // NOI18N
         moviePanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
@@ -232,31 +223,13 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         jPanel3.add(moviePanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 250, 540));
 
         showtimeCombo.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        showtimeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select showtime", "10:30 AM", "1:30 PM", "4:30 PM", "7:30 PM" }));
-        jPanel3.add(showtimeCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 40, 120, -1));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel1.setText("No. of adult tickets");
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, -1, -1));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel2.setText("No. of child tickets");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, -1, -1));
-
-        childTicketsSpinner.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                childTicketsSpinnerMouseClicked(evt);
+        showtimeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10:30 AM", "1:30 PM", "4:30 PM", "7:30 PM" }));
+        showtimeCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showtimeComboActionPerformed(evt);
             }
         });
-        jPanel3.add(childTicketsSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, -1, -1));
-
-        adultTicketsSpinner.setModel(new javax.swing.SpinnerNumberModel());
-        adultTicketsSpinner.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                adultTicketsSpinnerMouseClicked(evt);
-            }
-        });
-        jPanel3.add(adultTicketsSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 40, -1, -1));
+        jPanel3.add(showtimeCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 120, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -264,20 +237,18 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(235, 16, 42));
         jLabel7.setText("Total Amount");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel8.setText("4 Tickets: 2 Adults and 2 Children");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, -1, -1));
+        noOfTcksLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jPanel2.add(noOfTcksLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(235, 16, 42));
         jLabel9.setText("Tickets");
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, -1));
 
-        jLabel29.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel29.setText("Rs: 3200");
-        jPanel2.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, -1, -1));
+        totalAmountLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jPanel2.add(totalAmountLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, -1, -1));
 
         confirmBtn.setText("Confirm");
         confirmBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -292,9 +263,8 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         jLabel30.setText("Seats");
         jPanel2.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        jLabel31.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel31.setText("A1, A2, A3");
-        jPanel2.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+        seatsLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jPanel2.add(seatsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
         jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 500, 590, 70));
 
@@ -386,8 +356,8 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         jPanel5.getAccessibleContext().setAccessibleName("");
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel23.setText("Seat Reserved");
-        jPanel3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 450, -1, -1));
+        jLabel23.setText("Select showtime");
+        jPanel3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 42, -1, -1));
 
         jPanel6.setBackground(new java.awt.Color(30, 145, 64));
         jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 450, 15, 15));
@@ -795,18 +765,23 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         });
         jPanel3.add(d7TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 350, 30, 30));
 
+        jLabel25.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel25.setText("Seat Reserved");
+        jPanel3.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 450, -1, -1));
+
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 600));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void getAlreadyReservedSeats(Date date){
+    private int noOfReservedSeats = 0;
+    private void getAlreadyReservedSeats(Date date, String showtime){
         //Retrieve data
-        String query = "SELECT seat FROM `bookings` WHERE date = '"+date+"'";
+        String query = "SELECT seat FROM `bookings` WHERE date = '"+date+"' and showtime = '"+showtime+"'";
         String seats = null;
         try {
-            ResultSet rs; 
+            ResultSet rs;
             try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query)) {
                 rs = pst.executeQuery();
                 while(rs.next()){
@@ -825,84 +800,124 @@ public class BookTicketsFrm extends javax.swing.JFrame {
             switch (gen) {
                 case "A1":
                     a1TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "A2":
                     a2TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "A3":
                     a3TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "A4":
                     a4TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "A5":
                     a5TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "A6":
                     a6TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "A7":
                     a7TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "A8":
                     a8TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "A9":
                     a9TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "A10":
                     a10TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "B1":
                     b1TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "B2":
                     b2TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "B3":
                     b3TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "B4":
                     b4TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "B5":
                     b5TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "B6":
                     b6TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "B7":
                     b7TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "B8":
                     b8TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "B9":
                     b9TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "B10":
-                    b10TogBtn.setEnabled(false);    
+                    b10TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "C1":
                     c1TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "C2":
                     c2TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "C3":
                     c3TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "C4":
                     c4TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "C5":
                     c5TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "C6":
                     c6TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "C7":
                     c7TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "C8":
                     c8TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "C9":
                     c9TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "C10":
-                    c10TogBtn.setEnabled(false);    
+                    c10TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "D1":
                     d1TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "D2":
                     d2TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "D3":
                     d3TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "D4":
                     d4TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "D5":
                     d5TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "D6":
                     d6TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "D7":
                     d7TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "D8":
                     d8TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "D9":
                     d9TogBtn.setEnabled(false);
+                    noOfReservedSeats++;
                 case "D10":
                     d10TogBtn.setEnabled(false);    
+                    noOfReservedSeats++;
                 default :{
                 }
             }
@@ -911,34 +926,33 @@ public class BookTicketsFrm extends javax.swing.JFrame {
     
     private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
         if(pickDate.getDate().equals(null)){
-           
+           JOptionPane.showMessageDialog(null, "Please select a date");
         }
-        int adultTickets = 0;
-        int childTickets = 0;
-        if((int) adultTicketsSpinner.getValue() == 0){
-            if((int) childTicketsSpinner.getValue() == 0){
-                JOptionPane.showMessageDialog(null, "Number of tickets cannot be 0");
-            }else{
-                adultTickets = 0;
-                childTickets = (int) childTicketsSpinner.getValue();
-            }
-        }
-        else{
-            if((int) childTicketsSpinner.getValue() == 0){
-                adultTickets = (int) adultTicketsSpinner.getValue();
-                childTickets = 0;
-            }else{
-                childTickets = (int) childTicketsSpinner.getValue();
-                adultTickets = (int) adultTicketsSpinner.getValue();
-            }
-        }
-        if("Select showtime".equals(showtimeCombo.getSelectedItem().toString())){
-            JOptionPane.showMessageDialog(null, "Please select a showtime");
-        }
+//        int adultTickets = 0;
+//        int childTickets = 0;
+//        if((int) adultTicketsSpinner.getValue() == 0){
+//            if((int) childTicketsSpinner.getValue() == 0){
+//                JOptionPane.showMessageDialog(null, "Number of tickets cannot be 0");
+//            }else{
+//                adultTickets = 0;
+//                childTickets = (int) childTicketsSpinner.getValue();
+//            }
+//        }
+//        else{
+//            if((int) childTicketsSpinner.getValue() == 0){
+//                adultTickets = (int) adultTicketsSpinner.getValue();
+//                childTickets = 0;
+//            }else{
+//                childTickets = (int) childTicketsSpinner.getValue();
+//                adultTickets = (int) adultTicketsSpinner.getValue();
+//            }
+//        }
+//        if("Select showtime".equals(showtimeCombo.getSelectedItem().toString())){
+//            JOptionPane.showMessageDialog(null, "Please select a showtime");
+//        }
         
         
         //get Booked seats
-        getAlreadyReservedSeats(pickDate.getDate());
     }//GEN-LAST:event_confirmBtnActionPerformed
     private void setTogBtnIcon(JToggleButton btn, String iconName){
         try {
@@ -951,17 +965,26 @@ public class BookTicketsFrm extends javax.swing.JFrame {
     
     ArrayList<String> seatList = new ArrayList<>();
     String str;
-    
+    private int noOfChecked = 0;
+    private int ticketPrice = 0;
+    private int totalAmount = 0;
     private void checkSeat(JToggleButton btn, String seat){
         if(btn.isSelected()){
             setTogBtnIcon(btn,"seatYourBtn");
             seatList.add(seat);
             str = String.join(",",seatList);
+            noOfChecked++;
+            totalAmount += ticketPrice;
         }else{
             setTogBtnIcon(btn,"seatAvailableBtn");
             seatList.remove(seat);
             str = String.join(",",seatList);
+            noOfChecked--;
+            totalAmount -= ticketPrice;
         }
+        seatsLabel.setText(str);
+        noOfTcksLabel.setText(noOfChecked+" Tickets");
+        totalAmountLabel.setText("Rs: "+totalAmount);
     }
     
     private void a1TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a1TogBtnActionPerformed
@@ -1126,17 +1149,13 @@ public class BookTicketsFrm extends javax.swing.JFrame {
 
     private void pickDateFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pickDateFocusLost
         if(!pickDate.getDate().equals(null)){
-            getAlreadyReservedSeats(pickDate.getDate());
+            getAlreadyReservedSeats(pickDate.getDate(), showtimeCombo.getSelectedItem().toString());
         }
     }//GEN-LAST:event_pickDateFocusLost
 
-    private void adultTicketsSpinnerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adultTicketsSpinnerMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_adultTicketsSpinnerMouseClicked
-
-    private void childTicketsSpinnerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_childTicketsSpinnerMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_childTicketsSpinnerMouseClicked
+    private void showtimeComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showtimeComboActionPerformed
+        getAlreadyReservedSeats(pickDate.getDate(), showtimeCombo.getSelectedItem().toString());
+    }//GEN-LAST:event_showtimeComboActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1182,8 +1201,6 @@ public class BookTicketsFrm extends javax.swing.JFrame {
     private javax.swing.JToggleButton a7TogBtn;
     private javax.swing.JToggleButton a8TogBtn;
     private javax.swing.JToggleButton a9TogBtn;
-    private javax.swing.JLabel adultLabel1;
-    private javax.swing.JSpinner adultTicketsSpinner;
     private javax.swing.JToggleButton b10TogBtn;
     private javax.swing.JToggleButton b1TogBtn;
     private javax.swing.JToggleButton b2TogBtn;
@@ -1204,8 +1221,6 @@ public class BookTicketsFrm extends javax.swing.JFrame {
     private javax.swing.JToggleButton c7TogBtn;
     private javax.swing.JToggleButton c8TogBtn;
     private javax.swing.JToggleButton c9TogBtn;
-    private javax.swing.JLabel childLabel1;
-    private javax.swing.JSpinner childTicketsSpinner;
     private javax.swing.JButton confirmBtn;
     private javax.swing.JLabel contentRatingLabel;
     private javax.swing.JToggleButton d10TogBtn;
@@ -1220,7 +1235,6 @@ public class BookTicketsFrm extends javax.swing.JFrame {
     private javax.swing.JToggleButton d9TogBtn;
     private javax.swing.JTextArea descriptionTextArea;
     private javax.swing.JLabel genreLabel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1229,7 +1243,6 @@ public class BookTicketsFrm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -1239,15 +1252,12 @@ public class BookTicketsFrm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -1259,13 +1269,16 @@ public class BookTicketsFrm extends javax.swing.JFrame {
     private javax.swing.JLabel movieLabel;
     private javax.swing.JPanel moviePanel1;
     private javax.swing.JLabel movieTitle;
+    private javax.swing.JLabel noOfTcksLabel;
     private com.toedter.calendar.JDateChooser pickDate;
     private javax.swing.JLabel ratingLabel;
     private javax.swing.JLabel runtimeLabel;
     private javax.swing.JLabel screenLabel;
+    private javax.swing.JLabel seatsLabel;
     private javax.swing.JComboBox<String> showtimeCombo;
     private javax.swing.JLabel starLabel1;
-    private javax.swing.JLabel tckPriceAdultLabel;
-    private javax.swing.JLabel tckPriceChildLabel;
+    private javax.swing.JLabel tckPriceLabel;
+    private javax.swing.JLabel ticketLabel;
+    private javax.swing.JLabel totalAmountLabel;
     // End of variables declaration//GEN-END:variables
 }
