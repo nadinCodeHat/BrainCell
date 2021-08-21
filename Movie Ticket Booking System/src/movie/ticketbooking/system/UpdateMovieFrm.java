@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -535,19 +536,29 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
         contRatingCombo.setSelectedItem(contentRating);
         List<String> listGenre = Arrays.asList(genre.split(","));
             
-        listGenre.forEach(gen -> {
+        listGenre.forEach((String gen) -> {
             switch (gen) {
-                case "Adventure" -> adventureCheckBox.setSelected(true);
-                case "Action" -> actionCheckBox.setSelected(true);
-                case "Mystery" -> mysteryCheckBox.setSelected(true);
-                case "Animation" -> animationCheckBox.setSelected(true);
-                case "Crime" -> crimeCheckBox.setSelected(true);
-                case "Comedy" -> comedyCheckBox.setSelected(true);
-                case "Horror" -> horrorCheckBox.setSelected(true);
-                case "Thriller" -> thrillerCheckBox.setSelected(true);
-                case "Fantasy" -> fantasyCheckBox.setSelected(true);
-                case "Drama" -> dramaCheckBox.setSelected(true);
-                default -> {
+                case "Adventure":
+                    adventureCheckBox.setSelected(true);
+                case "Action":
+                    actionCheckBox.setSelected(true);
+                case "Mystery":
+                    mysteryCheckBox.setSelected(true);
+                case "Animation":
+                    animationCheckBox.setSelected(true);
+                case "Crime":
+                    crimeCheckBox.setSelected(true);
+                case "Comedy":
+                    comedyCheckBox.setSelected(true);
+                case "Horror":
+                    horrorCheckBox.setSelected(true);
+                case "Thriller":
+                    thrillerCheckBox.setSelected(true);
+                case "Fantasy":
+                    fantasyCheckBox.setSelected(true);
+                case "Drama":
+                    dramaCheckBox.setSelected(true);
+                default :{
                 }
             }
         });
@@ -569,7 +580,7 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
             str = String.join(",",genreList);
         }
         else{
-            genreList.remove(adventureCheckBox.getText());
+            genreList.remove("Adventure");
             str = String.join(",",genreList);
         }
     }
@@ -580,7 +591,7 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
             str = String.join(",",genreList);
         }
         else{
-            genreList.remove(actionCheckBox.getText());
+            genreList.remove("Action");
             str = String.join(",",genreList);
         }
     }
@@ -591,7 +602,7 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
             str = String.join(",",genreList);
         }
         else{
-            genreList.remove(mysteryCheckBox.getText());
+            genreList.remove("Mystery");
             str = String.join(",",genreList);
         }
     }
@@ -602,7 +613,7 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
             str = String.join(",",genreList);
         }
         else{
-            genreList.remove(animationCheckBox.getText());
+            genreList.remove("Animation");
             str = String.join(",",genreList);
         }
     }
@@ -613,7 +624,7 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
             str = String.join(",",genreList);
         }
         else{
-            genreList.remove(crimeCheckBox.getText());
+            genreList.remove("Crime");
             str = String.join(",",genreList);
         }
     }
@@ -624,7 +635,7 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
             str = String.join(",",genreList);
         }
         else{
-            genreList.remove(comedyCheckBox.getText());
+            genreList.remove("Comedy");
             str = String.join(",",genreList);
         }
     }
@@ -635,7 +646,7 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
             str = String.join(",",genreList);
         }
         else{
-            genreList.remove(horrorCheckBox.getText());
+            genreList.remove("Horror");
             str = String.join(",",genreList);
         }
     }
@@ -646,7 +657,7 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
             str = String.join(",",genreList);
         }
         else{
-            genreList.remove(thrillerCheckBox.getText());
+            genreList.remove("Thriller");
             str = String.join(",",genreList);
         } 
     }
@@ -657,7 +668,7 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
             str = String.join(",",genreList);
         }
         else{
-            genreList.remove(fantasyCheckBox.getText());
+            genreList.remove("Fantasy");
             str = String.join(",",genreList);
         }
     }
@@ -668,7 +679,7 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
             str = String.join(",",genreList);
         }
         else{
-            genreList.remove(dramaCheckBox.getText());
+            genreList.remove("Drama");
             str = String.join(",",genreList);
         }
     }

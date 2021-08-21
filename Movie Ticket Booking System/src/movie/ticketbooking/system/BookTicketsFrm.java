@@ -1,11 +1,20 @@
 package movie.ticketbooking.system;
 
+import java.awt.Image;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.JToggleButton;
 
 /**
  *
@@ -80,59 +89,19 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         showtimeCombo = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
+        childTicketsSpinner = new javax.swing.JSpinner();
+        adultTicketsSpinner = new javax.swing.JSpinner();
         jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        confirmBtn = new javax.swing.JButton();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         screenLabel = new javax.swing.JLabel();
-        a3TogBtn = new javax.swing.JToggleButton();
         a1TogBtn = new javax.swing.JToggleButton();
-        a2TogBtn = new javax.swing.JToggleButton();
-        b3TogBtn = new javax.swing.JToggleButton();
-        b1TogBtn = new javax.swing.JToggleButton();
-        b2TogBtn = new javax.swing.JToggleButton();
-        c3TogBtn = new javax.swing.JToggleButton();
-        c1TogBtn = new javax.swing.JToggleButton();
-        c2TogBtn = new javax.swing.JToggleButton();
-        d3TogBtn = new javax.swing.JToggleButton();
-        d1TogBtn = new javax.swing.JToggleButton();
-        d2TogBtn = new javax.swing.JToggleButton();
-        a6TogBtn = new javax.swing.JToggleButton();
-        a4TogBtn = new javax.swing.JToggleButton();
-        a5TogBtn = new javax.swing.JToggleButton();
-        b6TogBtn = new javax.swing.JToggleButton();
-        b4TogBtn = new javax.swing.JToggleButton();
-        b5TogBtn = new javax.swing.JToggleButton();
-        c6TogBtn = new javax.swing.JToggleButton();
-        c4TogBtn = new javax.swing.JToggleButton();
-        c5TogBtn = new javax.swing.JToggleButton();
-        d6TogBtn = new javax.swing.JToggleButton();
-        d4TogBtn = new javax.swing.JToggleButton();
-        d5TogBtn = new javax.swing.JToggleButton();
-        a9TogBtn = new javax.swing.JToggleButton();
-        a7TogBtn = new javax.swing.JToggleButton();
-        a8TogBtn = new javax.swing.JToggleButton();
-        b9TogBtn = new javax.swing.JToggleButton();
-        b7TogBtn = new javax.swing.JToggleButton();
-        b8TogBtn = new javax.swing.JToggleButton();
-        c9TogBtn = new javax.swing.JToggleButton();
-        c7TogBtn = new javax.swing.JToggleButton();
-        c8TogBtn = new javax.swing.JToggleButton();
-        d9TogBtn = new javax.swing.JToggleButton();
-        d7TogBtn = new javax.swing.JToggleButton();
-        d8TogBtn = new javax.swing.JToggleButton();
-        d12TogBtn = new javax.swing.JToggleButton();
-        c12TogBtn = new javax.swing.JToggleButton();
-        c11TogBtn = new javax.swing.JToggleButton();
-        a12TogBtn = new javax.swing.JToggleButton();
-        c10TogBtn = new javax.swing.JToggleButton();
-        d10TogBtn = new javax.swing.JToggleButton();
-        b12TogBtn = new javax.swing.JToggleButton();
-        d11TogBtn = new javax.swing.JToggleButton();
-        b10TogBtn = new javax.swing.JToggleButton();
-        a10TogBtn = new javax.swing.JToggleButton();
-        b11TogBtn = new javax.swing.JToggleButton();
-        a11TogBtn = new javax.swing.JToggleButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -143,10 +112,8 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -156,6 +123,45 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         pickDate = new com.toedter.calendar.JDateChooser();
+        a3TogBtn = new javax.swing.JToggleButton();
+        a2TogBtn = new javax.swing.JToggleButton();
+        b3TogBtn = new javax.swing.JToggleButton();
+        b2TogBtn = new javax.swing.JToggleButton();
+        b1TogBtn = new javax.swing.JToggleButton();
+        d1TogBtn = new javax.swing.JToggleButton();
+        d3TogBtn = new javax.swing.JToggleButton();
+        d2TogBtn = new javax.swing.JToggleButton();
+        c1TogBtn = new javax.swing.JToggleButton();
+        c2TogBtn = new javax.swing.JToggleButton();
+        c3TogBtn = new javax.swing.JToggleButton();
+        d8TogBtn = new javax.swing.JToggleButton();
+        d9TogBtn = new javax.swing.JToggleButton();
+        c9TogBtn = new javax.swing.JToggleButton();
+        c8TogBtn = new javax.swing.JToggleButton();
+        d10TogBtn = new javax.swing.JToggleButton();
+        c10TogBtn = new javax.swing.JToggleButton();
+        b10TogBtn = new javax.swing.JToggleButton();
+        b9TogBtn = new javax.swing.JToggleButton();
+        b8TogBtn = new javax.swing.JToggleButton();
+        a8TogBtn = new javax.swing.JToggleButton();
+        a9TogBtn = new javax.swing.JToggleButton();
+        a10TogBtn = new javax.swing.JToggleButton();
+        d4TogBtn = new javax.swing.JToggleButton();
+        d5TogBtn = new javax.swing.JToggleButton();
+        c5TogBtn = new javax.swing.JToggleButton();
+        c4TogBtn = new javax.swing.JToggleButton();
+        d6TogBtn = new javax.swing.JToggleButton();
+        c6TogBtn = new javax.swing.JToggleButton();
+        b6TogBtn = new javax.swing.JToggleButton();
+        b5TogBtn = new javax.swing.JToggleButton();
+        b4TogBtn = new javax.swing.JToggleButton();
+        a4TogBtn = new javax.swing.JToggleButton();
+        a5TogBtn = new javax.swing.JToggleButton();
+        a6TogBtn = new javax.swing.JToggleButton();
+        a7TogBtn = new javax.swing.JToggleButton();
+        b7TogBtn = new javax.swing.JToggleButton();
+        c7TogBtn = new javax.swing.JToggleButton();
+        d7TogBtn = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -235,11 +241,49 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel2.setText("No. of child tickets");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, -1, -1));
-        jPanel3.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, -1, -1));
-        jPanel3.add(jSpinner2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 40, -1, -1));
+        jPanel3.add(childTicketsSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, -1, -1));
+
+        adultTicketsSpinner.setModel(new javax.swing.SpinnerNumberModel());
+        jPanel3.add(adultTicketsSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 40, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(235, 16, 42));
+        jLabel7.setText("Total Amount");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel8.setText("4 Tickets: 2 Adults and 2 Children");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(235, 16, 42));
+        jLabel9.setText("Tickets");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, -1));
+
+        jLabel29.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel29.setText("Rs: 3200");
+        jPanel2.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, -1, -1));
+
+        confirmBtn.setText("Confirm");
+        confirmBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmBtnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(confirmBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, -1, -1));
+
+        jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(235, 16, 42));
+        jLabel30.setText("Seats");
+        jPanel2.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jLabel31.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel31.setText("A1, A2, A3");
+        jPanel2.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+
         jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 500, 590, 70));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -251,245 +295,15 @@ public class BookTicketsFrm extends javax.swing.JFrame {
 
         jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 570, 50));
 
-        a3TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        a3TogBtn.setAlignmentY(0.0F);
-        a3TogBtn.setBorder(null);
-        jPanel3.add(a3TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 30, 30));
-
         a1TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
         a1TogBtn.setAlignmentY(0.0F);
         a1TogBtn.setBorder(null);
+        a1TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                a1TogBtnActionPerformed(evt);
+            }
+        });
         jPanel3.add(a1TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 30, 30));
-
-        a2TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        a2TogBtn.setAlignmentY(0.0F);
-        a2TogBtn.setBorder(null);
-        jPanel3.add(a2TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 30, 30));
-
-        b3TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        b3TogBtn.setAlignmentY(0.0F);
-        b3TogBtn.setBorder(null);
-        jPanel3.add(b3TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, 30, 30));
-
-        b1TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        b1TogBtn.setAlignmentY(0.0F);
-        b1TogBtn.setBorder(null);
-        jPanel3.add(b1TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 30, 30));
-
-        b2TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        b2TogBtn.setAlignmentY(0.0F);
-        b2TogBtn.setBorder(null);
-        jPanel3.add(b2TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 230, 30, 30));
-
-        c3TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        c3TogBtn.setAlignmentY(0.0F);
-        c3TogBtn.setBorder(null);
-        jPanel3.add(c3TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, 30, 30));
-
-        c1TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        c1TogBtn.setAlignmentY(0.0F);
-        c1TogBtn.setBorder(null);
-        jPanel3.add(c1TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 30, 30));
-
-        c2TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        c2TogBtn.setAlignmentY(0.0F);
-        c2TogBtn.setBorder(null);
-        jPanel3.add(c2TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 30, 30));
-
-        d3TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        d3TogBtn.setAlignmentY(0.0F);
-        d3TogBtn.setBorder(null);
-        jPanel3.add(d3TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 30, 30));
-
-        d1TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        d1TogBtn.setAlignmentY(0.0F);
-        d1TogBtn.setBorder(null);
-        jPanel3.add(d1TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 350, 30, 30));
-
-        d2TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        d2TogBtn.setAlignmentY(0.0F);
-        d2TogBtn.setBorder(null);
-        jPanel3.add(d2TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 30, 30));
-
-        a6TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        a6TogBtn.setAlignmentY(0.0F);
-        a6TogBtn.setBorder(null);
-        jPanel3.add(a6TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 170, 30, 30));
-
-        a4TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        a4TogBtn.setAlignmentY(0.0F);
-        a4TogBtn.setBorder(null);
-        jPanel3.add(a4TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, 30, 30));
-
-        a5TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        a5TogBtn.setAlignmentY(0.0F);
-        a5TogBtn.setBorder(null);
-        jPanel3.add(a5TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 170, 30, 30));
-
-        b6TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        b6TogBtn.setAlignmentY(0.0F);
-        b6TogBtn.setBorder(null);
-        jPanel3.add(b6TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 230, 30, 30));
-
-        b4TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        b4TogBtn.setAlignmentY(0.0F);
-        b4TogBtn.setBorder(null);
-        jPanel3.add(b4TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 230, 30, 30));
-
-        b5TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        b5TogBtn.setAlignmentY(0.0F);
-        b5TogBtn.setBorder(null);
-        jPanel3.add(b5TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 230, 30, 30));
-
-        c6TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        c6TogBtn.setAlignmentY(0.0F);
-        c6TogBtn.setBorder(null);
-        jPanel3.add(c6TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 290, 30, 30));
-
-        c4TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        c4TogBtn.setAlignmentY(0.0F);
-        c4TogBtn.setBorder(null);
-        jPanel3.add(c4TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, 30, 30));
-
-        c5TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        c5TogBtn.setAlignmentY(0.0F);
-        c5TogBtn.setBorder(null);
-        jPanel3.add(c5TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 290, 30, 30));
-
-        d6TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        d6TogBtn.setAlignmentY(0.0F);
-        d6TogBtn.setBorder(null);
-        jPanel3.add(d6TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 350, 30, 30));
-
-        d4TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        d4TogBtn.setAlignmentY(0.0F);
-        d4TogBtn.setBorder(null);
-        jPanel3.add(d4TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 350, 30, 30));
-
-        d5TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        d5TogBtn.setAlignmentY(0.0F);
-        d5TogBtn.setBorder(null);
-        jPanel3.add(d5TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 350, 30, 30));
-
-        a9TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        a9TogBtn.setAlignmentY(0.0F);
-        a9TogBtn.setBorder(null);
-        jPanel3.add(a9TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 170, 30, 30));
-
-        a7TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        a7TogBtn.setAlignmentY(0.0F);
-        a7TogBtn.setBorder(null);
-        jPanel3.add(a7TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 170, 30, 30));
-
-        a8TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        a8TogBtn.setAlignmentY(0.0F);
-        a8TogBtn.setBorder(null);
-        jPanel3.add(a8TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 170, 30, 30));
-
-        b9TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        b9TogBtn.setAlignmentY(0.0F);
-        b9TogBtn.setBorder(null);
-        jPanel3.add(b9TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 230, 30, 30));
-
-        b7TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        b7TogBtn.setAlignmentY(0.0F);
-        b7TogBtn.setBorder(null);
-        jPanel3.add(b7TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 230, 30, 30));
-
-        b8TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        b8TogBtn.setAlignmentY(0.0F);
-        b8TogBtn.setBorder(null);
-        jPanel3.add(b8TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 230, 30, 30));
-
-        c9TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        c9TogBtn.setAlignmentY(0.0F);
-        c9TogBtn.setBorder(null);
-        jPanel3.add(c9TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 290, 30, 30));
-
-        c7TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        c7TogBtn.setAlignmentY(0.0F);
-        c7TogBtn.setBorder(null);
-        jPanel3.add(c7TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 290, 30, 30));
-
-        c8TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        c8TogBtn.setAlignmentY(0.0F);
-        c8TogBtn.setBorder(null);
-        jPanel3.add(c8TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 290, 30, 30));
-
-        d9TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        d9TogBtn.setAlignmentY(0.0F);
-        d9TogBtn.setBorder(null);
-        jPanel3.add(d9TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 350, 30, 30));
-
-        d7TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        d7TogBtn.setAlignmentY(0.0F);
-        d7TogBtn.setBorder(null);
-        jPanel3.add(d7TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 350, 30, 30));
-
-        d8TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        d8TogBtn.setAlignmentY(0.0F);
-        d8TogBtn.setBorder(null);
-        jPanel3.add(d8TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 350, 30, 30));
-
-        d12TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        d12TogBtn.setAlignmentY(0.0F);
-        d12TogBtn.setBorder(null);
-        jPanel3.add(d12TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 350, 30, 30));
-
-        c12TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        c12TogBtn.setAlignmentY(0.0F);
-        c12TogBtn.setBorder(null);
-        jPanel3.add(c12TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 290, 30, 30));
-
-        c11TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        c11TogBtn.setAlignmentY(0.0F);
-        c11TogBtn.setBorder(null);
-        jPanel3.add(c11TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 290, 30, 30));
-
-        a12TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        a12TogBtn.setAlignmentY(0.0F);
-        a12TogBtn.setBorder(null);
-        jPanel3.add(a12TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 170, 30, 30));
-
-        c10TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        c10TogBtn.setAlignmentY(0.0F);
-        c10TogBtn.setBorder(null);
-        jPanel3.add(c10TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 290, 30, 30));
-
-        d10TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        d10TogBtn.setAlignmentY(0.0F);
-        d10TogBtn.setBorder(null);
-        jPanel3.add(d10TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 350, 30, 30));
-
-        b12TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        b12TogBtn.setAlignmentY(0.0F);
-        b12TogBtn.setBorder(null);
-        jPanel3.add(b12TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 230, 30, 30));
-
-        d11TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        d11TogBtn.setAlignmentY(0.0F);
-        d11TogBtn.setBorder(null);
-        jPanel3.add(d11TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 350, 30, 30));
-
-        b10TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        b10TogBtn.setAlignmentY(0.0F);
-        b10TogBtn.setBorder(null);
-        jPanel3.add(b10TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 230, 30, 30));
-
-        a10TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        a10TogBtn.setAlignmentY(0.0F);
-        a10TogBtn.setBorder(null);
-        jPanel3.add(a10TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 170, 30, 30));
-
-        b11TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        b11TogBtn.setAlignmentY(0.0F);
-        b11TogBtn.setBorder(null);
-        jPanel3.add(b11TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 230, 30, 30));
-
-        a11TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
-        a11TogBtn.setAlignmentY(0.0F);
-        a11TogBtn.setBorder(null);
-        jPanel3.add(a11TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 170, 30, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel3.setText("B");
@@ -508,20 +322,20 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel10.setText("12");
+        jLabel10.setText("10");
         jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 400, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel11.setText("6");
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 400, -1, -1));
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 400, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel12.setText("7");
-        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 400, -1, -1));
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 400, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel13.setText("3");
-        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 400, -1, -1));
+        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 400, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel14.setText("1");
@@ -529,31 +343,23 @@ public class BookTicketsFrm extends javax.swing.JFrame {
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel15.setText("2");
-        jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 400, -1, -1));
-
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel16.setText("8");
-        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 400, -1, -1));
+        jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel17.setText("5");
-        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 400, -1, -1));
+        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 400, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel18.setText("4");
-        jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 400, -1, -1));
-
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel19.setText("9");
-        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 400, -1, -1));
+        jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 400, -1, -1));
 
         jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel20.setText("10");
-        jPanel3.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 400, -1, -1));
+        jLabel20.setText("8");
+        jPanel3.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 400, -1, -1));
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel21.setText("11");
-        jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 400, -1, -1));
+        jLabel21.setText("9");
+        jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 400, -1, -1));
 
         jPanel4.setBackground(new java.awt.Color(235, 16, 42));
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 450, 15, 15));
@@ -582,11 +388,721 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         pickDate.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jPanel3.add(pickDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(364, 40, 120, -1));
 
+        a3TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        a3TogBtn.setAlignmentY(0.0F);
+        a3TogBtn.setBorder(null);
+        a3TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                a3TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(a3TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 170, 30, 30));
+
+        a2TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        a2TogBtn.setAlignmentY(0.0F);
+        a2TogBtn.setBorder(null);
+        a2TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                a2TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(a2TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 30, 30));
+
+        b3TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        b3TogBtn.setAlignmentY(0.0F);
+        b3TogBtn.setBorder(null);
+        b3TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b3TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(b3TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, 30, 30));
+
+        b2TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        b2TogBtn.setAlignmentY(0.0F);
+        b2TogBtn.setBorder(null);
+        b2TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b2TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(b2TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, 30, 30));
+
+        b1TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        b1TogBtn.setAlignmentY(0.0F);
+        b1TogBtn.setBorder(null);
+        b1TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b1TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(b1TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 30, 30));
+
+        d1TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        d1TogBtn.setAlignmentY(0.0F);
+        d1TogBtn.setBorder(null);
+        d1TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                d1TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(d1TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 350, 30, 30));
+
+        d3TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        d3TogBtn.setAlignmentY(0.0F);
+        d3TogBtn.setBorder(null);
+        d3TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                d3TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(d3TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, 30, 30));
+
+        d2TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        d2TogBtn.setAlignmentY(0.0F);
+        d2TogBtn.setBorder(null);
+        d2TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                d2TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(d2TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 350, 30, 30));
+
+        c1TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        c1TogBtn.setAlignmentY(0.0F);
+        c1TogBtn.setBorder(null);
+        c1TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                c1TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(c1TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 30, 30));
+
+        c2TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        c2TogBtn.setAlignmentY(0.0F);
+        c2TogBtn.setBorder(null);
+        c2TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                c2TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(c2TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, 30, 30));
+
+        c3TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        c3TogBtn.setAlignmentY(0.0F);
+        c3TogBtn.setBorder(null);
+        c3TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                c3TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(c3TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 290, 30, 30));
+
+        d8TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        d8TogBtn.setAlignmentY(0.0F);
+        d8TogBtn.setBorder(null);
+        d8TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                d8TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(d8TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 350, 30, 30));
+
+        d9TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        d9TogBtn.setAlignmentY(0.0F);
+        d9TogBtn.setBorder(null);
+        d9TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                d9TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(d9TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 350, 30, 30));
+
+        c9TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        c9TogBtn.setAlignmentY(0.0F);
+        c9TogBtn.setBorder(null);
+        c9TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                c9TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(c9TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 290, 30, 30));
+
+        c8TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        c8TogBtn.setAlignmentY(0.0F);
+        c8TogBtn.setBorder(null);
+        c8TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                c8TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(c8TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 290, 30, 30));
+
+        d10TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        d10TogBtn.setAlignmentY(0.0F);
+        d10TogBtn.setBorder(null);
+        d10TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                d10TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(d10TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 350, 30, 30));
+
+        c10TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        c10TogBtn.setAlignmentY(0.0F);
+        c10TogBtn.setBorder(null);
+        c10TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                c10TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(c10TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 290, 30, 30));
+
+        b10TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        b10TogBtn.setAlignmentY(0.0F);
+        b10TogBtn.setBorder(null);
+        b10TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b10TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(b10TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 230, 30, 30));
+
+        b9TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        b9TogBtn.setAlignmentY(0.0F);
+        b9TogBtn.setBorder(null);
+        b9TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b9TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(b9TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 230, 30, 30));
+
+        b8TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        b8TogBtn.setAlignmentY(0.0F);
+        b8TogBtn.setBorder(null);
+        b8TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b8TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(b8TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 230, 30, 30));
+
+        a8TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        a8TogBtn.setAlignmentY(0.0F);
+        a8TogBtn.setBorder(null);
+        a8TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                a8TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(a8TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 170, 30, 30));
+
+        a9TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        a9TogBtn.setAlignmentY(0.0F);
+        a9TogBtn.setBorder(null);
+        a9TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                a9TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(a9TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 170, 30, 30));
+
+        a10TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        a10TogBtn.setAlignmentY(0.0F);
+        a10TogBtn.setBorder(null);
+        a10TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                a10TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(a10TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 170, 30, 30));
+
+        d4TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        d4TogBtn.setAlignmentY(0.0F);
+        d4TogBtn.setBorder(null);
+        d4TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                d4TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(d4TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 350, 30, 30));
+
+        d5TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        d5TogBtn.setAlignmentY(0.0F);
+        d5TogBtn.setBorder(null);
+        d5TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                d5TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(d5TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 350, 30, 30));
+
+        c5TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        c5TogBtn.setAlignmentY(0.0F);
+        c5TogBtn.setBorder(null);
+        c5TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                c5TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(c5TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 290, 30, 30));
+
+        c4TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        c4TogBtn.setAlignmentY(0.0F);
+        c4TogBtn.setBorder(null);
+        c4TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                c4TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(c4TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 290, 30, 30));
+
+        d6TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        d6TogBtn.setAlignmentY(0.0F);
+        d6TogBtn.setBorder(null);
+        d6TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                d6TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(d6TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 350, 30, 30));
+
+        c6TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        c6TogBtn.setAlignmentY(0.0F);
+        c6TogBtn.setBorder(null);
+        c6TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                c6TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(c6TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 290, 30, 30));
+
+        b6TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        b6TogBtn.setAlignmentY(0.0F);
+        b6TogBtn.setBorder(null);
+        b6TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b6TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(b6TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 230, 30, 30));
+
+        b5TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        b5TogBtn.setAlignmentY(0.0F);
+        b5TogBtn.setBorder(null);
+        b5TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b5TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(b5TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 230, 30, 30));
+
+        b4TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        b4TogBtn.setAlignmentY(0.0F);
+        b4TogBtn.setBorder(null);
+        b4TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b4TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(b4TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 230, 30, 30));
+
+        a4TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        a4TogBtn.setAlignmentY(0.0F);
+        a4TogBtn.setBorder(null);
+        a4TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                a4TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(a4TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 170, 30, 30));
+
+        a5TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        a5TogBtn.setAlignmentY(0.0F);
+        a5TogBtn.setBorder(null);
+        a5TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                a5TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(a5TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 170, 30, 30));
+
+        a6TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        a6TogBtn.setAlignmentY(0.0F);
+        a6TogBtn.setBorder(null);
+        a6TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                a6TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(a6TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 170, 30, 30));
+
+        a7TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        a7TogBtn.setAlignmentY(0.0F);
+        a7TogBtn.setBorder(null);
+        a7TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                a7TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(a7TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 170, 30, 30));
+
+        b7TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        b7TogBtn.setAlignmentY(0.0F);
+        b7TogBtn.setBorder(null);
+        b7TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b7TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(b7TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 230, 30, 30));
+
+        c7TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        c7TogBtn.setAlignmentY(0.0F);
+        c7TogBtn.setBorder(null);
+        c7TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                c7TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(c7TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 290, 30, 30));
+
+        d7TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
+        d7TogBtn.setAlignmentY(0.0F);
+        d7TogBtn.setBorder(null);
+        d7TogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                d7TogBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(d7TogBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 350, 30, 30));
+
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 600));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void getAlreadyReservedSeats(Date date){
+         //Retrieve data
+        String query = "SELECT seat FROM `bookings` WHERE date = '"+date+"'";
+        String seats = null;
+        try {
+            ResultSet rs; 
+            try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query)) {
+                rs = pst.executeQuery();
+                while(rs.next()){
+                    seats = rs.getString("seat");
+                }
+            }
+            rs.close();
+            DBConnectClass.getConnection().close();
+        } catch (SQLException ex) {
+            Logger.getLogger(BookTicketsFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        List<String> listGenre = Arrays.asList(seats.split(","));
+            
+        listGenre.forEach((String gen) -> {
+            switch (gen) {
+                case "A1":
+                    a1TogBtn.setEnabled(false);
+                case "A2":
+                    a2TogBtn.setEnabled(false);
+                case "A3":
+                    a3TogBtn.setEnabled(false);
+                case "A4":
+                    a4TogBtn.setEnabled(false);
+                case "A5":
+                    a5TogBtn.setEnabled(false);
+                case "A6":
+                    a6TogBtn.setEnabled(false);
+                case "A7":
+                    a7TogBtn.setEnabled(false);
+                case "A8":
+                    a8TogBtn.setEnabled(false);
+                case "A9":
+                    a9TogBtn.setEnabled(false);
+                case "A10":
+                    a10TogBtn.setEnabled(false);
+                case "B1":
+                    b1TogBtn.setEnabled(false);
+                case "B2":
+                    b2TogBtn.setEnabled(false);
+                case "B3":
+                    b3TogBtn.setEnabled(false);
+                case "B4":
+                    b4TogBtn.setEnabled(false);
+                case "B5":
+                    b5TogBtn.setEnabled(false);
+                case "B6":
+                    b6TogBtn.setEnabled(false);
+                case "B7":
+                    b7TogBtn.setEnabled(false);
+                case "B8":
+                    b8TogBtn.setEnabled(false);
+                case "B9":
+                    b9TogBtn.setEnabled(false);
+                case "B10":
+                    b10TogBtn.setEnabled(false);    
+                case "C1":
+                    c1TogBtn.setEnabled(false);
+                case "C2":
+                    c2TogBtn.setEnabled(false);
+                case "C3":
+                    c3TogBtn.setEnabled(false);
+                case "C4":
+                    c4TogBtn.setEnabled(false);
+                case "C5":
+                    c5TogBtn.setEnabled(false);
+                case "C6":
+                    c6TogBtn.setEnabled(false);
+                case "C7":
+                    c7TogBtn.setEnabled(false);
+                case "C8":
+                    c8TogBtn.setEnabled(false);
+                case "C9":
+                    c9TogBtn.setEnabled(false);
+                case "C10":
+                    c10TogBtn.setEnabled(false);    
+                case "D1":
+                    d1TogBtn.setEnabled(false);
+                case "D2":
+                    d2TogBtn.setEnabled(false);
+                case "D3":
+                    d3TogBtn.setEnabled(false);
+                case "D4":
+                    d4TogBtn.setEnabled(false);
+                case "D5":
+                    d5TogBtn.setEnabled(false);
+                case "D6":
+                    d6TogBtn.setEnabled(false);
+                case "D7":
+                    d7TogBtn.setEnabled(false);
+                case "D8":
+                    d8TogBtn.setEnabled(false);
+                case "D9":
+                    d9TogBtn.setEnabled(false);
+                case "D10":
+                    d10TogBtn.setEnabled(false);    
+                default :{
+                }
+            }
+        });
+    }
+    
+    private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
+        int adultTickets = 0;
+        int childTickets = 0;
+        if((int) adultTicketsSpinner.getValue() == 0){
+            if((int) childTicketsSpinner.getValue() == 0){
+                JOptionPane.showMessageDialog(null, "Number of tickets cannot be 0");
+            }else{
+                adultTickets = 0;
+                childTickets = (int) childTicketsSpinner.getValue();
+            }
+        }
+        else{
+            if((int) childTicketsSpinner.getValue() == 0){
+                adultTickets = (int) adultTicketsSpinner.getValue();
+                childTickets = 0;
+            }else{
+                childTickets = (int) childTicketsSpinner.getValue();
+                adultTickets = (int) adultTicketsSpinner.getValue();
+            }
+        }
+        if("Select showtime".equals(showtimeCombo.getSelectedItem().toString())){
+            JOptionPane.showMessageDialog(null, "Please select a showtime");
+        }
+        
+        
+        //get Booked seats
+        getAlreadyReservedSeats(pickDate.getDate());
+    }//GEN-LAST:event_confirmBtnActionPerformed
+    private void setTogBtnIcon(JToggleButton btn, String iconName){
+        try {
+            Image seat = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/"+iconName+".png"));
+            btn.setIcon(new ImageIcon(seat));
+        } catch (IOException ex) {
+            Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    ArrayList<String> seatList = new ArrayList<>();
+    String str;
+    
+    private void checkSeat(JToggleButton btn, String seat){
+        if(btn.isSelected()){
+            setTogBtnIcon(btn,"seatYourBtn");
+            seatList.add(seat);
+            str = String.join(",",seatList);
+        }else{
+            setTogBtnIcon(btn,"seatAvailableBtn");
+            seatList.remove(seat);
+            str = String.join(",",seatList);
+        }
+    }
+    
+    private void a1TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a1TogBtnActionPerformed
+        checkSeat(a1TogBtn,"A1");
+    }//GEN-LAST:event_a1TogBtnActionPerformed
+
+    private void a3TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a3TogBtnActionPerformed
+        checkSeat(a3TogBtn,"A3");
+    }//GEN-LAST:event_a3TogBtnActionPerformed
+
+    private void a2TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a2TogBtnActionPerformed
+        checkSeat(a2TogBtn,"A2");
+    }//GEN-LAST:event_a2TogBtnActionPerformed
+
+    private void b3TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b3TogBtnActionPerformed
+        checkSeat(b3TogBtn,"A3");
+    }//GEN-LAST:event_b3TogBtnActionPerformed
+
+    private void b2TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b2TogBtnActionPerformed
+        checkSeat(b2TogBtn,"B2");
+    }//GEN-LAST:event_b2TogBtnActionPerformed
+
+    private void b1TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1TogBtnActionPerformed
+        checkSeat(b1TogBtn,"B1");
+    }//GEN-LAST:event_b1TogBtnActionPerformed
+
+    private void d1TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d1TogBtnActionPerformed
+        checkSeat(d1TogBtn,"D1");
+    }//GEN-LAST:event_d1TogBtnActionPerformed
+
+    private void d3TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d3TogBtnActionPerformed
+        checkSeat(d3TogBtn,"D3");
+    }//GEN-LAST:event_d3TogBtnActionPerformed
+
+    private void d2TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d2TogBtnActionPerformed
+        checkSeat(d2TogBtn,"D2");
+    }//GEN-LAST:event_d2TogBtnActionPerformed
+
+    private void c1TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c1TogBtnActionPerformed
+        checkSeat(c1TogBtn,"C1");
+    }//GEN-LAST:event_c1TogBtnActionPerformed
+
+    private void c2TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c2TogBtnActionPerformed
+        checkSeat(c2TogBtn,"C2");
+    }//GEN-LAST:event_c2TogBtnActionPerformed
+
+    private void c3TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c3TogBtnActionPerformed
+        checkSeat(c3TogBtn,"C3");
+    }//GEN-LAST:event_c3TogBtnActionPerformed
+
+    private void d8TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d8TogBtnActionPerformed
+        checkSeat(d8TogBtn,"C8");
+    }//GEN-LAST:event_d8TogBtnActionPerformed
+
+    private void d9TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d9TogBtnActionPerformed
+        checkSeat(d9TogBtn,"D9");
+    }//GEN-LAST:event_d9TogBtnActionPerformed
+
+    private void c9TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c9TogBtnActionPerformed
+        checkSeat(c9TogBtn,"C9");
+    }//GEN-LAST:event_c9TogBtnActionPerformed
+
+    private void c8TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c8TogBtnActionPerformed
+        checkSeat(c8TogBtn,"C8");
+    }//GEN-LAST:event_c8TogBtnActionPerformed
+
+    private void d10TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d10TogBtnActionPerformed
+        checkSeat(d10TogBtn,"D10");
+    }//GEN-LAST:event_d10TogBtnActionPerformed
+
+    private void c10TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c10TogBtnActionPerformed
+        checkSeat(c10TogBtn,"C10");
+    }//GEN-LAST:event_c10TogBtnActionPerformed
+
+    private void b10TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b10TogBtnActionPerformed
+        checkSeat(b10TogBtn,"B10");
+    }//GEN-LAST:event_b10TogBtnActionPerformed
+
+    private void b9TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b9TogBtnActionPerformed
+        checkSeat(b9TogBtn,"B9");
+    }//GEN-LAST:event_b9TogBtnActionPerformed
+
+    private void b8TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b8TogBtnActionPerformed
+        checkSeat(b8TogBtn,"B8");
+    }//GEN-LAST:event_b8TogBtnActionPerformed
+
+    private void a8TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a8TogBtnActionPerformed
+        checkSeat(a8TogBtn,"A8");
+    }//GEN-LAST:event_a8TogBtnActionPerformed
+
+    private void a9TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a9TogBtnActionPerformed
+        checkSeat(a9TogBtn,"A9");
+    }//GEN-LAST:event_a9TogBtnActionPerformed
+
+    private void a10TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a10TogBtnActionPerformed
+        checkSeat(a10TogBtn,"A10");
+    }//GEN-LAST:event_a10TogBtnActionPerformed
+
+    private void d4TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d4TogBtnActionPerformed
+        checkSeat(d4TogBtn,"D4");
+    }//GEN-LAST:event_d4TogBtnActionPerformed
+
+    private void d5TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d5TogBtnActionPerformed
+        checkSeat(d5TogBtn,"D5");
+    }//GEN-LAST:event_d5TogBtnActionPerformed
+
+    private void c5TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c5TogBtnActionPerformed
+        checkSeat(c5TogBtn,"C5");
+    }//GEN-LAST:event_c5TogBtnActionPerformed
+
+    private void c4TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c4TogBtnActionPerformed
+        checkSeat(c4TogBtn,"C4");
+    }//GEN-LAST:event_c4TogBtnActionPerformed
+
+    private void d6TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d6TogBtnActionPerformed
+        checkSeat(d6TogBtn,"D6");
+    }//GEN-LAST:event_d6TogBtnActionPerformed
+
+    private void c6TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c6TogBtnActionPerformed
+        checkSeat(c6TogBtn,"C6");
+    }//GEN-LAST:event_c6TogBtnActionPerformed
+
+    private void b6TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b6TogBtnActionPerformed
+        checkSeat(b6TogBtn,"B6");
+    }//GEN-LAST:event_b6TogBtnActionPerformed
+
+    private void b5TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b5TogBtnActionPerformed
+        checkSeat(b5TogBtn,"B5");
+    }//GEN-LAST:event_b5TogBtnActionPerformed
+
+    private void b4TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b4TogBtnActionPerformed
+        checkSeat(b4TogBtn,"B4");
+    }//GEN-LAST:event_b4TogBtnActionPerformed
+
+    private void a4TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a4TogBtnActionPerformed
+        checkSeat(a4TogBtn,"A4");
+    }//GEN-LAST:event_a4TogBtnActionPerformed
+
+    private void a5TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a5TogBtnActionPerformed
+        checkSeat(a5TogBtn,"A5");
+    }//GEN-LAST:event_a5TogBtnActionPerformed
+
+    private void a6TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a6TogBtnActionPerformed
+        checkSeat(a6TogBtn,"A6");
+    }//GEN-LAST:event_a6TogBtnActionPerformed
+
+    private void a7TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a7TogBtnActionPerformed
+        checkSeat(a7TogBtn,"A7");
+    }//GEN-LAST:event_a7TogBtnActionPerformed
+
+    private void b7TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b7TogBtnActionPerformed
+        checkSeat(b7TogBtn,"B7");
+    }//GEN-LAST:event_b7TogBtnActionPerformed
+
+    private void c7TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c7TogBtnActionPerformed
+        checkSeat(c7TogBtn,"C7");
+    }//GEN-LAST:event_c7TogBtnActionPerformed
+
+    private void d7TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d7TogBtnActionPerformed
+        checkSeat(d7TogBtn,"D7");
+    }//GEN-LAST:event_d7TogBtnActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -623,8 +1139,6 @@ public class BookTicketsFrm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton a10TogBtn;
-    private javax.swing.JToggleButton a11TogBtn;
-    private javax.swing.JToggleButton a12TogBtn;
     private javax.swing.JToggleButton a1TogBtn;
     private javax.swing.JToggleButton a2TogBtn;
     private javax.swing.JToggleButton a3TogBtn;
@@ -635,9 +1149,8 @@ public class BookTicketsFrm extends javax.swing.JFrame {
     private javax.swing.JToggleButton a8TogBtn;
     private javax.swing.JToggleButton a9TogBtn;
     private javax.swing.JLabel adultLabel1;
+    private javax.swing.JSpinner adultTicketsSpinner;
     private javax.swing.JToggleButton b10TogBtn;
-    private javax.swing.JToggleButton b11TogBtn;
-    private javax.swing.JToggleButton b12TogBtn;
     private javax.swing.JToggleButton b1TogBtn;
     private javax.swing.JToggleButton b2TogBtn;
     private javax.swing.JToggleButton b3TogBtn;
@@ -648,8 +1161,6 @@ public class BookTicketsFrm extends javax.swing.JFrame {
     private javax.swing.JToggleButton b8TogBtn;
     private javax.swing.JToggleButton b9TogBtn;
     private javax.swing.JToggleButton c10TogBtn;
-    private javax.swing.JToggleButton c11TogBtn;
-    private javax.swing.JToggleButton c12TogBtn;
     private javax.swing.JToggleButton c1TogBtn;
     private javax.swing.JToggleButton c2TogBtn;
     private javax.swing.JToggleButton c3TogBtn;
@@ -660,10 +1171,10 @@ public class BookTicketsFrm extends javax.swing.JFrame {
     private javax.swing.JToggleButton c8TogBtn;
     private javax.swing.JToggleButton c9TogBtn;
     private javax.swing.JLabel childLabel1;
+    private javax.swing.JSpinner childTicketsSpinner;
+    private javax.swing.JButton confirmBtn;
     private javax.swing.JLabel contentRatingLabel;
     private javax.swing.JToggleButton d10TogBtn;
-    private javax.swing.JToggleButton d11TogBtn;
-    private javax.swing.JToggleButton d12TogBtn;
     private javax.swing.JToggleButton d1TogBtn;
     private javax.swing.JToggleButton d2TogBtn;
     private javax.swing.JToggleButton d3TogBtn;
@@ -682,10 +1193,8 @@ public class BookTicketsFrm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -696,10 +1205,16 @@ public class BookTicketsFrm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -707,8 +1222,6 @@ public class BookTicketsFrm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
     private javax.swing.JLabel movieLabel;
     private javax.swing.JPanel moviePanel1;
     private javax.swing.JLabel movieTitle;
