@@ -29,6 +29,7 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         initComponents();
         this.idval = id;
         loadMovieData();
+        pickDate.setMinSelectableDate(new Date());
     }
 
     private void loadMovieData(){
@@ -241,9 +242,20 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel2.setText("No. of child tickets");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, -1, -1));
+
+        childTicketsSpinner.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                childTicketsSpinnerMouseClicked(evt);
+            }
+        });
         jPanel3.add(childTicketsSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, -1, -1));
 
         adultTicketsSpinner.setModel(new javax.swing.SpinnerNumberModel());
+        adultTicketsSpinner.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                adultTicketsSpinnerMouseClicked(evt);
+            }
+        });
         jPanel3.add(adultTicketsSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 40, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -386,6 +398,11 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         jPanel3.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 450, -1, -1));
 
         pickDate.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        pickDate.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                pickDateFocusLost(evt);
+            }
+        });
         jPanel3.add(pickDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(364, 40, 120, -1));
 
         a3TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
@@ -785,7 +802,7 @@ public class BookTicketsFrm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void getAlreadyReservedSeats(Date date){
-         //Retrieve data
+        //Retrieve data
         String query = "SELECT seat FROM `bookings` WHERE date = '"+date+"'";
         String seats = null;
         try {
@@ -801,9 +818,9 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(BookTicketsFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         List<String> listGenre = Arrays.asList(seats.split(","));
-            
+
         listGenre.forEach((String gen) -> {
             switch (gen) {
                 case "A1":
@@ -893,6 +910,9 @@ public class BookTicketsFrm extends javax.swing.JFrame {
     }
     
     private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
+        if(pickDate.getDate().equals(null)){
+           
+        }
         int adultTickets = 0;
         int childTickets = 0;
         if((int) adultTicketsSpinner.getValue() == 0){
@@ -1103,6 +1123,20 @@ public class BookTicketsFrm extends javax.swing.JFrame {
     private void d7TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d7TogBtnActionPerformed
         checkSeat(d7TogBtn,"D7");
     }//GEN-LAST:event_d7TogBtnActionPerformed
+
+    private void pickDateFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pickDateFocusLost
+        if(!pickDate.getDate().equals(null)){
+            getAlreadyReservedSeats(pickDate.getDate());
+        }
+    }//GEN-LAST:event_pickDateFocusLost
+
+    private void adultTicketsSpinnerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adultTicketsSpinnerMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_adultTicketsSpinnerMouseClicked
+
+    private void childTicketsSpinnerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_childTicketsSpinnerMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_childTicketsSpinnerMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
