@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -706,7 +705,7 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
                 Logger.getLogger(UpdateMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
             }
             finally{
-                JOptionPane.showMessageDialog(null, "Movie updated successfully!","Update Successful",2);
+                JOptionPane.showMessageDialog(null, "Movie updated successfully!");
             }
         }
     }//GEN-LAST:event_updateBtnActionPerformed

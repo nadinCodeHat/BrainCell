@@ -21,13 +21,14 @@ import javax.swing.table.DefaultTableModel;
 public class MainFrm extends javax.swing.JFrame {
 
     public MainFrm() {
-
+        //initComponents();
+        //getMovies();
     }
 
     private int userid = 0;
-    public MainFrm(int userid){
+    public MainFrm(int id){
         initComponents();
-        this.userid = userid;
+        this.userid = id;
         getMovies();
     }
     
@@ -393,7 +394,8 @@ public class MainFrm extends javax.swing.JFrame {
         //profilePanel.setVisible(p);
     }
     
-    DefaultTableModel model = new DefaultTableModel(new String[]{"ID, Movie Title", "Genre", "Rating", "Hour", "Minute", "Content Rating", "Ticket Price", "uri", "Poster"}, 0);
+    DefaultTableModel model = new DefaultTableModel(new String[]{"Movie Title", "Genre", "Rating", "Hour", "Minute", "Content Rating", "Ticket Price", "uri", "Poster"}, 0);
+    DefaultTableModel idmodel = new DefaultTableModel(new String[]{"ID"}, 0);
     private String uri1,uri2,uri3 = null;
     private int id1, id2, id3 = 0;
     private void getMovies(){
@@ -415,7 +417,8 @@ public class MainFrm extends javax.swing.JFrame {
                     String ticketPrice = String.valueOf(rs.getInt("ticket_price"));
                     String uri = rs.getString("uri");
                     byte[] posterBytes = rs.getBytes("poster");
-                    model.addRow(new Object[]{id, movietitle, genre, rating, hour, minute, contentRating, ticketPrice, uri, posterBytes});
+                    model.addRow(new Object[]{movietitle, genre, rating, hour, minute, contentRating, ticketPrice, uri, posterBytes});
+                    idmodel.addRow(new Object[]{id});
                 }
             }
             rs.close();
@@ -426,35 +429,35 @@ public class MainFrm extends javax.swing.JFrame {
         
         
         //set data from model to fields
-        id1 = (int) model.getValueAt(0,0);
-        movieTitle1.setText("<html>"+ model.getValueAt(0, 1).toString()+"</html>");
-        genre1.setText(model.getValueAt(0,2).toString());
-        rating1.setText(model.getValueAt(0,3).toString()+"/10");
-        runtime1.setText(model.getValueAt(0,4).toString()+ "h and " + model.getValueAt(0,5).toString()+"m");
-        contentRating1.setText(model.getValueAt(0,6).toString());
-        tckPrice1.setText("Rs. "+ model.getValueAt(0,7).toString());
-        uri1 = model.getValueAt(0,8).toString();
-        movieLabel1.setIcon(parsePoster((byte[]) model.getValueAt(0,9)));
+        id1 = (int) idmodel.getValueAt(0,0);
+        movieTitle1.setText("<html>"+ model.getValueAt(0, 0).toString()+"</html>");
+        genre1.setText(model.getValueAt(0,1).toString());
+        rating1.setText(model.getValueAt(0,2).toString()+"/10");
+        runtime1.setText(model.getValueAt(0,3).toString()+ "h and " + model.getValueAt(0,4).toString()+"m");
+        contentRating1.setText(model.getValueAt(0,5).toString());
+        tckPrice1.setText("Rs. "+ model.getValueAt(0,6).toString());
+        uri1 = model.getValueAt(0,7).toString();
+        movieLabel1.setIcon(parsePoster((byte[]) model.getValueAt(0,8)));
 
-        id2 = (int) model.getValueAt(1,0);
-        movieTitle2.setText("<html>"+ model.getValueAt(1, 1).toString()+"</html>");
-        genre2.setText(model.getValueAt(1,2).toString());
-        rating2.setText(model.getValueAt(1,3).toString()+"/10");
-        runtime2.setText(model.getValueAt(1,4).toString()+ "h and " + model.getValueAt(1,5).toString()+"m");
-        contentRating2.setText(model.getValueAt(1,6).toString());
-        tckPrice2.setText("Rs. "+ model.getValueAt(1,7).toString());
-        uri2 = model.getValueAt(1,8).toString();
-        movieLabel2.setIcon(parsePoster((byte[]) model.getValueAt(1,9)));
+        id2 = (int) idmodel.getValueAt(1,0);
+        movieTitle2.setText("<html>"+ model.getValueAt(1, 0).toString()+"</html>");
+        genre2.setText(model.getValueAt(1,1).toString());
+        rating2.setText(model.getValueAt(1,2).toString()+"/10");
+        runtime2.setText(model.getValueAt(1,3).toString()+ "h and " + model.getValueAt(1,4).toString()+"m");
+        contentRating2.setText(model.getValueAt(1,5).toString());
+        tckPrice2.setText("Rs. "+ model.getValueAt(1,6).toString());
+        uri2 = model.getValueAt(1,7).toString();
+        movieLabel2.setIcon(parsePoster((byte[]) model.getValueAt(1,8)));
         
-//        id3 = (int) model.getValueAt(2, 0)
-//        movieTitle3.setText("<html>"+ model.getValueAt(2, 1).toString()+"</html>");
-//        genre3.setText(model.getValueAt(2,2).toString());
-//        rating3.setText(model.getValueAt(2,3).toString()+"/10");
-//        runtime3.setText(model.getValueAt(2,4).toString()+ "h and " + model.getValueAt(2,5).toString()+"m");
-//        contentRating3.setText(model.getValueAt(2,6).toString());
-//        tckPrice3.setText("Rs. "+ model.getValueAt(2,7).toString());
-//        uri3 = model.getValueAt(2,8).toString();
-//        movieLabel3.setIcon(parsePoster((byte[]) model.getValueAt(2,9)));
+        id3 = (int) idmodel.getValueAt(2, 0);
+        movieTitle3.setText("<html>"+ model.getValueAt(2, 0).toString()+"</html>");
+        genre3.setText(model.getValueAt(2,1).toString());
+        rating3.setText(model.getValueAt(2,2).toString()+"/10");
+        runtime3.setText(model.getValueAt(2,3).toString()+ "h and " + model.getValueAt(2,4).toString()+"m");
+        contentRating3.setText(model.getValueAt(2,5).toString());
+        tckPrice3.setText("Rs. "+ model.getValueAt(2,6).toString());
+        uri3 = model.getValueAt(2,7).toString();
+        movieLabel3.setIcon(parsePoster((byte[]) model.getValueAt(2,8)));
     }
     
     private ImageIcon parsePoster(byte[] dTM){
