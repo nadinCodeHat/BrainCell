@@ -15,6 +15,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -367,21 +368,6 @@ public class BookTicketsFrm extends javax.swing.JFrame {
 
         pickDate.setDateFormatString("yyyy-MM-dd");
         pickDate.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        pickDate.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                pickDateFocusLost(evt);
-            }
-        });
-        pickDate.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pickDateMouseClicked(evt);
-            }
-        });
-        pickDate.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                pickDatePropertyChange(evt);
-            }
-        });
         jPanel3.add(pickDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(364, 40, 120, -1));
 
         a3TogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/seatAvailableBtn.png"))); // NOI18N
@@ -785,6 +771,8 @@ public class BookTicketsFrm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private int noOfReservedSeats = 0;
+    DefaultTableModel model = new DefaultTableModel(new String[]{"Seats"}, 0);
+
     private void getAlreadyReservedSeats(String date, String showtime){
         //Retrieve data
         String query = "SELECT seat FROM `bookings` WHERE date = '"+date+"' AND showtime = '"+showtime+"'";
@@ -796,6 +784,7 @@ public class BookTicketsFrm extends javax.swing.JFrame {
                 rs = pst.executeQuery();
                 while(rs.next()){
                     seats = rs.getString("seat");
+                    model.addRow(new Object[]{seats});
                 }
             }
             rs.close();
@@ -804,174 +793,179 @@ public class BookTicketsFrm extends javax.swing.JFrame {
             Logger.getLogger(BookTicketsFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
         if(noseats == false){
-            List<String> listSeats = Arrays.asList(seats.split(","));
-        
-        listSeats.forEach((String gen) -> {
-            switch (gen) {
-                case "A1":
-                    a1TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "A2":
-                    a2TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "A3":
-                    a3TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "A4":
-                    a4TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "A5":
-                    a5TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "A6":
-                    a6TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "A7":
-                    a7TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "A8":
-                    a8TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "A9":
-                    a9TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "A10":
-                    a10TogBtn.setEnabled(false);
-                    noOfReservedSeats++;   
-                    break;
-                case "B1":
-                    b1TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "B2":
-                    b2TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "B3":
-                    b3TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "B4":
-                    b4TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "B5":
-                    b5TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "B6":
-                    b6TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "B7":
-                    b7TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "B8":
-                    b8TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "B9":
-                    b9TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "B10":
-                    b10TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "C1":
-                    c1TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "C2":
-                    c2TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "C3":
-                    c3TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "C4":
-                    c4TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "C5":
-                    c5TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "C6":
-                    c6TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "C7":
-                    c7TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "C8":
-                    c8TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "C9":
-                    c9TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "C10":
-                    c10TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "D1":
-                    d1TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "D2":
-                    d2TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "D3":
-                    d3TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "D4":
-                    d4TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "D5":
-                    d5TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "D6":
-                    d6TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "D7":
-                    d7TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "D8":
-                    d8TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "D9":
-                    d9TogBtn.setEnabled(false);
-                    noOfReservedSeats++;
-                    break;
-                case "D10":
-                    d10TogBtn.setEnabled(false);    
-                    noOfReservedSeats++;
-                    break;
-                default :{
+            
+            List<String> listSeats = null;
+            for(int row = 0;row < model.getRowCount();row++) {
+                for(int col = 0;col < model.getColumnCount();col++) {
+                    listSeats = Arrays.asList(model.getValueAt(row, col).toString().split(","));
+                    listSeats.forEach((String gen) -> {
+                        switch (gen) {
+                            case "A1":
+                                a1TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "A2":
+                                a2TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "A3":
+                                a3TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "A4":
+                                a4TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "A5":
+                                a5TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "A6":
+                                a6TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "A7":
+                                a7TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "A8":
+                                a8TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "A9":
+                                a9TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "A10":
+                                a10TogBtn.setEnabled(false);
+                                noOfReservedSeats++;   
+                                break;
+                            case "B1":
+                                b1TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "B2":
+                                b2TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "B3":
+                                b3TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "B4":
+                                b4TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "B5":
+                                b5TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "B6":
+                                b6TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "B7":
+                                b7TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "B8":
+                                b8TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "B9":
+                                b9TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "B10":
+                                b10TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "C1":
+                                c1TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "C2":
+                                c2TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "C3":
+                                c3TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "C4":
+                                c4TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "C5":
+                                c5TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "C6":
+                                c6TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "C7":
+                                c7TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "C8":
+                                c8TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "C9":
+                                c9TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "C10":
+                                c10TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "D1":
+                                d1TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "D2":
+                                d2TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "D3":
+                                d3TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "D4":
+                                d4TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "D5":
+                                d5TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "D6":
+                                d6TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "D7":
+                                d7TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "D8":
+                                d8TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "D9":
+                                d9TogBtn.setEnabled(false);
+                                noOfReservedSeats++;
+                                break;
+                            case "D10":
+                                d10TogBtn.setEnabled(false);    
+                                noOfReservedSeats++;
+                                break;
+                            default :{
+                            }
+                        }
+                    });
                 }
             }
-        });
         }        
     }
     
@@ -1029,6 +1023,9 @@ public class BookTicketsFrm extends javax.swing.JFrame {
             }
             finally{
                 JOptionPane.showMessageDialog(null, "Movie updated successfully!");
+                InvoiceFrm invoice = new InvoiceFrm(userid);
+                invoice.pack();
+                invoice.setVisible(true);
             }
         }
     }//GEN-LAST:event_confirmBtnActionPerformed
@@ -1236,12 +1233,6 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         checkSeat(d7TogBtn,"D7");
     }//GEN-LAST:event_d7TogBtnActionPerformed
 
-    private void pickDateFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pickDateFocusLost
-//        if(!pickDate.getDate().equals(null)){
-//            getAlreadyReservedSeats((Date) pickDate.getDate(), showtimeCombo.getSelectedItem().toString());
-//        }
-    }//GEN-LAST:event_pickDateFocusLost
-
     private void showtimeComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showtimeComboActionPerformed
         if(pickDate.getDate() == null){
             JOptionPane.showMessageDialog(null, "Please pick a date", "Date", 2);
@@ -1254,19 +1245,6 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         }
         //JOptionPane.showMessageDialog(null, String.format("%1$tY-%1$tm-%1$td", pickDate.getDate()) +" "+ showtimeCombo.getSelectedItem().toString());
     }//GEN-LAST:event_showtimeComboActionPerformed
-
-    private void pickDatePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_pickDatePropertyChange
-//        if(!pickDate.getDate().equals(null)){
-//             getAlreadyReservedSeats((Date) pickDate.getDate(), showtimeCombo.getSelectedItem().toString());
-//        }
-    }//GEN-LAST:event_pickDatePropertyChange
-
-    private void pickDateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pickDateMouseClicked
-//        if(!pickDate.getDate().equals(null)){
-//             getAlreadyReservedSeats((Date) pickDate.getDate(), showtimeCombo.getSelectedItem().toString());
-//        }
-        JOptionPane.showMessageDialog(null, pickDate.getDate() +" "+ showtimeCombo.getSelectedItem().toString());
-    }//GEN-LAST:event_pickDateMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
