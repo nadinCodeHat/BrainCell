@@ -771,15 +771,61 @@ public class BookTicketsFrm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private int noOfReservedSeats = 0;
-    DefaultTableModel model = new DefaultTableModel(new String[]{"Seats"}, 0);
+    
+    private void resetSeats(){
+        a1TogBtn.setEnabled(true);
+        a2TogBtn.setEnabled(true);
+        a3TogBtn.setEnabled(true);
+        a4TogBtn.setEnabled(true);
+        a5TogBtn.setEnabled(true);
+        a1TogBtn.setEnabled(true);
+        a7TogBtn.setEnabled(true);
+        a8TogBtn.setEnabled(true);
+        a9TogBtn.setEnabled(true);
+        a10TogBtn.setEnabled(true);
 
+        b1TogBtn.setEnabled(true);
+        b2TogBtn.setEnabled(true);
+        b3TogBtn.setEnabled(true);
+        b4TogBtn.setEnabled(true);
+        b5TogBtn.setEnabled(true);
+        b1TogBtn.setEnabled(true);
+        b7TogBtn.setEnabled(true);
+        b8TogBtn.setEnabled(true);
+        b9TogBtn.setEnabled(true);
+        b10TogBtn.setEnabled(true);
+        
+        c1TogBtn.setEnabled(true);
+        c2TogBtn.setEnabled(true);
+        c3TogBtn.setEnabled(true);
+        c4TogBtn.setEnabled(true);
+        c5TogBtn.setEnabled(true);
+        c1TogBtn.setEnabled(true);
+        c7TogBtn.setEnabled(true);
+        c8TogBtn.setEnabled(true);
+        c9TogBtn.setEnabled(true);
+        c10TogBtn.setEnabled(true);
+        
+        d1TogBtn.setEnabled(true);
+        d2TogBtn.setEnabled(true);
+        d3TogBtn.setEnabled(true);
+        d4TogBtn.setEnabled(true);
+        d5TogBtn.setEnabled(true);
+        d1TogBtn.setEnabled(true);
+        d7TogBtn.setEnabled(true);
+        d8TogBtn.setEnabled(true);
+        d9TogBtn.setEnabled(true);
+        d10TogBtn.setEnabled(true);
+    }
+    String hereSeats;
     private void getAlreadyReservedSeats(String date, String showtime){
         //Retrieve data
+        DefaultTableModel model = new DefaultTableModel(new String[]{"Seats"}, 0);
         String query = "SELECT seat FROM `bookings` WHERE date = '"+date+"' AND showtime = '"+showtime+"'";
         String seats = null;
         boolean noseats = false;
         try {
-            ResultSet rs;
+            ResultSet rs = null;
             try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query)) {
                 rs = pst.executeQuery();
                 while(rs.next()){
@@ -1022,10 +1068,11 @@ public class BookTicketsFrm extends javax.swing.JFrame {
                 Logger.getLogger(BookTicketsFrm.class.getName()).log(Level.SEVERE, null, ex);
             }
             finally{
-                JOptionPane.showMessageDialog(null, "Movie updated successfully!");
+                JOptionPane.showMessageDialog(null, "Your seats have been reserved.");
                 InvoiceFrm invoice = new InvoiceFrm(userid);
                 invoice.pack();
                 invoice.setVisible(true);
+                this.dispose();
             }
         }
     }//GEN-LAST:event_confirmBtnActionPerformed
@@ -1238,6 +1285,7 @@ public class BookTicketsFrm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please pick a date", "Date", 2);
         }else{
             if(!showtimeCombo.getSelectedItem().equals("Select showtime")){
+                resetSeats();
                 getAlreadyReservedSeats(String.format("%1$tY-%1$tm-%1$td", pickDate.getDate()), showtimeCombo.getSelectedItem().toString());
             }else{
                 JOptionPane.showMessageDialog(null, "Please pick a show time", "Showtime", 2);

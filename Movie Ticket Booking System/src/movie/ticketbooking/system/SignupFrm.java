@@ -2,7 +2,6 @@ package movie.ticketbooking.system;
 
 import java.awt.Color;
 import java.awt.Image;
-import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

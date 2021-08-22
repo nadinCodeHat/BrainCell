@@ -21,8 +21,6 @@ import javax.swing.table.DefaultTableModel;
 public class MainFrm extends javax.swing.JFrame {
 
     public MainFrm() {
-        //initComponents();
-        //getMovies();
     }
 
     private int userid = 0;
