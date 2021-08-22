@@ -147,6 +147,7 @@ public class SignupFrm extends javax.swing.JFrame {
         getContentPane().add(signupBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 540));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void signupBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signupBtnMouseEntered
@@ -223,7 +224,7 @@ public class SignupFrm extends javax.swing.JFrame {
                 Logger.getLogger(SignupFrm.class.getName()).log(Level.SEVERE, null, ex);
             }
             finally{
-                JOptionPane.showMessageDialog(null, "Account created successfully!","Successful",2);
+                JOptionPane.showMessageDialog(null, "Account created successfully!");
             }
         }
     }//GEN-LAST:event_signupBtnActionPerformed
@@ -231,7 +232,7 @@ public class SignupFrm extends javax.swing.JFrame {
     private void login_linkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_login_linkMouseClicked
         LoginFrm lgnFrm = new LoginFrm();
         lgnFrm.setVisible(true);
-        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        this.dispose();
     }//GEN-LAST:event_login_linkMouseClicked
 
     private void login_linkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_login_linkMouseEntered

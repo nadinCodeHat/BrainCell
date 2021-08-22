@@ -179,16 +179,16 @@ public class LoginFrm extends javax.swing.JFrame {
                 try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query)) {
                     rs = pst.executeQuery();
                     if(rs.next()){
-                        JOptionPane.showMessageDialog(null, "Login Successful!", "Login",2);
+                        JOptionPane.showMessageDialog(null, "Login Successful!");
                         if(rs.getInt("role_id") == 1){
                             AdminMainFrm adminMFrm = new AdminMainFrm();
                             adminMFrm.setVisible(true);
-                            this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+                            this.dispose();
                         }else{
                             
                             MainFrm mainFrm = new MainFrm(rs.getInt("id"));
                             mainFrm.setVisible(true);
-                            this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+                            this.dispose();
                         }
                     }else{
                         JOptionPane.showMessageDialog(null, "Invalid Login, Please try again.", "Login", 2);
@@ -220,7 +220,7 @@ public class LoginFrm extends javax.swing.JFrame {
     private void createAccountLinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountLinkMouseClicked
         SignupFrm sngFrm = new SignupFrm();
         sngFrm.setVisible(true);
-        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        this.dispose();
     }//GEN-LAST:event_createAccountLinkMouseClicked
 
     private void createAccountLinkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountLinkMouseEntered
