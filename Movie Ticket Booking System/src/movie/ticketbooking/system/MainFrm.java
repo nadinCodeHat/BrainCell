@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -89,6 +90,13 @@ public class MainFrm extends javax.swing.JFrame {
         tckPrice3 = new javax.swing.JLabel();
         watchTrailerBtn3 = new javax.swing.JButton();
         bookNowBtn3 = new javax.swing.JButton();
+        myBookingsPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        myBookingsTable = new javax.swing.JTable();
+        sortByMYCombo = new javax.swing.JComboBox<>();
+        sortByShowtime = new javax.swing.JComboBox<>();
+        searchTextField = new javax.swing.JTextField();
+        viewInvoiceBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -382,13 +390,67 @@ public class MainFrm extends javax.swing.JFrame {
 
         getContentPane().add(moviesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 910, 600));
 
+        myBookingsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        myBookingsTable.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        myBookingsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Bked Movie ID", "Movie Title", "Screen", "Showtime", "Ticket Price", "Purchased Date", "Booked Date", "No of Tickets", "Seats", "Total Amount"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(myBookingsTable);
+
+        myBookingsPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 830, 460));
+
+        sortByMYCombo.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        sortByMYCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sort by Month/Year", "This Month", "This Year", "Last Year" }));
+        myBookingsPanel.add(sortByMYCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 140, -1));
+
+        sortByShowtime.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        sortByShowtime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sort by showtime", "10:30 AM", "1:30 PM", "4:30 PM", "7:30 PM" }));
+        myBookingsPanel.add(sortByShowtime, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
+
+        searchTextField.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        myBookingsPanel.add(searchTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 40, 180, -1));
+
+        viewInvoiceBtn.setText("View Invoice");
+        viewInvoiceBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewInvoiceBtnActionPerformed(evt);
+            }
+        });
+        myBookingsPanel.add(viewInvoiceBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 40, -1, -1));
+
+        getContentPane().add(myBookingsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 910, 600));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void panelVisible(Boolean m, Boolean mb, Boolean p){
         moviesPanel.setVisible(m);
-       // myBookingsPanel.setVisible(mb);
+        myBookingsPanel.setVisible(mb);
         //profilePanel.setVisible(p);
     }
     
@@ -500,17 +562,65 @@ public class MainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void myBookingsBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_myBookingsBtnMouseEntered
-        // TODO add your handling code here:
+        try {
+            Image myBookingsImgHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/myBookingsBtnHover.png"));
+            myBookingsBtn.setIcon(new ImageIcon(myBookingsImgHover));
+        } catch (IOException ex) {
+            Logger.getLogger(MainFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_myBookingsBtnMouseEntered
 
     private void myBookingsBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_myBookingsBtnMouseExited
-        // TODO add your handling code here:
+        try {
+            Image myBookingsImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/myBookingsBtn.png"));
+            myBookingsBtn.setIcon(new ImageIcon(myBookingsImg));
+        } catch (IOException ex) {
+            Logger.getLogger(MainFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_myBookingsBtnMouseExited
 
     private void myBookingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myBookingsBtnActionPerformed
-        // TODO add your handling code here:
+        panelVisible(false, true, false);
+        getBookingInfo();
+        try {
+            Image myBookingsImgHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/myBookingsBtnHover.png"));
+            myBookingsBtn.setIcon(new ImageIcon(myBookingsImgHover));
+        } catch (IOException ex) {
+            Logger.getLogger(MainFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_myBookingsBtnActionPerformed
 
+    DefaultTableModel tableModel = new DefaultTableModel(new String[]{"Bked Movie ID", "Movie Title", "Screen", "Showtime", "Ticket Price", "Purchased Date", "Booked Date", "No of Tickets", "Seats", "Total Amount"}, 0);
+    private void getBookingInfo(){
+        String query = "SELECT booked_movie_id, bookings.seat, bookings.no_of_tickets, bookings.purchased_date, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen, booked_movie.ticket_price FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '"+userid+"'";
+
+        try {
+        ResultSet rs;
+        try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query)) {
+            rs = pst.executeQuery();
+            while(rs.next()){
+                int bookedMovieId = rs.getInt("booked_movie_id");
+                String movietitle = rs.getString("movie_title");
+                String screen = rs.getString("screen");
+                String showtime = rs.getString("showtime");
+                int ticketPrice = rs.getInt("ticket_price");
+                String purchasedDate = String.valueOf(rs.getDate("purchased_date"));
+                String bookedDate = String.valueOf(rs.getDate("booked_date"));
+                int noOfTickets = rs.getInt("no_of_tickets");
+                String seats = rs.getString("seat");
+                int totalAmount = rs.getInt("total_amount");
+
+                tableModel.addRow(new Object[]{bookedMovieId, movietitle, screen, showtime, ticketPrice, purchasedDate, bookedDate, noOfTickets, seats, totalAmount});
+            }
+        }
+            rs.close();
+            DBConnectClass.getConnection().close();
+        } catch (SQLException ex) {
+            Logger.getLogger(MainFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        myBookingsTable.setModel(tableModel);
+    }
+    
     private void moviesBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moviesBtnMouseEntered
         try {
             Image moviesBtnImgHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/moviesBtnHover.png"));
@@ -530,12 +640,14 @@ public class MainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_moviesBtnMouseExited
 
     private void moviesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moviesBtnActionPerformed
-//        panelVisible(true, false, false);
-//        try {
-//            getMovies();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(AdminMainFrm.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        panelVisible(true, false, false);
+        getMovies();
+        try {
+            Image moviesBtnImgHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/moviesBtnHover.png"));
+            moviesBtn.setIcon(new ImageIcon(moviesBtnImgHover));
+        } catch (IOException ex) {
+            Logger.getLogger(MainFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_moviesBtnActionPerformed
 
     private void bookNowBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookNowBtn1ActionPerformed
@@ -567,6 +679,20 @@ public class MainFrm extends javax.swing.JFrame {
         bookTicket.pack();
         bookTicket.setVisible(true);
     }//GEN-LAST:event_bookNowBtn3ActionPerformed
+
+    private void viewInvoiceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewInvoiceBtnActionPerformed
+        if(myBookingsTable.getSelectionModel().isSelectionEmpty()){
+            JOptionPane.showMessageDialog(null, "Please select a record to view invoice", "Row not selected", 2);
+        }
+        else{
+            int column = 0;
+            int row = myBookingsTable.getSelectedRow();
+            int idvalue = (int) myBookingsTable.getModel().getValueAt(row, column);
+            InvoiceFrm invoice = new InvoiceFrm(userid, idvalue);
+            invoice.pack();
+            invoice.setVisible(true);
+        }
+    }//GEN-LAST:event_viewInvoiceBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -618,6 +744,7 @@ public class MainFrm extends javax.swing.JFrame {
     private javax.swing.JLabel genreLabel1;
     private javax.swing.JLabel genreLabel2;
     private javax.swing.JLabel genreLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel logoLabel;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JLabel movieLabel1;
@@ -632,6 +759,8 @@ public class MainFrm extends javax.swing.JFrame {
     private javax.swing.JButton moviesBtn;
     private javax.swing.JPanel moviesPanel;
     private javax.swing.JButton myBookingsBtn;
+    private javax.swing.JPanel myBookingsPanel;
+    private javax.swing.JTable myBookingsTable;
     private javax.swing.JPanel navPanel;
     private javax.swing.JButton profileBtn;
     private javax.swing.JLabel rating1;
@@ -646,6 +775,9 @@ public class MainFrm extends javax.swing.JFrame {
     private javax.swing.JLabel runtimeLabel1;
     private javax.swing.JLabel runtimeLabel2;
     private javax.swing.JLabel runtimeLabel3;
+    private javax.swing.JTextField searchTextField;
+    private javax.swing.JComboBox<String> sortByMYCombo;
+    private javax.swing.JComboBox<String> sortByShowtime;
     private javax.swing.JLabel starLabel1;
     private javax.swing.JLabel starLabel2;
     private javax.swing.JLabel starLabel3;
@@ -655,6 +787,7 @@ public class MainFrm extends javax.swing.JFrame {
     private javax.swing.JLabel ticketPriceLabel1;
     private javax.swing.JLabel ticketPriceLabel2;
     private javax.swing.JLabel ticketPriceLabel3;
+    private javax.swing.JButton viewInvoiceBtn;
     private javax.swing.JButton watchTrailerBtn1;
     private javax.swing.JButton watchTrailerBtn2;
     private javax.swing.JButton watchTrailerBtn3;

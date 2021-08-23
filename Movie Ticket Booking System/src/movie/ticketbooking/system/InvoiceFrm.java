@@ -14,13 +14,13 @@ public class InvoiceFrm extends javax.swing.JFrame {
 
     public InvoiceFrm() {
     }
-    public InvoiceFrm(int id){
+    public InvoiceFrm(int id, int idvalue){
         initComponents();
-        getInvoiceData(id);
+        getInvoiceData(id, idvalue);
     }
     
-    private void getInvoiceData(int userid){
-        String query = "SELECT bookings.seat, bookings.no_of_tickets, bookings.date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen  FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '"+userid+"'";
+    private void getInvoiceData(int userid, int bookedidvalue){
+        String query = "SELECT bookings.seat, bookings.no_of_tickets, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen  FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '"+userid+"' AND bookings.booked_movie_id = '"+bookedidvalue+"'";
         try{
             ResultSet rs;
             try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query)) {
@@ -29,7 +29,7 @@ public class InvoiceFrm extends javax.swing.JFrame {
                 {
                     seats.setText(rs.getString("seat"));
                     noOfTck.setText(String.valueOf(rs.getInt("no_of_tickets")));
-                    date.setText(String.valueOf(rs.getDate("date")));
+                    date.setText(String.valueOf(rs.getDate("booked_date")));
                     showtime.setText(rs.getString("showtime"));
                     totalAmount.setText("Rs. " + String.valueOf(rs.getInt("total_amount")) + ".00");
                     movieName.setText(rs.getString("movie_title"));
@@ -726,15 +726,11 @@ public class InvoiceFrm extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InvoiceFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InvoiceFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InvoiceFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(InvoiceFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */
