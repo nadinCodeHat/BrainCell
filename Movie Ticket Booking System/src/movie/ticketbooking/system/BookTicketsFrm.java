@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -1048,7 +1049,7 @@ public class BookTicketsFrm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "You cannot proceed until a showtime is picked", "Showtime", 2);
         }else{
             int bookedMovieID = storeBookedMovie();    
-            String query = "INSERT INTO `bookings`(`userid`, `booked_movie_id`, `seat`, `no_of_tickets`, `date`, `showtime`, `total_amount`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO `bookings`(`userid`, `booked_movie_id`, `seat`, `no_of_tickets`, `purchased_date`, `booked_date`, `showtime`, `total_amount`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             try{
                 PreparedStatement pst = null;
                 pst = DBConnectClass.getConnection().prepareStatement(query);
@@ -1056,11 +1057,14 @@ public class BookTicketsFrm extends javax.swing.JFrame {
                 pst.setInt(2, bookedMovieID);
                 pst.setString(3, str);
                 pst.setInt(4, noOfChecked);
+                Timestamp stamp = new Timestamp(System.currentTimeMillis());
+                java.sql.Date datenow = new java.sql.Date(stamp.getTime());
+                pst.setDate(5, datenow);
                 String dateStr = String.format("%1$tY-%1$tm-%1$td", pickDate.getDate());
                 java.sql.Date date = java.sql.Date.valueOf(dateStr);
-                pst.setDate(5, date);
-                pst.setString(6, showtimeCombo.getSelectedItem().toString());
-                pst.setInt(7, totalAmount);
+                pst.setDate(6, date);
+                pst.setString(7, showtimeCombo.getSelectedItem().toString());
+                pst.setInt(8, totalAmount);
                 pst.execute();
                 pst.close();
                 DBConnectClass.getConnection().close();
