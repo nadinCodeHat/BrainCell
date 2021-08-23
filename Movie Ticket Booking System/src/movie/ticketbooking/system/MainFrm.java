@@ -1,5 +1,6 @@
 package movie.ticketbooking.system;
 
+import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Image;
 import java.io.IOException;
@@ -8,6 +9,8 @@ import java.net.URISyntaxException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -94,7 +97,6 @@ public class MainFrm extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         myBookingsTable = new javax.swing.JTable();
         sortByMYCombo = new javax.swing.JComboBox<>();
-        sortByShowtime = new javax.swing.JComboBox<>();
         searchTextField = new javax.swing.JTextField();
         viewInvoiceBtn = new javax.swing.JButton();
 
@@ -425,13 +427,29 @@ public class MainFrm extends javax.swing.JFrame {
 
         sortByMYCombo.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         sortByMYCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sort by Month/Year", "This Month", "This Year", "Last Year" }));
-        myBookingsPanel.add(sortByMYCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 140, -1));
-
-        sortByShowtime.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        sortByShowtime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sort by showtime", "10:30 AM", "1:30 PM", "4:30 PM", "7:30 PM" }));
-        myBookingsPanel.add(sortByShowtime, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
+        sortByMYCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortByMYComboActionPerformed(evt);
+            }
+        });
+        myBookingsPanel.add(sortByMYCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 140, -1));
 
         searchTextField.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        searchTextField.setForeground(new java.awt.Color(128, 128, 128));
+        searchTextField.setText("Search");
+        searchTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                searchTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                searchTextFieldFocusLost(evt);
+            }
+        });
+        searchTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchTextFieldKeyPressed(evt);
+            }
+        });
         myBookingsPanel.add(searchTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 40, 180, -1));
 
         viewInvoiceBtn.setText("View Invoice");
@@ -581,7 +599,9 @@ public class MainFrm extends javax.swing.JFrame {
 
     private void myBookingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myBookingsBtnActionPerformed
         panelVisible(false, true, false);
-        getBookingInfo();
+        String nowdate = String.format("%1$tY-%1$tm-%1$td", LocalDate.now());
+        java.sql.Date formatdate = java.sql.Date.valueOf(nowdate);
+        getBookingInfo("null");
         try {
             Image myBookingsImgHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/myBookingsBtnHover.png"));
             myBookingsBtn.setIcon(new ImageIcon(myBookingsImgHover));
@@ -591,9 +611,27 @@ public class MainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_myBookingsBtnActionPerformed
 
     DefaultTableModel tableModel = new DefaultTableModel(new String[]{"Bked Movie ID", "Movie Title", "Screen", "Showtime", "Ticket Price", "Purchased Date", "Booked Date", "No of Tickets", "Seats", "Total Amount"}, 0);
-    private void getBookingInfo(){
-        String query = "SELECT booked_movie_id, bookings.seat, bookings.no_of_tickets, bookings.purchased_date, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen, booked_movie.ticket_price FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '"+userid+"'";
-
+    private void getBookingInfo(String chooseDate){
+        tableModel.setRowCount(0);
+        String query = null;
+        //Select all
+        if("null".equals(chooseDate)){
+            query = "SELECT booked_movie_id, bookings.seat, bookings.no_of_tickets, bookings.purchased_date, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen, booked_movie.ticket_price FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '"+userid+"'";
+        }
+        //Select this month
+        if("This Month".equals(chooseDate)){
+            query = "SELECT booked_movie_id, bookings.seat, bookings.no_of_tickets, bookings.purchased_date, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen, booked_movie.ticket_price FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '"+userid+"' AND MONTH(booked_date) = MONTH(CURRENT_DATE()) AND YEAR(booked_date) = YEAR(CURRENT_DATE())";
+        }
+        //Select this year
+        if("This Year".equals(chooseDate)){
+            query = "SELECT booked_movie_id, bookings.seat, bookings.no_of_tickets, bookings.purchased_date, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen, booked_movie.ticket_price FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '"+userid+"' AND YEAR(booked_date) = YEAR(CURRENT_DATE())";
+        }
+        //Select last year
+        if("Last Year".equals(chooseDate)){
+            query = "SELECT booked_movie_id, bookings.seat, bookings.no_of_tickets, bookings.purchased_date, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen, booked_movie.ticket_price FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '"+userid+"' AND YEAR(booked_date) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 YEAR))";
+        }
+        
+        
         try {
         ResultSet rs;
         try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query)) {
@@ -694,6 +732,41 @@ public class MainFrm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_viewInvoiceBtnActionPerformed
 
+    private void searchTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchTextFieldKeyPressed
+       // seachTextField.getText();
+        
+    }//GEN-LAST:event_searchTextFieldKeyPressed
+
+    private void searchTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTextFieldFocusGained
+        if (searchTextField.getText().equals("Search")) {
+            searchTextField.setText("");
+            searchTextField.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_searchTextFieldFocusGained
+
+    private void searchTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTextFieldFocusLost
+        if (searchTextField.getText().isEmpty()) {
+            searchTextField.setForeground(Color.GRAY);
+            searchTextField.setText("Search");
+        }
+    }//GEN-LAST:event_searchTextFieldFocusLost
+
+    private void sortByMYComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortByMYComboActionPerformed
+        //This Month
+        if(sortByMYCombo.getSelectedItem() == "This Month"){
+            getBookingInfo("This Month");
+        }
+        //Last Month
+        if(sortByMYCombo.getSelectedItem() == "This Year"){
+            getBookingInfo("This Year");
+        }
+        //Last Year
+        if(sortByMYCombo.getSelectedItem() == "Last Year"){
+            getBookingInfo("Last Year");
+        }
+    }//GEN-LAST:event_sortByMYComboActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
@@ -777,7 +850,6 @@ public class MainFrm extends javax.swing.JFrame {
     private javax.swing.JLabel runtimeLabel3;
     private javax.swing.JTextField searchTextField;
     private javax.swing.JComboBox<String> sortByMYCombo;
-    private javax.swing.JComboBox<String> sortByShowtime;
     private javax.swing.JLabel starLabel1;
     private javax.swing.JLabel starLabel2;
     private javax.swing.JLabel starLabel3;
