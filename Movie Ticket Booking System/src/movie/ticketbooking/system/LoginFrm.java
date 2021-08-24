@@ -216,19 +216,19 @@ public class LoginFrm extends javax.swing.JFrame {
         }
     }
     
-    private void createAccountLinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountLinkMouseClicked
-        SignupFrm sngFrm = new SignupFrm();
-        sngFrm.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_createAccountLinkMouseClicked
+    private void createAccountLinkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountLinkMouseExited
+        createAccountLink.setForeground(new Color(235, 16, 42));
+    }//GEN-LAST:event_createAccountLinkMouseExited
 
     private void createAccountLinkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountLinkMouseEntered
         createAccountLink.setForeground(new Color(209, 15, 38));
     }//GEN-LAST:event_createAccountLinkMouseEntered
 
-    private void createAccountLinkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountLinkMouseExited
-        createAccountLink.setForeground(new Color(235, 16, 42));
-    }//GEN-LAST:event_createAccountLinkMouseExited
+    private void createAccountLinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountLinkMouseClicked
+        SignupFrm sngFrm = new SignupFrm();
+        sngFrm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_createAccountLinkMouseClicked
 
     /**
      * @param args the command line arguments
