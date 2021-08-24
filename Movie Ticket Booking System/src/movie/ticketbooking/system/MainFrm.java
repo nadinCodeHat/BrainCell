@@ -10,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -99,6 +98,7 @@ public class MainFrm extends javax.swing.JFrame {
         sortByMYCombo = new javax.swing.JComboBox<>();
         searchTextField = new javax.swing.JTextField();
         viewInvoiceBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -460,6 +460,9 @@ public class MainFrm extends javax.swing.JFrame {
         });
         myBookingsPanel.add(viewInvoiceBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 40, -1, -1));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/icons8_search_20px.png"))); // NOI18N
+        myBookingsPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 40, 20, 20));
+
         getContentPane().add(myBookingsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 910, 600));
 
         pack();
@@ -630,8 +633,7 @@ public class MainFrm extends javax.swing.JFrame {
         if("Last Year".equals(chooseDate)){
             query = "SELECT booked_movie_id, bookings.seat, bookings.no_of_tickets, bookings.purchased_date, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen, booked_movie.ticket_price FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '"+userid+"' AND YEAR(booked_date) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 YEAR))";
         }
-        
-        
+         
         try {
         ResultSet rs;
         try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query)) {
@@ -731,9 +733,45 @@ public class MainFrm extends javax.swing.JFrame {
             invoice.setVisible(true);
         }
     }//GEN-LAST:event_viewInvoiceBtnActionPerformed
+    
+    DefaultTableModel searchTableModel = new DefaultTableModel(new String[]{"Bked Movie ID", "Movie Title", "Screen", "Showtime", "Ticket Price", "Purchased Date", "Booked Date", "No of Tickets", "Seats", "Total Amount"}, 0);
 
     private void searchTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchTextFieldKeyPressed
-       // seachTextField.getText();
+        tableModel.setRowCount(0);
+        
+        String searchValue = searchTextField.getText();
+        String query = null;
+        if(searchValue.equals(null)){
+            query = "SELECT booked_movie_id, bookings.seat, bookings.no_of_tickets, bookings.purchased_date, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen, booked_movie.ticket_price FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '"+userid+"'";
+        }else{
+            query = "SELECT booked_movie_id, bookings.seat, bookings.no_of_tickets, bookings.purchased_date, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen, booked_movie.ticket_price FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '"+userid+"' AND booked_movie.movie_title LIKE '%" + searchValue + "%' OR bookings.purchased_date LIKE '%" + searchValue + "%'";
+        }
+         
+        try {
+        ResultSet rs;
+        try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query)) {
+            rs = pst.executeQuery();
+            while(rs.next()){
+                int bookedMovieId = rs.getInt("booked_movie_id");
+                String movietitle = rs.getString("movie_title");
+                String screen = rs.getString("screen");
+                String showtime = rs.getString("showtime");
+                int ticketPrice = rs.getInt("ticket_price");
+                String purchasedDate = String.valueOf(rs.getDate("purchased_date"));
+                String bookedDate = String.valueOf(rs.getDate("booked_date"));
+                int noOfTickets = rs.getInt("no_of_tickets");
+                String seats = rs.getString("seat");
+                int totalAmount = rs.getInt("total_amount");
+
+                tableModel.addRow(new Object[]{bookedMovieId, movietitle, screen, showtime, ticketPrice, purchasedDate, bookedDate, noOfTickets, seats, totalAmount});
+            }
+        }
+            rs.close();
+            DBConnectClass.getConnection().close();
+        } catch (SQLException ex) {
+            Logger.getLogger(MainFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        myBookingsTable.setModel(tableModel);
         
     }//GEN-LAST:event_searchTextFieldKeyPressed
 
@@ -817,6 +855,7 @@ public class MainFrm extends javax.swing.JFrame {
     private javax.swing.JLabel genreLabel1;
     private javax.swing.JLabel genreLabel2;
     private javax.swing.JLabel genreLabel3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel logoLabel;
     private javax.swing.JButton logoutBtn;
