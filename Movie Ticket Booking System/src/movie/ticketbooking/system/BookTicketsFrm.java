@@ -32,9 +32,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BookTicketsFrm extends javax.swing.JFrame {
 
-    public BookTicketsFrm(){}
-    
-    private int idval,userid = 0;
+    public BookTicketsFrm() {}
+
+    private int idval, userid = 0;
+
     public BookTicketsFrm(int id, int userid) {
         initComponents();
         this.idval = id;
@@ -42,30 +43,31 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         loadMovieData();
         pickDate.setMinSelectableDate(new Date());
         confirmBtn.setEnabled(false);
-        if(noOfReservedSeats == 40){
+        if (noOfReservedSeats == 40) {
             confirmBtn.setEnabled(false);
         }
         noOfTcksLabel.setText("0 Tickets");
         totalAmountLabel.setText("Rs. 0");
     }
-    private String movietitle  = "";
-    private void loadMovieData(){
+    private String movietitle = "";
+
+    private void loadMovieData() {
         //Retrieve data
-        String query = "SELECT movie_title, genre, rating, hour, minute, content_rating, description, screen, ticket_price, poster FROM `movies` WHERE id = '"+idval+"'";
+        String query = "SELECT movie_title, genre, rating, hour, minute, content_rating, description, screen, ticket_price, poster FROM `movies` WHERE id = '" + idval + "'";
         try {
             ResultSet rs;
             try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query)) {
                 rs = pst.executeQuery();
-                while(rs.next()){
+                while (rs.next()) {
                     movietitle = rs.getString("movie_title");
-                    movieTitle.setText("<html>"+ rs.getString("movie_title")+ "</html>");
+                    movieTitle.setText("<html>" + rs.getString("movie_title") + "</html>");
                     genreLabel.setText(rs.getString("genre"));
-                    ratingLabel.setText(String.valueOf(rs.getDouble("rating"))+"/10");
-                    runtimeLabel.setText(rs.getInt("hour")+"h and "+rs.getInt("minute")+"m");
+                    ratingLabel.setText(String.valueOf(rs.getDouble("rating")) + "/10");
+                    runtimeLabel.setText(rs.getInt("hour") + "h and " + rs.getInt("minute") + "m");
                     contentRatingLabel.setText(rs.getString("content_rating"));
                     descriptionTextArea.setText(rs.getString("description"));
                     screenLabel.setText(rs.getString("screen"));
-                    tckPriceLabel.setText("Rs. "+String.valueOf(rs.getInt("ticket_price")));
+                    tckPriceLabel.setText("Rs. " + String.valueOf(rs.getInt("ticket_price")));
                     ticketPrice = rs.getInt("ticket_price");
                     movieLabel.setIcon(parsePoster(rs.getBytes("poster")));
                 }
@@ -76,15 +78,15 @@ public class BookTicketsFrm extends javax.swing.JFrame {
             Logger.getLogger(BookTicketsFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    private String getUserEmail(){
-        String query = "SELECT email FROM `users` WHERE id = '"+userid+"'";
+
+    private String getUserEmail() {
+        String query = "SELECT email FROM `users` WHERE id = '" + userid + "'";
         String email = null;
         try {
             ResultSet rs;
             try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query)) {
                 rs = pst.executeQuery();
-                while(rs.next()){
+                while (rs.next()) {
                     email = rs.getString("email");
                 }
             }
@@ -95,12 +97,12 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         }
         return email;
     }
-    
-    private ImageIcon parsePoster(byte[] dTM){
-        ImageIcon icon =new ImageIcon(dTM);
+
+    private ImageIcon parsePoster(byte[] dTM) {
+        ImageIcon icon = new ImageIcon(dTM);
         return icon;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -799,8 +801,8 @@ public class BookTicketsFrm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private int noOfReservedSeats = 0;
-    
-    private void resetSeats(){
+
+    private void resetSeats() {
         a1TogBtn.setEnabled(true);
         a2TogBtn.setEnabled(true);
         a3TogBtn.setEnabled(true);
@@ -822,7 +824,7 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         b8TogBtn.setEnabled(true);
         b9TogBtn.setEnabled(true);
         b10TogBtn.setEnabled(true);
-        
+
         c1TogBtn.setEnabled(true);
         c2TogBtn.setEnabled(true);
         c3TogBtn.setEnabled(true);
@@ -833,7 +835,7 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         c8TogBtn.setEnabled(true);
         c9TogBtn.setEnabled(true);
         c10TogBtn.setEnabled(true);
-        
+
         d1TogBtn.setEnabled(true);
         d2TogBtn.setEnabled(true);
         d3TogBtn.setEnabled(true);
@@ -846,17 +848,18 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         d10TogBtn.setEnabled(true);
     }
     String hereSeats;
-    private void getAlreadyReservedSeats(String date, String showtime){
+
+    private void getAlreadyReservedSeats(String date, String showtime) {
         //Retrieve data
         DefaultTableModel model = new DefaultTableModel(new String[]{"Seats"}, 0);
-        String query = "SELECT seat FROM `bookings` WHERE booked_date = '"+date+"' AND showtime = '"+showtime+"'";
+        String query = "SELECT seat FROM `bookings` WHERE booked_date = '" + date + "' AND showtime = '" + showtime + "'";
         String seats = null;
         boolean noseats = false;
         try {
             ResultSet rs = null;
             try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query)) {
                 rs = pst.executeQuery();
-                while(rs.next()){
+                while (rs.next()) {
                     seats = rs.getString("seat");
                     model.addRow(new Object[]{seats});
                 }
@@ -866,11 +869,11 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(BookTicketsFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(noseats == false){
-            
+        if (noseats == false) {
+
             List<String> listSeats = null;
-            for(int row = 0;row < model.getRowCount();row++) {
-                for(int col = 0;col < model.getColumnCount();col++) {
+            for (int row = 0; row < model.getRowCount(); row++) {
+                for (int col = 0; col < model.getColumnCount(); col++) {
                     listSeats = Arrays.asList(model.getValueAt(row, col).toString().split(","));
                     listSeats.forEach((String gen) -> {
                         switch (gen) {
@@ -912,7 +915,7 @@ public class BookTicketsFrm extends javax.swing.JFrame {
                                 break;
                             case "A10":
                                 a10TogBtn.setEnabled(false);
-                                noOfReservedSeats++;   
+                                noOfReservedSeats++;
                                 break;
                             case "B1":
                                 b1TogBtn.setEnabled(false);
@@ -1031,80 +1034,76 @@ public class BookTicketsFrm extends javax.swing.JFrame {
                                 noOfReservedSeats++;
                                 break;
                             case "D10":
-                                d10TogBtn.setEnabled(false);    
+                                d10TogBtn.setEnabled(false);
                                 noOfReservedSeats++;
                                 break;
-                            default :{
+                            default: {
                             }
                         }
                     });
                 }
             }
-        }        
+        }
     }
-    
-    String generatedColumns[] = { "ID" };
-    private int storeBookedMovie(){
+
+    String generatedColumns[] = {"ID"};
+    private int storeBookedMovie() {
         String query = "INSERT INTO `booked_movie`(`movie_title`, `screen`, `ticket_price`) VALUES (?, ?, ?)";
         int id = 0;
-        try{
+        try {
             PreparedStatement pst = null;
             pst = DBConnectClass.getConnection().prepareStatement(query, generatedColumns);
             pst.setString(1, movietitle);
             pst.setString(2, screenLabel.getText());
             pst.setDouble(3, ticketPrice);
-            
             pst.execute();
-            
             //get id
             ResultSet rs = pst.getGeneratedKeys();
 
             if (rs.next()) {
                 id = rs.getInt(1);
             }
-            
             pst.close();
             DBConnectClass.getConnection().close();
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             Logger.getLogger(BookTicketsFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
-         return id;
+        return id;
     }
-    
+
     private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
-        if(showtimeCombo.getSelectedItem().equals("Select showtime")){
+        if (showtimeCombo.getSelectedItem().equals("Select showtime")) {
             JOptionPane.showMessageDialog(null, "You cannot proceed until a showtime is picked", "Showtime", 2);
-        }else{
-            int bookedMovieID = storeBookedMovie();    
+        } else {
+            int bookedMovieID = storeBookedMovie();
             String query = "INSERT INTO `bookings`(`userid`, `booked_movie_id`, `seat`, `no_of_tickets`, `purchased_date`, `booked_date`, `showtime`, `total_amount`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            try{
+            try {
                 PreparedStatement pst = null;
                 pst = DBConnectClass.getConnection().prepareStatement(query);
                 pst.setInt(1, userid);
                 pst.setInt(2, bookedMovieID);
                 pst.setString(3, str);
                 pst.setInt(4, noOfChecked);
-                
+
                 String nowdate = String.format("%1$tY-%1$tm-%1$td", LocalDate.now());
                 java.sql.Date formatdate = java.sql.Date.valueOf(nowdate);
                 pst.setDate(5, formatdate);
-                
+
                 String dateStr = String.format("%1$tY-%1$tm-%1$td", pickDate.getDate());
                 java.sql.Date date = java.sql.Date.valueOf(dateStr);
                 pst.setDate(6, date);
-                
+
                 pst.setString(7, showtimeCombo.getSelectedItem().toString());
                 pst.setInt(8, totalAmount);
                 pst.execute();
-                
-                
-                String getUserquery = "SELECT email, name FROM `users` WHERE id = '"+userid+"'";
-                String custEmail = null,custName = null;
+
+                String getUserquery = "SELECT email, name FROM `users` WHERE id = '" + userid + "'";
+                String custEmail = null, custName = null;
                 try {
                     ResultSet rs;
                     try (PreparedStatement pstcon = DBConnectClass.getConnection().prepareStatement(getUserquery)) {
                         rs = pstcon.executeQuery();
-                        while(rs.next()){
+                        while (rs.next()) {
                             custEmail = rs.getString("email");
                             custName = rs.getString("name");
                         }
@@ -1114,52 +1113,50 @@ public class BookTicketsFrm extends javax.swing.JFrame {
                 } catch (SQLException ex) {
                     Logger.getLogger(BookTicketsFrm.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
-                
+
                 //send email
                 String FromEmail = "ENTER YOUR EMAIL";
-                String FromEmailPassword= "ENTER YOUR PASSWORD";
+                String FromEmailPassword = "ENTER YOUR PASSWORD";
 
                 Properties props = new Properties();
 
-                props.put("mail.smtp.user","username");
+                props.put("mail.smtp.user", "username");
                 props.put("mail.debug", "true");
                 props.put("mail.smtp.auth", "true");
-                props.put("mail.smtp.starttls.enable","true");
+                props.put("mail.smtp.starttls.enable", "true");
                 props.put("mail.smtp.host", "smtp.gmail.com");
                 props.put("mail.smtp.port", "587");
-                props.put("mail.smtp.EnableSSL.enable","true");
+                props.put("mail.smtp.EnableSSL.enable", "true");
                 props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
                 props.setProperty("mail.smtp.socketFactory.fallback", "false");
                 props.setProperty("mail.smtp.port", "465");
                 props.setProperty("mail.smtp.socketFactory.port", "465");
 
-                Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
-                @Override
+                Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+                    @Override
                     protected PasswordAuthentication getPasswordAuthentication() {
-                            return new PasswordAuthentication(FromEmail, FromEmailPassword);
+                        return new PasswordAuthentication(FromEmail, FromEmailPassword);
                     }
                 });
-                
-                try{
+
+                try {
                     MimeMessage message = new MimeMessage(session);
                     message.setFrom(new InternetAddress(FromEmail));
                     message.addRecipient(Message.RecipientType.TO, new InternetAddress(custEmail));
                     message.setSubject("BrainCell - Booked Seats");
-                    message.setText("Hello "+custName+" thankyou for choosing BrainCell Cinema! \n"
-                                    + "you can view your invoice through 'My Bookings'");
+                    message.setText("Hello " + custName + " thankyou for choosing BrainCell Cinema! \n"
+                            + "you can view your invoice through 'My Bookings'");
                     Transport.send(message);
-                } catch (MessagingException e){
-                    JOptionPane.showMessageDialog(null,"Something happened!");
+                } catch (MessagingException e) {
+                    JOptionPane.showMessageDialog(null, "Something happened!");
                     throw new RuntimeException(e);
                 }
-                
+
                 pst.close();
                 DBConnectClass.getConnection().close();
-            }catch(SQLException ex){
+            } catch (SQLException ex) {
                 Logger.getLogger(BookTicketsFrm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            finally{
+            } finally {
                 JOptionPane.showMessageDialog(null, "Your seats have been reserved.");
                 InvoiceFrm invoice = new InvoiceFrm(userid, bookedMovieID);
                 invoice.pack();
@@ -1168,218 +1165,219 @@ public class BookTicketsFrm extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_confirmBtnActionPerformed
-    
-    private void setTogBtnIcon(JToggleButton btn, String iconName){
+
+    private void setTogBtnIcon(JToggleButton btn, String iconName) {
         try {
-            Image seat = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/"+iconName+".png"));
+            Image seat = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/" + iconName + ".png"));
             btn.setIcon(new ImageIcon(seat));
         } catch (IOException ex) {
-            Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BookTicketsFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     ArrayList<String> seatList = new ArrayList<>();
     String str;
     private int noOfChecked = 0;
     private int ticketPrice = 0;
     private int totalAmount = 0;
-    private void checkSeat(JToggleButton btn, String seat){
-        if(showtimeCombo.getSelectedItem().equals("Select showtime")){
-            JOptionPane.showMessageDialog(null, "Please pick a show time" ,"Showtime", 2);
-        }else{
-            if(btn.isSelected()){
-                setTogBtnIcon(btn,"seatYourBtn");
+
+    private void checkSeat(JToggleButton btn, String seat) {
+        if (showtimeCombo.getSelectedItem().equals("Select showtime")) {
+            JOptionPane.showMessageDialog(null, "Please pick a show time", "Showtime", 2);
+        } else {
+            if (btn.isSelected()) {
+                setTogBtnIcon(btn, "seatYourBtn");
                 seatList.add(seat);
-                str = String.join(",",seatList);
+                str = String.join(",", seatList);
                 noOfChecked++;
                 totalAmount += ticketPrice;
-            }else{
-                setTogBtnIcon(btn,"seatAvailableBtn");
+            } else {
+                setTogBtnIcon(btn, "seatAvailableBtn");
                 seatList.remove(seat);
-                str = String.join(",",seatList);
+                str = String.join(",", seatList);
                 noOfChecked--;
                 totalAmount -= ticketPrice;
             }
             seatsLabel.setText(str);
-            noOfTcksLabel.setText(noOfChecked+" Tickets");
-            totalAmountLabel.setText("Rs: "+totalAmount);
+            noOfTcksLabel.setText(noOfChecked + " Tickets");
+            totalAmountLabel.setText("Rs: " + totalAmount);
 
-            if(noOfChecked != 0){
+            if (noOfChecked != 0) {
                 confirmBtn.setEnabled(true);
-            }else{
+            } else {
                 confirmBtn.setEnabled(false);
             }
         }
     }
-    
+
     private void a1TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a1TogBtnActionPerformed
-        checkSeat(a1TogBtn,"A1");    
+        checkSeat(a1TogBtn, "A1");
     }//GEN-LAST:event_a1TogBtnActionPerformed
 
     private void a3TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a3TogBtnActionPerformed
-        checkSeat(a3TogBtn,"A3");
+        checkSeat(a3TogBtn, "A3");
     }//GEN-LAST:event_a3TogBtnActionPerformed
 
     private void a2TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a2TogBtnActionPerformed
-        checkSeat(a2TogBtn,"A2");
+        checkSeat(a2TogBtn, "A2");
     }//GEN-LAST:event_a2TogBtnActionPerformed
 
     private void b3TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b3TogBtnActionPerformed
-        checkSeat(b3TogBtn,"A3");
+        checkSeat(b3TogBtn, "A3");
     }//GEN-LAST:event_b3TogBtnActionPerformed
 
     private void b2TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b2TogBtnActionPerformed
-        checkSeat(b2TogBtn,"B2");
+        checkSeat(b2TogBtn, "B2");
     }//GEN-LAST:event_b2TogBtnActionPerformed
 
     private void b1TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1TogBtnActionPerformed
-        checkSeat(b1TogBtn,"B1");
+        checkSeat(b1TogBtn, "B1");
     }//GEN-LAST:event_b1TogBtnActionPerformed
 
     private void d1TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d1TogBtnActionPerformed
-        checkSeat(d1TogBtn,"D1");
+        checkSeat(d1TogBtn, "D1");
     }//GEN-LAST:event_d1TogBtnActionPerformed
 
     private void d3TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d3TogBtnActionPerformed
-        checkSeat(d3TogBtn,"D3");
+        checkSeat(d3TogBtn, "D3");
     }//GEN-LAST:event_d3TogBtnActionPerformed
 
     private void d2TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d2TogBtnActionPerformed
-        checkSeat(d2TogBtn,"D2");
+        checkSeat(d2TogBtn, "D2");
     }//GEN-LAST:event_d2TogBtnActionPerformed
 
     private void c1TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c1TogBtnActionPerformed
-        checkSeat(c1TogBtn,"C1");
+        checkSeat(c1TogBtn, "C1");
     }//GEN-LAST:event_c1TogBtnActionPerformed
 
     private void c2TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c2TogBtnActionPerformed
-        checkSeat(c2TogBtn,"C2");
+        checkSeat(c2TogBtn, "C2");
     }//GEN-LAST:event_c2TogBtnActionPerformed
 
     private void c3TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c3TogBtnActionPerformed
-        checkSeat(c3TogBtn,"C3");
+        checkSeat(c3TogBtn, "C3");
     }//GEN-LAST:event_c3TogBtnActionPerformed
 
     private void d8TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d8TogBtnActionPerformed
-        checkSeat(d8TogBtn,"C8");
+        checkSeat(d8TogBtn, "C8");
     }//GEN-LAST:event_d8TogBtnActionPerformed
 
     private void d9TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d9TogBtnActionPerformed
-        checkSeat(d9TogBtn,"D9");
+        checkSeat(d9TogBtn, "D9");
     }//GEN-LAST:event_d9TogBtnActionPerformed
 
     private void c9TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c9TogBtnActionPerformed
-        checkSeat(c9TogBtn,"C9");
+        checkSeat(c9TogBtn, "C9");
     }//GEN-LAST:event_c9TogBtnActionPerformed
 
     private void c8TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c8TogBtnActionPerformed
-        checkSeat(c8TogBtn,"C8");
+        checkSeat(c8TogBtn, "C8");
     }//GEN-LAST:event_c8TogBtnActionPerformed
 
     private void d10TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d10TogBtnActionPerformed
-        checkSeat(d10TogBtn,"D10");
+        checkSeat(d10TogBtn, "D10");
     }//GEN-LAST:event_d10TogBtnActionPerformed
 
     private void c10TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c10TogBtnActionPerformed
-        checkSeat(c10TogBtn,"C10");
+        checkSeat(c10TogBtn, "C10");
     }//GEN-LAST:event_c10TogBtnActionPerformed
 
     private void b10TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b10TogBtnActionPerformed
-        checkSeat(b10TogBtn,"B10");
+        checkSeat(b10TogBtn, "B10");
     }//GEN-LAST:event_b10TogBtnActionPerformed
 
     private void b9TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b9TogBtnActionPerformed
-        checkSeat(b9TogBtn,"B9");
+        checkSeat(b9TogBtn, "B9");
     }//GEN-LAST:event_b9TogBtnActionPerformed
 
     private void b8TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b8TogBtnActionPerformed
-        checkSeat(b8TogBtn,"B8");
+        checkSeat(b8TogBtn, "B8");
     }//GEN-LAST:event_b8TogBtnActionPerformed
 
     private void a8TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a8TogBtnActionPerformed
-        checkSeat(a8TogBtn,"A8");
+        checkSeat(a8TogBtn, "A8");
     }//GEN-LAST:event_a8TogBtnActionPerformed
 
     private void a9TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a9TogBtnActionPerformed
-        checkSeat(a9TogBtn,"A9");
+        checkSeat(a9TogBtn, "A9");
     }//GEN-LAST:event_a9TogBtnActionPerformed
 
     private void a10TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a10TogBtnActionPerformed
-        checkSeat(a10TogBtn,"A10");
+        checkSeat(a10TogBtn, "A10");
     }//GEN-LAST:event_a10TogBtnActionPerformed
 
     private void d4TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d4TogBtnActionPerformed
-        checkSeat(d4TogBtn,"D4");
+        checkSeat(d4TogBtn, "D4");
     }//GEN-LAST:event_d4TogBtnActionPerformed
 
     private void d5TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d5TogBtnActionPerformed
-        checkSeat(d5TogBtn,"D5");
+        checkSeat(d5TogBtn, "D5");
     }//GEN-LAST:event_d5TogBtnActionPerformed
 
     private void c5TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c5TogBtnActionPerformed
-        checkSeat(c5TogBtn,"C5");
+        checkSeat(c5TogBtn, "C5");
     }//GEN-LAST:event_c5TogBtnActionPerformed
 
     private void c4TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c4TogBtnActionPerformed
-        checkSeat(c4TogBtn,"C4");
+        checkSeat(c4TogBtn, "C4");
     }//GEN-LAST:event_c4TogBtnActionPerformed
 
     private void d6TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d6TogBtnActionPerformed
-        checkSeat(d6TogBtn,"D6");
+        checkSeat(d6TogBtn, "D6");
     }//GEN-LAST:event_d6TogBtnActionPerformed
 
     private void c6TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c6TogBtnActionPerformed
-        checkSeat(c6TogBtn,"C6");
+        checkSeat(c6TogBtn, "C6");
     }//GEN-LAST:event_c6TogBtnActionPerformed
 
     private void b6TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b6TogBtnActionPerformed
-        checkSeat(b6TogBtn,"B6");
+        checkSeat(b6TogBtn, "B6");
     }//GEN-LAST:event_b6TogBtnActionPerformed
 
     private void b5TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b5TogBtnActionPerformed
-        checkSeat(b5TogBtn,"B5");
+        checkSeat(b5TogBtn, "B5");
     }//GEN-LAST:event_b5TogBtnActionPerformed
 
     private void b4TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b4TogBtnActionPerformed
-        checkSeat(b4TogBtn,"B4");
+        checkSeat(b4TogBtn, "B4");
     }//GEN-LAST:event_b4TogBtnActionPerformed
 
     private void a4TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a4TogBtnActionPerformed
-        checkSeat(a4TogBtn,"A4");
+        checkSeat(a4TogBtn, "A4");
     }//GEN-LAST:event_a4TogBtnActionPerformed
 
     private void a5TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a5TogBtnActionPerformed
-        checkSeat(a5TogBtn,"A5");
+        checkSeat(a5TogBtn, "A5");
     }//GEN-LAST:event_a5TogBtnActionPerformed
 
     private void a6TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a6TogBtnActionPerformed
-        checkSeat(a6TogBtn,"A6");
+        checkSeat(a6TogBtn, "A6");
     }//GEN-LAST:event_a6TogBtnActionPerformed
 
     private void a7TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a7TogBtnActionPerformed
-        checkSeat(a7TogBtn,"A7");
+        checkSeat(a7TogBtn, "A7");
     }//GEN-LAST:event_a7TogBtnActionPerformed
 
     private void b7TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b7TogBtnActionPerformed
-        checkSeat(b7TogBtn,"B7");
+        checkSeat(b7TogBtn, "B7");
     }//GEN-LAST:event_b7TogBtnActionPerformed
 
     private void c7TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c7TogBtnActionPerformed
-        checkSeat(c7TogBtn,"C7");
+        checkSeat(c7TogBtn, "C7");
     }//GEN-LAST:event_c7TogBtnActionPerformed
 
     private void d7TogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d7TogBtnActionPerformed
-        checkSeat(d7TogBtn,"D7");
+        checkSeat(d7TogBtn, "D7");
     }//GEN-LAST:event_d7TogBtnActionPerformed
 
     private void showtimeComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showtimeComboActionPerformed
-        if(pickDate.getDate() == null){
+        if (pickDate.getDate() == null) {
             JOptionPane.showMessageDialog(null, "Please pick a date", "Date", 2);
-        }else{
-            if(!showtimeCombo.getSelectedItem().equals("Select showtime")){
+        } else {
+            if (!showtimeCombo.getSelectedItem().equals("Select showtime")) {
                 resetSeats();
                 getAlreadyReservedSeats(String.format("%1$tY-%1$tm-%1$td", pickDate.getDate()), showtimeCombo.getSelectedItem().toString());
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Please pick a show time", "Showtime", 2);
             }
         }
@@ -1399,15 +1397,14 @@ public class BookTicketsFrm extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BookTicketsFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BookTicketsFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BookTicketsFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(BookTicketsFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

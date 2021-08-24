@@ -16,13 +16,12 @@ import javax.swing.JOptionPane;
  *
  * @author nadinCodeHat
  */
-
 public class LoginFrm extends javax.swing.JFrame {
-    
+
     public LoginFrm() {
         initComponents();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -168,28 +167,28 @@ public class LoginFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_loginBtnMouseExited
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        if(validate_info()){
+        if (validate_info()) {
             String email = emailTextField.getText();
             String password = String.valueOf(passwordTextField.getPassword());
 
-            String query = "SELECT * FROM `users` WHERE `email` = '"+email+"' AND `password_hash` = '"+password+"'";
+            String query = "SELECT * FROM `users` WHERE `email` = '" + email + "' AND `password_hash` = '" + password + "'";
             try {
                 ResultSet rs;
                 try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query)) {
                     rs = pst.executeQuery();
-                    if(rs.next()){
+                    if (rs.next()) {
                         JOptionPane.showMessageDialog(null, "Login Successful!");
-                        if(rs.getInt("role_id") == 1){
+                        if (rs.getInt("role_id") == 1) {
                             AdminMainFrm adminMFrm = new AdminMainFrm();
                             adminMFrm.setVisible(true);
                             this.dispose();
-                        }else{
-                            
+                        } else {
+
                             MainFrm mainFrm = new MainFrm(rs.getInt("id"));
                             mainFrm.setVisible(true);
                             this.dispose();
                         }
-                    }else{
+                    } else {
                         JOptionPane.showMessageDialog(null, "Invalid Login, Please try again.", "Login", 2);
                     }
                 }
@@ -202,20 +201,19 @@ public class LoginFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_loginBtnActionPerformed
 
     //validate fields
-    public boolean validate_info(){
+    public boolean validate_info() {
         String email = emailTextField.getText();
         String password = String.valueOf(passwordTextField.getPassword());
-        
+
         //check empty fields
-        if (email.trim().equals("") || password.trim().equals("")){
-            JOptionPane.showMessageDialog(null, "Please fill the empty field(s)","Empty Field",2);
+        if (email.trim().equals("") || password.trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please fill the empty field(s)", "Empty Field", 2);
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
-    
+
     private void createAccountLinkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountLinkMouseExited
         createAccountLink.setForeground(new Color(235, 16, 42));
     }//GEN-LAST:event_createAccountLinkMouseExited
@@ -251,7 +249,7 @@ public class LoginFrm extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        
+
         //</editor-fold>
         //</editor-fold>
 

@@ -23,16 +23,16 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MainFrm extends javax.swing.JFrame {
 
-    public MainFrm() {
-    }
+    public MainFrm() {}
 
     private int userid = 0;
-    public MainFrm(int id){
+
+    public MainFrm(int id) {
         initComponents();
         this.userid = id;
         getMovies();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -452,24 +452,25 @@ public class MainFrm extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void panelVisible(Boolean m, Boolean mb, Boolean p){
+    private void panelVisible(Boolean m, Boolean mb, Boolean p) {
         moviesPanel.setVisible(m);
         myBookingsPanel.setVisible(mb);
     }
-    
+
     DefaultTableModel model = new DefaultTableModel(new String[]{"Movie Title", "Genre", "Rating", "Hour", "Minute", "Content Rating", "Ticket Price", "uri", "Poster"}, 0);
     DefaultTableModel idmodel = new DefaultTableModel(new String[]{"ID"}, 0);
-    private String uri1,uri2,uri3 = null;
+    private String uri1, uri2, uri3 = null;
     private int id1, id2, id3 = 0;
-    private void getMovies(){
+
+    private void getMovies() {
         //Retrieve data
-        String query = "SELECT id, movie_title, genre, rating, hour, minute, content_rating, ticket_price, uri, poster FROM `movies`" ;
+        String query = "SELECT id, movie_title, genre, rating, hour, minute, content_rating, ticket_price, uri, poster FROM `movies`";
 
         try {
             ResultSet rs;
             try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query)) {
                 rs = pst.executeQuery();
-                while(rs.next()){
+                while (rs.next()) {
                     int id = rs.getInt("id");
                     String movietitle = rs.getString("movie_title");
                     String genre = rs.getString("genre");
@@ -489,45 +490,44 @@ public class MainFrm extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(MainFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        //set data from model to fields
-        id1 = (int) idmodel.getValueAt(0,0);
-        movieTitle1.setText("<html>"+ model.getValueAt(0, 0).toString()+"</html>");
-        genre1.setText(model.getValueAt(0,1).toString());
-        rating1.setText(model.getValueAt(0,2).toString()+"/10");
-        runtime1.setText(model.getValueAt(0,3).toString()+ "h and " + model.getValueAt(0,4).toString()+"m");
-        contentRating1.setText(model.getValueAt(0,5).toString());
-        tckPrice1.setText("Rs. "+ model.getValueAt(0,6).toString());
-        uri1 = model.getValueAt(0,7).toString();
-        movieLabel1.setIcon(parsePoster((byte[]) model.getValueAt(0,8)));
 
-        id2 = (int) idmodel.getValueAt(1,0);
-        movieTitle2.setText("<html>"+ model.getValueAt(1, 0).toString()+"</html>");
-        genre2.setText(model.getValueAt(1,1).toString());
-        rating2.setText(model.getValueAt(1,2).toString()+"/10");
-        runtime2.setText(model.getValueAt(1,3).toString()+ "h and " + model.getValueAt(1,4).toString()+"m");
-        contentRating2.setText(model.getValueAt(1,5).toString());
-        tckPrice2.setText("Rs. "+ model.getValueAt(1,6).toString());
-        uri2 = model.getValueAt(1,7).toString();
-        movieLabel2.setIcon(parsePoster((byte[]) model.getValueAt(1,8)));
-        
+        //set data from model to fields
+        id1 = (int) idmodel.getValueAt(0, 0);
+        movieTitle1.setText("<html>" + model.getValueAt(0, 0).toString() + "</html>");
+        genre1.setText(model.getValueAt(0, 1).toString());
+        rating1.setText(model.getValueAt(0, 2).toString() + "/10");
+        runtime1.setText(model.getValueAt(0, 3).toString() + "h and " + model.getValueAt(0, 4).toString() + "m");
+        contentRating1.setText(model.getValueAt(0, 5).toString());
+        tckPrice1.setText("Rs. " + model.getValueAt(0, 6).toString());
+        uri1 = model.getValueAt(0, 7).toString();
+        movieLabel1.setIcon(parsePoster((byte[]) model.getValueAt(0, 8)));
+
+        id2 = (int) idmodel.getValueAt(1, 0);
+        movieTitle2.setText("<html>" + model.getValueAt(1, 0).toString() + "</html>");
+        genre2.setText(model.getValueAt(1, 1).toString());
+        rating2.setText(model.getValueAt(1, 2).toString() + "/10");
+        runtime2.setText(model.getValueAt(1, 3).toString() + "h and " + model.getValueAt(1, 4).toString() + "m");
+        contentRating2.setText(model.getValueAt(1, 5).toString());
+        tckPrice2.setText("Rs. " + model.getValueAt(1, 6).toString());
+        uri2 = model.getValueAt(1, 7).toString();
+        movieLabel2.setIcon(parsePoster((byte[]) model.getValueAt(1, 8)));
+
         id3 = (int) idmodel.getValueAt(2, 0);
-        movieTitle3.setText("<html>"+ model.getValueAt(2, 0).toString()+"</html>");
-        genre3.setText(model.getValueAt(2,1).toString());
-        rating3.setText(model.getValueAt(2,2).toString()+"/10");
-        runtime3.setText(model.getValueAt(2,3).toString()+ "h and " + model.getValueAt(2,4).toString()+"m");
-        contentRating3.setText(model.getValueAt(2,5).toString());
-        tckPrice3.setText("Rs. "+ model.getValueAt(2,6).toString());
-        uri3 = model.getValueAt(2,7).toString();
-        movieLabel3.setIcon(parsePoster((byte[]) model.getValueAt(2,8)));
+        movieTitle3.setText("<html>" + model.getValueAt(2, 0).toString() + "</html>");
+        genre3.setText(model.getValueAt(2, 1).toString());
+        rating3.setText(model.getValueAt(2, 2).toString() + "/10");
+        runtime3.setText(model.getValueAt(2, 3).toString() + "h and " + model.getValueAt(2, 4).toString() + "m");
+        contentRating3.setText(model.getValueAt(2, 5).toString());
+        tckPrice3.setText("Rs. " + model.getValueAt(2, 6).toString());
+        uri3 = model.getValueAt(2, 7).toString();
+        movieLabel3.setIcon(parsePoster((byte[]) model.getValueAt(2, 8)));
     }
-    
-    private ImageIcon parsePoster(byte[] dTM){
-        ImageIcon icon =new ImageIcon(dTM);
+
+    private ImageIcon parsePoster(byte[] dTM) {
+        ImageIcon icon = new ImageIcon(dTM);
         return icon;
     }
-    
+
     public static boolean openWebpage(String uri) {
         Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
         if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
@@ -539,7 +539,7 @@ public class MainFrm extends javax.swing.JFrame {
         }
         return false;
     }
-    
+
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
         LoginFrm lgnFrm = new LoginFrm();
         lgnFrm.setVisible(true);
@@ -566,45 +566,46 @@ public class MainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_myBookingsBtnActionPerformed
 
     DefaultTableModel tableModel = new DefaultTableModel(new String[]{"Bked Movie ID", "Movie Title", "Screen", "Showtime", "Ticket Price", "Purchased Date", "Booked Date", "No of Tickets", "Seats", "Total Amount"}, 0);
-    private void getBookingInfo(String chooseDate){
+
+    private void getBookingInfo(String chooseDate) {
         tableModel.setRowCount(0);
         String query = null;
         //Select all
-        if("null".equals(chooseDate)){
-            query = "SELECT bookings.booked_movie_id, bookings.seat, bookings.no_of_tickets, bookings.purchased_date, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen, booked_movie.ticket_price FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '"+userid+"'";
+        if ("null".equals(chooseDate)) {
+            query = "SELECT bookings.booked_movie_id, bookings.seat, bookings.no_of_tickets, bookings.purchased_date, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen, booked_movie.ticket_price FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '" + userid + "'";
         }
         //Select this month
-        if("This Month".equals(chooseDate)){
-            query = "SELECT bookings.booked_movie_id, bookings.seat, bookings.no_of_tickets, bookings.purchased_date, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen, booked_movie.ticket_price FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '"+userid+"' AND MONTH(booked_date) = MONTH(CURRENT_DATE()) AND YEAR(booked_date) = YEAR(CURRENT_DATE())";
+        if ("This Month".equals(chooseDate)) {
+            query = "SELECT bookings.booked_movie_id, bookings.seat, bookings.no_of_tickets, bookings.purchased_date, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen, booked_movie.ticket_price FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '" + userid + "' AND MONTH(booked_date) = MONTH(CURRENT_DATE()) AND YEAR(booked_date) = YEAR(CURRENT_DATE())";
         }
         //Select this year
-        if("This Year".equals(chooseDate)){
-            query = "SELECT bookings.booked_movie_id, bookings.seat, bookings.no_of_tickets, bookings.purchased_date, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen, booked_movie.ticket_price FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '"+userid+"' AND YEAR(booked_date) = YEAR(CURRENT_DATE())";
+        if ("This Year".equals(chooseDate)) {
+            query = "SELECT bookings.booked_movie_id, bookings.seat, bookings.no_of_tickets, bookings.purchased_date, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen, booked_movie.ticket_price FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '" + userid + "' AND YEAR(booked_date) = YEAR(CURRENT_DATE())";
         }
         //Select last year
-        if("Last Year".equals(chooseDate)){
-            query = "SELECT bookings.booked_movie_id, bookings.seat, bookings.no_of_tickets, bookings.purchased_date, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen, booked_movie.ticket_price FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '"+userid+"' AND YEAR(booked_date) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 YEAR))";
+        if ("Last Year".equals(chooseDate)) {
+            query = "SELECT bookings.booked_movie_id, bookings.seat, bookings.no_of_tickets, bookings.purchased_date, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen, booked_movie.ticket_price FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '" + userid + "' AND YEAR(booked_date) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 YEAR))";
         }
-         
-        try {
-        ResultSet rs;
-        try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query)) {
-            rs = pst.executeQuery();
-            while(rs.next()){
-                int bookedMovieId = rs.getInt("booked_movie_id");
-                String movietitle = rs.getString("movie_title");
-                String screen = rs.getString("screen");
-                String showtime = rs.getString("showtime");
-                int ticketPrice = rs.getInt("ticket_price");
-                String purchasedDate = String.valueOf(rs.getDate("purchased_date"));
-                String bookedDate = String.valueOf(rs.getDate("booked_date"));
-                int noOfTickets = rs.getInt("no_of_tickets");
-                String seats = rs.getString("seat");
-                int totalAmount = rs.getInt("total_amount");
 
-                tableModel.addRow(new Object[]{bookedMovieId, movietitle, screen, showtime, ticketPrice, purchasedDate, bookedDate, noOfTickets, seats, totalAmount});
+        try {
+            ResultSet rs;
+            try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query)) {
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                    int bookedMovieId = rs.getInt("booked_movie_id");
+                    String movietitle = rs.getString("movie_title");
+                    String screen = rs.getString("screen");
+                    String showtime = rs.getString("showtime");
+                    int ticketPrice = rs.getInt("ticket_price");
+                    String purchasedDate = String.valueOf(rs.getDate("purchased_date"));
+                    String bookedDate = String.valueOf(rs.getDate("booked_date"));
+                    int noOfTickets = rs.getInt("no_of_tickets");
+                    String seats = rs.getString("seat");
+                    int totalAmount = rs.getInt("total_amount");
+
+                    tableModel.addRow(new Object[]{bookedMovieId, movietitle, screen, showtime, ticketPrice, purchasedDate, bookedDate, noOfTickets, seats, totalAmount});
+                }
             }
-        }
             rs.close();
             DBConnectClass.getConnection().close();
         } catch (SQLException ex) {
@@ -612,7 +613,7 @@ public class MainFrm extends javax.swing.JFrame {
         }
         myBookingsTable.setModel(tableModel);
     }
-    
+
     private void moviesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moviesBtnActionPerformed
         panelVisible(true, false, false);
         getMovies();
@@ -631,7 +632,7 @@ public class MainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_moviesBtnActionPerformed
 
     private void bookNowBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookNowBtn1ActionPerformed
-        BookTicketsFrm bookTicket = new BookTicketsFrm(id1,userid);
+        BookTicketsFrm bookTicket = new BookTicketsFrm(id1, userid);
         bookTicket.pack();
         bookTicket.setVisible(true);
     }//GEN-LAST:event_bookNowBtn1ActionPerformed
@@ -661,10 +662,9 @@ public class MainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_bookNowBtn3ActionPerformed
 
     private void viewInvoiceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewInvoiceBtnActionPerformed
-        if(myBookingsTable.getSelectionModel().isSelectionEmpty()){
+        if (myBookingsTable.getSelectionModel().isSelectionEmpty()) {
             JOptionPane.showMessageDialog(null, "Please select a record to view invoice", "Row not selected", 2);
-        }
-        else{
+        } else {
             int column = 0;
             int row = myBookingsTable.getSelectedRow();
             int idvalue = (int) myBookingsTable.getModel().getValueAt(row, column);
@@ -673,7 +673,7 @@ public class MainFrm extends javax.swing.JFrame {
             invoice.setVisible(true);
         }
     }//GEN-LAST:event_viewInvoiceBtnActionPerformed
-    
+
     DefaultTableModel searchTableModel = new DefaultTableModel(new String[]{"Bked Movie ID", "Movie Title", "Screen", "Showtime", "Ticket Price", "Purchased Date", "Booked Date", "No of Tickets", "Seats", "Total Amount"}, 0);
 
     private void searchTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchTextFieldKeyPressed
@@ -681,38 +681,38 @@ public class MainFrm extends javax.swing.JFrame {
         searchTableModel.setRowCount(0);
         String searchValue = searchTextField.getText();
         String query = null;
-        if(searchValue.equals(null)){
-            query = "SELECT bookings.booked_movie_id, bookings.seat, bookings.no_of_tickets, bookings.purchased_date, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen, booked_movie.ticket_price FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '"+userid+"'";
-        }else{
-            query = "SELECT bookings.booked_movie_id, bookings.seat, bookings.no_of_tickets, bookings.purchased_date, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen, booked_movie.ticket_price FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '"+userid+"' AND booked_movie.movie_title LIKE '%" + searchValue + "%' OR bookings.purchased_date LIKE '%" + searchValue + "%'";
+        if (searchValue.equals(null)) {
+            query = "SELECT bookings.booked_movie_id, bookings.seat, bookings.no_of_tickets, bookings.purchased_date, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen, booked_movie.ticket_price FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '" + userid + "'";
+        } else {
+            query = "SELECT bookings.booked_movie_id, bookings.seat, bookings.no_of_tickets, bookings.purchased_date, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen, booked_movie.ticket_price FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '" + userid + "' AND booked_movie.movie_title LIKE '%" + searchValue + "%' OR bookings.purchased_date LIKE '%" + searchValue + "%'";
         }
-         
-        try {
-        ResultSet rs;
-        try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query)) {
-            rs = pst.executeQuery();
-            while(rs.next()){
-                int bookedMovieId = rs.getInt("booked_movie_id");
-                String movietitle = rs.getString("movie_title");
-                String screen = rs.getString("screen");
-                String showtime = rs.getString("showtime");
-                int ticketPrice = rs.getInt("ticket_price");
-                String purchasedDate = String.valueOf(rs.getDate("purchased_date"));
-                String bookedDate = String.valueOf(rs.getDate("booked_date"));
-                int noOfTickets = rs.getInt("no_of_tickets");
-                String seats = rs.getString("seat");
-                int totalAmount = rs.getInt("total_amount");
 
-                searchTableModel.addRow(new Object[]{bookedMovieId, movietitle, screen, showtime, ticketPrice, purchasedDate, bookedDate, noOfTickets, seats, totalAmount});
+        try {
+            ResultSet rs;
+            try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query)) {
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                    int bookedMovieId = rs.getInt("booked_movie_id");
+                    String movietitle = rs.getString("movie_title");
+                    String screen = rs.getString("screen");
+                    String showtime = rs.getString("showtime");
+                    int ticketPrice = rs.getInt("ticket_price");
+                    String purchasedDate = String.valueOf(rs.getDate("purchased_date"));
+                    String bookedDate = String.valueOf(rs.getDate("booked_date"));
+                    int noOfTickets = rs.getInt("no_of_tickets");
+                    String seats = rs.getString("seat");
+                    int totalAmount = rs.getInt("total_amount");
+
+                    searchTableModel.addRow(new Object[]{bookedMovieId, movietitle, screen, showtime, ticketPrice, purchasedDate, bookedDate, noOfTickets, seats, totalAmount});
+                }
             }
-        }
             rs.close();
             DBConnectClass.getConnection().close();
         } catch (SQLException ex) {
             Logger.getLogger(MainFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
         myBookingsTable.setModel(searchTableModel);
-        
+
     }//GEN-LAST:event_searchTextFieldKeyPressed
 
     private void searchTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTextFieldFocusGained
@@ -731,15 +731,15 @@ public class MainFrm extends javax.swing.JFrame {
 
     private void sortByMYComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortByMYComboActionPerformed
         //This Month
-        if(sortByMYCombo.getSelectedItem() == "This Month"){
+        if (sortByMYCombo.getSelectedItem() == "This Month") {
             getBookingInfo("This Month");
         }
         //Last Month
-        if(sortByMYCombo.getSelectedItem() == "This Year"){
+        if (sortByMYCombo.getSelectedItem() == "This Year") {
             getBookingInfo("This Year");
         }
         //Last Year
-        if(sortByMYCombo.getSelectedItem() == "Last Year"){
+        if (sortByMYCombo.getSelectedItem() == "Last Year") {
             getBookingInfo("Last Year");
         }
     }//GEN-LAST:event_sortByMYComboActionPerformed
@@ -757,7 +757,6 @@ public class MainFrm extends javax.swing.JFrame {
         contactusLink.setForeground(new Color(209, 15, 38));
     }//GEN-LAST:event_contactusLinkMouseExited
 
-    
     /**
      * @param args the command line arguments
      */
@@ -774,15 +773,12 @@ public class MainFrm extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MainFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        
         //</editor-fold>
         //</editor-fold>
 

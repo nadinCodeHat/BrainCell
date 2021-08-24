@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
  * @author nadinCodeHat
  */
 public class SignupFrm extends javax.swing.JFrame {
-    
+
     public SignupFrm() {
         initComponents();
     }
@@ -169,61 +169,54 @@ public class SignupFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_signupBtnMouseExited
 
     private void signupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupBtnActionPerformed
-        if(checkEmail(emailTextField.getText()) && validate_info()){
+        if (checkEmail(emailTextField.getText()) && validate_info()) {
 
             String name = fullnameTextField.getText();
             String userEmail = emailTextField.getText();
-            try{
+            try {
                 String insertUsersQuery = "INSERT INTO `users` (email, password_hash, name, role_id) VALUES(?,?,?,?)";
-                PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(insertUsersQuery);
-
-                pst.setString(1, userEmail);
-                pst.setString(2, String.valueOf(confirmPasswordTextField.getPassword()));
-                pst.setString(3, name);
-                pst.setString(4, "2");
-                pst.execute();
-
-                String FromEmail = "ENTER YOUR EMAIL";
-                String FromEmailPassword= "ENTER YOUR PASSWORD";
-
-                Properties props = new Properties();
-
-                props.put("mail.smtp.user","username");
-                props.put("mail.debug", "true");
-                props.put("mail.smtp.auth", "true");
-                props.put("mail.smtp.starttls.enable","true");
-                props.put("mail.smtp.host", "smtp.gmail.com");
-                props.put("mail.smtp.port", "587");
-                props.put("mail.smtp.EnableSSL.enable","true");
-                props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-                props.setProperty("mail.smtp.socketFactory.fallback", "false");
-                props.setProperty("mail.smtp.port", "465");
-                props.setProperty("mail.smtp.socketFactory.port", "465");
-
-                Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
-                @Override
-                    protected PasswordAuthentication getPasswordAuthentication() {
+                try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(insertUsersQuery)) {
+                    pst.setString(1, userEmail);
+                    pst.setString(2, String.valueOf(confirmPasswordTextField.getPassword()));
+                    pst.setString(3, name);
+                    pst.setString(4, "2");
+                    pst.execute();
+                    String FromEmail = "ENTER YOUR EMAIL";
+                    String FromEmailPassword = "ENTER YOUR PASSWORD";
+                    Properties props = new Properties();
+                    props.put("mail.smtp.user", "username");
+                    props.put("mail.debug", "true");
+                    props.put("mail.smtp.auth", "true");
+                    props.put("mail.smtp.starttls.enable", "true");
+                    props.put("mail.smtp.host", "smtp.gmail.com");
+                    props.put("mail.smtp.port", "587");
+                    props.put("mail.smtp.EnableSSL.enable", "true");
+                    props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+                    props.setProperty("mail.smtp.socketFactory.fallback", "false");
+                    props.setProperty("mail.smtp.port", "465");
+                    props.setProperty("mail.smtp.socketFactory.port", "465");
+                    Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+                        @Override
+                        protected PasswordAuthentication getPasswordAuthentication() {
                             return new PasswordAuthentication(FromEmail, FromEmailPassword);
+                        }
+                    });
+                    try {
+                        MimeMessage message = new MimeMessage(session);
+                        message.setFrom(new InternetAddress(FromEmail));
+                        message.addRecipient(Message.RecipientType.TO, new InternetAddress(userEmail));
+                        message.setSubject("BrainCell User Account SignUp");
+                        message.setText("Hello " + name + " thankyou for joining with BrainCell Cinema!");
+                        Transport.send(message);
+                    } catch (MessagingException e) {
+                        JOptionPane.showMessageDialog(null, "Something happened!");
+                        throw new RuntimeException(e);
                     }
-                });
-
-                try{
-                    MimeMessage message = new MimeMessage(session);
-                    message.setFrom(new InternetAddress(FromEmail));
-                    message.addRecipient(Message.RecipientType.TO, new InternetAddress(userEmail));
-                    message.setSubject("BrainCell User Account SignUp");
-                    message.setText("Hello "+name+" thankyou for joining with BrainCell Cinema!");
-                    Transport.send(message);
-                } catch (MessagingException e){
-                    JOptionPane.showMessageDialog(null,"Something happened!");
-                    throw new RuntimeException(e);
                 }
-            pst.close();
-            DBConnectClass.getConnection().close();
-            }catch(SQLException ex){
+                DBConnectClass.getConnection().close();
+            } catch (SQLException ex) {
                 Logger.getLogger(SignupFrm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            finally{
+            } finally {
                 JOptionPane.showMessageDialog(null, "Account created successfully!");
             }
         }
@@ -244,53 +237,51 @@ public class SignupFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_login_linkMouseExited
 
     //validate fields
-    public boolean validate_info(){
+    public boolean validate_info() {
         String fullname = fullnameTextField.getText();
         String email = emailTextField.getText();
         String createpass = String.valueOf(createPasswordTextField.getPassword());
         String confirmpass = String.valueOf(confirmPasswordTextField.getPassword());
-        
+
         //check empty fields
-        if (fullname.trim().equals("") || email.trim().equals("")){
-            JOptionPane.showMessageDialog(null, "Please fill the empty field(s)","Empty Field",2);
+        if (fullname.trim().equals("") || email.trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please fill the empty field(s)", "Empty Field", 2);
             return false;
         }
-        if (createpass.trim().equals("") || confirmpass.trim().equals("")){
-            JOptionPane.showMessageDialog(null, "Please create a password","Empty Password",2);
+        if (createpass.trim().equals("") || confirmpass.trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please create a password", "Empty Password", 2);
             return false;
         }
-        if (createpass.trim().equals("") || (!createpass.equals(confirmpass))){
-            JOptionPane.showMessageDialog(null, "Passwords do not match","Confirm Password",2);
+        if (createpass.trim().equals("") || (!createpass.equals(confirmpass))) {
+            JOptionPane.showMessageDialog(null, "Passwords do not match", "Confirm Password", 2);
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
-    
+
     //Check for duplicate emails
-    public boolean checkEmail(String email){
+    public boolean checkEmail(String email) {
         boolean email_notexists = true;
         String query = "SELECT COUNT(*) FROM `users` WHERE `email` = ?";
         try {
             PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query);
-            pst.setString(1,email);
+            pst.setString(1, email);
             ResultSet rs = pst.executeQuery();
             rs.next();
-            if(rs.getInt(1)!=0){
+            if (rs.getInt(1) != 0) {
                 email_notexists = false;
-                JOptionPane.showMessageDialog(null, "An account exists by this email, please enter different email.", "Email Duplicate",2);
+                JOptionPane.showMessageDialog(null, "An account exists by this email, please enter different email.", "Email Duplicate", 2);
             }
             pst.close();
             rs.close();
             DBConnectClass.getConnection().close();
         } catch (SQLException ex) {
-            Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SignupFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
         return email_notexists;
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -312,7 +303,7 @@ public class SignupFrm extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        
+
         //</editor-fold>
         //</editor-fold>
 

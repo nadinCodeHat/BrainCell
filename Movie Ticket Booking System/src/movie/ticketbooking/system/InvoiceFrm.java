@@ -14,19 +14,19 @@ public class InvoiceFrm extends javax.swing.JFrame {
 
     public InvoiceFrm() {
     }
-    public InvoiceFrm(int id, int idvalue){
+
+    public InvoiceFrm(int id, int idvalue) {
         initComponents();
         getInvoiceData(id, idvalue);
     }
-    
-    private void getInvoiceData(int userid, int bookedidvalue){
-        String query = "SELECT bookings.seat, bookings.no_of_tickets, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen  FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '"+userid+"' AND bookings.booked_movie_id = '"+bookedidvalue+"'";
-        try{
+
+    private void getInvoiceData(int userid, int bookedidvalue) {
+        String query = "SELECT bookings.seat, bookings.no_of_tickets, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen  FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '" + userid + "' AND bookings.booked_movie_id = '" + bookedidvalue + "'";
+        try {
             ResultSet rs;
             try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query)) {
                 rs = pst.executeQuery();
-                while(rs.next())
-                {
+                while (rs.next()) {
                     seats.setText(rs.getString("seat"));
                     noOfTck.setText(String.valueOf(rs.getInt("no_of_tickets")));
                     date.setText(String.valueOf(rs.getDate("booked_date")));
@@ -38,11 +38,11 @@ public class InvoiceFrm extends javax.swing.JFrame {
             }
             rs.close();
             DBConnectClass.getConnection().close();
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             Logger.getLogger(InvoiceFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -730,7 +730,7 @@ public class InvoiceFrm extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(InvoiceFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */

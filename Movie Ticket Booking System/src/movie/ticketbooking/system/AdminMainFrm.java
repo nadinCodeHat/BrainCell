@@ -268,13 +268,13 @@ public class AdminMainFrm extends javax.swing.JFrame {
             Image manageMoviesBtnChecked = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/manageMoviesBtnHover.png"));
             manageMoviesBtn.setIcon(new ImageIcon(manageMoviesBtnChecked));
         } catch (IOException ex) {
-            Logger.getLogger(MainFrm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminMainFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
             Image viewBookingsBtnChecked = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/viewBookingsBtn.png"));
             viewBookingsBtn.setIcon(new ImageIcon(viewBookingsBtnChecked));
         } catch (IOException ex) {
-            Logger.getLogger(MainFrm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminMainFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_manageMoviesBtnActionPerformed
 
@@ -296,7 +296,6 @@ public class AdminMainFrm extends javax.swing.JFrame {
                     String contentRating = rs.getString("content_rating");
                     String screen = rs.getString("screen");
                     int ticketPrice = rs.getInt("ticket_price");
-                    
                     String runtime = hour+" h and "+minute+" m";
                     model.addRow(new Object[]{id, movieTitle, genre, rating, runtime, contentRating, screen, ticketPrice});
                 }   moviesTable.setModel(model);
@@ -351,7 +350,7 @@ public class AdminMainFrm extends javax.swing.JFrame {
             rs.close();
             DBConnectClass.getConnection().close();
         } catch (SQLException ex) {
-            Logger.getLogger(MainFrm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminMainFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
         viewBookingsTable.setModel(tableModel);
     }
@@ -392,13 +391,13 @@ public class AdminMainFrm extends javax.swing.JFrame {
             Image manageMoviesBtnChecked = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/manageMoviesBtn.png"));
             manageMoviesBtn.setIcon(new ImageIcon(manageMoviesBtnChecked));
         } catch (IOException ex) {
-            Logger.getLogger(MainFrm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminMainFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
             Image viewBookingsBtnChecked = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/viewBookingsBtnHover.png"));
             viewBookingsBtn.setIcon(new ImageIcon(viewBookingsBtnChecked));
         } catch (IOException ex) {
-            Logger.getLogger(MainFrm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminMainFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_viewBookingsBtnActionPerformed
 
@@ -470,7 +469,6 @@ public class AdminMainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_searchTextFieldFocusLost
 
     DefaultTableModel searchTableModel = new DefaultTableModel(new String[]{"Cust. ID", "Bked M.ID", "Cust. Name", "Movie Title", "Purchased Date", "Booked Date", "No of Tickets", "Seats", "Tick. Price", "Total Amount"}, 0);
-
     private void searchTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchTextFieldKeyPressed
         tableModel.setRowCount(0);
         searchTableModel.setRowCount(0);

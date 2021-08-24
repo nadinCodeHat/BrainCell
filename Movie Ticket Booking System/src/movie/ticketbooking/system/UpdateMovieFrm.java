@@ -26,12 +26,12 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author nadinCodeHat
  */
 public class UpdateMovieFrm extends javax.swing.JFrame {
-    
-    public UpdateMovieFrm() {
-    }
-    
+
+    public UpdateMovieFrm() {}
+
     int id;
-    public UpdateMovieFrm(int id){
+
+    public UpdateMovieFrm(int id) {
         initComponents();
         this.id = id;
         loadEditData();
@@ -458,11 +458,12 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
+
     byte[] posterBytes = null;
-    public void loadEditData(){
+
+    public void loadEditData() {
         //Retrieve data
-        String query = "SELECT movie_title, genre, rating, hour, minute, content_rating, description, screen, ticket_price, uri, poster FROM `movies` WHERE id = '" + id + "'" ;
+        String query = "SELECT movie_title, genre, rating, hour, minute, content_rating, description, screen, ticket_price, uri, poster FROM `movies` WHERE id = '" + id + "'";
         String movietitle = null;
         String genre = null;
         Double rating = 0.0;
@@ -478,7 +479,7 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
         try {
             pst = DBConnectClass.getConnection().prepareStatement(query);
             rs = pst.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 movietitle = rs.getString("movie_title");
                 genre = rs.getString("genre");
                 rating = rs.getDouble("rating");
@@ -497,14 +498,14 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(UpdateMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         movieTitleTextField.setText(movietitle);
         ratingSpinner.setValue(rating);
         hourSpinner.setValue(hour);
         minuteSpinner.setValue(minute);
         contRatingCombo.setSelectedItem(contentRating);
         List<String> listGenre = Arrays.asList(genre.split(","));
-            
+
         listGenre.forEach((String gen) -> {
             switch (gen) {
                 case "Adventure":
@@ -527,7 +528,7 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
                     fantasyCheckBox.setSelected(true);
                 case "Drama":
                     dramaCheckBox.setSelected(true);
-                default :{
+                default: {
                 }
             }
         });
@@ -535,123 +536,114 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
         screenCombo.setSelectedItem(screen);
         tckPrcTextField.setText(ticketPrice);
         uriTextField.setText(uri);
-        if(posterBytes != null){
+        if (posterBytes != null) {
             posterImgPath.setText("Poster already saved.");
         }
     }
-    
+
     ArrayList<String> genreList = new ArrayList<>();
     String str;
-    private void checkAdventureCheckBox(){
-        if(adventureCheckBox.isSelected()){
+
+    private void checkAdventureCheckBox() {
+        if (adventureCheckBox.isSelected()) {
             genreList.add("Adventure");
-            str = String.join(",",genreList);
-        }
-        else{
+            str = String.join(",", genreList);
+        } else {
             genreList.remove("Adventure");
-            str = String.join(",",genreList);
+            str = String.join(",", genreList);
         }
     }
-    
-    private void checkActionCheckBox(){
-        if(actionCheckBox.isSelected()){
+
+    private void checkActionCheckBox() {
+        if (actionCheckBox.isSelected()) {
             genreList.add("Action");
-            str = String.join(",",genreList);
-        }
-        else{
+            str = String.join(",", genreList);
+        } else {
             genreList.remove("Action");
-            str = String.join(",",genreList);
+            str = String.join(",", genreList);
         }
     }
-    
-    private void checkMysteryCheckBox(){
-        if(mysteryCheckBox.isSelected()){
+
+    private void checkMysteryCheckBox() {
+        if (mysteryCheckBox.isSelected()) {
             genreList.add("Mystery");
-            str = String.join(",",genreList);
-        }
-        else{
+            str = String.join(",", genreList);
+        } else {
             genreList.remove("Mystery");
-            str = String.join(",",genreList);
+            str = String.join(",", genreList);
         }
     }
-    
-    private void checkAnimationCheckBox(){
-        if(animationCheckBox.isSelected()){
+
+    private void checkAnimationCheckBox() {
+        if (animationCheckBox.isSelected()) {
             genreList.add("Animation");
-            str = String.join(",",genreList);
-        }
-        else{
+            str = String.join(",", genreList);
+        } else {
             genreList.remove("Animation");
-            str = String.join(",",genreList);
+            str = String.join(",", genreList);
         }
     }
-    
-    private void checkCrimeCheckBox(){
-        if(crimeCheckBox.isSelected()){
+
+    private void checkCrimeCheckBox() {
+        if (crimeCheckBox.isSelected()) {
             genreList.add("Crime");
-            str = String.join(",",genreList);
-        }
-        else{
+            str = String.join(",", genreList);
+        } else {
             genreList.remove("Crime");
-            str = String.join(",",genreList);
+            str = String.join(",", genreList);
         }
     }
-    
-    private void checkComedyCheckBox(){
-        if(comedyCheckBox.isSelected()){
+
+    private void checkComedyCheckBox() {
+        if (comedyCheckBox.isSelected()) {
             genreList.add("Comedy");
-            str = String.join(",",genreList);
-        }
-        else{
+            str = String.join(",", genreList);
+        } else {
             genreList.remove("Comedy");
-            str = String.join(",",genreList);
+            str = String.join(",", genreList);
         }
     }
-    
-    private void checkHorrorCheckBox(){
-        if(horrorCheckBox.isSelected()){
+
+    private void checkHorrorCheckBox() {
+        if (horrorCheckBox.isSelected()) {
             genreList.add("Horror");
-            str = String.join(",",genreList);
-        }
-        else{
+            str = String.join(",", genreList);
+        } else {
             genreList.remove("Horror");
-            str = String.join(",",genreList);
+            str = String.join(",", genreList);
         }
     }
-    
-    private void checkThrillerCheckBox(){
-        if(thrillerCheckBox.isSelected()){
+
+    private void checkThrillerCheckBox() {
+        if (thrillerCheckBox.isSelected()) {
             genreList.add("Thriller");
-            str = String.join(",",genreList);
-        }
-        else{
+            str = String.join(",", genreList);
+        } else {
             genreList.remove("Thriller");
-            str = String.join(",",genreList);
-        } 
+            str = String.join(",", genreList);
+        }
     }
-    
-    private void checkFantasyCheckBox(){
-        if(fantasyCheckBox.isSelected()){
+
+    private void checkFantasyCheckBox() {
+        if (fantasyCheckBox.isSelected()) {
             genreList.add("Fantasy");
-            str = String.join(",",genreList);
-        }
-        else{
+            str = String.join(",", genreList);
+        } else {
             genreList.remove("Fantasy");
-            str = String.join(",",genreList);
+            str = String.join(",", genreList);
         }
     }
-    
-    private void checkDramaCheckBox(){
-        if(dramaCheckBox.isSelected()){
+
+    private void checkDramaCheckBox() {
+        if (dramaCheckBox.isSelected()) {
             genreList.add("Drama");
-            str = String.join(",",genreList);
-        }
-        else{
+            str = String.join(",", genreList);
+        } else {
             genreList.remove("Drama");
-            str = String.join(",",genreList);
+            str = String.join(",", genreList);
         }
     }
-    
+
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         checkAdventureCheckBox();
         checkActionCheckBox();
@@ -663,27 +655,26 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
         checkThrillerCheckBox();
         checkFantasyCheckBox();
         checkDramaCheckBox();
-        
+
         String movie_title = movieTitleTextField.getText();
         String genre = str;
-        Double rating = (Double)ratingSpinner.getValue();
-        Integer hour = (Integer)hourSpinner.getValue();
-        Integer minute = (Integer)minuteSpinner.getValue();
+        Double rating = (Double) ratingSpinner.getValue();
+        Integer hour = (Integer) hourSpinner.getValue();
+        Integer minute = (Integer) minuteSpinner.getValue();
         String contentRating = contRatingCombo.getSelectedItem().toString();
         String description = descriptionTextArea.getText();
         String screen = screenCombo.getSelectedItem().toString();
         Integer ticketPrice = Integer.parseInt(tckPrcTextField.getText());
         String uri = uriTextField.getText();
         PreparedStatement pst = null;
-        if(checkEmptyFields()){
+        if (checkEmptyFields()) {
             String updateMoveQuery = null;
-            if(posterBytes !=null && poster == null){
-                updateMoveQuery = "UPDATE `movies` SET `movie_title` = ?, `genre` = ?, `rating` = ?, `hour` = ?, `minute` = ?, `content_rating` = ?, `description` = ?, `screen` = ?, `ticket_price` = ?, `uir` = ? WHERE id= '"+id+"'";
+            if (posterBytes != null && poster == null) {
+                updateMoveQuery = "UPDATE `movies` SET `movie_title` = ?, `genre` = ?, `rating` = ?, `hour` = ?, `minute` = ?, `content_rating` = ?, `description` = ?, `screen` = ?, `ticket_price` = ?, `uir` = ? WHERE id= '" + id + "'";
+            } else {
+                updateMoveQuery = "UPDATE `movies` SET `movie_title` = ?, `genre` = ?, `rating` = ?, `hour` = ?, `minute` = ?, `content_rating` = ?, `description` = ?, `screen` = ?, `ticket_price` = ?, `uir` = ?, `poster` = ? WHERE id= '" + id + "'";
             }
-            else{
-                updateMoveQuery = "UPDATE `movies` SET `movie_title` = ?, `genre` = ?, `rating` = ?, `hour` = ?, `minute` = ?, `content_rating` = ?, `description` = ?, `screen` = ?, `ticket_price` = ?, `uir` = ?, `poster` = ? WHERE id= '"+id+"'";
-            }
-            try{
+            try {
                 pst = DBConnectClass.getConnection().prepareStatement(updateMoveQuery);
                 pst.setString(1, movie_title);
                 pst.setString(2, genre);
@@ -695,53 +686,51 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
                 pst.setString(8, screen);
                 pst.setInt(9, ticketPrice);
                 pst.setString(10, uri);
-                if(posterBytes !=null && poster != null){
+                if (posterBytes != null && poster != null) {
                     pst.setBytes(11, poster);
                 }
                 pst.executeUpdate();
                 pst.close();
                 DBConnectClass.getConnection().close();
-            }catch(SQLException ex){
+            } catch (SQLException ex) {
                 Logger.getLogger(UpdateMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            finally{
+            } finally {
                 JOptionPane.showMessageDialog(null, "Movie updated successfully!");
             }
         }
     }//GEN-LAST:event_updateBtnActionPerformed
 
-    private boolean checkEmptyFields(){
+    private boolean checkEmptyFields() {
         String movie_title = movieTitleTextField.getText();
         String description = descriptionTextArea.getText();
         String ticketPrice = tckPrcTextField.getText();
         String uri = uriTextField.getText();
 
         //check empty fields
-        if (movie_title.trim().equals("")){
-            JOptionPane.showMessageDialog(null, "Please enter a movie title.","Empty Field",2);
+        if (movie_title.trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please enter a movie title.", "Empty Field", 2);
             return false;
         }
-        if (genreList.isEmpty()){
-            JOptionPane.showMessageDialog(null, "Please provide at least (one) genre.", "Empty genre",2);
+        if (genreList.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please provide at least (one) genre.", "Empty genre", 2);
             return false;
         }
-        if (description.trim().equals("")){
-            JOptionPane.showMessageDialog(null, "Please provide a movie description.", "Empty Field",2);
+        if (description.trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please provide a movie description.", "Empty Field", 2);
             return false;
         }
-        if(ticketPrice.trim().equals("")){
-            JOptionPane.showMessageDialog(null, "Please enter a price for ticket.", "Empty Field",2);
+        if (ticketPrice.trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please enter a price for ticket.", "Empty Field", 2);
             return false;
         }
-        if(uri.trim().equals("")){
-            JOptionPane.showMessageDialog(null, "Please enter the youtube uri.", "Empty Field",2);
+        if (uri.trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please enter the youtube uri.", "Empty Field", 2);
             return false;
-        }
-        else {
+        } else {
             return true;
         }
-    }    
-        
+    }
+
     private void updateBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateBtnMouseEntered
         try {
             Image updateBtnImgHover = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/updateBtnHover.png"));
@@ -760,7 +749,7 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_updateBtnMouseExited
 
-    byte[] poster=null;
+    byte[] poster = null;
     private void browsePosterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browsePosterBtnActionPerformed
         JFileChooser browseImageFile = new JFileChooser();
         //Filter image extensions
@@ -776,12 +765,12 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
                 posterImgPath.setText(selectedImagePath);
                 //set to poster for sql insert
                 fis = new FileInputStream(selectedImagePath);
-                ByteArrayOutputStream baos=new ByteArrayOutputStream();
-                byte[] buf=new byte[1024];
-                for(int readnum; (readnum=fis.read(buf)) !=-1;)
-                {
-                    baos.write(buf,0,readnum);
-                }   poster=baos.toByteArray();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                byte[] buf = new byte[1024];
+                for (int readnum; (readnum = fis.read(buf)) != -1;) {
+                    baos.write(buf, 0, readnum);
+                }
+                poster = baos.toByteArray();
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(AdminMainFrm.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
@@ -837,7 +826,7 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_dramaCheckBoxActionPerformed
 
     private void tckPrcTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tckPrcTextFieldKeyPressed
-        if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9' && tckPrcTextField.getText().length()<4 || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+        if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9' && tckPrcTextField.getText().length() < 4 || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
             tckPrcTextField.setEditable(true);
         } else {
             tckPrcTextField.setEditable(false);
@@ -867,7 +856,7 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        
+
         //</editor-fold>
         //</editor-fold>
 
