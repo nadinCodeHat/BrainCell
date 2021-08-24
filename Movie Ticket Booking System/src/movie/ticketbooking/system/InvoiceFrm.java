@@ -1,10 +1,13 @@
 package movie.ticketbooking.system;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -18,6 +21,15 @@ public class InvoiceFrm extends javax.swing.JFrame {
     public InvoiceFrm(int id, int idvalue) {
         initComponents();
         getInvoiceData(id, idvalue);
+        loadFrameImage();
+    }
+    
+    public void loadFrameImage() {
+        try {
+            setIconImage(ImageIO.read(new File("logo.png")));
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(InvoiceFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void getInvoiceData(int userid, int bookedidvalue) {
@@ -108,6 +120,7 @@ public class InvoiceFrm extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Invoice");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

@@ -1,6 +1,7 @@
 package movie.ticketbooking.system;
 
 import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,6 +39,7 @@ public class BookTicketsFrm extends javax.swing.JFrame {
 
     public BookTicketsFrm(int id, int userid) {
         initComponents();
+        loadFrameImage();
         this.idval = id;
         this.userid = userid;
         loadMovieData();
@@ -49,6 +51,15 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         noOfTcksLabel.setText("0 Tickets");
         totalAmountLabel.setText("Rs. 0");
     }
+    
+    public void loadFrameImage() {
+        try {
+            setIconImage(ImageIO.read(new File("logo.png")));
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(BookTicketsFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     private String movietitle = "";
 
     private void loadMovieData() {
@@ -197,6 +208,7 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Book Tickets");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

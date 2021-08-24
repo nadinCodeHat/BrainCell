@@ -35,8 +35,17 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
         initComponents();
         this.id = id;
         loadEditData();
+        loadFrameImage();
     }
 
+    public void loadFrameImage() {
+        try {
+            setIconImage(ImageIO.read(new File("logo.png")));
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(UpdateMovieFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -83,6 +92,7 @@ public class UpdateMovieFrm extends javax.swing.JFrame {
         uriLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Update Movie");
         setType(java.awt.Window.Type.UTILITY);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

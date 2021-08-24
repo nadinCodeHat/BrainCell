@@ -2,6 +2,7 @@ package movie.ticketbooking.system;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,8 +21,17 @@ public class LoginFrm extends javax.swing.JFrame {
 
     public LoginFrm() {
         initComponents();
+        loadFrameImage();
     }
 
+    public void loadFrameImage() {
+        try {
+            setIconImage(ImageIO.read(new File("logo.png")));
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -40,6 +50,7 @@ public class LoginFrm extends javax.swing.JFrame {
         loginBack = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         login_panel.setBackground(new java.awt.Color(255, 255, 255));

@@ -2,6 +2,7 @@ package movie.ticketbooking.system;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,6 +23,7 @@ public class AdminMainFrm extends javax.swing.JFrame {
     
     public AdminMainFrm() {
         initComponents();
+        loadFrameImage();
         try {
             getManageMovies();
         } catch (SQLException ex) {
@@ -29,6 +31,14 @@ public class AdminMainFrm extends javax.swing.JFrame {
         }
     }
 
+    public void loadFrameImage() {
+        try {
+            setIconImage(ImageIO.read(new File("logo.png")));
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(AdminMainFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -53,6 +63,7 @@ public class AdminMainFrm extends javax.swing.JFrame {
         viewInvoiceBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Admin");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         navPanel.setBackground(new java.awt.Color(255, 255, 255));

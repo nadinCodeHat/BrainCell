@@ -3,6 +3,7 @@ package movie.ticketbooking.system;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -31,8 +32,17 @@ public class MainFrm extends javax.swing.JFrame {
         initComponents();
         this.userid = id;
         getMovies();
+        loadFrameImage();
     }
-
+    
+    public void loadFrameImage() {
+        try {
+            setIconImage(ImageIO.read(new File("logo.png")));
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(MainFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -101,6 +111,7 @@ public class MainFrm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("User");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         navPanel.setBackground(new java.awt.Color(255, 255, 255));

@@ -1,5 +1,10 @@
 package movie.ticketbooking.system;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import javax.imageio.ImageIO;
+
 /**
  *
  * @author nadinCodeHat
@@ -8,8 +13,17 @@ public class ContactUsFrm extends javax.swing.JFrame {
 
     public ContactUsFrm() {
         initComponents();
+        loadFrameImage();
     }
 
+    public void loadFrameImage() {
+        try {
+            setIconImage(ImageIO.read(new File("logo.png")));
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(ContactUsFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -26,6 +40,7 @@ public class ContactUsFrm extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Contact Us");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
