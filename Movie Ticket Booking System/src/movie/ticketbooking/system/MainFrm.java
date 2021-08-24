@@ -209,6 +209,7 @@ public class MainFrm extends javax.swing.JFrame {
         tckPrice1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         moviePanel1.add(tckPrice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, -1, -1));
 
+        watchTrailerBtn1.setText("Watch Trailer");
         watchTrailerBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 watchTrailerBtn1ActionPerformed(evt);
@@ -216,6 +217,7 @@ public class MainFrm extends javax.swing.JFrame {
         });
         moviePanel1.add(watchTrailerBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 110, 30));
 
+        bookNowBtn1.setText("Buy Tickets");
         bookNowBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bookNowBtn1ActionPerformed(evt);
@@ -280,6 +282,7 @@ public class MainFrm extends javax.swing.JFrame {
         tckPrice2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         moviePanel2.add(tckPrice2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, -1, -1));
 
+        watchTrailerBtn2.setText("Watch Trailer");
         watchTrailerBtn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 watchTrailerBtn2ActionPerformed(evt);
@@ -287,6 +290,7 @@ public class MainFrm extends javax.swing.JFrame {
         });
         moviePanel2.add(watchTrailerBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 110, 30));
 
+        bookNowBtn2.setText("Buy Tickets");
         bookNowBtn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bookNowBtn2ActionPerformed(evt);
@@ -351,6 +355,7 @@ public class MainFrm extends javax.swing.JFrame {
         tckPrice3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         moviePanel3.add(tckPrice3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, -1, -1));
 
+        watchTrailerBtn3.setText("Watch Trailer");
         watchTrailerBtn3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 watchTrailerBtn3ActionPerformed(evt);
@@ -358,6 +363,7 @@ public class MainFrm extends javax.swing.JFrame {
         });
         moviePanel3.add(watchTrailerBtn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 110, 30));
 
+        bookNowBtn3.setText("Buy Tickets");
         bookNowBtn3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bookNowBtn3ActionPerformed(evt);

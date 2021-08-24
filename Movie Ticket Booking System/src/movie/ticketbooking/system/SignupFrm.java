@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -182,41 +183,41 @@ public class SignupFrm extends javax.swing.JFrame {
                 pst.setString(4, "2");
                 pst.execute();
 
-                //                String FromEmail = "nadinpethiyagoda4@gmail.com";
-                //                String FromEmailPassword= "ENTER YOUR PASSWORD";
-                //
-                //                Properties props = new Properties();
-                //
-                //                props.put("mail.smtp.user","username");
-                //                props.put("mail.debug", "true");
-                //                props.put("mail.smtp.auth", "true");
-                //                props.put("mail.smtp.starttls.enable","true");
-                //                props.put("mail.smtp.host", "smtp.gmail.com");
-                //                props.put("mail.smtp.port", "587");
-                //                props.put("mail.smtp.EnableSSL.enable","true");
-                //                props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-                //                props.setProperty("mail.smtp.socketFactory.fallback", "false");
-                //                props.setProperty("mail.smtp.port", "465");
-                //                props.setProperty("mail.smtp.socketFactory.port", "465");
-                //
-                //                Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
-                    //                @Override
-                    //                    protected PasswordAuthentication getPasswordAuthentication() {
-                        //                        return new PasswordAuthentication(FromEmail, FromEmailPassword);
-                        //                    }
-                    //                });
-            //
-            //                try{
-                //                    MimeMessage message = new MimeMessage(session);
-                //                    message.setFrom(new InternetAddress(FromEmail));
-                //                    message.addRecipient(Message.RecipientType.TO, new InternetAddress(userEmail));
-                //                    message.setSubject("BrainCell User Account SignUp");
-                //                    message.setText("Hello "+fullName+" thankyou for joining with BrainCell Cinema!");
-                //                    Transport.send(message);
-                //                } catch (MessagingException e){
-                //                    JOptionPane.showMessageDialog(null,"Something happened!");
-                //                    throw new RuntimeException(e);
-                //                }
+                String FromEmail = "ENTER YOUR EMAIL";
+                String FromEmailPassword= "ENTER YOUR PASSWORD";
+
+                Properties props = new Properties();
+
+                props.put("mail.smtp.user","username");
+                props.put("mail.debug", "true");
+                props.put("mail.smtp.auth", "true");
+                props.put("mail.smtp.starttls.enable","true");
+                props.put("mail.smtp.host", "smtp.gmail.com");
+                props.put("mail.smtp.port", "587");
+                props.put("mail.smtp.EnableSSL.enable","true");
+                props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+                props.setProperty("mail.smtp.socketFactory.fallback", "false");
+                props.setProperty("mail.smtp.port", "465");
+                props.setProperty("mail.smtp.socketFactory.port", "465");
+
+                Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
+                @Override
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                            return new PasswordAuthentication(FromEmail, FromEmailPassword);
+                    }
+                });
+
+                try{
+                    MimeMessage message = new MimeMessage(session);
+                    message.setFrom(new InternetAddress(FromEmail));
+                    message.addRecipient(Message.RecipientType.TO, new InternetAddress(userEmail));
+                    message.setSubject("BrainCell User Account SignUp");
+                    message.setText("Hello "+name+" thankyou for joining with BrainCell Cinema!");
+                    Transport.send(message);
+                } catch (MessagingException e){
+                    JOptionPane.showMessageDialog(null,"Something happened!");
+                    throw new RuntimeException(e);
+                }
             pst.close();
             DBConnectClass.getConnection().close();
             }catch(SQLException ex){

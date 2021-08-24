@@ -10,9 +10,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
@@ -67,6 +75,25 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(BookTicketsFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    private String getUserEmail(){
+        String query = "SELECT email FROM `users` WHERE id = '"+userid+"'";
+        String email = null;
+        try {
+            ResultSet rs;
+            try (PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query)) {
+                rs = pst.executeQuery();
+                while(rs.next()){
+                    email = rs.getString("email");
+                }
+            }
+            rs.close();
+            DBConnectClass.getConnection().close();
+        } catch (SQLException ex) {
+            Logger.getLogger(BookTicketsFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return email;
     }
     
     private ImageIcon parsePoster(byte[] dTM){
@@ -1069,6 +1096,64 @@ public class BookTicketsFrm extends javax.swing.JFrame {
                 pst.setString(7, showtimeCombo.getSelectedItem().toString());
                 pst.setInt(8, totalAmount);
                 pst.execute();
+                
+                
+                String getUserquery = "SELECT email, name FROM `users` WHERE id = '"+userid+"'";
+                String custEmail = null,custName = null;
+                try {
+                    ResultSet rs;
+                    try (PreparedStatement pstcon = DBConnectClass.getConnection().prepareStatement(getUserquery)) {
+                        rs = pstcon.executeQuery();
+                        while(rs.next()){
+                            custEmail = rs.getString("email");
+                            custName = rs.getString("name");
+                        }
+                    }
+                    rs.close();
+                    DBConnectClass.getConnection().close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(BookTicketsFrm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                
+                //send email
+                String FromEmail = "ENTER YOUR EMAIL";
+                String FromEmailPassword= "ENTER YOUR PASSWORD";
+
+                Properties props = new Properties();
+
+                props.put("mail.smtp.user","username");
+                props.put("mail.debug", "true");
+                props.put("mail.smtp.auth", "true");
+                props.put("mail.smtp.starttls.enable","true");
+                props.put("mail.smtp.host", "smtp.gmail.com");
+                props.put("mail.smtp.port", "587");
+                props.put("mail.smtp.EnableSSL.enable","true");
+                props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+                props.setProperty("mail.smtp.socketFactory.fallback", "false");
+                props.setProperty("mail.smtp.port", "465");
+                props.setProperty("mail.smtp.socketFactory.port", "465");
+
+                Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
+                @Override
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                            return new PasswordAuthentication(FromEmail, FromEmailPassword);
+                    }
+                });
+                
+                try{
+                    MimeMessage message = new MimeMessage(session);
+                    message.setFrom(new InternetAddress(FromEmail));
+                    message.addRecipient(Message.RecipientType.TO, new InternetAddress(custEmail));
+                    message.setSubject("BrainCell - Booked Seats");
+                    message.setText("Hello "+custName+" thankyou for choosing BrainCell Cinema! \n"
+                                    + "you can view your invoice through 'My Bookings'");
+                    Transport.send(message);
+                } catch (MessagingException e){
+                    JOptionPane.showMessageDialog(null,"Something happened!");
+                    throw new RuntimeException(e);
+                }
+                
                 pst.close();
                 DBConnectClass.getConnection().close();
             }catch(SQLException ex){
