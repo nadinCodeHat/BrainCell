@@ -691,8 +691,8 @@ public class MainFrm extends javax.swing.JFrame {
         tableModel.setRowCount(0);
         searchTableModel.setRowCount(0);
         String searchValue = searchTextField.getText();
-        String query = null;
-        if (searchValue.equals(null)) {
+        String query = "";
+        if (searchValue.equals("")) {
             query = "SELECT bookings.booked_movie_id, bookings.seat, bookings.no_of_tickets, bookings.purchased_date, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen, booked_movie.ticket_price FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '" + userid + "'";
         } else {
             query = "SELECT bookings.booked_movie_id, bookings.seat, bookings.no_of_tickets, bookings.purchased_date, bookings.booked_date, bookings.showtime, bookings.total_amount, booked_movie.movie_title, booked_movie.screen, booked_movie.ticket_price FROM `bookings` INNER JOIN `booked_movie` ON bookings.booked_movie_id=booked_movie.id WHERE bookings.userid = '" + userid + "' AND booked_movie.movie_title LIKE '%" + searchValue + "%' OR bookings.purchased_date LIKE '%" + searchValue + "%'";

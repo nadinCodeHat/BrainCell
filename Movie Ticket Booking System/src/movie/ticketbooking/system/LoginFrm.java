@@ -194,7 +194,6 @@ public class LoginFrm extends javax.swing.JFrame {
                             adminMFrm.setVisible(true);
                             this.dispose();
                         } else {
-
                             MainFrm mainFrm = new MainFrm(rs.getInt("id"));
                             mainFrm.setVisible(true);
                             this.dispose();
